@@ -13,3 +13,28 @@
   font-display: swap;
   src: local('IRANSansX'), url('/fonts/woff/iransans-x-bold.woff') format('woff'), url('/fonts/woff2/iransans-x-bold.woff2') format('woff2');
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+#__next {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  -moz-font-feature-settings: 'ss02';
+  -webkit-font-feature-settings: 'ss02';
+  font-feature-settings: 'ss02';
+}
+
+.fa {
+  -moz-font-feature-settings: 'ss02';
+  -webkit-font-feature-settings: 'ss02';
+  font-feature-settings: 'ss02';
+}
+
+.en {
+  -moz-font-feature-settings: normal;
+  -webkit-font-feature-settings: normal;
+  font-feature-settings: normal;
+}
