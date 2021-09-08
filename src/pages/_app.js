@@ -1,7 +1,14 @@
+import withApollo from '../apollo'
+import { AuthProvider } from '../context/auth'
 import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  const ComponentWithApollo = withApollo(Component)
+  return (
+    <AuthProvider>
+      <ComponentWithApollo {...pageProps} />
+    </AuthProvider>
+  )
 }
 
 export default MyApp

@@ -9,11 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.4.10",
+    "apollo-link-error": "^1.1.13",
+    "apollo-link-token-refresh": "^0.3.2",
+    "apollo-upload-client": "^16.0.0",
+    "graphql": "^15.5.3",
+    "jwt-decode": "^3.1.2",
     "next": "11.1.2",
+    "prop-types": "^15.7.2",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
   "devDependencies": {
+    "@types/react": "^17.0.20",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2"
   }
