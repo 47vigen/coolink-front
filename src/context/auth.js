@@ -6,28 +6,26 @@ const AuthContext = createContext({})
 const AuthProvider = ({ children }) => {
   const initialAuthState = {
     token: undefined,
-    userId: undefined
+    user: undefined
   }
 
   const [authState, setAuthState] = useState(initialAuthState)
 
   useEffect(() => {
-    if (localStorage.getItem('userId') !== authState.userId) {
-      setAuthState({
-        ...authState,
-        userId: localStorage.getItem('userId')
-      })
-    }
-  }, [authState])
+    setAuthState((prev) => ({
+      ...prev,
+      token: localStorage.getItem('token')
+    }))
+  }, [])
 
-  const signIn = (userId, token) => {
+  const signIn = (user, token) => {
     setAuthState({
       ...authState,
-      userId,
+      user,
       token
     })
     if (typeof window !== 'undefined') {
-      localStorage.setItem('userId', userId)
+      localStorage.setItem('token', token)
     }
   }
 
@@ -36,12 +34,15 @@ const AuthProvider = ({ children }) => {
       ...authState,
       token
     })
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('token', token)
+    }
   }
 
   const signOut = () => {
     setAuthState(initialAuthState)
     if (typeof window !== 'undefined') {
-      localStorage.removeItem('userId')
+      localStorage.removeItem('token')
     }
   }
 

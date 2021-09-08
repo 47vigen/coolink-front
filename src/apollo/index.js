@@ -35,13 +35,12 @@ const requestLink = (token) =>
       })
   )
 
-const createIsomorphLink = (token, userId, setAuthToken) =>
+const createIsomorphLink = (token, setAuthToken) =>
   ApolloLink.from([
     new TokenRefreshLink({
       accessTokenField: 'token',
       isTokenValidOrUndefined: () => {
-        if (!token || !userId) return true
-
+        if (!token) return true
         try {
           const { exp } = jwtDecode(token)
           if (Date.now() >= exp * 1000) {
@@ -51,15 +50,11 @@ const createIsomorphLink = (token, userId, setAuthToken) =>
           return false
         }
       },
-      fetchAccessToken: () => {
-        if (!userId) {
-          return null
-        } else
-          return fetch('http://localhost:4000/refresh_token', {
-            method: 'POST',
-            credentials: 'include'
-          })
-      },
+      fetchAccessToken: () =>
+        fetch('http://localhost:4000/refresh_token', {
+          method: 'POST',
+          credentials: 'include'
+        }),
       handleFetch: (token) => {
         setAuthToken(token)
       },
@@ -79,10 +74,10 @@ const createIsomorphLink = (token, userId, setAuthToken) =>
     })
   ])
 
-function createApolloClient(initialState = {}, token, userId, setAuthToken) {
+function createApolloClient(initialState = {}, token, setAuthToken) {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
-    link: createIsomorphLink(token, userId, setAuthToken),
+    link: createIsomorphLink(token, setAuthToken),
     cache: new InMemoryCache().restore(initialState)
   })
 }
@@ -91,7 +86,7 @@ const withApollo = (PageComponent) => {
   const WithApollo = ({ apolloClient, apolloState, ...pageProps }) => {
     const { authState, setAuthToken } = useAuth()
 
-    const client = apolloClient || createApolloClient(apolloState, authState?.token, authState?.userId, setAuthToken)
+    const client = apolloClient || createApolloClient(apolloState, authState?.token, setAuthToken)
 
     return (
       <ApolloProvider client={client}>
