@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
 import { createContext, useContext, useEffect, useState } from 'react'
 
@@ -9,6 +10,7 @@ const AuthProvider = ({ children }) => {
     user: undefined
   }
 
+  const router = useRouter()
   const [authState, setAuthState] = useState(initialAuthState)
 
   useEffect(() => {
@@ -18,15 +20,13 @@ const AuthProvider = ({ children }) => {
     }))
   }, [])
 
-  const signIn = (user, token) => {
+  const signIn = (user, token, redirect) => {
     setAuthState({
       ...authState,
-      user,
-      token
+      user
     })
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('token', token)
-    }
+    if (token) setAuthToken(token)
+    if (redirect) router.push('/')
   }
 
   const setAuthToken = (token) => {
