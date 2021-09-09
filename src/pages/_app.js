@@ -1,4 +1,4 @@
-import withApollo from '../apollo'
+import withApollo from '../graphql/apollo'
 import { AuthProvider } from '../context/auth'
 
 import 'tailwindcss/tailwind.css'
