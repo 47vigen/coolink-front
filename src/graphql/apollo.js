@@ -4,6 +4,7 @@ import { onError } from 'apollo-link-error'
 import jwtDecode from 'jwt-decode'
 
 import { useAuth } from '../context/auth'
+import MainProvider from '../providers/main'
 
 const requestLink = (token) =>
   new ApolloLink(
@@ -51,8 +52,7 @@ const createIsomorphLink = (token, setAuthToken) =>
         }
       },
       fetchAccessToken: () =>
-        fetch('http://localhost:4000/refresh_token', {
-          method: 'POST',
+        fetch('http://localhost:9000/refresh', {
           credentials: 'include'
         }),
       handleFetch: (token) => {
@@ -69,7 +69,7 @@ const createIsomorphLink = (token, setAuthToken) =>
     }),
     requestLink(token),
     new HttpLink({
-      uri: 'http://localhost:4000/graphql',
+      uri: 'http://localhost:9000/graphql',
       credentials: 'include'
     })
   ])
@@ -85,12 +85,13 @@ function createApolloClient(initialState = {}, token, setAuthToken) {
 const withApollo = (PageComponent) => {
   const WithApollo = ({ apolloClient, apolloState, ...pageProps }) => {
     const { authState, setAuthToken } = useAuth()
-
     const client = apolloClient || createApolloClient(apolloState, authState?.token, setAuthToken)
 
     return (
       <ApolloProvider client={client}>
-        <PageComponent {...pageProps} />
+        <MainProvider>
+          <PageComponent {...pageProps} />
+        </MainProvider>
       </ApolloProvider>
     )
   }
