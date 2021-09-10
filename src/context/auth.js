@@ -1,52 +1,40 @@
+import React from 'react'
 import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
 import { createContext, useContext, useEffect, useState } from 'react'
+import { getToken, removeToken, setToken } from '../utils/token'
+
+// ** Graphql
+import { useLazyQuery } from '@apollo/client'
+import { SHOW_ME } from '../graphql/queries'
 
 const AuthContext = createContext({})
 
 const AuthProvider = ({ children }) => {
-  const initialAuthState = {
-    token: undefined,
-    user: undefined
-  }
-
   const router = useRouter()
-  const [authState, setAuthState] = useState(initialAuthState)
+  const [user, setUser] = useState(null)
+  const [showMe, { data }] = useLazyQuery(SHOW_ME)
 
-  useEffect(() => {
-    setAuthState((prev) => ({
-      ...prev,
-      token: localStorage.getItem('token')
-    }))
-  }, [])
-
-  const signIn = (user, token, redirect) => {
-    setAuthState({
-      ...authState,
-      user
-    })
-    if (token) setAuthToken(token)
-    if (redirect) router.push('/')
-  }
-
-  const setAuthToken = (token) => {
-    setAuthState({
-      ...authState,
-      token
-    })
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('token', token)
-    }
-  }
+  const signIn = React.useCallback(
+    (user, token, redirect) => {
+      setUser(user)
+      if (token) setToken(token)
+      if (redirect) router.push('/')
+    },
+    [router]
+  )
 
   const signOut = () => {
-    setAuthState(initialAuthState)
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem('token')
-    }
+    setUser(null)
+    removeToken()
   }
 
-  return <AuthContext.Provider value={{ authState, setAuthToken, signIn, signOut }}>{children}</AuthContext.Provider>
+  React.useEffect(() => {
+    if (getToken() && !data?.showMe && !user) showMe()
+    if (data?.showMe && !user) signIn(data.showMe)
+  }, [user, showMe, data?.showMe, signIn])
+
+  return <AuthContext.Provider value={{ user, signIn, signOut }}>{children}</AuthContext.Provider>
 }
 
 AuthProvider.propTypes = {
