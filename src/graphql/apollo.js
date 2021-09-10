@@ -3,20 +3,20 @@ import { TokenRefreshLink } from 'apollo-link-token-refresh'
 import { onError } from 'apollo-link-error'
 import jwtDecode from 'jwt-decode'
 
-import { useAuth } from '../context/auth'
-import MainProvider from '../providers/main'
+// ** Utils
+import { getToken, setToken } from '../utils/token'
 
-const requestLink = (token) =>
+const requestLink = () =>
   new ApolloLink(
     (operation, forward) =>
       new Observable((observer) => {
         let handle
         Promise.resolve(operation)
           .then((operation) => {
-            if (token) {
+            if (getToken()) {
               operation.setContext({
                 headers: {
-                  authorization: `Bearer ${token}`
+                  authorization: `Bearer ${getToken()}`
                 }
               })
             }
@@ -36,14 +36,14 @@ const requestLink = (token) =>
       })
   )
 
-const createIsomorphLink = (token, setAuthToken) =>
+const createIsomorphLink = () =>
   ApolloLink.from([
     new TokenRefreshLink({
       accessTokenField: 'token',
       isTokenValidOrUndefined: () => {
-        if (!token) return true
+        if (!getToken()) return true
         try {
-          const { exp } = jwtDecode(token)
+          const { exp } = jwtDecode(getToken())
           if (Date.now() >= exp * 1000) {
             return false
           } else return true
@@ -56,7 +56,7 @@ const createIsomorphLink = (token, setAuthToken) =>
           credentials: 'include'
         }),
       handleFetch: (token) => {
-        setAuthToken(token)
+        setToken(token)
       },
       handleError: (err) => {
         console.warn('Your refresh token is invalid. Try to relogin')
@@ -67,31 +67,28 @@ const createIsomorphLink = (token, setAuthToken) =>
       console.log(graphQLErrors)
       console.log(networkError)
     }),
-    requestLink(token),
+    requestLink(getToken()),
     new HttpLink({
       uri: 'http://localhost:9000/graphql',
       credentials: 'include'
     })
   ])
 
-function createApolloClient(initialState = {}, token, setAuthToken) {
+function createApolloClient(initialState = {}) {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
-    link: createIsomorphLink(token, setAuthToken),
+    link: createIsomorphLink(),
     cache: new InMemoryCache().restore(initialState)
   })
 }
 
-const withApollo = (PageComponent) => {
-  const WithApollo = ({ apolloClient, apolloState, ...pageProps }) => {
-    const { authState, setAuthToken } = useAuth()
-    const client = apolloClient || createApolloClient(apolloState, authState?.token, setAuthToken)
+const withApollo = (Component) => {
+  const WithApollo = ({ apolloClient, apolloState, ...props }) => {
+    const client = apolloClient || createApolloClient(apolloState)
 
     return (
       <ApolloProvider client={client}>
-        <MainProvider>
-          <PageComponent {...pageProps} />
-        </MainProvider>
+        <Component {...props} />
       </ApolloProvider>
     )
   }
