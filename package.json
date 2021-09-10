@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.4.10",
+    "@headlessui/react": "^1.4.1",
     "apollo-link-error": "^1.1.13",
     "apollo-link-token-refresh": "^0.3.2",
     "apollo-upload-client": "^16.0.0",
