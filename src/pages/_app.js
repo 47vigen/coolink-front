@@ -5,12 +5,11 @@ import 'tailwindcss/tailwind.css'
 import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
-  const ComponentWithApollo = withApollo(Component)
   return (
     <AuthProvider>
-      <ComponentWithApollo {...pageProps} />
+      <Component {...pageProps} />
     </AuthProvider>
   )
 }
 
-export default MyApp
+export default withApollo(MyApp)
