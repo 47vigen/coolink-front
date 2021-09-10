@@ -1,18 +1,19 @@
 import React from 'react'
-import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
-import { createContext, useContext, useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
+
+// ** Utils
 import { getToken, removeToken, setToken } from '../utils/token'
 
 // ** Graphql
 import { useLazyQuery } from '@apollo/client'
 import { SHOW_ME } from '../graphql/queries'
 
-const AuthContext = createContext({})
+const AuthContext = React.createContext({})
 
 const AuthProvider = ({ children }) => {
   const router = useRouter()
-  const [user, setUser] = useState(null)
+  const [user, setUser] = React.useState(null)
   const [showMe, { data }] = useLazyQuery(SHOW_ME)
 
   const signIn = React.useCallback(
@@ -24,10 +25,10 @@ const AuthProvider = ({ children }) => {
     [router]
   )
 
-  const signOut = () => {
+  const signOut = React.useCallback(() => {
     setUser(null)
     removeToken()
-  }
+  }, [])
 
   React.useEffect(() => {
     if (getToken() && !data?.showMe && !user) showMe()
@@ -41,6 +42,6 @@ AuthProvider.propTypes = {
   children: PropTypes.object
 }
 
-const useAuth = () => useContext(AuthContext)
+const useAuth = () => React.useContext(AuthContext)
 
 export { AuthProvider, useAuth }
