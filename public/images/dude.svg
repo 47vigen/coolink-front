@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="189.561" height="134.343" viewBox="0 0 189.561 134.343">
+  <defs>
+    <linearGradient id="linear-gradient" y1="0.5" x2="1" y2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#2ac4a6"/>
+      <stop offset="0.722" stop-color="#1abc9c"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" y1="0.5" x2="1" y2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#b3f4d3"/>
+      <stop offset="1" stop-color="#93eac2"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" y1="0.5" x2="1" y2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#4f6170"/>
+      <stop offset="1" stop-color="#34495e"/>
+    </linearGradient>
+  </defs>
+  <g id="dude" transform="translate(-780 -99.657)">
+    <g id="Group_720" data-name="Group 720" transform="translate(42.336 -144.617)">
+      <rect id="Rectangle_700" data-name="Rectangle 700" width="69.787" height="69.32" rx="23.574" transform="translate(857.438 309.297)" fill="url(#linear-gradient)"/>
+      <path id="Path_502" data-name="Path 502" d="M920.336,344.32l-2.827,19.517a10.042,10.042,0,0,1-9.938,8.6H891.379A20.813,20.813,0,0,1,873.1,361.585l-6.855-12.579-8.472,39.657H917.8l13.339-14.781L929.7,344.32Z" transform="translate(-8.436 -12.576)" fill="#16a085"/>
+      <path id="Path_503" data-name="Path 503" d="M902.49,385.086h17.392A19.7,19.7,0,0,0,939.6,365.371V338.487a19.708,19.708,0,0,0-14.657-19.055v45.939a5.067,5.067,0,0,1-5.057,5.057H902.49Z" transform="translate(-14.056 -6.471)" fill="#1abc9c"/>
+      <path id="Rectangle_701" data-name="Rectangle 701" d="M0,0H14.808a0,0,0,0,1,0,0V8.549a7.4,7.4,0,0,1-7.4,7.4h0A7.4,7.4,0,0,1,0,8.549V0A0,0,0,0,1,0,0Z" transform="translate(884.927 301.32)" fill="#93e3c7"/>
+      <path id="Rectangle_702" data-name="Rectangle 702" d="M0,0H49.893a0,0,0,0,1,0,0V15.221A24.946,24.946,0,0,1,24.946,40.168h0A24.946,24.946,0,0,1,0,15.221V0A0,0,0,0,1,0,0Z" transform="translate(867.385 267.007)" fill="url(#linear-gradient-2)"/>
+      <path id="Path_504" data-name="Path 504" d="M927.542,259.353v22.655a1.253,1.253,0,0,1-1.852,1.1l-3.474-1.891a2.832,2.832,0,0,1-1.479-2.488v-5.809a5.657,5.657,0,0,0-5.658-5.657H877.657v-4.482a5.3,5.3,0,0,0-3.683-5.036,2.27,2.27,0,0,1-1.617-2.149v-3.813a7.246,7.246,0,0,1,7.163-7.508h3.6a4.708,4.708,0,0,1,4.707,4.707v2.079a1.079,1.079,0,0,0,1.079,1.079h0a1.078,1.078,0,0,0,1.079-1.079v-2.079a4.708,4.708,0,0,1,4.707-4.707h17.782a9.781,9.781,0,0,1,9.781,9.781A5.291,5.291,0,0,1,927.542,259.353Z" transform="translate(-10.269 0)" fill="url(#linear-gradient-3)"/>
+      <rect id="Rectangle_703" data-name="Rectangle 703" width="3.954" height="3.954" rx="1.977" transform="translate(875.443 277.64)" fill="#34495e"/>
+      <rect id="Rectangle_704" data-name="Rectangle 704" width="3.954" height="3.954" rx="1.977" transform="translate(891.63 277.64)" fill="#34495e"/>
+      <path id="Path_505" data-name="Path 505" d="M886.945,277.814H892.1" transform="translate(-12.102 -4.216)" fill="none" stroke="#34495e" stroke-linecap="round" stroke-miterlimit="10" stroke-width="1"/>
+      <path id="Path_506" data-name="Path 506" d="M905.46,277.814h5.154" transform="translate(-14.43 -4.216)" fill="none" stroke="#34495e" stroke-linecap="round" stroke-miterlimit="10" stroke-width="1"/>
+      <path id="Path_507" data-name="Path 507" d="M898.353,284.7v6.21a3.041,3.041,0,0,0,3.042,3.042h0" transform="translate(-13.536 -5.081)" fill="none" stroke="#88d3ad" stroke-linecap="round" stroke-miterlimit="10" stroke-width="1"/>
+      <path id="Path_508" data-name="Path 508" d="M896.09,303.178h6.595a6.971,6.971,0,0,0,4.929-2.041h0" transform="translate(-13.252 -7.148)" fill="none" stroke="#34495e" stroke-linecap="round" stroke-miterlimit="10" stroke-width="1"/>
+      <rect id="Rectangle_705" data-name="Rectangle 705" width="23.253" height="15.322" rx="7.661" transform="translate(872.233 363.292)" fill="#93e3c7"/>
+      <path id="Rectangle_706" data-name="Rectangle 706" d="M3.38,0H46.146a0,0,0,0,1,0,0V6.76a0,0,0,0,1,0,0H3.38A3.38,3.38,0,0,1,0,3.38v0A3.38,3.38,0,0,1,3.38,0Z" transform="translate(891.069 378.617) rotate(-180)" fill="#dbdbdb"/>
+      <path id="Path_509" data-name="Path 509" d="M865.635,390.746H803.489a6.4,6.4,0,0,1-6.308-5.293l-6.418-36.4a6.406,6.406,0,0,1,6.308-7.518h62.145a6.405,6.405,0,0,1,6.308,5.293l6.418,36.4A6.405,6.405,0,0,1,865.635,390.746Z" transform="translate(0 -12.226)" fill="#ecf0f1"/>
+      <g id="Group_719" data-name="Group 719" transform="translate(826.209 344.812)">
+        <path id="Path_510" data-name="Path 510" d="M841.111,370.857a6.963,6.963,0,0,0-1.646-2.405,4.731,4.731,0,0,1-1.371-2.4,5.277,5.277,0,0,0-.511-1.279,3.343,3.343,0,0,0-3.921-1.747c-1.15.368-1.423,1.346-1.469,2.473a2.168,2.168,0,0,0,.409,1.393,5.115,5.115,0,0,1,1,2.9,2.67,2.67,0,0,1-1.93,2.584c-.378.151-.422.353-.289.755a6.269,6.269,0,0,0,5.932,4.349C840.7,377.485,842.557,374.237,841.111,370.857Zm-6.751-8.4a3.324,3.324,0,0,0-2.944-3.2C831.32,360.771,832.974,362.566,834.36,362.462Z" transform="translate(-831.319 -359.266)" fill="#dbdbdb"/>
+        <path id="Path_511" data-name="Path 511" d="M837.319,377.992c3.382.011,5.238-3.237,3.792-6.616a6.963,6.963,0,0,0-1.646-2.405,4.73,4.73,0,0,1-1.371-2.4,5.276,5.276,0,0,0-.511-1.279,3.342,3.342,0,0,0-3.921-1.747c-1.15.368-1.423,1.346-1.469,2.473a2.168,2.168,0,0,0,.409,1.393,5.115,5.115,0,0,1,1,2.9,2.67,2.67,0,0,1-1.93,2.584c-.378.151-.422.353-.289.755A6.269,6.269,0,0,0,837.319,377.992Z" transform="translate(-831.319 -359.785)" fill="#dbdbdb"/>
+        <path id="Path_512" data-name="Path 512" d="M831.429,359.266c-.1,1.5,1.558,3.3,2.944,3.2A3.324,3.324,0,0,0,831.429,359.266Z" transform="translate(-831.333 -359.266)" fill="#dbdbdb"/>
+      </g>
+    </g>
+    <rect id="Rectangle_707" data-name="Rectangle 707" width="53" height="5" rx="2.5" transform="translate(780 149)" fill="#1fbe9f" opacity="0.17"/>
+    <rect id="Rectangle_708" data-name="Rectangle 708" width="25" height="5" rx="2.5" transform="translate(817 168)" fill="#1fbe9f" opacity="0.11"/>
+  </g>
+</svg>
