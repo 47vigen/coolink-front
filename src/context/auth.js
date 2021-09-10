@@ -44,4 +44,15 @@ AuthProvider.propTypes = {
 
 const useAuth = () => React.useContext(AuthContext)
 
+export const RequireAuth = () => {
+  const { user } = useAuth()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!user) {
+      router.push('/')
+    }
+  }, [user, router])
+}
+
 export { AuthProvider, useAuth }
