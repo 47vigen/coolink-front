@@ -6,34 +6,37 @@ import { useRouter } from 'next/router'
 import { getToken, removeToken, setToken } from '../utils/token'
 
 // ** Graphql
-import { useLazyQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { SHOW_ME } from '../graphql/queries'
 
 const AuthContext = React.createContext({})
 
 const AuthProvider = ({ children }) => {
   const router = useRouter()
-  const [user, setUser] = React.useState(null)
-  const [showMe, { data }] = useLazyQuery(SHOW_ME)
+  const { data, loading, error, refetch } = useQuery(SHOW_ME, { skip: !getToken() })
+
+  const user = React.useMemo(
+    () => ({
+      ...data?.showMe,
+      loading,
+      error
+    }),
+    [data, loading, error]
+  )
 
   const signIn = React.useCallback(
-    (user, token, redirect) => {
-      setUser(user)
-      if (token) setToken(token)
+    (token, redirect) => {
+      setToken(token)
       if (redirect) router.push('/')
+      refetch()
     },
-    [router]
+    [router, refetch]
   )
 
   const signOut = React.useCallback(() => {
-    setUser(null)
     removeToken()
-  }, [])
-
-  React.useEffect(() => {
-    if (getToken() && !data?.showMe && !user) showMe()
-    if (data?.showMe && !user) signIn(data.showMe)
-  }, [user, showMe, data?.showMe, signIn])
+    refetch()
+  }, [refetch])
 
   return <AuthContext.Provider value={{ user, signIn, signOut }}>{children}</AuthContext.Provider>
 }
@@ -48,8 +51,8 @@ export const RequireAuth = () => {
   const { user } = useAuth()
   const router = useRouter()
 
-  useEffect(() => {
-    if (!user) {
+  React.useEffect(() => {
+    if (!user.id && !user.loading) {
       router.push('/')
     }
   }, [user, router])
