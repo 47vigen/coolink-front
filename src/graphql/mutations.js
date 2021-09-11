@@ -24,3 +24,11 @@ const GET_PAGE_INFO = gql`
     }
   }
 `
+
+export const CREATE_PAGE = gql`
+  mutation CreatePage($pk: String!, $slug: String!, $title: String!, $subTitle: String, $profilePic: String) {
+    createPage(pageInput: { pk: $pk, slug: $slug, title: $title, subTitle: $subTitle, profilePic: $profilePic }) {
+      id
+    }
+  }
+`
