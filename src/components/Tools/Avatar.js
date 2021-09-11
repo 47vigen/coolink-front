@@ -6,6 +6,7 @@ import Icon from './Icon'
 
 // ** Utils
 import classNames from '../../utils/classNames'
+import { getImgSrc } from '../../utils/getImgSrc'
 
 const AVATAR_COLORS = ['#B2BEC3', '#273C75', '#FFD32A', '#DFBCF9', '#Eb2F06', '#75E08F']
 
@@ -31,7 +32,7 @@ function Avatar({ url, fullName, loading, className, icon }) {
       )}
       {url ? (
         <div className="absolute top-[-0.5px] left-[-0.5px] right-[-0.5px] bottom-[-0.5px]">
-          <Image alt="avatar" className="rounded-lg" key={url} width={100} height={100} src={url} />
+          <Image alt="avatar" className="rounded-lg" key={url} width={100} height={100} src={getImgSrc(url)} />
         </div>
       ) : null}
     </div>
