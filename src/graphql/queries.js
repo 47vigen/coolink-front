@@ -10,3 +10,16 @@ export const SHOW_ME = gql`
     }
   }
 `
+
+export const SHOW_MY_PAGES = gql`
+  {
+    showMyPages {
+      id
+      pk
+      slug
+      title
+      subTitle
+      profilePic
+    }
+  }
+`
