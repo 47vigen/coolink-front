@@ -1,5 +1,6 @@
-import { ApolloClient, ApolloLink, ApolloProvider, HttpLink, InMemoryCache, Observable } from '@apollo/client'
+import { ApolloClient, ApolloLink, ApolloProvider, InMemoryCache, Observable } from '@apollo/client'
 import { TokenRefreshLink } from 'apollo-link-token-refresh'
+import { createUploadLink } from 'apollo-upload-client'
 import { onError } from 'apollo-link-error'
 import jwtDecode from 'jwt-decode'
 
@@ -68,7 +69,7 @@ const createIsomorphLink = () =>
       console.log(networkError)
     }),
     requestLink(getToken()),
-    new HttpLink({
+    createUploadLink({
       uri: 'http://localhost:9000/graphql',
       credentials: 'include'
     })
