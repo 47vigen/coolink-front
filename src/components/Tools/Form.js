@@ -2,6 +2,8 @@ import React from 'react'
 import Icon from './Icon'
 import { Field as FormikField } from 'formik'
 import classNames from '../../utils/classNames'
+import { useMutation } from '@apollo/client'
+import { UPLOAD_IMAGE } from '../../graphql/mutations'
 // import Http from '../../services/Http'
 // import Config from '../../utils/Config'
 // import { AuthContext } from '../../providers/Auth'
@@ -82,38 +84,8 @@ const Field = ({
   )
 }
 
-const SingleUpload = ({ name, children, onChange, className }) => {
-  const [loading, setLoading] = React.useState(false)
-  const { checkForbbiden } = React.useContext(AuthContext)
-
-  const url = React.useMemo(() => {
-    const { baseUrl, uploadProfile } = Config.services.upload
-    switch (name) {
-      case 'profile':
-        return `${baseUrl}${uploadProfile}`
-
-      default:
-        return null
-    }
-  }, [name])
-
-  const upload = React.useCallback(
-    async (file) => {
-      try {
-        setLoading(true)
-
-        const data = new FormData()
-        data.append(name, file)
-        const response = await Http.post(url, data)
-        onChange && (await onChange(response.data?.create?.fileName))
-
-        setLoading(false)
-      } catch (err) {
-        return checkForbbiden(err, async () => await upload(file))
-      }
-    },
-    [name, url, setLoading, checkForbbiden, onChange]
-  )
+const SingleUpload = ({ pk, children, onChange, className }) => {
+  const [upload, { loading }] = useMutation(UPLOAD_IMAGE)
 
   return (
     <div className={classNames('relative', className)}>
@@ -124,7 +96,7 @@ const SingleUpload = ({ name, children, onChange, className }) => {
         accept="image/*"
         className="absolute top-0 right-0 w-full h-full opacity-0 cursor-pointer"
         onChange={({ target }) => {
-          upload(target.files[0])
+          upload({ variables: { pk, image: target.files[0] } }).then((response) => onChange(response))
         }}
       />
       {loading ? (
