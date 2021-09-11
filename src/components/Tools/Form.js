@@ -96,7 +96,7 @@ const SingleUpload = ({ pk, children, onChange, className }) => {
         accept="image/*"
         className="absolute top-0 right-0 w-full h-full opacity-0 cursor-pointer"
         onChange={({ target }) => {
-          upload({ variables: { pk, image: target.files[0] } }).then((response) => onChange(response))
+          upload({ variables: { pk, image: target.files[0] } }).then(({ data }) => onChange(data.uploadImage))
         }}
       />
       {loading ? (
