@@ -1,7 +1,7 @@
 module.exports = {
   reactStrictMode: true,
   i18n: {
-    locales: ['fa', 'en', 'ar'],
+    locales: ['fa', 'en'],
     defaultLocale: 'fa'
   },
   images: {
