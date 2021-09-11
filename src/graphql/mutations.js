@@ -13,3 +13,14 @@ export const LOGIN = gql`
     }
   }
 `
+
+const GET_PAGE_INFO = gql`
+  mutation GetPageInfo($username: String!) {
+    getPageInfo(username: $username) {
+      pk
+      fullName
+      profilePic
+      isPrivate
+    }
+  }
+`
