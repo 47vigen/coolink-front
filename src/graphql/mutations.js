@@ -14,7 +14,7 @@ export const LOGIN = gql`
   }
 `
 
-const GET_PAGE_INFO = gql`
+export const GET_PAGE_INFO = gql`
   mutation GetPageInfo($username: String!) {
     getPageInfo(username: $username) {
       pk
@@ -30,5 +30,11 @@ export const CREATE_PAGE = gql`
     createPage(pageInput: { pk: $pk, slug: $slug, title: $title, subTitle: $subTitle, profilePic: $profilePic }) {
       id
     }
+  }
+`
+
+export const UPLOAD_IMAGE = gql`
+  mutation UploadImage($pk: String!, $image: Upload!) {
+    uploadImage(pk: $pk, image: $image)
   }
 `
