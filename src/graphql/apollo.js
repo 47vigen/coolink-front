@@ -97,4 +97,7 @@ const withApollo = (Component) => {
   return WithApollo
 }
 
+const client = createApolloClient()
+export { client }
+
 export default withApollo
