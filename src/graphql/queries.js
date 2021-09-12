@@ -23,3 +23,16 @@ export const SHOW_MY_PAGES = gql`
     }
   }
 `
+
+export const SHOW_PAGE = gql`
+  query ($slug: String!) {
+    showPage(slug: $slug) {
+      id
+      pk
+      slug
+      title
+      subTitle
+      profilePic
+    }
+  }
+`
