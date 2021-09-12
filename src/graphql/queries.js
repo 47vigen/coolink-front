@@ -36,3 +36,39 @@ export const SHOW_PAGE = gql`
     }
   }
 `
+
+export const SHOW_SECTIONS = gql`
+  query ShowSection($page: String!) {
+    showSection(page: $page) {
+      type
+      position
+      title
+      links {
+        url
+        title
+      }
+      text
+      contacts {
+        mobile
+        phone
+        email
+        fax
+      }
+      messengers {
+        telegram
+        whatsapp
+        twitter
+        youtube
+        linkedin
+      }
+      locations {
+        url
+        title
+      }
+      faq {
+        question
+        answer
+      }
+    }
+  }
+`
