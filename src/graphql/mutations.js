@@ -38,3 +38,40 @@ export const UPLOAD_IMAGE = gql`
     uploadImage(pk: $pk, image: $image)
   }
 `
+
+export const UPDATE_INSERT_MANY_SECTIONS = gql`
+  mutation UpdateInsertManySections($sections: [SectionManyInput!]) {
+    updateInsertManySections(sections: $sections) {
+      id
+      type
+      position
+      title
+      links {
+        url
+        title
+      }
+      text
+      contacts {
+        mobile
+        phone
+        email
+        fax
+      }
+      messengers {
+        telegram
+        whatsapp
+        twitter
+        youtube
+        linkedin
+      }
+      locations {
+        url
+        title
+      }
+      faq {
+        question
+        answer
+      }
+    }
+  }
+`
