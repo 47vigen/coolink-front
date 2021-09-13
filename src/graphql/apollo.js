@@ -79,7 +79,9 @@ function createApolloClient(initialState = {}) {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
     link: createIsomorphLink(),
-    cache: new InMemoryCache().restore(initialState)
+    cache: new InMemoryCache({
+      addTypename: false
+    }).restore(initialState)
   })
 }
 
