@@ -40,6 +40,7 @@ export const SHOW_PAGE = gql`
 export const SHOW_SECTIONS = gql`
   query ShowSection($page: String!) {
     showSection(page: $page) {
+      id
       type
       position
       title
