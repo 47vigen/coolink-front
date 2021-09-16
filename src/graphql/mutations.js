@@ -26,8 +26,8 @@ export const GET_PAGE_INFO = gql`
 `
 
 export const CREATE_PAGE = gql`
-  mutation CreatePage($pk: String!, $slug: String!, $title: String!, $subTitle: String, $profilePic: String) {
-    createPage(pageInput: { pk: $pk, slug: $slug, title: $title, subTitle: $subTitle, profilePic: $profilePic }) {
+  mutation CreatePage($pageInput: PageInput!) {
+    createPage(pageInput: $pageInput) {
       id
     }
   }
@@ -72,6 +72,14 @@ export const UPDATE_INSERT_MANY_SECTIONS = gql`
         question
         answer
       }
+    }
+  }
+`
+
+export const DESTROY_SECTION = gql`
+  mutation DestroySection($id: ID!) {
+    destroySection(id: $id) {
+      id
     }
   }
 `
