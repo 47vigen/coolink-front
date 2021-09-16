@@ -33,6 +33,23 @@ export const CREATE_PAGE = gql`
   }
 `
 
+export const UPDATE_PAGE = gql`
+  mutation UpdatePage($id: ID!, $pageInput: PageInput!) {
+    updatePage(id: $id, pageInput: $pageInput) {
+      id
+      pk
+      slug
+      title
+      subTitle
+      profilePic
+      customize {
+        color
+        backgroundImage
+      }
+    }
+  }
+`
+
 export const UPLOAD_IMAGE = gql`
   mutation UploadImage($pk: String!, $image: Upload!) {
     uploadImage(pk: $pk, image: $image)
