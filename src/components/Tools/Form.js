@@ -84,9 +84,8 @@ const Field = ({
   )
 }
 
-const SingleUpload = ({ pk, children, onChange, className }) => {
+const SingleUpload = ({ type, pk, children, onChange, className }) => {
   const [upload, { loading }] = useMutation(UPLOAD_IMAGE)
-
   return (
     <div className={classNames('relative', className)}>
       {children}
@@ -96,7 +95,7 @@ const SingleUpload = ({ pk, children, onChange, className }) => {
         accept="image/*"
         className="absolute top-0 right-0 w-full h-full opacity-0 cursor-pointer"
         onChange={({ target }) => {
-          upload({ variables: { pk, image: target.files[0] } }).then(({ data }) => onChange(data.uploadImage))
+          upload({ variables: { type, pk, image: target.files[0] } }).then(({ data }) => onChange(data.uploadImage))
         }}
       />
       {loading ? (
