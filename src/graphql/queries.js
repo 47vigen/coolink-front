@@ -20,6 +20,10 @@ export const SHOW_MY_PAGES = gql`
       title
       subTitle
       profilePic
+      customize {
+        color
+        backgroundImage
+      }
     }
   }
 `
@@ -33,6 +37,10 @@ export const SHOW_PAGE = gql`
       title
       subTitle
       profilePic
+      customize {
+        color
+        backgroundImage
+      }
     }
   }
 `
