@@ -134,6 +134,7 @@ function Create(props) {
               ) : (
                 <>
                   <Upload.Single
+                    type="profile"
                     pk={values.pk}
                     onChange={(url) => setFieldValue('profilePic', url, false)}
                     className="w-20 h-20 mx-auto rounded-lg overflow-hidden"
