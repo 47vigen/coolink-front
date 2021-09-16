@@ -9,7 +9,7 @@ import * as Yup from 'yup'
 const validationSchema = Yup.object().shape({
   profilePic: Yup.string(),
   title: Yup.string().required('نام/عنوان الزامی است!'),
-  subTitle: Yup.string()
+  subTitle: Yup.string().nullable()
 })
 
 function EditInfo({ page, isOpenEditInfo, closeEditInfoModal, onEditInfo }) {
