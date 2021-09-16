@@ -85,7 +85,7 @@ function Create(props) {
         try {
           setStep(2)
           const newProfilePic = profilePic.includes('base64') ? await uploadBase64Image(values.pk, profilePic) : profilePic
-          await createPage({ variables: { ...values, profilePic: newProfilePic } })
+          await createPage({ variables: { pageInput: { ...values, profilePic: newProfilePic } } })
           return await Router.push('/dashboard')
         } catch (err) {
           setStep(1)
