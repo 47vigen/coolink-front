@@ -5,6 +5,6 @@ module.exports = {
     defaultLocale: 'fa'
   },
   images: {
-    domains: ['gravatar.com']
+    domains: ['gravatar.com', 'localhost']
   }
 }
