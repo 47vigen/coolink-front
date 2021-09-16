@@ -51,8 +51,8 @@ export const UPDATE_PAGE = gql`
 `
 
 export const UPLOAD_IMAGE = gql`
-  mutation UploadImage($pk: String!, $image: Upload!) {
-    uploadImage(pk: $pk, image: $image)
+  mutation UploadImage($type: UploadType!, $pk: String!, $image: Upload!) {
+    uploadImage(type: $type, pk: $pk, image: $image)
   }
 `
 
