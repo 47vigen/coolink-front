@@ -19,6 +19,7 @@ function EditInfo({ page, isOpenEditInfo, closeEditInfoModal, onEditInfo }) {
         {({ values, setFieldValue, isSubmitting }) => (
           <Form className="p-4">
             <Upload.Single
+              type="PROFILE"
               pk={values.pk}
               onChange={(url) => setFieldValue('profilePic', url, false)}
               className="w-20 h-20 mx-auto rounded-lg overflow-hidden"
