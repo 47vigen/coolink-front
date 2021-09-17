@@ -55,13 +55,16 @@ const Flag = React.memo(function Component({ type }) {
   }
 })
 
-const FeedSlider = React.memo(function Component({ images, feed, loadImage, opened }) {
+  const [currentSlide, setCurrentSlide] = React.useState(0)
   const [sliderRef, slider] = useKeenSlider({
     slidesPerView: 1,
     spacing: 8,
     rtl: true,
     afterChange(s) {
       loadImage(s.details().relativeSlide)
+    },
+    slideChanged(s) {
+      setCurrentSlide(s.details().relativeSlide)
     }
   })
 
@@ -69,9 +72,32 @@ const FeedSlider = React.memo(function Component({ images, feed, loadImage, open
     <div ref={sliderRef} className="keen-slider" dir="ltr">
       {feed.slides.map((_slide, idx) => (
         <div key={`slide-${idx}`} className="keen-slider__slide flex flex-col">
-          <FeedImage src={images[idx]} feed={feed} opened={opened} />
+          <FeedImage src={images[idx]} feed={feed} color={color} opened={opened} />
         </div>
       ))}
+      {slider && (
+        <>
+          <span className="flex items-center justify-center absolute left-2 top-2 w-[1.375rem] h-[1.375rem] rounded-full bg-white text-xs">
+            {currentSlide + 1}
+          </span>
+          <Button
+            circle
+            type="ghost"
+            icon="angle-small-right"
+            className="absolute top-1/2 transform -translate-y-1/2 right-2 !p-1 !min-h-0"
+            onClick={(e) => e.stopPropagation() || slider.prev()}
+            disabled={currentSlide === 0}
+          />
+          <Button
+            circle
+            type="ghost"
+            icon="angle-small-left"
+            className="absolute top-1/2 transform -translate-y-1/2 left-2 !p-1 !min-h-0"
+            onClick={(e) => e.stopPropagation() || slider.next()}
+            disabled={currentSlide === slider.details().size - 1}
+          />
+        </>
+      )}
     </div>
   )
 })
