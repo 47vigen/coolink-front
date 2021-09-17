@@ -62,7 +62,7 @@ function Create(props) {
       }
 
       const image = new File([u8arr], 'fake.jpg', { type: mime })
-      const { data } = await uploadImage({ variables: { pk, image } })
+      const { data } = await uploadImage({ variables: { type: 'PROFILE', pk, image } })
       return data.uploadImage
     },
     [uploadImage]
@@ -134,7 +134,7 @@ function Create(props) {
               ) : (
                 <>
                   <Upload.Single
-                    type="profile"
+                    type="PROFILE"
                     pk={values.pk}
                     onChange={(url) => setFieldValue('profilePic', url, false)}
                     className="w-20 h-20 mx-auto rounded-lg overflow-hidden"
