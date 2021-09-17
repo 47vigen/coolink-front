@@ -4,13 +4,13 @@ import { useKeenSlider } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
 
 // ** UI
-import { Icon } from '../Tools'
+import { Button, Icon } from '../Tools'
 
 // ** Utils
 import { getFileBase } from '../../utils/fileBase'
 import classNames from '../../utils/classNames'
 
-function Feed({ feed, opened, onOpen, children }) {
+function Feed({ feed, opened, onOpen, children, color }) {
   const [images, setImages] = React.useState(Array(feed.slides?.length || 1).fill(''))
 
   const loadImage = React.useCallback(
@@ -32,15 +32,15 @@ function Feed({ feed, opened, onOpen, children }) {
   return opened ? (
     <div className="col-span-3 relative">
       {feed.slides.length > 1 ? (
-        <FeedSlider images={images} feed={feed} loadImage={loadImage} opened />
+        <FeedSlider images={images} feed={feed} loadImage={loadImage} color={color} opened />
       ) : (
-        <FeedImage src={images[0]} feed={feed} opened />
+        <FeedImage src={images[0]} feed={feed} color={color} opened />
       )}
-      <div className="bg-white rounded-b-md p-4">{typeof children === 'function' ? children(feed) : children}</div>
+      <div className="bg-white rounded-b-md p-4 space-y-2">{typeof children === 'function' ? children(feed) : children}</div>
     </div>
   ) : (
     <button className="block w-full h-full relative" onClick={onOpen}>
-      <FeedImage src={images[0]} feed={feed} />
+      <FeedImage src={images[0]} feed={feed} color={color} />
       {feed.slides.length > 1 ? <Flag type="slide" /> : feed.slides[0].type === 'VIDEO' ? <Flag type="video" /> : null}
     </button>
   )
@@ -55,6 +55,7 @@ const Flag = React.memo(function Component({ type }) {
   }
 })
 
+const FeedSlider = React.memo(function Component({ images, feed, loadImage, color, opened }) {
   const [currentSlide, setCurrentSlide] = React.useState(0)
   const [sliderRef, slider] = useKeenSlider({
     slidesPerView: 1,
@@ -102,7 +103,7 @@ const Flag = React.memo(function Component({ type }) {
   )
 })
 
-const FeedImage = React.memo(function Component({ src, feed, opened }) {
+const FeedImage = React.memo(function Component({ src, feed, color, opened }) {
   return src ? (
     <Image
       src={src}
@@ -117,7 +118,7 @@ const FeedImage = React.memo(function Component({ src, feed, opened }) {
     <div
       className={classNames('flex flex-1 justify-center items-center bg-white', opened ? 'min-h-[16rem] rounded-t-md' : 'min-h-[8rem] rounded-md')}
     >
-      <Icon name="spinner" className={classNames('animate-spin text-primary', opened ? 'text-lg' : 'text-base')} />
+      <Icon name="spinner" className={classNames(`animate-spin text-${color}`, opened ? 'text-lg' : 'text-base')} />
     </div>
   )
 })
