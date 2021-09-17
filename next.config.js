@@ -5,7 +5,7 @@ module.exports = {
     defaultLocale: 'fa'
   },
   images: {
-    domains: ['api.coolink.ir', 'gravatar.com', 'localhost']
+    domains: ['coolink.venins.ir', 'gravatar.com', 'localhost']
   },
   env: {
     API_URI: process.env.API_URI,
