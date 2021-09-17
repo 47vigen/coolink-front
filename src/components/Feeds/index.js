@@ -19,7 +19,6 @@ function Feeds({ page, children }) {
     refetch
   } = useQuery(GET_PAGE_FEEDS, {
     variables: { pk: page.pk },
-    fetchPolicy: 'cache-first',
     onCompleted: ({ getPageFeeds: { feeds } }) => setFeeds(feeds)
   })
 
