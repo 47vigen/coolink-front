@@ -26,20 +26,28 @@ export default function Home({ page }) {
     <Page page={page}>
       <Feeds page={page}>
         {(feed) =>
-          generateLinks(feed.caption)?.map((link, idx) => (
-            <a
-              key={`links-${idx}`}
-              href={link.url}
-              className={`text-right block border border-${page.customize.color} border-opacity-10 rounded-md p-2`}
-            >
-              {link.title}
-              <span
-                className={`block mt-2 text-left transition duration-300 hover:opacity-70 bg-${page.customize.color} bg-opacity-5 text-${page.customize.color} rounded-lg py-2 px-4`}
+          generateLinks(feed.caption)?.length ? (
+            generateLinks(feed.caption).map((link, idx) => (
+              <a
+                key={`links-${idx}`}
+                href={link.url}
+                className={`text-right block border border-${page.customize.color} border-opacity-10 rounded-md p-2`}
               >
-                {link.url}
-              </span>
-            </a>
-          ))
+                {link.title}
+                <span
+                  className={`block mt-2 text-left transition duration-300 hover:opacity-70 bg-${page.customize.color} bg-opacity-5 text-${page.customize.color} rounded-lg py-2 px-4`}
+                >
+                  {link.url}
+                </span>
+              </a>
+            ))
+          ) : (
+            <span
+              className={`block mt-2 text-center transition duration-300 hover:opacity-70 bg-${page.customize.color} bg-opacity-5 text-${page.customize.color} rounded-lg py-2 px-4`}
+            >
+              در کپشن این پست لینک وجود ندارد!
+            </span>
+          )
         }
       </Feeds>
     </Page>
