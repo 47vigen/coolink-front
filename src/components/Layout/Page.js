@@ -14,7 +14,7 @@ import CoolinkLogo from '../../../public/images/coolink-logo.svg'
 function Page({ page, children }) {
   return (
     <div
-      className="w-full lg:max-w-md lg:my-4 lg:rounded-xl mx-auto flex-1 flex flex-col p-4"
+      className="w-full lg:max-w-md lg:my-4 lg:rounded-xl mx-auto flex-1 flex flex-col py-4"
       style={{
         backgroundImage: page.customize?.backgroundImage ? `url('${getImgSrc(page.customize.backgroundImage)}')` : null
       }}
