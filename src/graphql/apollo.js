@@ -53,7 +53,7 @@ const createIsomorphLink = () =>
         }
       },
       fetchAccessToken: () =>
-        fetch('http://localhost:9000/refresh', {
+        fetch(process.env.API_URI_REFRESH, {
           credentials: 'include'
         }),
       handleFetch: (token) => {
@@ -70,7 +70,7 @@ const createIsomorphLink = () =>
     }),
     requestLink(getToken()),
     createUploadLink({
-      uri: 'http://localhost:9000/graphql',
+      uri: process.env.API_URI_GRAPHQL,
       credentials: 'include'
     })
   ])

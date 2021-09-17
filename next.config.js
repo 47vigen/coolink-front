@@ -6,5 +6,10 @@ module.exports = {
   },
   images: {
     domains: ['api.coolink.ir', 'gravatar.com', 'localhost']
+  },
+  env: {
+    API_URI: process.env.API_URI,
+    API_URI_GRAPHQL: process.env.API_URI_GRAPHQL,
+    API_URI_REFRESH: process.env.API_URI_REFRESH
   }
 }

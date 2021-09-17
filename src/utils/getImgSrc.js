@@ -5,5 +5,5 @@ export const getImgSrc = (data) => {
     return data
   }
 
-  return 'http://localhost:9000'.concat(data)
+  return process.env.API_URI.concat(data)
 }
