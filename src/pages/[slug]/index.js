@@ -8,8 +8,6 @@ import { client } from '../../graphql/apollo'
 import { SHOW_PAGE, SHOW_SECTIONS } from '../../graphql/queries'
 
 export default function Home({ page, sections }) {
-  console.log({ page, sections })
-
   return (
     <Page page={page}>
       <Render page={page} sections={sections} />
@@ -19,6 +17,7 @@ export default function Home({ page, sections }) {
 
 export async function getServerSideProps({ params }) {
   const { data: dataPage, error: errorPage } = await client.query({
+    fetchPolicy: 'network-only',
     query: SHOW_PAGE,
     variables: {
       slug: params.slug
@@ -27,6 +26,7 @@ export async function getServerSideProps({ params }) {
 
   if (dataPage?.showPage && !errorPage) {
     const { data: dataSections, error: errorSections } = await client.query({
+      fetchPolicy: 'network-only',
       query: SHOW_SECTIONS,
       variables: {
         page: dataPage.showPage.id
