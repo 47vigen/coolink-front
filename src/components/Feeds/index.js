@@ -40,7 +40,7 @@ function Feeds({ page, children }) {
     <>
       <div className={classNames('grid grid-cols-3 gap-2', feeds.length ? 'my-4' : 'mt-4')}>
         {feeds.map((feed) => (
-          <Feed key={feed.id} feed={feed} opened={isOpened === feed.id} onOpen={() => setIsOpened(feed.id)}>
+          <Feed key={feed.id} feed={feed} color={page.customize?.color} opened={isOpened === feed.id} onOpen={() => setIsOpened(feed.id)}>
             {typeof children === 'function' ? children(feed) : children}
           </Feed>
         ))}
