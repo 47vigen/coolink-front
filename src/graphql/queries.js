@@ -81,3 +81,20 @@ export const SHOW_SECTIONS = gql`
     }
   }
 `
+
+export const GET_PAGE_FEEDS = gql`
+  query GetPageFeeds($pk: String!, $next: String) {
+    getPageFeeds(pk: $pk, next: $next) {
+      next
+      feeds {
+        id
+        slides {
+          type
+          imageUrl
+          videoUrl
+        }
+        caption
+      }
+    }
+  }
+`
