@@ -38,3 +38,18 @@ html {
   -webkit-font-feature-settings: normal;
   font-feature-settings: normal;
 }
+
+.animate-jello {
+  -webkit-transform-origin: center;
+  transform-origin: center;
+}
+
+.animate-swing {
+  -webkit-transform-origin: top center;
+  transform-origin: top center;
+}
+
+.animate-bounce {
+  -webkit-transform-origin: center bottom;
+  transform-origin: center bottom;
+}
