@@ -4,5 +4,6 @@ import Icon from './Icon'
 import Link from './Link'
 import Modal from './Modal'
 import Avatar from './Avatar'
+import Element from './Element'
 
-export { Button, Field, Upload, Icon, Link, Modal, Avatar }
+export { Button, Field, Upload, Icon, Link, Modal, Avatar, Element }
