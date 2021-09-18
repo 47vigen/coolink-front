@@ -3,6 +3,7 @@ import React from 'react'
 export default function fake(props) {
   return (
     <>
+      <div className="fake rounded-sm rounded-md rounded-lg rounded-xl rounded-2xl rounded-3xl rounded-full" />
       <div className="fake bg-gray-500 bg-gray-600 bg-gray-700 bg-gray-800 bg-gray-900 border-gray-500 border-gray-600 border-gray-700 border-gray-800 border-gray-900 text-gray-500 text-gray-600 text-gray-700 text-gray-800 text-gray-900" />
       <div className="fake bg-red-500 bg-red-600 bg-red-700 bg-red-800 bg-red-900 border-red-500 border-red-600 border-red-700 border-red-800 border-red-900 text-red-500 text-red-600 text-red-700 text-red-800 text-red-900" />
       <div className="fake bg-yellow-500 bg-yellow-600 bg-yellow-700 bg-yellow-800 bg-yellow-900 border-yellow-500 border-yellow-600 border-yellow-700 border-yellow-800 border-yellow-900 text-yellow-500 text-yellow-600 text-yellow-700 text-yellow-800 text-yellow-900" />
