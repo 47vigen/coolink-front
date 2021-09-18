@@ -47,15 +47,7 @@ const RenderInsideOfSection = React.memo(function Component({ item: { type, ...d
       )
 
     case 'TEXT':
-      return (
-        <p
-          className={`text bg-body bg-opacity-5 ${
-            notBlured ? '' : 'backdrop-filter backdrop-blur-md'
-          } p-2 leading-6 border border-opacity-10 border-${color} rounded-lg`}
-        >
-          {data.text}
-        </p>
-      )
+      return <p className={`text bg-body bg-opacity-5 p-2 leading-6 border border-opacity-10 border-${color} rounded-lg`}>{data.text}</p>
 
     case 'CONTACTS':
       return (
@@ -133,9 +125,7 @@ const RenderInsideOfSection = React.memo(function Component({ item: { type, ...d
               {({ open }) => (
                 <>
                   <Disclosure.Button
-                    className={`flex w-full justify-between items-center transition duration-300 hover:opacity-70 bg-${color} bg-opacity-5 text-${color} rounded-lg py-2 px-4 ${
-                      notBlured ? '' : 'backdrop-filter backdrop-blur-md'
-                    }`}
+                    className={`flex w-full justify-between items-center transition duration-300 hover:opacity-70 bg-${color} bg-opacity-5 text-${color} rounded-lg py-2 px-4`}
                   >
                     {question}
                     <Icon
@@ -143,11 +133,7 @@ const RenderInsideOfSection = React.memo(function Component({ item: { type, ...d
                       className={classNames(`text-${color} text-base transition-all duration-300`, open ? 'transform -rotate-90' : '')}
                     />
                   </Disclosure.Button>
-                  <Disclosure.Panel
-                    className={`text bg-body bg-opacity-5 ${
-                      notBlured ? '' : 'backdrop-filter backdrop-blur-md'
-                    } p-2 leading-6 border border-opacity-10 border-${color} rounded-lg`}
-                  >
+                  <Disclosure.Panel className={`text bg-body bg-opacity-5 p-2 leading-6 border border-opacity-10 border-${color} rounded-lg`}>
                     {answer}
                   </Disclosure.Panel>
                 </>
@@ -184,7 +170,6 @@ const LinkItem = React.memo(function Component({ children, color, url, noHttp, i
       <a
         className={classNames(
           `flex items-center transition duration-300 hover:opacity-70 bg-${color} bg-opacity-5 text-${color} rounded-lg py-2 px-4`,
-          notBlured ? '' : 'backdrop-filter backdrop-blur-md',
           className
         )}
       >
