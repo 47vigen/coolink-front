@@ -5,7 +5,7 @@ import UserState from './UserState'
 function Header(props) {
   return (
     <>
-      <header className="container max-w-screen-xl flex justify-between items-center m-auto p-2">
+      <header className="container max-w-screen-xl flex justify-between items-center m-auto py-2 px-4">
         <div className="w-40">
           <UserState />
         </div>
