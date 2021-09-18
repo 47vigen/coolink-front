@@ -2,7 +2,7 @@ import React from 'react'
 
 // UI
 import Feed from './Feed'
-import { Icon } from '../Tools'
+import { Element, Icon } from '../Tools'
 
 // ** Utils
 import classNames from '../../utils/classNames'
@@ -45,13 +45,15 @@ function Feeds({ page, children }) {
           </Feed>
         ))}
       </div>
-      <button
+      <Element
+        tag="button"
+        customize={page.customize}
         onClick={getPageFeedsLoading || fetchMoreLoading ? null : fetchMore}
-        className={`flex w-full justify-center items-center transition duration-300 hover:opacity-70 bg-${page.customize.color} bg-opacity-5 text-${page.customize.color} rounded-lg min-h-[2rem] mb-4`}
+        className="flex w-full justify-center items-center min-h-[2rem] mb-4"
       >
         {getPageFeedsLoading || fetchMoreLoading ? <Icon name="spinner" className="animate-spin text-base ml-2" /> : null}
         پست های بیشتر ...
-      </button>
+      </Element>
     </>
   )
 }
