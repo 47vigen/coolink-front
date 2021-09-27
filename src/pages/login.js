@@ -29,7 +29,7 @@ function Login() {
   const onSubmit = React.useCallback(
     (variables) =>
       login({ variables })
-        .then(({ data: { login } }) => signIn(login.user, login.token, true))
+        .then(async ({ data: { login } }) => await signIn(login.token, true))
         .catch((err) => console.log(err)),
     [signIn, login]
   )
