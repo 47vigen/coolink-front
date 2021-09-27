@@ -1,8 +1,8 @@
 @font-face {
-  font-family: 'icomoon';
-  src: url('/fonts/eot/icomoon.eot?1e6g8t');
-  src: url('/fonts/eot/icomoon.eot?1e6g8t#iefix') format('embedded-opentype'), url('/fonts/ttf/icomoon.ttf?1e6g8t') format('truetype'),
-    url('/fonts/woff/icomoon.woff?1e6g8t') format('woff'), url('/fonts/svg/icomoon.svg?1e6g8t#icomoon') format('svg');
+  font-family: 'icon';
+  src: url('/fonts/eot/icon.eot?22ycys');
+  src: url('/fonts/eot/icon.eot?22ycys#iefix') format('embedded-opentype'), url('/fonts/ttf/icon.ttf?22ycys') format('truetype'),
+    url('/fonts/woff/icon.woff?22ycys') format('woff'), url('/fonts/svg/icon.svg?22ycys#icon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -10,7 +10,7 @@
 
 .base {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icomoon' !important;
+  font-family: 'icon' !important;
   speak: never;
   font-style: normal;
   font-weight: normal;
@@ -23,20 +23,2810 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.brand-one-password:before {
+  content: '\ea62';
+}
+.brand-five-hundred-px:before {
+  content: '\ea63';
+}
+.brand-abbrobotstudio:before {
+  content: '\ea67';
+}
+.brand-about-dot-me:before {
+  content: '\ea69';
+}
+.brand-abstract:before {
+  content: '\ea6a';
+}
+.brand-academia:before {
+  content: '\ea6b';
+}
+.brand-accusoft:before {
+  content: '\ea6c';
+}
+.brand-acm:before {
+  content: '\ea6d';
+}
+.brand-addthis:before {
+  content: '\ea6e';
+}
+.brand-adguard:before {
+  content: '\ea6f';
+}
+.brand-adobe:before {
+  content: '\ea70';
+}
+.brand-adobeacrobatreader:before {
+  content: '\ea71';
+}
+.brand-adobeaftereffects:before {
+  content: '\ea72';
+}
+.brand-adobeaudition:before {
+  content: '\ea73';
+}
+.brand-adobecreativecloud:before {
+  content: '\ea74';
+}
+.brand-adobedreamweaver:before {
+  content: '\ea75';
+}
+.brand-adobeillustrator:before {
+  content: '\ea76';
+}
+.brand-adobeindesign:before {
+  content: '\ea77';
+}
+.brand-adobelightroomcc:before {
+  content: '\ea78';
+}
+.brand-adobelightroomclassic:before {
+  content: '\ea79';
+}
+.brand-adobephotoshop:before {
+  content: '\ea7a';
+}
+.brand-adobepremiere:before {
+  content: '\ea7b';
+}
+.brand-adobetypekit:before {
+  content: '\ea7c';
+}
+.brand-adobexd:before {
+  content: '\ea7d';
+}
+.brand-airbnb:before {
+  content: '\ea7e';
+}
+.brand-airplayaudio:before {
+  content: '\ea7f';
+}
+.brand-airplayvideo:before {
+  content: '\ea80';
+}
+.brand-algolia:before {
+  content: '\ea81';
+}
+.brand-alliedmodders:before {
+  content: '\ea82';
+}
+.brand-amazon:before {
+  content: '\ea83';
+}
+.brand-amazonalexa:before {
+  content: '\ea84';
+}
+.brand-amazonaws:before {
+  content: '\ea85';
+}
+.brand-amd:before {
+  content: '\ea86';
+}
+.brand-americanexpress:before {
+  content: '\ea87';
+}
+.brand-anaconda:before {
+  content: '\ea88';
+}
+.brand-analogue:before {
+  content: '\ea89';
+}
+.brand-anchor:before {
+  content: '\ea8a';
+}
+.brand-android:before {
+  content: '\ea8b';
+}
+.brand-angellist:before {
+  content: '\ea8c';
+}
+.brand-angular:before {
+  content: '\ea8d';
+}
+.brand-angularuniversal:before {
+  content: '\ea8e';
+}
+.brand-ansible:before {
+  content: '\ea8f';
+}
+.brand-apache:before {
+  content: '\ea90';
+}
+.brand-apacheairflow:before {
+  content: '\ea91';
+}
+.brand-apachecordova:before {
+  content: '\ea92';
+}
+.brand-apacheflink:before {
+  content: '\ea93';
+}
+.brand-apachekafka:before {
+  content: '\ea94';
+}
+.brand-apachenetbeanside:before {
+  content: '\ea95';
+}
+.brand-apacheopenoffice:before {
+  content: '\ea96';
+}
+.brand-apacherocketmq:before {
+  content: '\ea97';
+}
+.brand-apachespark:before {
+  content: '\ea98';
+}
+.brand-apple:before {
+  content: '\ea99';
+}
+.brand-applemusic:before {
+  content: '\ea9a';
+}
+.brand-applepay:before {
+  content: '\ea9b';
+}
+.brand-applepodcasts:before {
+  content: '\ea9c';
+}
+.brand-appveyor:before {
+  content: '\ea9d';
+}
+.brand-aral:before {
+  content: '\ea9e';
+}
+.brand-archiveofourown:before {
+  content: '\ea9f';
+}
+.brand-archlinux:before {
+  content: '\eaa0';
+}
+.brand-arduino:before {
+  content: '\eaa1';
+}
+.brand-artstation:before {
+  content: '\eaa2';
+}
+.brand-arxiv:before {
+  content: '\eaa3';
+}
+.brand-asana:before {
+  content: '\eaa4';
+}
+.brand-asciidoctor:before {
+  content: '\eaa5';
+}
+.brand-at-and-t:before {
+  content: '\eaa6';
+}
+.brand-atlassian:before {
+  content: '\eaa7';
+}
+.brand-atom:before {
+  content: '\eaa8';
+}
+.brand-audi:before {
+  content: '\eaa9';
+}
+.brand-audible:before {
+  content: '\eaaa';
+}
+.brand-aurelia:before {
+  content: '\eaab';
+}
+.brand-auth0:before {
+  content: '\eaac';
+}
+.brand-automatic:before {
+  content: '\eaad';
+}
+.brand-autotask:before {
+  content: '\eaae';
+}
+.brand-aventrix:before {
+  content: '\eaaf';
+}
+.brand-awesomewm:before {
+  content: '\eab0';
+}
+.brand-azureartifacts:before {
+  content: '\eab1';
+}
+.brand-azuredevops:before {
+  content: '\eab2';
+}
+.brand-azurepipelines:before {
+  content: '\eab3';
+}
+.brand-babel:before {
+  content: '\eab4';
+}
+.brand-baidu:before {
+  content: '\eab5';
+}
+.brand-bamboo:before {
+  content: '\eab6';
+}
+.brand-bancontact:before {
+  content: '\eab7';
+}
+.brand-bandcamp:before {
+  content: '\eab8';
+}
+.brand-bandlab:before {
+  content: '\eab9';
+}
+.brand-basecamp:before {
+  content: '\eaba';
+}
+.brand-bathasu:before {
+  content: '\eabb';
+}
+.brand-beats:before {
+  content: '\eabc';
+}
+.brand-beatsbydre:before {
+  content: '\eabd';
+}
+.brand-behance:before {
+  content: '\eabe';
+}
+.brand-bigcartel:before {
+  content: '\eabf';
+}
+.brand-bing:before {
+  content: '\eac0';
+}
+.brand-bit:before {
+  content: '\eac1';
+}
+.brand-bitbucket:before {
+  content: '\eac2';
+}
+.brand-bitcoin:before {
+  content: '\eac3';
+}
+.brand-bitdefender:before {
+  content: '\eac4';
+}
+.brand-bitly:before {
+  content: '\eac5';
+}
+.brand-bitrise:before {
+  content: '\eac6';
+}
+.brand-blackberry:before {
+  content: '\eac7';
+}
+.brand-blender:before {
+  content: '\eac8';
+}
+.brand-blogger:before {
+  content: '\eac9';
+}
+.brand-bmcsoftware:before {
+  content: '\eaca';
+}
+.brand-boeing:before {
+  content: '\eacb';
+}
+.brand-boost:before {
+  content: '\eacc';
+}
+.brand-bootstrap:before {
+  content: '\eacd';
+}
+.brand-bower:before {
+  content: '\eace';
+}
+.brand-box1:before {
+  content: '\eacf';
+}
+.brand-brand-dot-ai:before {
+  content: '\ead0';
+}
+.brand-brandfolder:before {
+  content: '\ead1';
+}
+.brand-brave:before {
+  content: '\ead2';
+}
+.brand-breaker:before {
+  content: '\ead3';
+}
+.brand-broadcom:before {
+  content: '\ead4';
+}
+.brand-buddy:before {
+  content: '\ead5';
+}
+.brand-buffer:before {
+  content: '\ead6';
+}
+.brand-buymeacoffee:before {
+  content: '\ead7';
+}
+.brand-buzzfeed:before {
+  content: '\ead8';
+}
+.brand-c:before {
+  content: '\ead9';
+}
+.brand-cakephp:before {
+  content: '\eada';
+}
+.brand-campaignmonitor:before {
+  content: '\eadb';
+}
+.brand-canva:before {
+  content: '\eadc';
+}
+.brand-cashapp:before {
+  content: '\eadd';
+}
+.brand-cassandra:before {
+  content: '\eade';
+}
+.brand-castorama:before {
+  content: '\eadf';
+}
+.brand-castro:before {
+  content: '\eae0';
+}
+.brand-centos:before {
+  content: '\eae1';
+}
+.brand-cevo:before {
+  content: '\eae2';
+}
+.brand-chase:before {
+  content: '\eae3';
+}
+.brand-chef:before {
+  content: '\eae4';
+}
+.brand-circle1:before {
+  content: '\eae5';
+}
+.brand-circleci:before {
+  content: '\eae6';
+}
+.brand-cirrusci:before {
+  content: '\eae7';
+}
+.brand-cisco:before {
+  content: '\eae8';
+}
+.brand-civicrm:before {
+  content: '\eae9';
+}
+.brand-clockify:before {
+  content: '\eaea';
+}
+.brand-clojure:before {
+  content: '\eaeb';
+}
+.brand-cloudbees:before {
+  content: '\eaec';
+}
+.brand-cloudflare:before {
+  content: '\eaed';
+}
+.brand-cmake:before {
+  content: '\eaee';
+}
+.brand-co-op:before {
+  content: '\eaef';
+}
+.brand-codacy:before {
+  content: '\eaf0';
+}
+.brand-codecademy:before {
+  content: '\eaf1';
+}
+.brand-codechef:before {
+  content: '\eaf2';
+}
+.brand-codeclimate:before {
+  content: '\eaf3';
+}
+.brand-codecov:before {
+  content: '\eaf4';
+}
+.brand-codefactor:before {
+  content: '\eaf5';
+}
+.brand-codeforces:before {
+  content: '\eaf6';
+}
+.brand-codeigniter:before {
+  content: '\eaf7';
+}
+.brand-codepen:before {
+  content: '\eaf8';
+}
+.brand-coderwall:before {
+  content: '\eaf9';
+}
+.brand-codesandbox:before {
+  content: '\eafa';
+}
+.brand-codeship:before {
+  content: '\eafb';
+}
+.brand-codewars:before {
+  content: '\eafc';
+}
+.brand-codio:before {
+  content: '\eafd';
+}
+.brand-coffeescript:before {
+  content: '\eafe';
+}
+.brand-coinbase:before {
+  content: '\eaff';
+}
+.brand-commonworkflowlanguage:before {
+  content: '\eb00';
+}
+.brand-composer:before {
+  content: '\eb01';
+}
+.brand-compropago:before {
+  content: '\eb02';
+}
+.brand-conda-forge:before {
+  content: '\eb03';
+}
+.brand-conekta:before {
+  content: '\eb04';
+}
+.brand-confluence:before {
+  content: '\eb05';
+}
+.brand-coronarenderer:before {
+  content: '\eb06';
+}
+.brand-coursera:before {
+  content: '\eb07';
+}
+.brand-coveralls:before {
+  content: '\eb08';
+}
+.brand-cpanel:before {
+  content: '\eb09';
+}
+.brand-cplusplus:before {
+  content: '\eb0a';
+}
+.brand-creativecommons:before {
+  content: '\eb0b';
+}
+.brand-crehana:before {
+  content: '\eb0c';
+}
+.brand-crunchbase:before {
+  content: '\eb0d';
+}
+.brand-crunchyroll:before {
+  content: '\eb0e';
+}
+.brand-cryengine:before {
+  content: '\eb0f';
+}
+.brand-csharp:before {
+  content: '\eb10';
+}
+.brand-css3:before {
+  content: '\eb11';
+}
+.brand-csswizardry:before {
+  content: '\eb12';
+}
+.brand-curl:before {
+  content: '\eb13';
+}
+.brand-d3-dot-js:before {
+  content: '\eb14';
+}
+.brand-dailymotion:before {
+  content: '\eb15';
+}
+.brand-dart1:before {
+  content: '\eb16';
+}
+.brand-dashlane:before {
+  content: '\eb17';
+}
+.brand-datacamp:before {
+  content: '\eb18';
+}
+.brand-dazn:before {
+  content: '\eb19';
+}
+.brand-dblp:before {
+  content: '\eb1a';
+}
+.brand-debian:before {
+  content: '\eb1b';
+}
+.brand-deepin:before {
+  content: '\eb1c';
+}
+.brand-deezer:before {
+  content: '\eb1d';
+}
+.brand-delicious:before {
+  content: '\eb1e';
+}
+.brand-deliveroo:before {
+  content: '\eb1f';
+}
+.brand-dell:before {
+  content: '\eb20';
+}
+.brand-deno:before {
+  content: '\eb21';
+}
+.brand-dependabot:before {
+  content: '\eb22';
+}
+.brand-designernews:before {
+  content: '\eb23';
+}
+.brand-dev-dot-to:before {
+  content: '\eb24';
+}
+.brand-deviantart:before {
+  content: '\eb25';
+}
+.brand-devrant:before {
+  content: '\eb26';
+}
+.brand-diaspora:before {
+  content: '\eb27';
+}
+.brand-digg:before {
+  content: '\eb28';
+}
+.brand-digitalocean:before {
+  content: '\eb29';
+}
+.brand-directus:before {
+  content: '\eb2a';
+}
+.brand-discord:before {
+  content: '\eb2b';
+}
+.brand-discourse:before {
+  content: '\eb2c';
+}
+.brand-discover:before {
+  content: '\eb2d';
+}
+.brand-disqus:before {
+  content: '\eb2e';
+}
+.brand-disroot:before {
+  content: '\eb2f';
+}
+.brand-django:before {
+  content: '\eb30';
+}
+.brand-dlna:before {
+  content: '\eb31';
+}
+.brand-docker:before {
+  content: '\eb32';
+}
+.brand-docusign:before {
+  content: '\eb33';
+}
+.brand-dolby:before {
+  content: '\eb34';
+}
+.brand-dot-net:before {
+  content: '\eb35';
+}
+.brand-draugiem-dot-lv:before {
+  content: '\eb36';
+}
+.brand-dribbble:before {
+  content: '\eb37';
+}
+.brand-drone:before {
+  content: '\eb38';
+}
+.brand-dropbox:before {
+  content: '\eb39';
+}
+.brand-drupal:before {
+  content: '\eb3a';
+}
+.brand-dtube:before {
+  content: '\eb3b';
+}
+.brand-duckduckgo:before {
+  content: '\eb3c';
+}
+.brand-dunked:before {
+  content: '\eb3d';
+}
+.brand-duolingo:before {
+  content: '\eb3e';
+}
+.brand-dynatrace:before {
+  content: '\eb3f';
+}
+.brand-ebay:before {
+  content: '\eb40';
+}
+.brand-eclipseide:before {
+  content: '\eb41';
+}
+.brand-elastic:before {
+  content: '\eb42';
+}
+.brand-elasticcloud:before {
+  content: '\eb43';
+}
+.brand-elasticsearch:before {
+  content: '\eb44';
+}
+.brand-elasticstack:before {
+  content: '\eb45';
+}
+.brand-electron:before {
+  content: '\eb46';
+}
+.brand-elementary:before {
+  content: '\eb47';
+}
+.brand-eleventy:before {
+  content: '\eb48';
+}
+.brand-ello:before {
+  content: '\eb49';
+}
+.brand-elsevier:before {
+  content: '\eb4a';
+}
+.brand-ember-dot-js:before {
+  content: '\eb4b';
+}
+.brand-emlakjet:before {
+  content: '\eb4c';
+}
+.brand-empirekred:before {
+  content: '\eb4d';
+}
+.brand-envato:before {
+  content: '\eb4e';
+}
+.brand-epel:before {
+  content: '\eb4f';
+}
+.brand-epicgames:before {
+  content: '\eb50';
+}
+.brand-epson:before {
+  content: '\eb51';
+}
+.brand-esea:before {
+  content: '\eb52';
+}
+.brand-eslint:before {
+  content: '\eb53';
+}
+.brand-ethereum:before {
+  content: '\eb54';
+}
+.brand-etsy:before {
+  content: '\eb55';
+}
+.brand-eventbrite:before {
+  content: '\eb56';
+}
+.brand-eventstore:before {
+  content: '\eb57';
+}
+.brand-evernote:before {
+  content: '\eb58';
+}
+.brand-everplaces:before {
+  content: '\eb59';
+}
+.brand-evry:before {
+  content: '\eb5a';
+}
+.brand-exercism:before {
+  content: '\eb5b';
+}
+.brand-expertsexchange:before {
+  content: '\eb5c';
+}
+.brand-expo:before {
+  content: '\eb5d';
+}
+.brand-eyeem:before {
+  content: '\eb5e';
+}
+.brand-f-droid:before {
+  content: '\eb5f';
+}
+.brand-f-secure:before {
+  content: '\eb60';
+}
+.brand-facebook:before {
+  content: '\eb61';
+}
+.brand-faceit:before {
+  content: '\eb62';
+}
+.brand-fandango:before {
+  content: '\eb63';
+}
+.brand-favro:before {
+  content: '\eb64';
+}
+.brand-feathub:before {
+  content: '\eb65';
+}
+.brand-fedora:before {
+  content: '\eb66';
+}
+.brand-feedly:before {
+  content: '\eb67';
+}
+.brand-fidoalliance:before {
+  content: '\eb68';
+}
+.brand-figma:before {
+  content: '\eb69';
+}
+.brand-filezilla:before {
+  content: '\eb6a';
+}
+.brand-firebase:before {
+  content: '\eb6b';
+}
+.brand-fitbit:before {
+  content: '\eb6c';
+}
+.brand-fiverr:before {
+  content: '\eb6d';
+}
+.brand-flask:before {
+  content: '\eb6e';
+}
+.brand-flattr:before {
+  content: '\eb6f';
+}
+.brand-flickr:before {
+  content: '\eb70';
+}
+.brand-flipboard:before {
+  content: '\eb71';
+}
+.brand-floatplane:before {
+  content: '\eb72';
+}
+.brand-flutter:before {
+  content: '\eb73';
+}
+.brand-fnac:before {
+  content: '\eb74';
+}
+.brand-formstack:before {
+  content: '\eb75';
+}
+.brand-fossa:before {
+  content: '\eb76';
+}
+.brand-fossilscm:before {
+  content: '\eb77';
+}
+.brand-foursquare:before {
+  content: '\eb78';
+}
+.brand-framer:before {
+  content: '\eb79';
+}
+.brand-freebsd:before {
+  content: '\eb7a';
+}
+.brand-freecodecamp:before {
+  content: '\eb7b';
+}
+.brand-fujifilm:before {
+  content: '\eb7c';
+}
+.brand-fujitsu:before {
+  content: '\eb7d';
+}
+.brand-furaffinity:before {
+  content: '\eb7e';
+}
+.brand-furrynetwork:before {
+  content: '\eb7f';
+}
+.brand-garmin:before {
+  content: '\eb80';
+}
+.brand-gatsby:before {
+  content: '\eb81';
+}
+.brand-gauges:before {
+  content: '\eb82';
+}
+.brand-genius:before {
+  content: '\eb83';
+}
+.brand-gentoo:before {
+  content: '\eb84';
+}
+.brand-geocaching:before {
+  content: '\eb85';
+}
+.brand-gerrit:before {
+  content: '\eb86';
+}
+.brand-ghost:before {
+  content: '\eb87';
+}
+.brand-gimp:before {
+  content: '\eb88';
+}
+.brand-git:before {
+  content: '\eb89';
+}
+.brand-gitea:before {
+  content: '\eb8a';
+}
+.brand-github:before {
+  content: '\eb8b';
+}
+.brand-gitlab:before {
+  content: '\eb8c';
+}
+.brand-gitpod:before {
+  content: '\eb8d';
+}
+.brand-gitter:before {
+  content: '\eb8e';
+}
+.brand-glassdoor:before {
+  content: '\eb8f';
+}
+.brand-glitch:before {
+  content: '\eb90';
+}
+.brand-gmail:before {
+  content: '\eb91';
+}
+.brand-gnome:before {
+  content: '\eb92';
+}
+.brand-gnu:before {
+  content: '\eb93';
+}
+.brand-gnuicecat:before {
+  content: '\eb94';
+}
+.brand-gnuprivacyguard:before {
+  content: '\eb95';
+}
+.brand-gnusocial:before {
+  content: '\eb96';
+}
+.brand-go:before {
+  content: '\eb97';
+}
+.brand-godotengine:before {
+  content: '\eb98';
+}
+.brand-gog-dot-com:before {
+  content: '\eb99';
+}
+.brand-goldenline:before {
+  content: '\eb9a';
+}
+.brand-goodreads:before {
+  content: '\eb9b';
+}
+.brand-google:before {
+  content: '\eb9c';
+}
+.brand-googleads:before {
+  content: '\eb9d';
+}
+.brand-googleanalytics:before {
+  content: '\eb9e';
+}
+.brand-googlechrome:before {
+  content: '\eb9f';
+}
+.brand-googlecloud:before {
+  content: '\eba0';
+}
+.brand-googledrive:before {
+  content: '\eba1';
+}
+.brand-googlehangouts:before {
+  content: '\eba2';
+}
+.brand-googlehangoutschat:before {
+  content: '\eba3';
+}
+.brand-googlekeep:before {
+  content: '\eba4';
+}
+.brand-googlepay:before {
+  content: '\eba5';
+}
+.brand-googleplay:before {
+  content: '\eba6';
+}
+.brand-googlepodcasts:before {
+  content: '\eba7';
+}
+.brand-googlescholar:before {
+  content: '\eba8';
+}
+.brand-googlesearchconsole:before {
+  content: '\eba9';
+}
+.brand-gov-dot-uk:before {
+  content: '\ebaa';
+}
+.brand-gradle:before {
+  content: '\ebab';
+}
+.brand-grafana:before {
+  content: '\ebac';
+}
+.brand-graphcool:before {
+  content: '\ebad';
+}
+.brand-graphql:before {
+  content: '\ebae';
+}
+.brand-grav:before {
+  content: '\ebaf';
+}
+.brand-gravatar:before {
+  content: '\ebb0';
+}
+.brand-greenkeeper:before {
+  content: '\ebb1';
+}
+.brand-greensock:before {
+  content: '\ebb2';
+}
+.brand-groovy:before {
+  content: '\ebb3';
+}
+.brand-groupon:before {
+  content: '\ebb4';
+}
+.brand-gulp:before {
+  content: '\ebb5';
+}
+.brand-gumroad:before {
+  content: '\ebb6';
+}
+.brand-gumtree:before {
+  content: '\ebb7';
+}
+.brand-gutenberg:before {
+  content: '\ebb8';
+}
+.brand-habr:before {
+  content: '\ebb9';
+}
+.brand-hackaday:before {
+  content: '\ebba';
+}
+.brand-hackerearth:before {
+  content: '\ebbb';
+}
+.brand-hackerone:before {
+  content: '\ebbc';
+}
+.brand-hackerrank:before {
+  content: '\ebbd';
+}
+.brand-hackhands:before {
+  content: '\ebbe';
+}
+.brand-hackster:before {
+  content: '\ebbf';
+}
+.brand-happycow:before {
+  content: '\ebc0';
+}
+.brand-hashnode:before {
+  content: '\ebc1';
+}
+.brand-haskell:before {
+  content: '\ebc2';
+}
+.brand-hatenabookmark:before {
+  content: '\ebc3';
+}
+.brand-haxe:before {
+  content: '\ebc4';
+}
+.brand-helm:before {
+  content: '\ebc5';
+}
+.brand-here:before {
+  content: '\ebc6';
+}
+.brand-heroku:before {
+  content: '\ebc7';
+}
+.brand-hexo:before {
+  content: '\ebc8';
+}
+.brand-highly:before {
+  content: '\ebc9';
+}
+.brand-hipchat:before {
+  content: '\ebca';
+}
+.brand-hitachi:before {
+  content: '\ebcb';
+}
+.brand-hockeyapp:before {
+  content: '\ebcc';
+}
+.brand-homeassistant:before {
+  content: '\ebcd';
+}
+.brand-homify:before {
+  content: '\ebce';
+}
+.brand-hootsuite:before {
+  content: '\ebcf';
+}
+.brand-houzz:before {
+  content: '\ebd0';
+}
+.brand-hp:before {
+  content: '\ebd1';
+}
+.brand-html5:before {
+  content: '\ebd2';
+}
+.brand-htmlacademy:before {
+  content: '\ebd3';
+}
+.brand-huawei:before {
+  content: '\ebd4';
+}
+.brand-hubspot:before {
+  content: '\ebd5';
+}
+.brand-hulu:before {
+  content: '\ebd6';
+}
+.brand-humblebundle:before {
+  content: '\ebd7';
+}
+.brand-hurriyetemlak:before {
+  content: '\ebd8';
+}
+.brand-hypothesis:before {
+  content: '\ebd9';
+}
+.brand-iata:before {
+  content: '\ebda';
+}
+.brand-ibm:before {
+  content: '\ebdb';
+}
+.brand-icloud:before {
+  content: '\ebdc';
+}
+.brand-icomoon:before {
+  content: '\ebdd';
+}
+.brand-icon:before {
+  content: '\ebde';
+}
+.brand-iconjar:before {
+  content: '\ebdf';
+}
+.brand-icq:before {
+  content: '\ebe0';
+}
+.brand-ideal:before {
+  content: '\ebe1';
+}
+.brand-ifixit:before {
+  content: '\ebe2';
+}
+.brand-imdb:before {
+  content: '\ebe3';
+}
+.brand-imgur:before {
+  content: '\ebe4';
+}
+.brand-indeed:before {
+  content: '\ebe5';
+}
+.brand-influxdb:before {
+  content: '\ebe6';
+}
+.brand-inkscape:before {
+  content: '\ebe7';
+}
+.brand-instacart:before {
+  content: '\ebe8';
+}
+.brand-instagram:before {
+  content: '\ebe9';
+}
+.brand-instapaper:before {
+  content: '\ebea';
+}
+.brand-intel:before {
+  content: '\ebeb';
+}
+.brand-intellijidea:before {
+  content: '\ebec';
+}
+.brand-intercom:before {
+  content: '\ebed';
+}
+.brand-internetarchive:before {
+  content: '\ebee';
+}
+.brand-internetexplorer:before {
+  content: '\ebef';
+}
+.brand-invision:before {
+  content: '\ebf0';
+}
+.brand-invoiceninja:before {
+  content: '\ebf1';
+}
+.brand-ionic:before {
+  content: '\ebf2';
+}
+.brand-ios:before {
+  content: '\ebf3';
+}
+.brand-ipfs:before {
+  content: '\ebf4';
+}
+.brand-issuu:before {
+  content: '\ebf5';
+}
+.brand-itch-dot-io:before {
+  content: '\ebf6';
+}
+.brand-itunes:before {
+  content: '\ebf7';
+}
+.brand-jabber:before {
+  content: '\ebf8';
+}
+.brand-java:before {
+  content: '\ebf9';
+}
+.brand-javascript:before {
+  content: '\ebfa';
+}
+.brand-jekyll:before {
+  content: '\ebfb';
+}
+.brand-jenkins:before {
+  content: '\ebfc';
+}
+.brand-jest:before {
+  content: '\ebfd';
+}
+.brand-jet:before {
+  content: '\ebfe';
+}
+.brand-jetbrains:before {
+  content: '\ebff';
+}
+.brand-jinja:before {
+  content: '\ec00';
+}
+.brand-jira:before {
+  content: '\ec01';
+}
+.brand-joomla:before {
+  content: '\ec02';
+}
+.brand-jquery:before {
+  content: '\ec03';
+}
+.brand-jsdelivr:before {
+  content: '\ec04';
+}
+.brand-jsfiddle:before {
+  content: '\ec05';
+}
+.brand-json:before {
+  content: '\ec06';
+}
+.brand-jupyter:before {
+  content: '\ec07';
+}
+.brand-justgiving:before {
+  content: '\ec08';
+}
+.brand-kaggle:before {
+  content: '\ec09';
+}
+.brand-kaios:before {
+  content: '\ec0a';
+}
+.brand-kaspersky:before {
+  content: '\ec0b';
+}
+.brand-kentico:before {
+  content: '\ec0c';
+}
+.brand-keras:before {
+  content: '\ec0d';
+}
+.brand-keybase:before {
+  content: '\ec0e';
+}
+.brand-keycdn:before {
+  content: '\ec0f';
+}
+.brand-khanacademy:before {
+  content: '\ec10';
+}
+.brand-kibana:before {
+  content: '\ec11';
+}
+.brand-kickstarter:before {
+  content: '\ec12';
+}
+.brand-kik:before {
+  content: '\ec13';
+}
+.brand-kirby:before {
+  content: '\ec14';
+}
+.brand-klout:before {
+  content: '\ec15';
+}
+.brand-known:before {
+  content: '\ec16';
+}
+.brand-ko-fi:before {
+  content: '\ec17';
+}
+.brand-kodi:before {
+  content: '\ec18';
+}
+.brand-koding:before {
+  content: '\ec19';
+}
+.brand-kotlin:before {
+  content: '\ec1a';
+}
+.brand-krita:before {
+  content: '\ec1b';
+}
+.brand-kubernetes:before {
+  content: '\ec1c';
+}
+.brand-laravel:before {
+  content: '\ec1d';
+}
+.brand-laravelhorizon:before {
+  content: '\ec1e';
+}
+.brand-laravelnova:before {
+  content: '\ec1f';
+}
+.brand-last-dot-fm:before {
+  content: '\ec20';
+}
+.brand-lastpass:before {
+  content: '\ec21';
+}
+.brand-latex:before {
+  content: '\ec22';
+}
+.brand-launchpad:before {
+  content: '\ec23';
+}
+.brand-leetcode:before {
+  content: '\ec24';
+}
+.brand-lenovo:before {
+  content: '\ec25';
+}
+.brand-letsencrypt:before {
+  content: '\ec26';
+}
+.brand-letterboxd:before {
+  content: '\ec27';
+}
+.brand-lgtm:before {
+  content: '\ec28';
+}
+.brand-liberapay:before {
+  content: '\ec29';
+}
+.brand-librarything:before {
+  content: '\ec2a';
+}
+.brand-libreoffice:before {
+  content: '\ec2b';
+}
+.brand-line:before {
+  content: '\ec2c';
+}
+.brand-linewebtoon:before {
+  content: '\ec2d';
+}
+.brand-linkedin:before {
+  content: '\ec2e';
+}
+.brand-linode:before {
+  content: '\ec2f';
+}
+.brand-linux:before {
+  content: '\ec30';
+}
+.brand-linuxfoundation:before {
+  content: '\ec31';
+}
+.brand-linuxmint:before {
+  content: '\ec32';
+}
+.brand-livejournal:before {
+  content: '\ec33';
+}
+.brand-livestream:before {
+  content: '\ec34';
+}
+.brand-llvm:before {
+  content: '\ec35';
+}
+.brand-logstash:before {
+  content: '\ec36';
+}
+.brand-loop:before {
+  content: '\ec37';
+}
+.brand-lua:before {
+  content: '\ec38';
+}
+.brand-lufthansa:before {
+  content: '\ec39';
+}
+.brand-lumen:before {
+  content: '\ec3a';
+}
+.brand-lyft:before {
+  content: '\ec3b';
+}
+.brand-macys:before {
+  content: '\ec3c';
+}
+.brand-magento:before {
+  content: '\ec3d';
+}
+.brand-magisk:before {
+  content: '\ec3e';
+}
+.brand-mail-dot-ru:before {
+  content: '\ec3f';
+}
+.brand-mailchimp:before {
+  content: '\ec40';
+}
+.brand-makerbot:before {
+  content: '\ec41';
+}
+.brand-manageiq:before {
+  content: '\ec42';
+}
+.brand-manjaro:before {
+  content: '\ec43';
+}
+.brand-mapbox:before {
+  content: '\ec44';
+}
+.brand-markdown:before {
+  content: '\ec45';
+}
+.brand-marketo:before {
+  content: '\ec46';
+}
+.brand-mastercard:before {
+  content: '\ec47';
+}
+.brand-mastodon:before {
+  content: '\ec48';
+}
+.brand-materialdesign:before {
+  content: '\ec49';
+}
+.brand-mathworks:before {
+  content: '\ec4a';
+}
+.brand-matrix:before {
+  content: '\ec4b';
+}
+.brand-mattermost:before {
+  content: '\ec4c';
+}
+.brand-matternet:before {
+  content: '\ec4d';
+}
+.brand-mcafee:before {
+  content: '\ec4e';
+}
+.brand-mdnwebdocs:before {
+  content: '\ec4f';
+}
+.brand-mediafire:before {
+  content: '\ec50';
+}
+.brand-mediatemple:before {
+  content: '\ec51';
+}
+.brand-medium:before {
+  content: '\ec52';
+}
+.brand-meetup:before {
+  content: '\ec53';
+}
+.brand-mega:before {
+  content: '\ec54';
+}
+.brand-mendeley:before {
+  content: '\ec55';
+}
+.brand-mercedes:before {
+  content: '\ec56';
+}
+.brand-messenger:before {
+  content: '\ec57';
+}
+.brand-meteor:before {
+  content: '\ec58';
+}
+.brand-micro-dot-blog:before {
+  content: '\ec59';
+}
+.brand-microgenetics:before {
+  content: '\ec5a';
+}
+.brand-microsoft:before {
+  content: '\ec5b';
+}
+.brand-microsoftaccess:before {
+  content: '\ec5c';
+}
+.brand-microsoftazure:before {
+  content: '\ec5d';
+}
+.brand-microsoftedge:before {
+  content: '\ec5e';
+}
+.brand-microsoftexcel:before {
+  content: '\ec5f';
+}
+.brand-microsoftoffice:before {
+  content: '\ec60';
+}
+.brand-microsoftonedrive:before {
+  content: '\ec61';
+}
+.brand-microsoftonenote:before {
+  content: '\ec62';
+}
+.brand-microsoftoutlook:before {
+  content: '\ec63';
+}
+.brand-microsoftpowerpoint:before {
+  content: '\ec64';
+}
+.brand-microsoftteams:before {
+  content: '\ec65';
+}
+.brand-microsoftword:before {
+  content: '\ec66';
+}
+.brand-microstrategy:before {
+  content: '\ec67';
+}
+.brand-minds:before {
+  content: '\ec68';
+}
+.brand-minetest:before {
+  content: '\ec69';
+}
+.brand-minutemailer:before {
+  content: '\ec6a';
+}
+.brand-mix:before {
+  content: '\ec6b';
+}
+.brand-mixcloud:before {
+  content: '\ec6c';
+}
+.brand-mixer:before {
+  content: '\ec6d';
+}
+.brand-mojang:before {
+  content: '\ec6e';
+}
+.brand-monero:before {
+  content: '\ec6f';
+}
+.brand-mongodb:before {
+  content: '\ec70';
+}
+.brand-monkeytie:before {
+  content: '\ec71';
+}
+.brand-monogram:before {
+  content: '\ec72';
+}
+.brand-monster:before {
+  content: '\ec73';
+}
+.brand-monzo:before {
+  content: '\ec74';
+}
+.brand-moo:before {
+  content: '\ec75';
+}
+.brand-mozilla:before {
+  content: '\ec76';
+}
+.brand-mozillafirefox:before {
+  content: '\ec77';
+}
+.brand-musescore:before {
+  content: '\ec78';
+}
+.brand-mxlinux:before {
+  content: '\ec79';
+}
+.brand-myspace:before {
+  content: '\ec7a';
+}
+.brand-mysql:before {
+  content: '\ec7b';
+}
+.brand-nativescript:before {
+  content: '\ec7c';
+}
+.brand-nec:before {
+  content: '\ec7d';
+}
+.brand-neo4j:before {
+  content: '\ec7e';
+}
+.brand-netflix:before {
+  content: '\ec7f';
+}
+.brand-netlify:before {
+  content: '\ec80';
+}
+.brand-next-dot-js:before {
+  content: '\ec81';
+}
+.brand-nextcloud:before {
+  content: '\ec82';
+}
+.brand-nextdoor:before {
+  content: '\ec83';
+}
+.brand-nginx:before {
+  content: '\ec84';
+}
+.brand-nim:before {
+  content: '\ec85';
+}
+.brand-nintendo:before {
+  content: '\ec86';
+}
+.brand-nintendo3ds:before {
+  content: '\ec87';
+}
+.brand-nintendogamecube:before {
+  content: '\ec88';
+}
+.brand-nintendoswitch:before {
+  content: '\ec89';
+}
+.brand-node-dot-js:before {
+  content: '\ec8a';
+}
+.brand-node-red:before {
+  content: '\ec8b';
+}
+.brand-nodemon:before {
+  content: '\ec8c';
+}
+.brand-nokia:before {
+  content: '\ec8d';
+}
+.brand-notion:before {
+  content: '\ec8e';
+}
+.brand-notist:before {
+  content: '\ec8f';
+}
+.brand-npm:before {
+  content: '\ec90';
+}
+.brand-nucleo:before {
+  content: '\ec91';
+}
+.brand-nuget:before {
+  content: '\ec92';
+}
+.brand-nutanix:before {
+  content: '\ec93';
+}
+.brand-nuxt-dot-js:before {
+  content: '\ec94';
+}
+.brand-nvidia:before {
+  content: '\ec95';
+}
+.brand-obsstudio:before {
+  content: '\ec96';
+}
+.brand-ocaml:before {
+  content: '\ec97';
+}
+.brand-octave:before {
+  content: '\ec98';
+}
+.brand-octopusdeploy:before {
+  content: '\ec99';
+}
+.brand-oculus:before {
+  content: '\ec9a';
+}
+.brand-odnoklassniki:before {
+  content: '\ec9b';
+}
+.brand-openaccess:before {
+  content: '\ec9c';
+}
+.brand-openapiinitiative:before {
+  content: '\ec9d';
+}
+.brand-opencollective:before {
+  content: '\ec9e';
+}
+.brand-openid:before {
+  content: '\ec9f';
+}
+.brand-opensourceinitiative:before {
+  content: '\eca0';
+}
+.brand-openssl:before {
+  content: '\eca1';
+}
+.brand-openstreetmap:before {
+  content: '\eca2';
+}
+.brand-opensuse:before {
+  content: '\eca3';
+}
+.brand-openvpn:before {
+  content: '\eca4';
+}
+.brand-opera:before {
+  content: '\eca5';
+}
+.brand-opsgenie:before {
+  content: '\eca6';
+}
+.brand-oracle:before {
+  content: '\eca7';
+}
+.brand-orcid:before {
+  content: '\eca8';
+}
+.brand-origin:before {
+  content: '\eca9';
+}
+.brand-osmc:before {
+  content: '\ecaa';
+}
+.brand-overcast:before {
+  content: '\ecab';
+}
+.brand-overleaf:before {
+  content: '\ecac';
+}
+.brand-ovh:before {
+  content: '\ecad';
+}
+.brand-pagekit:before {
+  content: '\ecae';
+}
+.brand-palantir:before {
+  content: '\ecaf';
+}
+.brand-paloaltosoftware:before {
+  content: '\ecb0';
+}
+.brand-pandora:before {
+  content: '\ecb1';
+}
+.brand-pantheon:before {
+  content: '\ecb2';
+}
+.brand-parse-dot-ly:before {
+  content: '\ecb3';
+}
+.brand-pastebin:before {
+  content: '\ecb4';
+}
+.brand-patreon:before {
+  content: '\ecb5';
+}
+.brand-paypal:before {
+  content: '\ecb6';
+}
+.brand-peertube:before {
+  content: '\ecb7';
+}
+.brand-periscope:before {
+  content: '\ecb8';
+}
+.brand-php:before {
+  content: '\ecb9';
+}
+.brand-pi-hole:before {
+  content: '\ecba';
+}
+.brand-picarto-dot-tv:before {
+  content: '\ecbb';
+}
+.brand-pinboard:before {
+  content: '\ecbc';
+}
+.brand-pingdom:before {
+  content: '\ecbd';
+}
+.brand-pingup:before {
+  content: '\ecbe';
+}
+.brand-pinterest:before {
+  content: '\ecbf';
+}
+.brand-pivotaltracker:before {
+  content: '\ecc0';
+}
+.brand-pjsip:before {
+  content: '\ecc1';
+}
+.brand-plangrid:before {
+  content: '\ecc2';
+}
+.brand-player-dot-me:before {
+  content: '\ecc3';
+}
+.brand-playerfm:before {
+  content: '\ecc4';
+}
+.brand-playstation:before {
+  content: '\ecc5';
+}
+.brand-playstation3:before {
+  content: '\ecc6';
+}
+.brand-playstation4:before {
+  content: '\ecc7';
+}
+.brand-plesk:before {
+  content: '\ecc8';
+}
+.brand-plex:before {
+  content: '\ecc9';
+}
+.brand-pluralsight:before {
+  content: '\ecca';
+}
+.brand-plurk:before {
+  content: '\eccb';
+}
+.brand-pocket:before {
+  content: '\eccc';
+}
+.brand-pocketcasts:before {
+  content: '\eccd';
+}
+.brand-postgresql:before {
+  content: '\ecce';
+}
+.brand-postman:before {
+  content: '\eccf';
+}
+.brand-postwoman:before {
+  content: '\ecd0';
+}
+.brand-powershell:before {
+  content: '\ecd1';
+}
+.brand-prestashop:before {
+  content: '\ecd2';
+}
+.brand-prettier:before {
+  content: '\ecd3';
+}
+.brand-prismic:before {
+  content: '\ecd4';
+}
+.brand-probot:before {
+  content: '\ecd5';
+}
+.brand-processwire:before {
+  content: '\ecd6';
+}
+.brand-producthunt:before {
+  content: '\ecd7';
+}
+.brand-prometheus:before {
+  content: '\ecd8';
+}
+.brand-proto-dot-io:before {
+  content: '\ecd9';
+}
+.brand-protonmail:before {
+  content: '\ecda';
+}
+.brand-proxmox:before {
+  content: '\ecdb';
+}
+.brand-publons:before {
+  content: '\ecdc';
+}
+.brand-purescript:before {
+  content: '\ecdd';
+}
+.brand-pypi:before {
+  content: '\ecde';
+}
+.brand-python:before {
+  content: '\ecdf';
+}
+.brand-pytorch:before {
+  content: '\ece0';
+}
+.brand-pyup:before {
+  content: '\ece1';
+}
+.brand-qemu:before {
+  content: '\ece2';
+}
+.brand-qgis:before {
+  content: '\ece3';
+}
+.brand-qiita:before {
+  content: '\ece4';
+}
+.brand-qualcomm:before {
+  content: '\ece5';
+}
+.brand-quantcast:before {
+  content: '\ece6';
+}
+.brand-quantopian:before {
+  content: '\ece7';
+}
+.brand-quarkus:before {
+  content: '\ece8';
+}
+.brand-quicktime:before {
+  content: '\ece9';
+}
+.brand-quip:before {
+  content: '\ecea';
+}
+.brand-quora:before {
+  content: '\eceb';
+}
+.brand-qwiklabs:before {
+  content: '\ecec';
+}
+.brand-qzone:before {
+  content: '\eced';
+}
+.brand-r:before {
+  content: '\ecee';
+}
+.brand-rabbitmq:before {
+  content: '\ecef';
+}
+.brand-radiopublic:before {
+  content: '\ecf0';
+}
+.brand-rails:before {
+  content: '\ecf1';
+}
+.brand-raspberrypi:before {
+  content: '\ecf2';
+}
+.brand-react:before {
+  content: '\ecf3';
+}
+.brand-reactos:before {
+  content: '\ecf4';
+}
+.brand-reactrouter:before {
+  content: '\ecf5';
+}
+.brand-readthedocs:before {
+  content: '\ecf6';
+}
+.brand-realm:before {
+  content: '\ecf7';
+}
+.brand-reason:before {
+  content: '\ecf8';
+}
+.brand-reasonstudios:before {
+  content: '\ecf9';
+}
+.brand-redbubble:before {
+  content: '\ecfa';
+}
+.brand-reddit:before {
+  content: '\ecfb';
+}
+.brand-redhat:before {
+  content: '\ecfc';
+}
+.brand-redis:before {
+  content: '\ecfd';
+}
+.brand-redux:before {
+  content: '\ecfe';
+}
+.brand-renren:before {
+  content: '\ecff';
+}
+.brand-repl-dot-it:before {
+  content: '\ed00';
+}
+.brand-researchgate:before {
+  content: '\ed01';
+}
+.brand-reverbnation:before {
+  content: '\ed02';
+}
+.brand-riot:before {
+  content: '\ed03';
+}
+.brand-ripple:before {
+  content: '\ed04';
+}
+.brand-riseup:before {
+  content: '\ed05';
+}
+.brand-rollup-dot-js:before {
+  content: '\ed06';
+}
+.brand-roots:before {
+  content: '\ed07';
+}
+.brand-roundcube:before {
+  content: '\ed08';
+}
+.brand-rss:before {
+  content: '\ed09';
+}
+.brand-rstudio:before {
+  content: '\ed0a';
+}
+.brand-ruby:before {
+  content: '\ed0b';
+}
+.brand-rubygems:before {
+  content: '\ed0c';
+}
+.brand-runkeeper:before {
+  content: '\ed0d';
+}
+.brand-rust:before {
+  content: '\ed0e';
+}
+.brand-safari:before {
+  content: '\ed0f';
+}
+.brand-sahibinden:before {
+  content: '\ed10';
+}
+.brand-salesforce:before {
+  content: '\ed11';
+}
+.brand-saltstack:before {
+  content: '\ed12';
+}
+.brand-samsung:before {
+  content: '\ed13';
+}
+.brand-samsungpay:before {
+  content: '\ed14';
+}
+.brand-sap:before {
+  content: '\ed15';
+}
+.brand-sass:before {
+  content: '\ed16';
+}
+.brand-saucelabs:before {
+  content: '\ed17';
+}
+.brand-scala:before {
+  content: '\ed18';
+}
+.brand-scaleway:before {
+  content: '\ed19';
+}
+.brand-scribd:before {
+  content: '\ed1a';
+}
+.brand-scrutinizerci:before {
+  content: '\ed1b';
+}
+.brand-seagate:before {
+  content: '\ed1c';
+}
+.brand-sega:before {
+  content: '\ed1d';
+}
+.brand-sellfy:before {
+  content: '\ed1e';
+}
+.brand-semaphoreci:before {
+  content: '\ed1f';
+}
+.brand-sensu:before {
+  content: '\ed20';
+}
+.brand-sentry:before {
+  content: '\ed21';
+}
+.brand-serverfault:before {
+  content: '\ed22';
+}
+.brand-shazam:before {
+  content: '\ed23';
+}
+.brand-shell:before {
+  content: '\ed24';
+}
+.brand-shopify:before {
+  content: '\ed25';
+}
+.brand-showpad:before {
+  content: '\ed26';
+}
+.brand-siemens:before {
+  content: '\ed27';
+}
+.brand-signal:before {
+  content: '\ed28';
+}
+.brand-simpleicons:before {
+  content: '\ed29';
+}
+.brand-sinaweibo:before {
+  content: '\ed2a';
+}
+.brand-sitepoint:before {
+  content: '\ed2b';
+}
+.brand-sketch:before {
+  content: '\ed2c';
+}
+.brand-skillshare:before {
+  content: '\ed2d';
+}
+.brand-skyliner:before {
+  content: '\ed2e';
+}
+.brand-skype:before {
+  content: '\ed2f';
+}
+.brand-slack:before {
+  content: '\ed30';
+}
+.brand-slashdot:before {
+  content: '\ed31';
+}
+.brand-slickpic:before {
+  content: '\ed32';
+}
+.brand-slides:before {
+  content: '\ed33';
+}
+.brand-smashingmagazine:before {
+  content: '\ed34';
+}
+.brand-smugmug:before {
+  content: '\ed35';
+}
+.brand-snapchat:before {
+  content: '\ed36';
+}
+.brand-snapcraft:before {
+  content: '\ed37';
+}
+.brand-snyk:before {
+  content: '\ed38';
+}
+.brand-society6:before {
+  content: '\ed39';
+}
+.brand-socket-dot-io:before {
+  content: '\ed3a';
+}
+.brand-sogou:before {
+  content: '\ed3b';
+}
+.brand-solus:before {
+  content: '\ed3c';
+}
+.brand-sonarcloud:before {
+  content: '\ed3d';
+}
+.brand-sonarlint:before {
+  content: '\ed3e';
+}
+.brand-sonarqube:before {
+  content: '\ed3f';
+}
+.brand-sonarsource:before {
+  content: '\ed40';
+}
+.brand-songkick:before {
+  content: '\ed41';
+}
+.brand-sonicwall:before {
+  content: '\ed42';
+}
+.brand-sonos:before {
+  content: '\ed43';
+}
+.brand-soundcloud:before {
+  content: '\ed44';
+}
+.brand-sourceengine:before {
+  content: '\ed45';
+}
+.brand-sourceforge:before {
+  content: '\ed46';
+}
+.brand-sourcegraph:before {
+  content: '\ed47';
+}
+.brand-spacemacs:before {
+  content: '\ed48';
+}
+.brand-spacex:before {
+  content: '\ed49';
+}
+.brand-sparkfun:before {
+  content: '\ed4a';
+}
+.brand-sparkpost:before {
+  content: '\ed4b';
+}
+.brand-spdx:before {
+  content: '\ed4c';
+}
+.brand-speakerdeck:before {
+  content: '\ed4d';
+}
+.brand-spectrum:before {
+  content: '\ed4e';
+}
+.brand-spotify:before {
+  content: '\ed4f';
+}
+.brand-spotlight:before {
+  content: '\ed50';
+}
+.brand-spreaker:before {
+  content: '\ed51';
+}
+.brand-spring:before {
+  content: '\ed52';
+}
+.brand-sprint:before {
+  content: '\ed53';
+}
+.brand-square1:before {
+  content: '\ed54';
+}
+.brand-squarespace:before {
+  content: '\ed55';
+}
+.brand-stackbit:before {
+  content: '\ed56';
+}
+.brand-stackexchange:before {
+  content: '\ed57';
+}
+.brand-stackoverflow:before {
+  content: '\ed58';
+}
+.brand-stackpath:before {
+  content: '\ed59';
+}
+.brand-stackshare:before {
+  content: '\ed5a';
+}
+.brand-stadia:before {
+  content: '\ed5b';
+}
+.brand-statamic:before {
+  content: '\ed5c';
+}
+.brand-staticman:before {
+  content: '\ed5d';
+}
+.brand-statuspage:before {
+  content: '\ed5e';
+}
+.brand-steam:before {
+  content: '\ed5f';
+}
+.brand-steamworks:before {
+  content: '\ed60';
+}
+.brand-steem:before {
+  content: '\ed61';
+}
+.brand-steemit:before {
+  content: '\ed62';
+}
+.brand-steinberg:before {
+  content: '\ed63';
+}
+.brand-stencyl:before {
+  content: '\ed64';
+}
+.brand-stitcher:before {
+  content: '\ed65';
+}
+.brand-storify:before {
+  content: '\ed66';
+}
+.brand-storybook:before {
+  content: '\ed67';
+}
+.brand-strapi:before {
+  content: '\ed68';
+}
+.brand-strava:before {
+  content: '\ed69';
+}
+.brand-stripe:before {
+  content: '\ed6a';
+}
+.brand-strongswan:before {
+  content: '\ed6b';
+}
+.brand-stubhub:before {
+  content: '\ed6c';
+}
+.brand-styled-components:before {
+  content: '\ed6d';
+}
+.brand-styleshare:before {
+  content: '\ed6e';
+}
+.brand-stylus:before {
+  content: '\ed6f';
+}
+.brand-sublimetext:before {
+  content: '\ed70';
+}
+.brand-subversion:before {
+  content: '\ed71';
+}
+.brand-superuser:before {
+  content: '\ed72';
+}
+.brand-svelte:before {
+  content: '\ed73';
+}
+.brand-svg:before {
+  content: '\ed74';
+}
+.brand-svgo:before {
+  content: '\ed75';
+}
+.brand-swagger:before {
+  content: '\ed76';
+}
+.brand-swarm:before {
+  content: '\ed77';
+}
+.brand-swift:before {
+  content: '\ed78';
+}
+.brand-symantec:before {
+  content: '\ed79';
+}
+.brand-symfony:before {
+  content: '\ed7a';
+}
+.brand-synology:before {
+  content: '\ed7b';
+}
+.brand-t-mobile:before {
+  content: '\ed7c';
+}
+.brand-tableau:before {
+  content: '\ed7d';
+}
+.brand-tails:before {
+  content: '\ed7e';
+}
+.brand-tailwindcss:before {
+  content: '\ed7f';
+}
+.brand-tapas:before {
+  content: '\ed80';
+}
+.brand-teamviewer:before {
+  content: '\ed81';
+}
+.brand-ted:before {
+  content: '\ed82';
+}
+.brand-teespring:before {
+  content: '\ed83';
+}
+.brand-telegram:before {
+  content: '\ed84';
+}
+.brand-tencentqq:before {
+  content: '\ed85';
+}
+.brand-tencentweibo:before {
+  content: '\ed86';
+}
+.brand-tensorflow:before {
+  content: '\ed87';
+}
+.brand-teradata:before {
+  content: '\ed88';
+}
+.brand-terraform:before {
+  content: '\ed89';
+}
+.brand-tesla:before {
+  content: '\ed8a';
+}
+.brand-themighty:before {
+  content: '\ed8b';
+}
+.brand-themoviedatabase:before {
+  content: '\ed8c';
+}
+.brand-tidal:before {
+  content: '\ed8d';
+}
+.brand-tiktok:before {
+  content: '\ed8e';
+}
+.brand-timescale:before {
+  content: '\ed8f';
+}
+.brand-tinder:before {
+  content: '\ed90';
+}
+.brand-todoist:before {
+  content: '\ed91';
+}
+.brand-toggl:before {
+  content: '\ed92';
+}
+.brand-topcoder:before {
+  content: '\ed93';
+}
+.brand-toptal:before {
+  content: '\ed94';
+}
+.brand-tor:before {
+  content: '\ed95';
+}
+.brand-toshiba:before {
+  content: '\ed96';
+}
+.brand-trainerroad:before {
+  content: '\ed97';
+}
+.brand-trakt:before {
+  content: '\ed98';
+}
+.brand-travisci:before {
+  content: '\ed99';
+}
+.brand-treehouse:before {
+  content: '\ed9a';
+}
+.brand-trello:before {
+  content: '\ed9b';
+}
+.brand-trendmicro:before {
+  content: '\ed9c';
+}
+.brand-tripadvisor:before {
+  content: '\ed9d';
+}
+.brand-trulia:before {
+  content: '\ed9e';
+}
+.brand-trustpilot:before {
+  content: '\ed9f';
+}
+.brand-tumblr:before {
+  content: '\eda0';
+}
+.brand-turkishairlines:before {
+  content: '\eda1';
+}
+.brand-twilio:before {
+  content: '\eda2';
+}
+.brand-twitch:before {
+  content: '\eda3';
+}
+.brand-twitter:before {
+  content: '\eda4';
+}
+.brand-twoo:before {
+  content: '\eda5';
+}
+.brand-typescript:before {
+  content: '\eda6';
+}
+.brand-typo3:before {
+  content: '\eda7';
+}
+.brand-uber:before {
+  content: '\eda8';
+}
+.brand-ubereats:before {
+  content: '\eda9';
+}
+.brand-ubisoft:before {
+  content: '\edaa';
+}
+.brand-ublockorigin:before {
+  content: '\edab';
+}
+.brand-ubuntu:before {
+  content: '\edac';
+}
+.brand-udacity:before {
+  content: '\edad';
+}
+.brand-udemy:before {
+  content: '\edae';
+}
+.brand-uikit:before {
+  content: '\edaf';
+}
+.brand-umbraco:before {
+  content: '\edb0';
+}
+.brand-unity:before {
+  content: '\edb1';
+}
+.brand-unrealengine:before {
+  content: '\edb2';
+}
+.brand-unsplash:before {
+  content: '\edb3';
+}
+.brand-untappd:before {
+  content: '\edb4';
+}
+.brand-upwork:before {
+  content: '\edb5';
+}
+.brand-v:before {
+  content: '\edb6';
+}
+.brand-v8:before {
+  content: '\edb7';
+}
+.brand-vagrant:before {
+  content: '\edb8';
+}
+.brand-valve:before {
+  content: '\edb9';
+}
+.brand-veeam:before {
+  content: '\edba';
+}
+.brand-venmo:before {
+  content: '\edbb';
+}
+.brand-verizon:before {
+  content: '\edbc';
+}
+.brand-viadeo:before {
+  content: '\edbd';
+}
+.brand-viber:before {
+  content: '\edbe';
+}
+.brand-vim:before {
+  content: '\edbf';
+}
+.brand-vimeo:before {
+  content: '\edc0';
+}
+.brand-vine:before {
+  content: '\edc1';
+}
+.brand-virb:before {
+  content: '\edc2';
+}
+.brand-visa:before {
+  content: '\edc3';
+}
+.brand-visualstudio:before {
+  content: '\edc4';
+}
+.brand-visualstudiocode:before {
+  content: '\edc5';
+}
+.brand-vk:before {
+  content: '\edc6';
+}
+.brand-vlcmediaplayer:before {
+  content: '\edc7';
+}
+.brand-vodafone:before {
+  content: '\edc8';
+}
+.brand-volkswagen:before {
+  content: '\edc9';
+}
+.brand-vsco:before {
+  content: '\edca';
+}
+.brand-vue-dot-js:before {
+  content: '\edcb';
+}
+.brand-w3c:before {
+  content: '\edcc';
+}
+.brand-wattpad:before {
+  content: '\edcd';
+}
+.brand-waze:before {
+  content: '\edce';
+}
+.brand-weasyl:before {
+  content: '\edcf';
+}
+.brand-webauthn:before {
+  content: '\edd0';
+}
+.brand-webcomponents-dot-org:before {
+  content: '\edd1';
+}
+.brand-webmin:before {
+  content: '\edd2';
+}
+.brand-webpack:before {
+  content: '\edd3';
+}
+.brand-webstorm:before {
+  content: '\edd4';
+}
+.brand-wechat:before {
+  content: '\edd5';
+}
+.brand-whatsapp:before {
+  content: '\edd6';
+}
+.brand-wheniwork:before {
+  content: '\edd7';
+}
+.brand-whitesource:before {
+  content: '\edd8';
+}
+.brand-wii:before {
+  content: '\edd9';
+}
+.brand-wiiu:before {
+  content: '\edda';
+}
+.brand-wikipedia:before {
+  content: '\eddb';
+}
+.brand-windows:before {
+  content: '\eddc';
+}
+.brand-wire:before {
+  content: '\eddd';
+}
+.brand-wireguard:before {
+  content: '\edde';
+}
+.brand-wish:before {
+  content: '\eddf';
+}
+.brand-wix:before {
+  content: '\ede0';
+}
+.brand-wolfram:before {
+  content: '\ede1';
+}
+.brand-wolframlanguage:before {
+  content: '\ede2';
+}
+.brand-wolframmathematica:before {
+  content: '\ede3';
+}
+.brand-wordpress:before {
+  content: '\ede4';
+}
+.brand-workplace:before {
+  content: '\ede5';
+}
+.brand-wpengine:before {
+  content: '\ede6';
+}
+.brand-write-dot-as:before {
+  content: '\ede7';
+}
+.brand-x-dot-org:before {
+  content: '\ede8';
+}
+.brand-x-pack:before {
+  content: '\ede9';
+}
+.brand-xamarin:before {
+  content: '\edea';
+}
+.brand-xbox:before {
+  content: '\edeb';
+}
+.brand-xcode:before {
+  content: '\edec';
+}
+.brand-xdadevelopers:before {
+  content: '\eded';
+}
+.brand-xero:before {
+  content: '\edee';
+}
+.brand-xfce:before {
+  content: '\edef';
+}
+.brand-xiaomi:before {
+  content: '\edf0';
+}
+.brand-xing:before {
+  content: '\edf1';
+}
+.brand-xmpp:before {
+  content: '\edf2';
+}
+.brand-xrp:before {
+  content: '\edf3';
+}
+.brand-xsplit:before {
+  content: '\edf4';
+}
+.brand-yahoo:before {
+  content: '\edf5';
+}
+.brand-yamahacorporation:before {
+  content: '\edf6';
+}
+.brand-yamahamotorcorporation:before {
+  content: '\edf7';
+}
+.brand-yammer:before {
+  content: '\edf8';
+}
+.brand-yandex:before {
+  content: '\edf9';
+}
+.brand-yarn:before {
+  content: '\edfa';
+}
+.brand-ycombinator:before {
+  content: '\edfb';
+}
+.brand-yelp:before {
+  content: '\edfc';
+}
+.brand-youtube:before {
+  content: '\edfd';
+}
+.brand-zalando:before {
+  content: '\edfe';
+}
+.brand-zapier:before {
+  content: '\edff';
+}
+.brand-zeit:before {
+  content: '\ee00';
+}
+.brand-zend:before {
+  content: '\ee01';
+}
+.brand-zendesk:before {
+  content: '\ee02';
+}
+.brand-zendframework:before {
+  content: '\ee03';
+}
+.brand-zeromq:before {
+  content: '\ee04';
+}
+.brand-zerply:before {
+  content: '\ee05';
+}
+.brand-zhihu:before {
+  content: '\ee06';
+}
+.brand-zillow:before {
+  content: '\ee07';
+}
+.brand-zingat:before {
+  content: '\ee08';
+}
+.brand-zoom:before {
+  content: '\ee09';
+}
+.brand-zorin:before {
+  content: '\ee0a';
+}
+.brand-zulip:before {
+  content: '\ee0b';
+}
 .edit-alt-plus:before {
   content: '\ea64';
-}
-.coin:before {
-  content: '\ea62';
-  color: rgb(254, 193, 17);
-}
-.coin:after {
-  content: '\ea63';
-  margin-left: -0.91015625em;
-  color: rgb(89, 90, 90);
-}
-.instagram:before {
-  content: '\e900';
 }
 .sbon-coin:before {
   content: '\ea68';
