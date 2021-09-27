@@ -133,3 +133,9 @@ html {
     transparent
   );
 }
+
+.droppableItems > * {
+  /* top: unset !important; */
+  left: unset !important;
+}
+
