@@ -62,3 +62,74 @@ html {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.empty-btn {
+  background-color: white;
+
+  -webkit-background-size: 10px 10px;
+  -moz-background-size: 10px 10px;
+  background-size: 10px 10px;
+
+  background-image: -webkit-gradient(
+    linear,
+    0 0,
+    100% 100%,
+    color-stop(0.25, rgba(217, 217, 217)),
+    color-stop(0.25, transparent),
+    color-stop(0.5, transparent),
+    color-stop(0.5, rgba(217, 217, 217)),
+    color-stop(0.75, rgba(217, 217, 217)),
+    color-stop(0.75, transparent),
+    to(transparent)
+  );
+  background-image: -webkit-linear-gradient(
+    -45deg,
+    rgba(217, 217, 217) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(217, 217, 217) 50%,
+    rgba(217, 217, 217) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-image: -moz-linear-gradient(
+    -45deg,
+    rgba(217, 217, 217) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(217, 217, 217) 50%,
+    rgba(217, 217, 217) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-image: -ms-linear-gradient(
+    -45deg,
+    rgba(217, 217, 217) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(217, 217, 217) 50%,
+    rgba(217, 217, 217) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-image: -o-linear-gradient(
+    -45deg,
+    rgba(217, 217, 217) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(217, 217, 217) 50%,
+    rgba(217, 217, 217) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-image: linear-gradient(
+    -45deg,
+    rgba(217, 217, 217) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(217, 217, 217) 50%,
+    rgba(217, 217, 217) 75%,
+    transparent 75%,
+    transparent
+  );
+}
