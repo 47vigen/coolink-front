@@ -23,11 +23,11 @@ function AddItem({ isOpenAdd, closeAddModal, onAddItem }) {
 const Item = React.memo(function Component({ type, icon, label, onAddItem }) {
   return (
     <button
-      className="flex flex-col items-center bg-body rounded-md py-4 hover:bg-body-hover transition ease-in-out duration-300 focus:outline-none"
+      className="flex flex-col items-center justify-center bg-body rounded-md py-4 hover:bg-body-hover transition ease-in-out duration-300 focus:outline-none"
       onClick={() => onAddItem(type)}
     >
       <Icon name={icon} className="text-lg" />
-      <span>{label}</span>
+      <span className="mt-1">{label}</span>
     </button>
   )
 })
