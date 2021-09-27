@@ -31,6 +31,7 @@
     "react-hot-toast": "^2.1.1",
     "react-leaflet": "^3.2.1",
     "react-palette": "^1.0.2",
+    "react-virtualized": "^9.22.3",
     "sharp": "^0.29.1",
     "tailwindcss-rtl": "^0.7.3",
     "uuidv4": "^6.2.12",
