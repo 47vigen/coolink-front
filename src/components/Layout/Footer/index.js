@@ -13,7 +13,7 @@ function Footer(props) {
         </p>
         <div className="space-s-2">
           <Button circle>
-            <Icon name="instagram" />
+            <Icon name="brand-instagram" />
           </Button>
         </div>
       </div>
