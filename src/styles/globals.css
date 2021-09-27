@@ -139,29 +139,6 @@ html {
   left: unset !important;
 }
 
-.emoji-mart {
-  font-family: IRANSansX !important;
-  font-size: 0.9rem !important;
-  display: inline-block;
-}
-
-.emoji-mart-preview-emoji {
-  display: none;
-}
-
-.emoji-mart-preview-data {
-  left: 12px !important;
-}
-
-.emoji-mart-title-label {
-  font-size: 1rem !important;
-}
-
-.emoji-mart-emoji {
-  display: inline-flex;
-  align-items: center;
-}
-
 .hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
