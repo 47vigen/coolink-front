@@ -139,3 +139,68 @@ html {
   left: unset !important;
 }
 
+.emoji-mart {
+  font-family: IRANSansX !important;
+  font-size: 0.9rem !important;
+  display: inline-block;
+}
+
+.emoji-mart-preview-emoji {
+  display: none;
+}
+
+.emoji-mart-preview-data {
+  left: 12px !important;
+}
+
+.emoji-mart-title-label {
+  font-size: 1rem !important;
+}
+
+.emoji-mart-emoji {
+  display: inline-flex;
+  align-items: center;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.smooth-scrollbar {
+  scrollbar-width: 6px;
+  scroll-behavior: smooth;
+}
+
+.smooth-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.smooth-scrollbar::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+.smooth-scrollbar::-webkit-scrollbar-thumb {
+  background: #e1e1e1;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+.smooth-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+}
+.smooth-scrollbar::-webkit-scrollbar-track {
+  background: #666666;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+.smooth-scrollbar::-webkit-scrollbar-track:hover {
+  background: #666666;
+}
+.smooth-scrollbar::-webkit-scrollbar-corner {
+  background: transparent;
+}
