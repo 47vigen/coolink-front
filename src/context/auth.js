@@ -25,10 +25,10 @@ const AuthProvider = ({ children }) => {
   )
 
   const signIn = React.useCallback(
-    (token, redirect) => {
+    async (token, redirect) => {
       setToken(token)
+      await refetch()
       if (redirect) router.push('/')
-      refetch()
     },
     [router, refetch]
   )
