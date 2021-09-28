@@ -19,10 +19,8 @@ export const SHOW_MY_PAGES = gql`
       slug
       title
       subTitle
-      profilePic
-      customize {
-        color
-        backgroundImage
+      avatar {
+        url
       }
     }
   }
