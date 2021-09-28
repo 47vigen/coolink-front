@@ -32,4 +32,4 @@ const Item = React.memo(function Component({ type, icon, label, onAddItem }) {
   )
 })
 
-export default AddItem
+export default React.memo(AddItem)
