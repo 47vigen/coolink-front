@@ -28,4 +28,4 @@ function Switch({ label, checked, onChange }) {
   )
 }
 
-export default Switch
+export default React.memo(Switch)
