@@ -30,11 +30,11 @@ export const SHOW_PAGE_WITH_SECTIONS = gql`
   query ShowPageWithSections($slug: String!) {
     showPageWithSections(slug: $slug) {
       page {
-      id
-      pk
-      slug
-      title
-      subTitle
+        id
+        pk
+        slug
+        title
+        subTitle
         avatar {
           url
           position
@@ -105,11 +105,11 @@ export const SHOW_PAGE_WITH_SECTIONS = gql`
         }
         arrangement
         customized
-      customize {
+        customize {
           type
           rounded
           animate
-        color
+          color
           second
           border
           borderStyle
@@ -130,31 +130,30 @@ export const SHOW_SECTIONS = gql`
       type
       position
       title
-      links {
-        url
-        title
+      items {
+        id
+        type
+        key
+        value
+        options {
+          key
+          value
+        }
       }
-      text
-      contacts {
-        mobile
-        phone
-        email
-        fax
-      }
-      messengers {
-        telegram
-        whatsapp
-        twitter
-        youtube
-        linkedin
-      }
-      locations {
-        url
-        title
-      }
-      faq {
-        question
-        answer
+      arrangement
+      customized
+      customize {
+        type
+        rounded
+        animate
+        color
+        second
+        border
+        borderStyle
+        direction
+        from
+        to
+        via
       }
     }
   }
