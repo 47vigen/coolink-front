@@ -33,9 +33,13 @@ const validationSchema = (step) =>
             .matches(/^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/gi, 'آیدی کولینک وارد شده صحیح نمی‌باشد!'),
           title: Yup.string().required('نام/عنوان الزامی است!'),
           subTitle: Yup.string(),
-          profilePic: Yup.string(),
-          customize: Yup.object().shape({
-            color: Yup.string()
+          avatar: Yup.object().shape({
+            url: Yup.string()
+          }),
+          style: Yup.object().shape({
+            customize: Yup.object().shape({
+              color: Yup.string()
+            })
           })
         }
   )
@@ -47,7 +51,7 @@ function Create(props) {
   const [getPageInfo] = useMutation(GET_PAGE_INFO)
   const [createPage] = useMutation(CREATE_PAGE)
   const [uploadImage] = useMutation(UPLOAD_IMAGE)
-  const { data: dominantColor } = usePalette(ref.current?.values.profilePic)
+  const { data: dominantColor } = usePalette(ref.current?.values.avatar?.url)
 
   const uploadBase64Image = React.useCallback(
     async (pk, dataurl) => {
@@ -62,21 +66,21 @@ function Create(props) {
       }
 
       const image = new File([u8arr], 'fake.jpg', { type: mime })
-      const { data } = await uploadImage({ variables: { type: 'PROFILE', pk, image } })
+      const { data } = await uploadImage({ variables: { type: 'profile', pk, image } })
       return data.uploadImage
     },
     [uploadImage]
   )
 
   const onSubmit = React.useCallback(
-    async ({ username, profilePic, ...values }) => {
+    async ({ username, avatar, ...values }) => {
       if (step === 0) {
         try {
           const {
             data: { getPageInfo: getPageInfoData }
           } = await getPageInfo({ variables: { username } })
           const { base64 } = await getFileBase(getPageInfoData.profilePic)
-          ref.current.setValues({ pk: getPageInfoData.pk, title: getPageInfoData.fullName, slug: username, profilePic: base64 })
+          ref.current.setValues({ pk: getPageInfoData.pk, title: getPageInfoData.fullName, slug: username, avatar: { url: base64 } })
           setStep(1)
         } catch (err) {
           return console.log(err)
@@ -84,8 +88,8 @@ function Create(props) {
       } else {
         try {
           setStep(2)
-          const newProfilePic = profilePic.includes('base64') ? await uploadBase64Image(values.pk, profilePic) : profilePic
-          await createPage({ variables: { pageInput: { ...values, profilePic: newProfilePic } } })
+          const newAvatarUrl = avatar.url?.includes('base64') ? await uploadBase64Image(values.pk, avatar.url) : avatar.url
+          await createPage({ variables: { pageInput: { ...values, avatar: { url: newAvatarUrl } } } })
           return await Router.push('/dashboard')
         } catch (err) {
           setStep(1)
@@ -99,7 +103,7 @@ function Create(props) {
   React.useEffect(() => {
     if (dominantColor?.vibrant) {
       const similarColor = getSimilarColor(dominantColor.vibrant)
-      ref.current.setFieldValue('customize.color', similarColor.class, false)
+      ref.current.setFieldValue('style.customize.color', similarColor.class, false)
     }
   }, [dominantColor])
 
@@ -134,13 +138,13 @@ function Create(props) {
               ) : (
                 <>
                   <Upload.Single
-                    type="PROFILE"
+                    type="profile"
                     pk={values.pk}
-                    onChange={(url) => setFieldValue('profilePic', url, false)}
+                    onChange={(url) => setFieldValue('avatar.url', url, false)}
                     className="w-20 h-20 mx-auto rounded-lg overflow-hidden"
                   >
-                    <Avatar url={values.profilePic} fullName={values.title} className="w-20 h-20 rounded-lg mx-auto mb-2" />
-                    <Icon name="plus" className="absolute bottom-0 left-0 bg-body text-sm leading-4 p-1 rounded-md transition duration-300" />
+                    <Avatar url={values.avatar?.url} fullName={values.title} className="w-20 h-20 rounded-lg mx-auto mb-2" />
+                    <Icon name="plus" className="absolute bottom-0 left-0 bg-body text-sm leading-4 p-1 rounded-ts-md transition duration-300" />
                   </Upload.Single>
                   <Field name="slug" label="آیدی کولینک" placeholder="لطفا آیدی اینستاگرام خود را وارد کنید ..." />
                   <Field name="title" label="نام/عنوان" placeholder="لطفا نام/عنوان خود را وارد کنید ..." />
