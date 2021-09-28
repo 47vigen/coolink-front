@@ -8,6 +8,7 @@ import { Icon, Modal, Button, Avatar, Field, Upload, RadioGroup, Disclosure } fr
 
 // ** Template
 import { AVATAR_POSITION, AVATAR_ROUNDED, COVER_ROUNDED } from './Customize/Handler'
+import { ChooseColor } from './ChooseColor'
 
 // ** Utils
 import { getImgSrc } from '../../utils/getImgSrc'
@@ -15,7 +16,6 @@ import classNames from '../../utils/classNames'
 
 // ** Validations
 import * as Yup from 'yup'
-import { ChooseColor } from './ChooseColor'
 const validationSchema = Yup.object().shape({
   avatar: Yup.object().shape({
     url: Yup.string(),

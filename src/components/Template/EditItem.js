@@ -1,20 +1,23 @@
 import React from 'react'
+import { Tab } from '@headlessui/react'
 import { Form, Formik, FieldArray } from 'formik'
 import dynamic from 'next/dynamic'
 const ChoosableMap = dynamic(() => import('../Tools/Map/ChoosableMap'), {
   ssr: false
 })
 
+// ** Template
+import Customize from './Customize'
+
+// ** Config
+import { BRANDS } from '../../config'
+
 // ** UI
-import { Button, Modal, Field, Listbox, Disclosure, Switch, Element } from '../Tools'
+import { Button, Modal, Field, Listbox, Disclosure, Switch, Element, DragableList } from '../Tools'
+import { EmojiOrIcon, EmojiSelector } from '../Tools/EmojiPicker'
 
 // ** Validations
 import * as Yup from 'yup'
-import { Tab } from '@headlessui/react'
-import DragableList from '../Tools/DragableList'
-import Customize from './Customize'
-import { EmojiOrIcon, EmojiSelector } from '../Tools/EmojiPicker'
-import { BRANDS } from '../../config'
 const InsideValidationSchema = (type) => {
   switch (type) {
     case 'links':
