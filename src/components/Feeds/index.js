@@ -2,7 +2,7 @@ import React from 'react'
 
 // UI
 import Feed from './Feed'
-import { Icon } from '../Tools'
+import { Element, Icon } from '../Tools'
 
 // ** Utils
 import classNames from '../../utils/classNames'
@@ -11,7 +11,7 @@ import classNames from '../../utils/classNames'
 import { useQuery } from '@apollo/client'
 import { GET_PAGE_FEEDS } from '../../graphql/queries'
 
-function Feeds({ page, children }) {
+function Feeds({ page, section, children }) {
   const [feeds, setFeeds] = React.useState([])
   const {
     data,
@@ -36,22 +36,32 @@ function Feeds({ page, children }) {
 
   const [isOpened, setIsOpened] = React.useState('')
 
+  const custom = React.useCallback((idx) => (section.customized ? section.customize[idx] || {} : {}), [section.customized, section.customize])
+
   return (
     <>
       <div className={classNames('grid grid-cols-3 gap-2', feeds.length ? 'my-4' : 'mt-4')}>
         {feeds.map((feed) => (
-          <Feed key={feed.id} feed={feed} color={page.customize?.color} opened={isOpened === feed.id} onOpen={() => setIsOpened(feed.id)}>
-            {typeof children === 'function' ? children(feed) : children}
+          <Feed
+            feed={feed}
+            key={feed.id}
+            opened={isOpened === feed.id}
+            onOpen={() => setIsOpened(feed.id)}
+            customize={{ second: page.style?.customize?.color, color: 'white', ...custom(1) }}
+          >
+            {typeof children === 'function' ? children(feed, custom) : children}
           </Feed>
         ))}
       </div>
-      <button
+      <Element
+        tag="button"
+        customize={{ ...page.style.customize, ...custom(0) }}
         onClick={getPageFeedsLoading || fetchMoreLoading ? null : fetchMore}
-        className={`flex w-full justify-center items-center transition duration-300 hover:opacity-70 bg-${page.customize.color} bg-opacity-5 text-${page.customize.color} rounded-lg min-h-[2rem] mb-4`}
+        className="flex w-full justify-center items-center min-h-[2rem] mb-4"
       >
         {getPageFeedsLoading || fetchMoreLoading ? <Icon name="spinner" className="animate-spin text-base ml-2" /> : null}
         پست های بیشتر ...
-      </button>
+      </Element>
     </>
   )
 }

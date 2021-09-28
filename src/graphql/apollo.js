@@ -1,3 +1,4 @@
+import React from 'react'
 import { ApolloClient, ApolloLink, ApolloProvider, InMemoryCache, Observable } from '@apollo/client'
 import { TokenRefreshLink } from 'apollo-link-token-refresh'
 import { createUploadLink } from 'apollo-upload-client'
@@ -75,7 +76,7 @@ const createIsomorphLink = () =>
     })
   ])
 
-function createApolloClient(initialState = {}) {
+export function createApolloClient(initialState = {}) {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
     link: createIsomorphLink(),
@@ -86,8 +87,8 @@ function createApolloClient(initialState = {}) {
 }
 
 const withApollo = (Component) => {
-  const WithApollo = ({ apolloClient, apolloState, ...props }) => {
-    const client = apolloClient || createApolloClient(apolloState)
+  const WithApollo = (props) => {
+    const [client] = React.useState(props.pageProps?.apolloClient || createApolloClient(props.pageProps?.apolloState))
 
     return (
       <ApolloProvider client={client}>
@@ -98,8 +99,5 @@ const withApollo = (Component) => {
 
   return WithApollo
 }
-
-const client = createApolloClient()
-export { client }
 
 export default withApollo

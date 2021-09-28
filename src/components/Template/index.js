@@ -17,10 +17,11 @@ import { RenderSection } from './Render'
 // ** Utils
 import classNames from '../../utils/classNames'
 import { getImgSrc } from '../../utils/getImgSrc'
+import deepCleaner from '../../utils/deepCleaner'
 
 // ** Graphql
-import { useMutation, useQuery } from '@apollo/client'
-import { SHOW_SECTIONS } from '../../graphql/queries'
+import { useMutation } from '@apollo/client'
+import { SHOW_PAGE_WITH_SECTIONS, SHOW_SECTIONS } from '../../graphql/queries'
 import { DESTROY_SECTION, UPDATE_INSERT_MANY_SECTIONS, UPDATE_PAGE } from '../../graphql/mutations'
 
 const reorder = (list, startIndex, endIndex) => {
@@ -31,27 +32,85 @@ const reorder = (list, startIndex, endIndex) => {
   return result.map((item, index) => ({ ...item, position: index }))
 }
 
-function Edit({ page: pageData }) {
+function Edit({ page: pageData, sections: sectionsData }) {
   const [page, setPage] = React.useState(pageData)
-  const [updatePage] = useMutation(UPDATE_PAGE, { onCompleted: ({ updatePage }) => setPage(updatePage) })
-  const [sections, setSections] = React.useState([])
-  const { loading: showSectionsLoading } = useQuery(SHOW_SECTIONS, {
-    fetchPolicy: 'no-cache',
-    variables: { page: pageData.id },
-    onCompleted: ({ showSection }) => setSections(showSection)
+  const [updatePage] = useMutation(UPDATE_PAGE, {
+    onCompleted: ({ updatePage }) => setPage(deepCleaner(updatePage)),
+    update: async (cache, mutationResult) => {
+      const data = mutationResult.data.updatePage
+      const query = cache.readQuery({
+        query: SHOW_PAGE_WITH_SECTIONS,
+        variables: { page: pageData.slug }
+      })
+      cache.writeQuery({
+        query: SHOW_PAGE_WITH_SECTIONS,
+        variables: { slug: pageData.slug },
+        data: { showPageWithSections: { ...query?.showPageWithSections, page: data } }
+      })
+    }
   })
+  const [sections, setSections] = React.useState(sectionsData)
   const [updateInsertSections, { loading: updateInsertSectionsLoading }] = useMutation(UPDATE_INSERT_MANY_SECTIONS, {
-    variables: { sections: sections.map(({ id, ...section }) => ({ id, sectionInput: { ...section, page: pageData.id } })) },
-    onCompleted: ({ updateInsertManySections }) => setSections(updateInsertManySections)
+    variables: {
+      sections: sections.map(({ id, ...section }) => ({
+        id,
+        sectionInput: { ...section, ...deepCleaner({ items: section.items, customize: section.customize }, 'id'), page: pageData.id }
+      }))
+    },
+    onCompleted: ({ updateInsertManySections }) => setSections(deepCleaner(updateInsertManySections)),
+    update: (cache, mutationResult) => {
+      const data = mutationResult.data.updateInsertManySections
+      const query = cache.readQuery({
+        query: SHOW_PAGE_WITH_SECTIONS,
+        variables: { page: pageData.slug }
+      })
+      cache.writeQuery({
+        query: SHOW_PAGE_WITH_SECTIONS,
+        variables: { slug: pageData.slug },
+        data: { showPageWithSections: { ...query?.showPageWithSections, sections: data } }
+      })
+      // cache.writeQuery({
+      //   query: SHOW_SECTIONS,
+      //   variables: { page: pageData.id },
+      //   data: { showSection: data }
+      // })
+    }
   })
-  const [destroySection] = useMutation(DESTROY_SECTION)
+  const [destroySection] = useMutation(DESTROY_SECTION, {
+    update: (cache, mutationResult) => {
+      const data = mutationResult.data.destroySection
+      // const querySections = cache.readQuery({
+      //   query: SHOW_SECTIONS,
+      //   variables: { page: pageData.id }
+      // })
+      // cache.writeQuery({
+      //   query: SHOW_SECTIONS,
+      //   variables: { page: pageData.id },
+      //   data: { showSection: querySections.showSection?.filter((section) => section.id !== data.id) }
+      // })
+      const queryPage = cache.readQuery({
+        query: SHOW_PAGE_WITH_SECTIONS,
+        variables: { page: pageData.slug }
+      })
+      cache.writeQuery({
+        query: SHOW_PAGE_WITH_SECTIONS,
+        variables: { slug: pageData.slug },
+        data: {
+          showPageWithSections: {
+            ...queryPage?.showPageWithSections,
+            sections: queryPage?.showPageWithSections?.sections?.filter((section) => section.id !== data.id)
+          }
+        }
+      })
+    }
+  })
 
   // ** Edit Info
   const [isOpenEditInfo, setIsOpenEditInfo] = React.useState(false)
   const closeEditInfoModal = React.useCallback(() => setIsOpenEditInfo(false), [setIsOpenEditInfo])
   const openEditInfoModal = React.useCallback(() => setIsOpenEditInfo(true), [setIsOpenEditInfo])
   const onEditInfo = React.useCallback(
-    ({ id, ...pageInput }) => updatePage({ variables: { id, pageInput } }).then(() => setIsOpenEditInfo(false)),
+    ({ id, ...pageInput }) => updatePage(deepCleaner({ variables: { id, pageInput: pageInput } }, '__typename')).then(() => setIsOpenEditInfo(false)),
     [updatePage, setIsOpenEditInfo]
   )
 
@@ -62,7 +121,7 @@ function Edit({ page: pageData }) {
   const onEditStyle = React.useCallback(
     async (values) => {
       const { id, ...pageIdless } = page
-      await updatePage({ variables: { id: pageData.id, pageInput: { ...pageIdless, customize: values } } })
+      await updatePage({ variables: { id: pageData.id, pageInput: { ...pageIdless, style: values } } })
       setIsOpenEditStyle(false)
     },
     [updatePage, pageData, page, setIsOpenEditStyle]
@@ -75,12 +134,25 @@ function Edit({ page: pageData }) {
   const openAddModal = React.useCallback(() => setIsOpenAdd(true), [setIsOpenAdd])
   const onAddItem = React.useCallback(
     (type) => {
+      const defaultValue = () => {
+        switch (type) {
+          case 'igFeedsLink':
+            return { items: [{ key: 'لینک پست ها', options: [{ key: 'icon', value: 'link' }] }] }
+
+          case 'igFeedsDownload':
+            return { items: [{ key: 'لینک پست ها', options: [{ key: 'icon', value: 'download' }] }] }
+
+          default:
+            return {}
+        }
+      }
       setSections((prev) => [
         ...prev,
         {
           type,
           id: uuid(),
-          position: prev.length
+          position: prev.length,
+          ...defaultValue()
         }
       ])
       setIsOpenAdd(false)
@@ -128,6 +200,7 @@ function Edit({ page: pageData }) {
         try {
           await destroySection({ variables: { id } })
         } catch (error) {
+          console.log(error)
           return null
         }
       }
@@ -157,26 +230,30 @@ function Edit({ page: pageData }) {
 
   return (
     <div
-      className="h-full pt-11 pb-4 px-4 rounded-2xl"
+      className={classNames(
+        'h-full p-4 rounded-2xl overflow-hidden',
+        page.style?.background?.color ? `bg-${page.style.background.color} bg-cover bg-top` : ''
+      )}
       style={{
-        backgroundImage: page.customize?.backgroundImage ? `url('${getImgSrc(page.customize.backgroundImage)}')` : null
+        backgroundImage: page.style?.background?.url ? `url('${getImgSrc(page.style.background.url)}')` : null
       }}
     >
       <PageHeader page={page} onEdit={openEditInfoModal} />
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable">
           {(provided, snapshot) => (
-            <div {...provided.droppableProps} className="space-y-4 my-4" ref={provided.innerRef}>
+            <div {...provided.droppableProps} className="space-y-2 my-4" ref={provided.innerRef}>
               {sections.map((item, index) => (
                 <Draggable key={item.id} draggableId={`draggable-${item.id}`} index={index}>
                   {(provided, { isDragging }) => (
-                    <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} style={provided.draggableProps.style}>
+                    <div ref={provided.innerRef} {...provided.draggableProps} style={provided.draggableProps.style}>
                       <Item
                         item={item}
-                        color={page.customize?.color || 'primary'}
+                        customize={page.style?.customize}
                         index={index}
                         slug={page.slug}
                         onEdit={() => openEditModal(item)}
+                        dragHandleProps={provided.dragHandleProps}
                       />
                     </div>
                   )}
@@ -188,19 +265,30 @@ function Edit({ page: pageData }) {
         </Droppable>
       </DragDropContext>
       <div className="flex space-s-2">
-        <Button bordered className="flex-1" onClick={openAddModal}>
+        <Button
+          bordered
+          icon="eye"
+          type="secondary"
+          link={`/${pageData.slug}`}
+          className="px-3 text-base option-btn bg-body bg-opacity-10 backdrop-filter backdrop-blur-md group"
+        />
+        <Button bordered className="flex-1 bg-body bg-opacity-10 backdrop-filter backdrop-blur-md" onClick={openAddModal}>
           ایجاد آپشن جدید
         </Button>
-        <Button type="secondary" bordered className="px-3" onClick={openEditStyleModal}>
-          <Icon name="brush" className="text-base option-btn" />
-        </Button>
+        <Button
+          bordered
+          icon="brush"
+          type="secondary"
+          onClick={openEditStyleModal}
+          className="px-3 text-base option-btn bg-body bg-opacity-10 backdrop-filter backdrop-blur-md group"
+        />
       </div>
-      <Button className="w-full mt-4" onClick={() => updateInsertSections()} loading={updateInsertSectionsLoading || showSectionsLoading}>
+      <Button className="w-full mt-2" onClick={() => updateInsertSections()} loading={updateInsertSectionsLoading}>
         ذخیره
       </Button>
       <EditStyle
         pk={page?.pk}
-        customize={page?.customize}
+        style={page?.style}
         isOpenEditStyle={isOpenEditStyle}
         closeEditStyleModal={closeEditStyleModal}
         onEditStyle={onEditStyle}
@@ -208,6 +296,7 @@ function Edit({ page: pageData }) {
       <EditInfo page={page} isOpenEditInfo={isOpenEditInfo} closeEditInfoModal={closeEditInfoModal} onEditInfo={onEditInfo} />
       <AddItem isOpenAdd={isOpenAdd} closeAddModal={closeAddModal} onAddItem={onAddItem} />
       <EditItem
+        page={page}
         isOpenEdit={isOpenEdit}
         closeEditModal={closeEditModal}
         onEditItem={onEditItem}
@@ -218,7 +307,7 @@ function Edit({ page: pageData }) {
   )
 }
 
-const Item = React.memo(function Component({ index, slug, color, item, onEdit }) {
+const Item = React.memo(function Component({ index, slug, customize, item, onEdit, dragHandleProps }) {
   return (
     <Menu as="div" className="relative text-right">
       <Menu.Button className="w-full">
@@ -226,14 +315,14 @@ const Item = React.memo(function Component({ index, slug, color, item, onEdit })
           <div
             className={classNames(
               'z-30 w-full rounded-lg rounded-br-none border-dashed border-line transition ease-in-out duration-300',
-              open ? 'bg-body border' : ''
+              open ? 'bg-body bg-opacity-70 border' : ''
             )}
           >
             <div
               className={classNames('transition ease-in-out duration-300', open ? 'transform -translate-y-3 -translate-x-3' : '')}
               style={{ pointerEvents: 'none' }}
             >
-              <RenderSection item={item} color={color} index={index} slug={slug} notBlured={open} />
+              <RenderSection item={item} customize={customize} index={index} slug={slug} notBlured={open} />
             </div>
           </div>
         )}
@@ -247,13 +336,13 @@ const Item = React.memo(function Component({ index, slug, color, item, onEdit })
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute bg-body rounded-b-lg -mt-1 z-40 right-0 w-max origin-top-right focus:outline-none">
+        <Menu.Items className="absolute bg-body bg-opacity-70 rounded-b-lg -mt-1 z-[1000] right-0 w-max origin-top-right focus:outline-none">
           {({ open }) => (
             <div className="flex rounded-b-lg mt-1 border border-t-0 border-dashed border-line text-lg">
               <Menu.Item as="button" className="pb-1 pr-3 pl-1 pt-0" onClick={onEdit}>
                 <Icon name="edit" />
               </Menu.Item>
-              <Menu.Item>
+              <Menu.Item {...dragHandleProps}>
                 <Icon name="interlining" className="pb-1 pr-3 pl-3 pt-0" />
               </Menu.Item>
             </div>

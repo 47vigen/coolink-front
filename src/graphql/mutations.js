@@ -41,10 +41,57 @@ export const UPDATE_PAGE = gql`
       slug
       title
       subTitle
-      profilePic
-      customize {
-        color
-        backgroundImage
+      avatar {
+        url
+        position
+        customize {
+          type
+          rounded
+          animate
+          color
+          second
+          border
+          borderStyle
+          direction
+          from
+          to
+          via
+        }
+      }
+      style {
+        customize {
+          type
+          rounded
+          animate
+          color
+          second
+          border
+          borderStyle
+          direction
+          from
+          to
+          via
+        }
+        background {
+          url
+          color
+        }
+        cover {
+          url
+          customize {
+            type
+            rounded
+            animate
+            color
+            second
+            border
+            borderStyle
+            direction
+            from
+            to
+            via
+          }
+        }
       }
     }
   }
@@ -63,31 +110,30 @@ export const UPDATE_INSERT_MANY_SECTIONS = gql`
       type
       position
       title
-      links {
-        url
-        title
+      items {
+        id
+        type
+        key
+        value
+        options {
+          key
+          value
+        }
       }
-      text
-      contacts {
-        mobile
-        phone
-        email
-        fax
-      }
-      messengers {
-        telegram
-        whatsapp
-        twitter
-        youtube
-        linkedin
-      }
-      locations {
-        url
-        title
-      }
-      faq {
-        question
-        answer
+      arrangement
+      customized
+      customize {
+        type
+        rounded
+        animate
+        color
+        second
+        border
+        borderStyle
+        direction
+        from
+        to
+        via
       }
     }
   }

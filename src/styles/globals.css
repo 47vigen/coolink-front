@@ -38,3 +38,146 @@ html {
   -webkit-font-feature-settings: normal;
   font-feature-settings: normal;
 }
+
+.animate-jello {
+  -webkit-transform-origin: center;
+  transform-origin: center;
+}
+
+.animate-swing {
+  -webkit-transform-origin: top center;
+  transform-origin: top center;
+}
+
+.animate-bounce {
+  -webkit-transform-origin: center bottom;
+  transform-origin: center bottom;
+}
+
+.option-btn {
+  background: #7ecfe2;
+  background: -webkit-linear-gradient(to right, #7ecfe2 0%, #c8d5a7 100%);
+  background: -moz-linear-gradient(to right, #7ecfe2 0%, #c8d5a7 100%);
+  background: linear-gradient(to right, #7ecfe2 0%, #c8d5a7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.empty-btn {
+  background-color: white;
+
+  -webkit-background-size: 10px 10px;
+  -moz-background-size: 10px 10px;
+  background-size: 10px 10px;
+
+  background-image: -webkit-gradient(
+    linear,
+    0 0,
+    100% 100%,
+    color-stop(0.25, rgba(217, 217, 217)),
+    color-stop(0.25, transparent),
+    color-stop(0.5, transparent),
+    color-stop(0.5, rgba(217, 217, 217)),
+    color-stop(0.75, rgba(217, 217, 217)),
+    color-stop(0.75, transparent),
+    to(transparent)
+  );
+  background-image: -webkit-linear-gradient(
+    -45deg,
+    rgba(217, 217, 217) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(217, 217, 217) 50%,
+    rgba(217, 217, 217) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-image: -moz-linear-gradient(
+    -45deg,
+    rgba(217, 217, 217) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(217, 217, 217) 50%,
+    rgba(217, 217, 217) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-image: -ms-linear-gradient(
+    -45deg,
+    rgba(217, 217, 217) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(217, 217, 217) 50%,
+    rgba(217, 217, 217) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-image: -o-linear-gradient(
+    -45deg,
+    rgba(217, 217, 217) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(217, 217, 217) 50%,
+    rgba(217, 217, 217) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-image: linear-gradient(
+    -45deg,
+    rgba(217, 217, 217) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(217, 217, 217) 50%,
+    rgba(217, 217, 217) 75%,
+    transparent 75%,
+    transparent
+  );
+}
+
+.droppableItems > * {
+  /* top: unset !important; */
+  left: unset !important;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.smooth-scrollbar {
+  scrollbar-width: 6px;
+  scroll-behavior: smooth;
+}
+
+.smooth-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.smooth-scrollbar::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+.smooth-scrollbar::-webkit-scrollbar-thumb {
+  background: #e1e1e1;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+.smooth-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+}
+.smooth-scrollbar::-webkit-scrollbar-track {
+  background: #666666;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+.smooth-scrollbar::-webkit-scrollbar-track:hover {
+  background: #666666;
+}
+.smooth-scrollbar::-webkit-scrollbar-corner {
+  background: transparent;
+}

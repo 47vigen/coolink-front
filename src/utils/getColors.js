@@ -10,25 +10,25 @@ const colors = {
   pink: tailColors.pink
 }
 
-export function getPalette() {
+export function getPalette(nullable, colorFull) {
   const palette = []
   Object.keys(colors).map((color) => {
-    Object.keys(colors[color]).map(
-      (range) =>
-        range >= 500 &&
+    Object.keys(colors[color]).map((range) => {
+      if ((colorFull && range >= 500) || !colorFull)
         palette.push({
           color,
           range,
           hex: colors[color][range],
           class: `${color}-${range}`
         })
-    )
+    })
   })
+  if (nullable) palette.unshift({ color: null, range: null, hex: null, class: null })
   return palette
 }
 
 export function getSimilarColor(colorHex) {
-  const smilarColors = getPalette().map(({ hex }) => hex)
+  const smilarColors = getPalette(false, true).map(({ hex }) => hex)
 
   const hexToRgb = (hex) =>
     hex
@@ -45,5 +45,5 @@ export function getSimilarColor(colorHex) {
       [Number.POSITIVE_INFINITY, smilarColors[0]]
     )[1]
 
-  return getPalette().find(({ hex }) => hex == nearestColor(colorHex))
+  return getPalette(false, true).find(({ hex }) => hex == nearestColor(colorHex))
 }

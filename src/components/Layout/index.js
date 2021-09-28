@@ -10,7 +10,7 @@ function Layout({ children, className, dashboard }) {
   return (
     <>
       <Header />
-      <main className={classNames('flex-1 container mx-auto', dashboard ? 'max-w-3xl' : 'max-w-screen-xl', className)}>{children}</main>
+      <main className={classNames('flex-1 container mx-auto px-4', dashboard ? 'max-w-3xl' : 'max-w-screen-xl', className)}>{children}</main>
       <Footer />
     </>
   )

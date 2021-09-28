@@ -7,41 +7,21 @@ import 'keen-slider/keen-slider.min.css'
 import { Button, Icon } from '../Tools'
 
 // ** Utils
-import { getFileBase } from '../../utils/fileBase'
 import classNames from '../../utils/classNames'
+import { getImgSrc } from '../../utils/getImgSrc'
 
-function Feed({ feed, opened, onOpen, children, color }) {
-  const [images, setImages] = React.useState(Array(feed.slides?.length || 1).fill(''))
-
-  const loadImage = React.useCallback(
-    async (idx) => {
-      if (images[idx]) return null
-      const url = feed.slides[idx].imageUrl
-      const { base64 } = await getFileBase(url)
-      let current = images
-      current[idx] = base64
-      setImages([...current])
-    },
-    [images, feed]
-  )
-
-  React.useEffect(() => {
-    loadImage(0)
-  }, [loadImage])
-
+function Feed({ feed, opened, onOpen, children, customize }) {
   return opened ? (
     <div className="col-span-3 relative">
-      {feed.slides.length > 1 ? (
-        <FeedSlider images={images} feed={feed} loadImage={loadImage} color={color} opened />
-      ) : (
-        <FeedImage src={images[0]} feed={feed} color={color} opened />
-      )}
-      <div className="bg-white rounded-b-md p-4 space-y-2">{typeof children === 'function' ? children(feed) : children}</div>
+      {feed.slides.length > 1 ? <FeedSlider feed={feed} customize={customize} opened /> : <FeedImage feed={feed} customize={customize} opened />}
+      <div className={classNames('rounded-b-md p-4 space-y-2', `bg-${customize.color || 'white'}`)}>
+        {typeof children === 'function' ? children(feed) : children}
+      </div>
     </div>
   ) : (
     <button className="block w-full h-full relative" onClick={onOpen}>
-      <FeedImage src={images[0]} feed={feed} color={color} />
-      {feed.slides.length > 1 ? <Flag type="slide" /> : feed.slides[0].type === 'VIDEO' ? <Flag type="video" /> : null}
+      <FeedImage feed={feed} customize={customize} />
+      {feed.slides.length > 1 ? <Flag type="slide" /> : feed.slides[0].type === 'video' ? <Flag type="video" /> : null}
     </button>
   )
 }
@@ -49,21 +29,18 @@ function Feed({ feed, opened, onOpen, children, color }) {
 const Flag = React.memo(function Component({ type }) {
   switch (type) {
     case 'slide':
-      return <Icon name="copy-alt" className="text-content w-min absolute top-0 start-0 p-1 rounded-be-md rounded-ts-md bg-white" />
+      return <Icon name="copy-alt" className="w-min absolute top-0 start-0 p-1 rounded-be-md rounded-ts-md bg-white text-content" />
     case 'video':
-      return <Icon name="play" className="text-content w-min absolute top-0 start-0 p-1 rounded-be-md rounded-ts-md bg-white" />
+      return <Icon name="play" className="w-min absolute top-0 start-0 p-1 rounded-be-md rounded-ts-md bg-white text-content" />
   }
 })
 
-const FeedSlider = React.memo(function Component({ images, feed, loadImage, color, opened }) {
+const FeedSlider = React.memo(function Component({ feed, customize, opened }) {
   const [currentSlide, setCurrentSlide] = React.useState(0)
   const [sliderRef, slider] = useKeenSlider({
     slidesPerView: 1,
     spacing: 8,
     rtl: true,
-    afterChange(s) {
-      loadImage(s.details().relativeSlide)
-    },
     slideChanged(s) {
       setCurrentSlide(s.details().relativeSlide)
     }
@@ -73,7 +50,7 @@ const FeedSlider = React.memo(function Component({ images, feed, loadImage, colo
     <div ref={sliderRef} className="keen-slider" dir="ltr">
       {feed.slides.map((_slide, idx) => (
         <div key={`slide-${idx}`} className="keen-slider__slide flex flex-col">
-          <FeedImage src={images[idx]} feed={feed} color={color} opened={opened} />
+          <FeedImage idx={idx} feed={feed} customize={customize} opened={opened} />
         </div>
       ))}
       {slider && (
@@ -103,23 +80,20 @@ const FeedSlider = React.memo(function Component({ images, feed, loadImage, colo
   )
 })
 
-const FeedImage = React.memo(function Component({ src, feed, color, opened }) {
-  return src ? (
+const FeedImage = React.memo(function Component({ idx, feed, opened, customize }) {
+  const src = React.useMemo(() => getImgSrc(feed.slides[idx || 0].imageUrl), [idx, feed.slides])
+
+  return (
     <Image
       src={src}
-      width={1080}
-      height={1080}
+      width={opened ? 768 : 250}
+      height={opened ? 768 : 250}
       layout="responsive"
-      className={opened ? 'rounded-t-md' : 'rounded-md'}
+      className={classNames(`bg-${customize.color || 'white'}`, opened ? 'rounded-t-md' : 'rounded-md')}
       objectFit="cover"
       alt={feed.caption}
+      loading="lazy"
     />
-  ) : (
-    <div
-      className={classNames('flex flex-1 justify-center items-center bg-white', opened ? 'min-h-[16rem] rounded-t-md' : 'min-h-[8rem] rounded-md')}
-    >
-      <Icon name="spinner" className={classNames(`animate-spin text-${color}`, opened ? 'text-lg' : 'text-base')} />
-    </div>
   )
 })
 

@@ -6,16 +6,16 @@ import isRtl from '../../../utils/isRtl'
 
 import styles from './icon.module.css'
 
-function Icon({ name, className, style }) {
+function Icon({ name, className, ...props }) {
   const { locale } = useRouter()
   const renderedName = isRtl(locale) ? name : name.replace('right', 'left') === name ? name.replace('left', 'right') : name.replace('right', 'left')
 
   return (
     <i
-      style={style}
       className={classNames(styles.base, styles[renderedName], isRtl(locale) ? className : className?.replace('-rotate-90', 'rotate-90'))}
+      {...props}
     />
   )
 }
 
-export default Icon
+export default React.memo(Icon)

@@ -3,12 +3,12 @@ import Document, { Html, Head, Main, NextScript } from 'next/document'
 
 import isRtl from '../utils/isRtl'
 
-class MyDocument extends Document {
+class HtmlDocument extends Document {
   render() {
     return (
-      <Html dir={isRtl(this.props.locale) ? 'rtl' : 'ltr'}>
+      <Html dir={isRtl(this.props.locale) ? 'rtl' : 'ltr'} className="min-h-full flex flex-col">
         <Head />
-        <body className="bg-body font-body text-sm min-h-screen flex flex-col px-4">
+        <body className="bg-body font-body text-sm flex-1 flex flex-col">
           <Main />
           <NextScript />
         </body>
@@ -17,4 +17,4 @@ class MyDocument extends Document {
   }
 }
 
-export default MyDocument
+export default HtmlDocument

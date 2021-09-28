@@ -11,12 +11,18 @@ import { getImgSrc } from '../../utils/getImgSrc'
 import Image from 'next/image'
 import CoolinkLogo from '../../../public/images/coolink-logo.svg'
 
+// ** Utils
+import classNames from '../../utils/classNames'
+
 function Page({ page, children }) {
   return (
     <div
-      className="w-full lg:max-w-md lg:my-4 lg:rounded-xl mx-auto flex-1 flex flex-col py-4"
+      className={classNames(
+        'w-full lg:max-w-md lg:my-4 lg:rounded-xl mx-auto flex-1 flex flex-col p-4 overflow-hidden',
+        page.style?.background?.color ? `bg-${page.style.background.color} bg-cover bg-top` : ''
+      )}
       style={{
-        backgroundImage: page.customize?.backgroundImage ? `url('${getImgSrc(page.customize.backgroundImage)}')` : null
+        backgroundImage: page.style?.background?.url ? `url('${getImgSrc(page.style.background.url)}')` : null
       }}
     >
       <PageHeader page={page} />

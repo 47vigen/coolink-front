@@ -39,11 +39,11 @@ function Dashboard(props) {
   )
 }
 
-const Item = ({ title, subTitle, slug, profilePic }) => {
+const Item = ({ title, subTitle, slug, avatar }) => {
   return (
     <div className="bg-white rounded-lg p-4 space-y-2">
       <div className="flex items-center">
-        <Avatar fullName={title} url={profilePic} className="w-12 h-12 me-2" />
+        <Avatar fullName={title} url={avatar.url} className="w-12 h-12 me-2" />
         <div className="flex flex-col flex-1">
           <h5>{title}</h5>
           <span className="text-line">{subTitle}</span>
