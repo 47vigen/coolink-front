@@ -32,16 +32,17 @@ const Field = ({
       classNames(
         borderless ? '' : 'border',
         roundless ? 'rounded' : 'rounded-md',
+        textarea ? 'pt-1' : '',
         'min-h-[2rem] border-line transition ease-in-out duration-200 focus:border-primary focus:outline-none w-full px-2 fa',
         'disabled:bg-secondary disabled:bg-opacity-10 disabled:text-secondary disabled:cursor-not-allowed',
         className
       ),
-    [borderless, className, roundless]
+    [textarea, borderless, className, roundless]
   )
 
   React.useEffect(() => {
     focused ? ref.current?.focus() : ref.current?.blur()
-  }, [ref.current, focused])
+  }, [focused])
 
   return (
     <FormikField name={name}>
@@ -59,7 +60,7 @@ const Field = ({
           <div className={classNames('feild', wrapperClassName)}>
             {required ? <span className="text-danger ml-1">*</span> : null}
             {label ? <label className="mb-1 inline-block">{label}</label> : null}
-            <span className="font-normal text-xs text-secondary mr-1">{suffix}</span>
+            {suffix ? <span className="font-normal text-xs text-secondary mr-1">{suffix}</span> : null}
             <div className="relative">
               {textarea ? (
                 <textarea ref={ref} className={classes} placeholder={placeholder} required={required} disabled={disabled} rows={row} {...field} />
@@ -84,25 +85,28 @@ const Field = ({
   )
 }
 
-const SingleUpload = ({ type, pk, children, onChange, className }) => {
+const SingleUpload = ({ label, type, pk, children, onChange, className, wrapperClassName }) => {
   const [upload, { loading }] = useMutation(UPLOAD_IMAGE)
   return (
-    <div className={classNames('relative', className)}>
-      {children}
-      <input
-        type="file"
-        name="upload"
-        accept="image/*"
-        className="absolute top-0 right-0 w-full h-full opacity-0 cursor-pointer"
-        onChange={({ target }) => {
-          upload({ variables: { type, pk, image: target.files[0] } }).then(({ data }) => onChange(data.uploadImage))
-        }}
-      />
-      {loading ? (
-        <div className="absolute top-0 right-0 w-full h-full flex items-center justify-center bg-primary bg-opacity-10 backdrop-filter backdrop-blur-sm">
-          <Icon name="spinner" className="animate-spin text-base text-white" />
-        </div>
-      ) : null}
+    <div className={classNames('uploader', wrapperClassName)}>
+      {label ? <label className="mb-1 inline-block">{label}</label> : null}
+      <div className={classNames('relative', className)}>
+        {children}
+        <input
+          type="file"
+          name="upload"
+          accept="image/*"
+          className="absolute top-0 right-0 w-full h-full opacity-0 cursor-pointer"
+          onChange={({ target }) => {
+            upload({ variables: { type, pk, image: target.files[0] } }).then(({ data }) => onChange(data.uploadImage))
+          }}
+        />
+        {loading ? (
+          <div className="absolute top-0 right-0 w-full h-full flex items-center justify-center bg-primary bg-opacity-10 backdrop-filter backdrop-blur-sm">
+            <Icon name="spinner" className="animate-spin text-base text-white" />
+          </div>
+        ) : null}
+      </div>
     </div>
   )
 }
