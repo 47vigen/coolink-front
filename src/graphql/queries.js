@@ -26,18 +26,98 @@ export const SHOW_MY_PAGES = gql`
   }
 `
 
-export const SHOW_PAGE = gql`
-  query ($slug: String!) {
-    showPage(slug: $slug) {
+export const SHOW_PAGE_WITH_SECTIONS = gql`
+  query ShowPageWithSections($slug: String!) {
+    showPageWithSections(slug: $slug) {
+      page {
       id
       pk
       slug
       title
       subTitle
-      profilePic
+        avatar {
+          url
+          position
+          customize {
+            type
+            rounded
+            animate
+            color
+            second
+            border
+            borderStyle
+            direction
+            from
+            to
+            via
+          }
+        }
+        style {
+          customize {
+            type
+            rounded
+            animate
+            color
+            second
+            border
+            borderStyle
+            direction
+            from
+            to
+            via
+          }
+          background {
+            url
+            color
+          }
+          cover {
+            url
+            customize {
+              type
+              rounded
+              animate
+              color
+              second
+              border
+              borderStyle
+              direction
+              from
+              to
+              via
+            }
+          }
+        }
+      }
+      sections {
+        id
+        type
+        position
+        title
+        items {
+          id
+          type
+          key
+          value
+          options {
+            key
+            value
+          }
+        }
+        arrangement
+        customized
       customize {
+          type
+          rounded
+          animate
         color
-        backgroundImage
+          second
+          border
+          borderStyle
+          direction
+          from
+          to
+          via
+        }
       }
     }
   }
