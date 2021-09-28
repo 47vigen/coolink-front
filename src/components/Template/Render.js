@@ -1,161 +1,164 @@
 import React from 'react'
-import Link from 'next/link'
 import { Disclosure } from '@headlessui/react'
 
 // ** UI
-import { Icon } from '../Tools'
+import { Element, Icon } from '../Tools'
+import { SimpleLink } from '../Tools/Link'
+import { EmojiOrIcon } from '../Tools/EmojiPicker'
 
 // ** Utils
 import classNames from '../../utils/classNames'
 
-function Render({
-  page: {
-    slug,
-    customize: { color }
-  },
-  sections
-}) {
+// ** Configs
+import { BRANDS } from '../../config'
+
+import { textCustomize } from './Customize'
+import dynamic from 'next/dynamic'
+const Map = dynamic(() => import('../Tools/Map'), {
+  ssr: false
+})
+
+function Render({ page: { slug, style }, sections }) {
   return (
-    <div className="parts my-4 space-y-4">
+    <div className="parts my-4 space-y-2">
       {sections.map((section, index) => (
-        <RenderSection key={index} index={index} item={section} color={color} slug={slug} />
+        <RenderSection key={index} index={index} item={section} customize={style?.customize} slug={slug} />
       ))}
     </div>
   )
 }
 
-export const RenderSection = React.memo(function Component({ index, item, color, slug, notBlured }) {
+export const RenderSection = React.memo(function Component({ index, item, customize, slug }) {
   return (
-    <section className={`part-${index + 1}`}>
-      {item.title ? <h3 className="text-center text-base mb-2 pt-2">{item.title}</h3> : null}
-      <RenderInsideOfSection key={item.id} item={item} color={color} slug={slug} notBlured={notBlured} />
+    <section className={classNames(`part-${index + 1} grid-cols-${item.arrangement || '1'}`, 'grid gap-2')}>
+      {item.title ? <h3 className="text-center text-base pt-2 col-span-full">{item.title}</h3> : null}
+      <RenderInsideOfSection key={item.id} item={item} customize={customize} slug={slug} />
     </section>
   )
 })
 
-const RenderInsideOfSection = React.memo(function Component({ item: { type, ...data }, color, slug, notBlured }) {
+const RenderInsideOfSection = React.memo(function Component({ item: { type, ...data }, customize, slug }) {
+  const custom = React.useCallback((idx) => (data.customized ? data.customize[idx] || {} : {}), [data.customized, data.customize])
+
+  if (!data.items?.length) return null
   switch (type) {
-    case 'LINKS':
+    case 'links':
+      return data.items?.map(({ id, key, value, ...item }, index) => (
+        <LinkItem key={id} url={value} customize={{ ...customize, ...custom(0) }} options={item?.options} arrangement={data.arrangement}>
+          {key}
+        </LinkItem>
+      ))
+
+    case 'text':
       return (
-        <div className="links space-y-2">
-          {data.links?.map(({ url, title }, index) => (
-            <LinkItem notBlured={notBlured} key={index} url={url} color={color} icon="redo">
-              {title}
-            </LinkItem>
-          ))}
-        </div>
+        <Element as="p" customize={{ ...textCustomize(customize), ...custom(0) }} className="text p-2 leading-6">
+          {data.items[0]?.value}
+        </Element>
       )
 
-    case 'TEXT':
-      return <p className={`text bg-body bg-opacity-5 p-2 leading-6 border border-opacity-10 border-${color} rounded-lg`}>{data.text}</p>
+    case 'contacts':
+      return data.items?.map(({ id, type, key, value, ...item }, index) => {
+        const url = () => {
+          switch (type) {
+            case 'mobile':
+              return `tel:${value}`
+            case 'phone':
+              return `tel:${value}`
+            case 'email':
+              return `mailto:${value}`
+            case 'fax':
+              return `fax:${value}`
 
-    case 'CONTACTS':
+            default:
+              return value
+          }
+        }
+        return (
+          <LinkItem key={id} url={url()} customize={{ ...customize, ...custom(0) }} options={item?.options} arrangement={data.arrangement}>
+            {key}
+          </LinkItem>
+        )
+      })
+
+    case 'services':
+      return data.items?.map(({ id, type, key, value, ...item }, index) => {
+        const url = () => {
+          switch (type) {
+            default:
+              return value
+          }
+        }
+        const brandStyle = item.options[1].value == 1 ? { type: 'gradient', second: 'white', ...BRANDS[type] } : {}
+        return (
+          <LinkItem
+            key={id}
+            url={url()}
+            options={item?.options}
+            arrangement={data.arrangement}
+            customize={{ ...customize, ...custom(0), ...brandStyle }}
+          >
+            {key}
+          </LinkItem>
+        )
+      })
+
+    case 'locations':
       return (
-        <div className="contact space-y-2">
-          {data.contacts?.mobile ? (
-            <LinkItem notBlured={notBlured} url={`tel:${data.contacts.mobile}`} color={color} icon="smartphone" noHttp>
-              شماره همراه
-            </LinkItem>
-          ) : null}
-          {data.contacts?.phone ? (
-            <LinkItem notBlured={notBlured} url={`tel:${data.contacts.phone}`} color={color} icon="building" noHttp>
-              شماره تلفن‌ثابت
-            </LinkItem>
-          ) : null}
-          {data.contacts?.email ? (
-            <LinkItem notBlured={notBlured} url={`mailto:${data.contacts.email}`} color={color} icon="envelope" noHttp>
-              ایمیل
-            </LinkItem>
-          ) : null}
-          {data.contacts?.fax ? (
-            <LinkItem notBlured={notBlured} url={`fax:${data.contacts.fax}`} color={color} icon="print" noHttp>
-              فکس
-            </LinkItem>
-          ) : null}
-        </div>
+        <>
+          <Map
+            zoom={18}
+            key={data.items[0]?.value + data.items[1]?.value}
+            position={[data.items[0]?.value, data.items[1]?.value]}
+            className={classNames('min-h-[12rem]', `rounded-${customize.rounded || 'lg'}`)}
+          />
+          <LinkItem
+            customize={{ ...customize, ...custom(0) }}
+            url={`https://www.google.com/maps/@${data.items[0]?.value},${data.items[1]?.value},18z`}
+            deep-link={`comgooglemapsurl://www.google.com/maps/@${data.items[0]?.value},${data.items[1]?.value},18z`}
+            deep-link-ad={`intent://www.google.com/maps/@${data.items[0]?.value},${data.items[1]?.value},18z#Intent;package=com.google.android.apps.maps;scheme=https;end`}
+            emojiOrIcon={{ key: 'icon', value: 'marker' }}
+          >
+            باز کردن در نقشه
+          </LinkItem>
+        </>
       )
 
-    case 'MESSANGERS':
-      return (
-        <div className="contact space-y-2">
-          {data.messengers?.telegram ? (
-            <LinkItem notBlured={notBlured} url={`https://t.me/${data.messenger.telegram}`} color={color} icon="smartphone">
-              تلگرام
-            </LinkItem>
-          ) : null}
-          {data.messengers?.whatsapp ? (
-            <LinkItem notBlured={notBlured} url={`https://wa.me/${data.messenger.whatsapp}`} color={color} icon="building">
-              واتساپ
-            </LinkItem>
-          ) : null}
-          {data.messengers?.twitter ? (
-            <LinkItem notBlured={notBlured} url={`https://twitter.com/${data.messenger.twitter}`} color={color} icon="envelope">
-              توییتر
-            </LinkItem>
-          ) : null}
-          {data.messengers?.youtube ? (
-            <LinkItem notBlured={notBlured} url={data.messengers.youtube} color={color} icon="print">
-              یوتیوب
-            </LinkItem>
-          ) : null}
-          {data.messengers?.linkedin ? (
-            <LinkItem notBlured={notBlured} url={data.messengers.linkedin} color={color} icon="print">
-              لینکدین
-            </LinkItem>
-          ) : null}
-        </div>
-      )
+    case 'faq':
+      return data.items?.map(({ id, key, value }) => (
+        <Disclosure key={id}>
+          {({ open }) => (
+            <>
+              <Disclosure.Button
+                as={Element}
+                tag="button"
+                customize={{ ...customize, ...custom(0) }}
+                className="flex w-full justify-between items-center py-2 px-4"
+              >
+                {key}
+                <Icon
+                  name="angle-small-left"
+                  className={classNames('text-base transform transition-transform duration-300', open ? '-rotate-90' : '')}
+                />
+              </Disclosure.Button>
+              <Disclosure.Panel as={Element} customize={{ ...textCustomize(customize), ...custom(1) }} className="text p-2 leading-6">
+                {value}
+              </Disclosure.Panel>
+            </>
+          )}
+        </Disclosure>
+      ))
 
-    case 'LOCATIONS':
+    case 'igFeedsLink':
       return (
-        <div className="links space-y-2">
-          {data.locations?.map(({ url, title }, index) => (
-            <LinkItem notBlured={notBlured} key={index} url={url} color={color} icon="location">
-              {title}
-            </LinkItem>
-          ))}
-        </div>
-      )
-
-    case 'FAQ':
-      return (
-        <div className="faq space-y-2">
-          {data.faq?.map(({ question, answer }, index) => (
-            <Disclosure key={index}>
-              {({ open }) => (
-                <>
-                  <Disclosure.Button
-                    className={`flex w-full justify-between items-center transition duration-300 hover:opacity-70 bg-${color} bg-opacity-5 text-${color} rounded-lg py-2 px-4`}
-                  >
-                    {question}
-                    <Icon
-                      name="angle-small-left"
-                      className={classNames(`text-${color} text-base transition-all duration-300`, open ? 'transform -rotate-90' : '')}
-                    />
-                  </Disclosure.Button>
-                  <Disclosure.Panel className={`text bg-body bg-opacity-5 p-2 leading-6 border border-opacity-10 border-${color} rounded-lg`}>
-                    {answer}
-                  </Disclosure.Panel>
-                </>
-              )}
-            </Disclosure>
-          ))}
-        </div>
-      )
-
-    case 'IG_FEEDS_LINK':
-      return (
-        <LinkItem notBlured={notBlured} url={`/${slug}/feeds-link`} noHttp color={color} icon="link">
-          لینک پست ها
-          <Icon name="angle-small-left" className="flex-1 text-left text-base mr-2" />
+        <LinkItem url={`/${slug}/feeds-link`} noHttp customize={{ ...customize, ...custom(0) }} options={data.items[0]?.options}>
+          {data.items[0]?.key}
         </LinkItem>
       )
 
-    case 'IG_FEEDS_DOWNLOAD':
+    case 'igFeedsDownload':
       return (
-        <LinkItem notBlured={notBlured} url={`/${slug}/feeds-download`} noHttp color={color} icon="download">
-          دانلود پست ها
-          <Icon name="angle-small-left" className="flex-1 text-left text-base mr-2" />
+        <LinkItem url={`/${slug}/feeds-download`} noHttp customize={{ ...customize, ...custom(0) }} options={data.items[0]?.options}>
+          {data.items[0]?.key}
         </LinkItem>
       )
 
@@ -164,19 +167,32 @@ const RenderInsideOfSection = React.memo(function Component({ item: { type, ...d
   }
 })
 
-const LinkItem = React.memo(function Component({ children, color, url, noHttp, icon, className, notBlured }) {
+const LinkItem = React.memo(function Component({ children, customize, url, noHttp, emojiOrIcon, options = [], className, arrangement, ...props }) {
+  const emojiIcon = React.useMemo(
+    () => (emojiOrIcon ? emojiOrIcon : options && ['icon', 'emoji'].includes(options[0]?.key) ? options[0] : null),
+    [emojiOrIcon, options]
+  )
+  const quadrupleArrangement = React.useMemo(() => arrangement == 4, [arrangement])
   return (
-    <Link href={!url.includes('http') && !noHttp ? `http://${url} ` : url}>
-      <a
-        className={classNames(
-          `flex items-center transition duration-300 hover:opacity-70 bg-${color} bg-opacity-5 text-${color} rounded-lg py-2 px-4`,
-          className
-        )}
-      >
-        {icon ? <Icon name={icon} className="text-base ml-2" /> : null}
-        {children}
-      </a>
-    </Link>
+    <Element
+      tag={SimpleLink}
+      customize={customize}
+      href={!url.includes('http') && !noHttp ? `http://${url} ` : url}
+      className={classNames('flex items-center py-2 px-4', quadrupleArrangement ? 'justify-center' : '', className)}
+      {...props}
+    >
+      {emojiIcon ? (
+        <span className={classNames('emoji-or-icon flex items-center', quadrupleArrangement ? '' : 'me-2')}>
+          <EmojiOrIcon
+            type={emojiIcon?.key}
+            name={emojiIcon?.value}
+            size={quadrupleArrangement ? 24 : 20}
+            className={classNames('flex items-center justify-center', quadrupleArrangement ? 'text-lg' : 'text-base')}
+          />
+        </span>
+      ) : null}
+      {quadrupleArrangement ? null : children}
+    </Element>
   )
 })
 
