@@ -44,11 +44,11 @@ export const UPDATE_PAGE = gql`
       avatar {
         url
         position
-      customize {
+        customize {
           type
           rounded
           animate
-        color
+          color
           second
           border
           borderStyle
@@ -118,7 +118,7 @@ export const UPDATE_INSERT_MANY_SECTIONS = gql`
         options {
           key
           value
-      }
+        }
       }
       arrangement
       customized
