@@ -41,10 +41,57 @@ export const UPDATE_PAGE = gql`
       slug
       title
       subTitle
-      profilePic
+      avatar {
+        url
+        position
       customize {
+          type
+          rounded
+          animate
         color
-        backgroundImage
+          second
+          border
+          borderStyle
+          direction
+          from
+          to
+          via
+        }
+      }
+      style {
+        customize {
+          type
+          rounded
+          animate
+          color
+          second
+          border
+          borderStyle
+          direction
+          from
+          to
+          via
+        }
+        background {
+          url
+          color
+        }
+        cover {
+          url
+          customize {
+            type
+            rounded
+            animate
+            color
+            second
+            border
+            borderStyle
+            direction
+            from
+            to
+            via
+          }
+        }
       }
     }
   }
