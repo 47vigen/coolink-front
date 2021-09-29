@@ -22,7 +22,7 @@ function Modal({ tabMode, children, isOpen, closeModal, labels, className, stati
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Dialog.Overlay className="fixed inset-0 bg-content bg-opacity-20 backdrop-filter backdrop-blur-sm" />
+            <Dialog.Overlay className="fixed inset-0 bg-content bg-opacity-20" />
           </Transition.Child>
 
           {/* This element is to trick the browser into centering the modal contents. */}
