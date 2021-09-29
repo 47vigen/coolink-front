@@ -1,3 +1,5 @@
-import { BRANDS } from './brands'
+import { brands } from './brands'
+import { services } from './services'
+import { contacts } from './contacts'
 
-export { BRANDS }
+export { brands, services, contacts }
