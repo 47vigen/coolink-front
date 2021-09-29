@@ -18,7 +18,7 @@ function Page({ page, children }) {
   return (
     <div
       className={classNames(
-        'w-full lg:max-w-md lg:my-4 lg:rounded-xl mx-auto flex-1 flex flex-col p-4 overflow-hidden',
+        'w-full max-w-md md:my-4 md:rounded-xl mx-auto flex-1 flex flex-col p-4 overflow-hidden',
         page.style?.background?.color ? `bg-${page.style.background.color} bg-cover bg-top` : ''
       )}
       style={{
@@ -26,7 +26,7 @@ function Page({ page, children }) {
       }}
     >
       <PageHeader page={page} />
-      <main className="flex-1 container lg:max-w-md mx-auto">{children}</main>
+      <main className="flex-1 container max-w-md mx-auto">{children}</main>
       <footer>
         <Link
           href="/"

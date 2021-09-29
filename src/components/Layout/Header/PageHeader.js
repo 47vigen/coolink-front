@@ -1,4 +1,7 @@
 import React from 'react'
+import Image from 'next/image'
+
+// ** Utils
 import classNames from '../../../utils/classNames'
 import { getImgSrc } from '../../../utils/getImgSrc'
 
@@ -35,12 +38,12 @@ function PageHeader({ page, linked, onEdit }) {
             key={page.style.cover.url}
             src={getImgSrc(page.style.cover.url)}
             priority
-        />
+          />
         </Element>
       ) : null}
       <div
         className={classNames(
-          'flex items-center container lg:max-w-md mx-auto',
+          'flex items-center container max-w-md mx-auto',
           page.avatar?.position === 'center' ? 'flex-col items-center' : 'space-s-4'
         )}
       >

@@ -18,7 +18,7 @@ const Template = dynamic(() => import('../../../components/Template'), {
 function Edit({ page, sections }) {
   return (
     <Layout className="flex flex-col" dashboard>
-      <div className="w-full lg:max-w-sm flex-1 mx-auto">
+      <div className="w-full max-w-md flex-1 mx-auto">
         <Template page={page} sections={sections} />
       </div>
     </Layout>
