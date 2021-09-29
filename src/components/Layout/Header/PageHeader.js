@@ -66,10 +66,10 @@ const AvatarSection = ({ page, linked, onEdit }) => {
     <div className="relative w-min">
       {linked ? (
         <Link href={`/${page.slug}`}>
-          <Avatar url={page.avatar?.url} className="w-20 h-20" rounded={page.avatar?.customize?.rounded} />
+          <Avatar url={page.avatar?.url} className="w-20 h-20" rounded={page.avatar?.customize?.rounded} priority />
         </Link>
       ) : (
-        <Avatar url={page.avatar?.url} className="w-20 h-20" rounded={page.avatar?.customize?.rounded} />
+        <Avatar url={page.avatar?.url} className="w-20 h-20" rounded={page.avatar?.customize?.rounded} priority />
       )}
       {onEdit ? (
         <button className="absolute bottom-0 left-0 transition duration-300 hover:opacity-60" onClick={onEdit}>
