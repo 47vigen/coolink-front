@@ -322,7 +322,7 @@ const Item = React.memo(function Component({ index, slug, customize, item, onEdi
               className={classNames('transition ease-in-out duration-300', open ? 'transform -translate-y-3 -translate-x-3' : '')}
               style={{ pointerEvents: 'none' }}
             >
-              <RenderSection item={item} customize={customize} index={index} slug={slug} notBlured={open} />
+              <RenderSection item={item} customize={customize} index={index} slug={slug} />
             </div>
           </div>
         )}
