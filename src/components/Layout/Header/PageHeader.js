@@ -16,12 +16,27 @@ function PageHeader({ page, linked, onEdit }) {
       {page.style?.cover?.url ? (
         <Element
           hoverable={false}
-          className="h-40 -mb-10 rounded-t-none -mt-10 -mx-4 bg-cover"
-          customize={{ ...page.style?.customize, ...page.style?.cover?.customize }}
-          style={{
-            backgroundImage: `url('${getImgSrc(page.style.cover.url)}')`
+          className={classNames(
+            'h-40 -mb-10 rounded-t-none -mt-10 -mx-4 overflow-hidden',
+            page.style?.cover?.customize?.rounded === 'full' ? '!rounded-b-[100%]' : '',
+            page.style?.cover?.customize?.rounded === 'lg' ? '!rounded-b-3xl' : ''
+          )}
+          customize={{
+            ...page.style?.customize,
+            ...page.style?.cover?.customize
           }}
+        >
+          <Image
+            alt="cover"
+            width={500}
+            height={230}
+            objectFit="cover"
+            layout="responsive"
+            key={page.style.cover.url}
+            src={getImgSrc(page.style.cover.url)}
+            priority
         />
+        </Element>
       ) : null}
       <div
         className={classNames(
