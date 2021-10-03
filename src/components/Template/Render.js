@@ -116,9 +116,9 @@ const RenderInsideOfSection = React.memo(function Component({ item: { type, ...d
             url={`https://www.google.com/maps/@${data.items[0]?.value},${data.items[1]?.value},18z`}
             deep-link={`comgooglemapsurl://www.google.com/maps/@${data.items[0]?.value},${data.items[1]?.value},18z`}
             deep-link-ad={`intent://www.google.com/maps/@${data.items[0]?.value},${data.items[1]?.value},18z#Intent;package=com.google.android.apps.maps;scheme=https;end`}
-            emojiOrIcon={{ key: 'icon', value: 'marker' }}
+            options={data.items[2]?.options}
           >
-            باز کردن در نقشه
+            {data.items[2]?.value}
           </LinkItem>
         </>
       )
