@@ -25,7 +25,7 @@ export default function Home({ page, section }) {
   }, [])
 
   return (
-    <Page page={page}>
+    <Page page={page} title={section.items[0].key || 'لینک پست ها'}>
       <Feeds page={page} section={section}>
         {(feed, custom) =>
           generateLinks(feed.caption)?.length ? (
