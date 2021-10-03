@@ -110,7 +110,7 @@ function Edit({ page: pageData, sections: sectionsData }) {
   const closeEditInfoModal = React.useCallback(() => setIsOpenEditInfo(false), [setIsOpenEditInfo])
   const openEditInfoModal = React.useCallback(() => setIsOpenEditInfo(true), [setIsOpenEditInfo])
   const onEditInfo = React.useCallback(
-    ({ id, ...pageInput }) => updatePage(deepCleaner({ variables: { id, pageInput: pageInput } }, '__typename')).then(() => setIsOpenEditInfo(false)),
+    ({ id, ...pageInput }) => updatePage({ variables: { id, pageInput: pageInput } }).then(() => setIsOpenEditInfo(false)),
     [updatePage, setIsOpenEditInfo]
   )
 
