@@ -15,18 +15,14 @@ import classNames from '../../utils/classNames'
 import { getImgSrc } from '../../utils/getImgSrc'
 
 // ** Validations
-import * as Yup from 'yup'
-const validationSchema = Yup.object().shape({
-  color: Yup.string().nullable(),
-  backgroundImage: Yup.string().nullable()
-})
+import { style as styleValidate } from '../../config/validations'
 
 function EditStyle({ isOpenEditStyle, closeEditStyleModal, pk, style, onEditStyle }) {
   return (
     <Modal tabMode labels={['ظاهر پیشفرض آیتم ها', 'پس زمینه']} isOpen={isOpenEditStyle} closeModal={closeEditStyleModal} className="max-w-sm">
       <Formik
         initialValues={{ customize: DEFAULT_CUSTOMIZE, background: { url: '', color: '' }, ...style }}
-        validationSchema={validationSchema}
+        validationSchema={styleValidate}
         onSubmit={onEditStyle}
       >
         {({ values, setFieldValue, isSubmitting }) => (
