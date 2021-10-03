@@ -1,7 +1,10 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
+import { NextSeo } from 'next-seo'
+import { useAuth } from '../../../context/auth'
 
 // ** UI
+import { Loader } from '../../../components/Tools'
 import Layout from '../../../components/Layout'
 
 // ** Graphql
@@ -16,11 +19,13 @@ const Template = dynamic(() => import('../../../components/Template'), {
 })
 
 function Edit({ page, sections }) {
+  const { loading } = useAuth()
   return (
-    <Layout className="flex flex-col" dashboard>
-      <div className="w-full max-w-md flex-1 mx-auto">
+    <Layout className="flex flex-col" dashboard footer={false}>
+      <NextSeo title={`ویرایش ${page.title}`} noindex />
+      <Loader loading={loading} className="w-full max-w-md flex-1 mx-auto">
         <Template page={page} sections={sections} />
-      </div>
+      </Loader>
     </Layout>
   )
 }
