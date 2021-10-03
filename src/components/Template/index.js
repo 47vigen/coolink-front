@@ -136,6 +136,15 @@ function Edit({ page: pageData, sections: sectionsData }) {
     (type) => {
       const defaultValue = () => {
         switch (type) {
+          case 'locations':
+            return {
+              items: [
+                { key: 'lat', value: '' },
+                { key: 'lng', value: '' },
+                { key: 'label', value: 'باز کردن در نقشه', options: [{ key: 'icon', value: 'marker' }] }
+              ]
+            }
+
           case 'igFeedsLink':
             return { items: [{ key: 'لینک پست ها', options: [{ key: 'icon', value: 'link' }] }] }
 
