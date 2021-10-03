@@ -1,11 +1,13 @@
 import React from 'react'
+import { NextSeo } from 'next-seo'
 import { Form, Formik } from 'formik'
 import { useRouter } from 'next/router'
 import { usePalette } from 'react-palette'
+import { useAuth } from '../../context/auth'
 
 // ** UI
 import Layout from '../../components/Layout'
-import { Avatar, Field, Upload, Button, Icon } from '../../components/Tools'
+import { Avatar, Field, Upload, Button, Icon, Loader } from '../../components/Tools'
 
 // ** Grapgql
 import { useMutation } from '@apollo/client'
@@ -45,6 +47,7 @@ const validationSchema = (step) =>
   )
 
 function Create(props) {
+  const { loading } = useAuth()
   const ref = React.useRef()
   const Router = useRouter()
   const [step, setStep] = React.useState(0)
@@ -109,19 +112,20 @@ function Create(props) {
 
   return (
     <Layout dashboard>
+      <NextSeo title="ایجاد کولینک" noindex />
       <div className="flex space-s-2 mb-4">
         <StepItem label="تایید آیدی" num={0} step={step} />
         <StepItem label="تکمیل اطلاعات" num={1} step={step} />
       </div>
-      <div className="bg-white rounded-lg p-4">
+      <Loader loading={loading} className="bg-white rounded-lg p-4">
         <Formik
           innerRef={ref}
           initialValues={{
-            username: '',
             pk: '',
             slug: '',
             title: '',
-            subTitle: ''
+            subTitle: '',
+            username: ''
           }}
           validationSchema={validationSchema(step)}
           onSubmit={onSubmit}
@@ -160,7 +164,7 @@ function Create(props) {
             </Form>
           )}
         </Formik>
-      </div>
+      </Loader>
     </Layout>
   )
 }
