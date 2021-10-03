@@ -1,4 +1,5 @@
 import React from 'react'
+import { NextSeo } from 'next-seo'
 
 // ** UI
 import Link from '../Tools/Link'
@@ -14,7 +15,7 @@ import CoolinkLogo from '../../../public/images/coolink-logo.svg'
 // ** Utils
 import classNames from '../../utils/classNames'
 
-function Page({ page, children }) {
+function Page({ page, title, children }) {
   return (
     <div
       className={classNames(
@@ -25,6 +26,7 @@ function Page({ page, children }) {
         backgroundImage: page.style?.background?.url ? `url('${getImgSrc(page.style.background.url)}')` : null
       }}
     >
+      <NextSeo title={title || page.title} titleTemplate={title ? `%s | ${page.title}` : page.subTitle ? `%s | ${page.subTitle}` : '%s'} />
       <PageHeader page={page} />
       <main className="flex-1 container max-w-md mx-auto">{children}</main>
       <footer>
