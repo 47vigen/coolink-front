@@ -15,20 +15,12 @@ import { getImgSrc } from '../../utils/getImgSrc'
 import classNames from '../../utils/classNames'
 
 // ** Validations
-import * as Yup from 'yup'
-const validationSchema = Yup.object().shape({
-  avatar: Yup.object().shape({
-    url: Yup.string(),
-    rounded: Yup.string()
-  }),
-  title: Yup.string().required('نام/عنوان الزامی است!'),
-  subTitle: Yup.string().nullable()
-})
+import { page as pageValidate } from '../../config/validations'
 
 function EditInfo({ page, isOpenEditInfo, closeEditInfoModal, onEditInfo }) {
   return (
     <Modal tabMode labels={['ویرایش مشخصات', 'آواتار', 'سربرگ']} isOpen={isOpenEditInfo} closeModal={closeEditInfoModal} className="max-w-sm">
-      <Formik initialValues={{ avatar: { url: '' }, title: '', subTitle: '', ...page }} validationSchema={validationSchema} onSubmit={onEditInfo}>
+      <Formik initialValues={{ avatar: { url: '' }, title: '', subTitle: '', ...page }} validationSchema={pageValidate} onSubmit={onEditInfo}>
         {({ values, setFieldValue, isSubmitting }) => (
           <Form className="p-4 space-y-4">
             <Tab.Panels>
