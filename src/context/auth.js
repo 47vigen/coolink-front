@@ -38,7 +38,7 @@ const AuthProvider = ({ children }) => {
     refetch()
   }, [refetch])
 
-  return <AuthContext.Provider value={{ user, signIn, signOut }}>{children}</AuthContext.Provider>
+  return <AuthContext.Provider value={{ loading, user, signIn, signOut }}>{children}</AuthContext.Provider>
 }
 
 AuthProvider.propTypes = {
