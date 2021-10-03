@@ -10,7 +10,7 @@ import { EmojiOrIcon } from '../Tools/EmojiPicker'
 import classNames from '../../utils/classNames'
 
 // ** Configs
-import { BRANDS } from '../../config'
+import { brands } from '../../config'
 
 import { textCustomize } from './Customize'
 import dynamic from 'next/dynamic'
@@ -88,7 +88,7 @@ const RenderInsideOfSection = React.memo(function Component({ item: { type, ...d
               return value
           }
         }
-        const brandStyle = item.options[1].value == 1 ? { type: 'gradient', second: 'white', ...BRANDS[type] } : {}
+        const brandStyle = item.options[1].value == 1 ? { type: 'gradient', second: 'white', ...brands[type] } : {}
         return (
           <LinkItem
             key={id}
