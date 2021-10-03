@@ -11,10 +11,24 @@ import classNames from '../utils/classNames'
 
 export default function Home() {
   const [sliderRef, slider] = useKeenSlider({
-    slidesPerView: 5,
+    slidesPerView: 1,
     spacing: 16,
     loop: true,
-    rtl: true
+    rtl: true,
+    breakpoints: {
+      '(min-width: 640px)': {
+        slidesPerView: 2
+      },
+      '(min-width: 768px)': {
+        slidesPerView: 3
+      },
+      '(min-width: 1024px)': {
+        slidesPerView: 4
+      },
+      '(min-width: 1280px)': {
+        slidesPerView: 5
+      }
+    }
   })
 
   return (
@@ -37,7 +51,7 @@ export default function Home() {
           </Option>
         </div>
         <div className="w-2/4 my-7">
-          <div className="w-80 h-full rounded-3xl border border-white border-opacity-60 bg-blured backdrop-filter backdrop-blur-md mx-auto p-2">
+          <div className="hidden md:!block w-80 h-full rounded-3xl border border-white border-opacity-60 bg-blured backdrop-filter backdrop-blur-md mx-auto p-2">
             <div className="relative h-full rounded-2xl overflow-hidden">
               <img src="./images/above-phone-sharp.svg" className="absolute top-0 w-full h-6 z-10" />
               <div className="absolute flex top-2 w-full z-10 justify-center">
