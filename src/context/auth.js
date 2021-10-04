@@ -28,7 +28,7 @@ const AuthProvider = ({ children }) => {
     async (token, redirect) => {
       setToken(token)
       await refetch()
-      if (redirect) router.push('/')
+      if (redirect) router.push('/dashboard')
     },
     [router, refetch]
   )
