@@ -7,6 +7,7 @@ import { useAuth } from '../../context/auth'
 
 // ** UI
 import Layout from '../../components/Layout'
+import ConfirmEmail from '../../components/Tools/ConfirmEmail'
 import { Avatar, Field, Upload, Button, Icon, Loader } from '../../components/Tools'
 
 // ** Grapgql
@@ -164,6 +165,7 @@ function Create(props) {
             </Form>
           )}
         </Formik>
+        <ConfirmEmail className="absolute inset-0 bg-white bg-opacity-50 flex justify-center items-center z-[1005] px-4 rounded-b-lg" />
       </Loader>
     </Layout>
   )
