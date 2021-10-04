@@ -1,3 +1,5 @@
+import { Toaster } from 'react-hot-toast'
+
 import withApollo from '../graphql/apollo'
 import { AuthProvider } from '../context/auth'
 
@@ -14,6 +16,7 @@ function MyApp({ Component, pageProps }) {
     <AuthProvider>
       <DefaultSeo {...SEO} />
       <Component {...pageProps} />
+      <Toaster reverseOrder />
     </AuthProvider>
   )
 }
