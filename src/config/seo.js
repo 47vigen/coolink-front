@@ -1,4 +1,4 @@
-const Seo = {
+const Seo = (primary = '#05C46B') => ({
   titleTemplate: '%s | کولینک',
   defaultTitle: 'کولینک',
   description: 'لینکاتو باحال کن',
@@ -11,10 +11,10 @@ const Seo = {
     { name: 'format-detection', content: 'telephone=no' },
     { name: 'mobile-web-app-capable', content: 'yes' },
     { name: 'msapplication-tap-highlight', content: 'no' },
-    { name: 'theme-color', content: '#05C46B' },
-    { name: 'msapplication-navbutton-color', content: '#05C46B' },
-    { name: 'apple-mobile-web-app-status-bar-style', content: '#05C46B' },
-    { name: 'msapplication-TileColor', content: '#05C46B' },
+    { name: 'theme-color', content: primary },
+    { name: 'msapplication-navbutton-color', content: primary },
+    { name: 'apple-mobile-web-app-status-bar-style', content: primary },
+    { name: 'msapplication-TileColor', content: primary },
     {
       name: 'viewport',
       content: 'minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover'
@@ -41,6 +41,6 @@ const Seo = {
     { rel: 'preload', href: '/fonts/woff/iransans-x-bold.woff', as: 'font', type: 'font/woff', crossorigin: 'anonymous' },
     { rel: 'preload', href: '/fonts/ttf/icon.ttf?22ycys', as: 'font', type: 'font/truetype', crossorigin: 'anonymous' }
   ]
-}
+})
 
 export default Seo
