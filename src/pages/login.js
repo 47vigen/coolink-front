@@ -29,7 +29,11 @@ function Login() {
   const onSubmit = React.useCallback(
     (variables) =>
       login({ variables })
-        .then(async ({ data: { login } }) => await signIn(login.token, true))
+        .then(async ({ data: { login } }) => {
+          await signIn(login.token, true)
+          toast.success('با موفقیت وارد شدید!', { id: 'login' })
+          return true
+        })
         .catch((err) => console.log(err)),
     [signIn, login]
   )
