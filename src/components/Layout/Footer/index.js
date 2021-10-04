@@ -12,7 +12,10 @@ function Footer(props) {
     <footer className="container max-w-screen-xl mx-auto pb-2 px-4">
       <div className="flex flex-col items-center space-y-3 border-t border-line pt-4">
         <Image src={FooterLogo} alt="Coolink" />
-        <p className="text-center">تمامی حقوق برای کولینک محفوظ است</p>
+        <p className="text-center max-w-lg mx-auto">
+          کولینک یک سرویس رایگان با برای کسب و کار ها و اشخاص است که امکانات بی نظیری مثل اشتراک لینک‌ها، کانال‌های ارتباطی، دانلود پست ها و ... در
+          اختیار کاربران قرار دارد.
+        </p>
         <div className="space-s-2">
           <Button link="mailto://info@colk.ir" icon="envelope" circle />
           <Button link="https://twitter.com/coolink_ir" icon="brand-twitter" circle />
