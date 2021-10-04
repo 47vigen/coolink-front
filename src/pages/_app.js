@@ -10,7 +10,7 @@ import '../styles/progress.css'
 
 // ** Seo
 import { DefaultSeo } from 'next-seo'
-import SEO from '../config/seo'
+import Seo from '../config/seo'
 
 // ** NProgress
 import Router from 'next/router'
@@ -22,7 +22,7 @@ Router.events.on('routeChangeError', () => NProgress.done())
 function MyApp({ Component, pageProps }) {
   return (
     <AuthProvider>
-      <DefaultSeo {...SEO} />
+      <DefaultSeo {...Seo()} />
       <Component {...pageProps} />
       <Toaster reverseOrder />
     </AuthProvider>
