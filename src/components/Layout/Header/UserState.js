@@ -21,7 +21,7 @@ function Header(props) {
             {({ open }) => (
               <div className="flex items-center space-s-2">
                 <Avatar url={user.picture} fullName={user.name} className="w-8 h-8" />
-                <span className="hidden md:!block">{user?.email}</span>
+                <span className="hidden md:!block">{user.name}</span>
                 <Icon name="angle-small-left" className={classNames('transition ease-in-out duration-200', open ? 'transform -rotate-90' : '')} />
               </div>
             )}
@@ -63,7 +63,9 @@ function Header(props) {
         </Menu>
       ) : (
         <div className="flex items-center space-s-2">
-          <Button className="md:w-20 min-w-max md:py-1.5">ثبت نام</Button>
+          <Button link="/sign-up" className="md:w-20 min-w-max md:py-1.5">
+            ثبت نام
+          </Button>
           <Button link="/login" className="md:w-20 min-w-max md:py-1.5" type="ghost">
             ورود
           </Button>
