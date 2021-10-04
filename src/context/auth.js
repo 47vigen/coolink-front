@@ -29,7 +29,7 @@ const AuthProvider = ({ children }) => {
   const signOut = React.useCallback(() => {
     removeToken()
     refetch()
-    router.reload()
+    router.push('/').then(() => router.reload())
   }, [router, refetch])
 
   return <AuthContext.Provider value={{ loading, user, signIn, signOut }}>{children}</AuthContext.Provider>
