@@ -45,7 +45,7 @@ function Header(props) {
           </ul>
           <Button type="ghost" icon="angle-small-up" className="block md:hidden ms-auto -m-2" onClick={() => setOpen(false)} />
         </nav>
-        <Link href="/" className="md:w-40 ms-4">
+        <Link href="/" className="md:w-40 ms-4 md:ms-0">
           <Image src={CoolinkLogo} alt="Coolink" />
         </Link>
       </header>
