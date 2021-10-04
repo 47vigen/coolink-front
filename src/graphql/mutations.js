@@ -9,6 +9,42 @@ export const LOGIN = gql`
         name
         picture
         email
+        role
+      }
+    }
+  }
+`
+export const CREATE_USER = gql`
+  mutation CreateUser($name: String!, $email: String!, $password: String!) {
+    createUser(userInput: { name: $name, email: $email, password: $password }) {
+      token
+      user {
+        id
+        name
+        picture
+        email
+        role
+      }
+    }
+  }
+`
+
+export const SEND_CONFIRM_EMAIL = gql`
+  mutation SendConfirmEmail {
+    sendConfirmEmail
+  }
+`
+
+export const CONFIRM_EMAIL = gql`
+  mutation ConfirmEmail($token: String!) {
+    confirmEmail(token: $token) {
+      token
+      user {
+        id
+        name
+        picture
+        email
+        role
       }
     }
   }
