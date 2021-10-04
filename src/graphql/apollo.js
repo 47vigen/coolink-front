@@ -6,7 +6,7 @@ import { onError } from 'apollo-link-error'
 import jwtDecode from 'jwt-decode'
 
 // ** Utils
-import { getToken, setToken } from '../utils/token'
+import { getToken, removeToken, setToken } from '../utils/token'
 
 const requestLink = () =>
   new ApolloLink(
@@ -61,6 +61,7 @@ const createIsomorphLink = () =>
         setToken(token)
       },
       handleError: (err) => {
+        removeToken()
         console.warn('Your refresh token is invalid. Try to relogin')
         console.error(err)
       }
