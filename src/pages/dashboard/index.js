@@ -3,7 +3,7 @@ import { NextSeo } from 'next-seo'
 
 // ** UI
 import Layout from '../../components/Layout'
-import { Avatar, Button, Icon, Loader } from '../../components/Tools'
+import { Avatar, Button, Icon, Loader, Link } from '../../components/Tools'
 import ConfirmEmail from '../../components/Tools/ConfirmEmail'
 
 // ** Graphql
@@ -26,10 +26,10 @@ function Dashboard(props) {
         </div>
         <div className="space-y-1 text-white -ms-10 md:ms-0">
           <h4 className="text-lg font-bold">به کولینک خوش آمدید</h4>
-          <div className="flex items-center">
-            <span className="text">شروع کنید</span>
+          <Link href="/dashboard/create" className="flex items-center hover:text-content">
+            شروع کنید
             <Icon name="angle-small-left" className="text-base" />
-          </div>
+          </Link>
         </div>
       </div>
       <Button type="secondary" className="w-full justify-between px-4">
