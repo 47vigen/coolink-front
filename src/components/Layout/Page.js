@@ -19,12 +19,12 @@ import { rgbToHex } from '../../utils/rgbToHex'
 import Seo from '../../config/seo'
 
 function Page({ page, title, children }) {
-  const [themeColor, setThemeColor] = React.useState({ rgb: undefined, hex: undefined })
+  const [themeColor, setThemeColor] = React.useState('')
 
   React.useEffect(() => {
     const colorComponent = document.getElementById('color')
     const color = window.getComputedStyle(colorComponent).getPropertyValue('background-color')
-    setThemeColor({ rgb: color, hex: rgbToHex(color) })
+    setThemeColor(rgbToHex(color))
   }, [])
 
   return (
@@ -39,24 +39,24 @@ function Page({ page, title, children }) {
     >
       <Head>
         <style>
-          {themeColor.rgb
+          {themeColor
             ? `
           #nprogress .bar {
-            background: ${themeColor.rgb} !important;
+            background: ${themeColor} !important;
           }
           #nprogress .peg {
-            box-shadow: 0 0 10px ${themeColor.rgb}, 0 0 5px ${themeColor.rgb} !important;
+            box-shadow: 0 0 10px ${themeColor}, 0 0 5px ${themeColor} !important;
           }
           #nprogress .spinner-icon {
-            border-top-color: ${themeColor.rgb} !important;
-            border-left-color: ${themeColor.rgb} !important;
+            border-top-color: ${themeColor} !important;
+            border-left-color: ${themeColor} !important;
           }
         `
             : null}
         </style>
       </Head>
       <NextSeo
-        {...Seo(themeColor.hex)}
+        {...Seo(themeColor || '#F1F1F1')}
         title={title || page.title}
         titleTemplate={title ? `%s | ${page.title}` : page.subTitle ? `%s | ${page.subTitle}` : '%s'}
       />
