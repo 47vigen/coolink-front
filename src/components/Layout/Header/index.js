@@ -28,7 +28,7 @@ function Header(props) {
         </div>
         <nav
           className={classNames(
-            'absolute w-screen start-0 end-0 flex bg-white top-0 py-3 px-4 z-10 transform transition-all md:relative md:p-0 md:bg-transparent md:shadow-none md:z-0 md:translate-y-0 md:w-max',
+            'absolute start-0 end-0 flex bg-white top-0 py-3 px-4 z-10 transform transition-all md:relative md:p-0 md:bg-transparent md:shadow-none md:z-0 md:translate-y-0',
             open ? 'shadow-lg' : '-translate-y-11'
           )}
         >
