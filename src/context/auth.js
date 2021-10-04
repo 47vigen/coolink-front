@@ -21,7 +21,7 @@ const AuthProvider = ({ children }) => {
     async (token, redirect) => {
       setToken(token)
       await refetch()
-      if (redirect) router.push('/dashboard')
+      if (redirect) router.replace(typeof redirect === 'string' ? redirect : '/dashboard')
     },
     [router, refetch]
   )
@@ -29,7 +29,8 @@ const AuthProvider = ({ children }) => {
   const signOut = React.useCallback(() => {
     removeToken()
     refetch()
-  }, [refetch])
+    router.reload()
+  }, [router, refetch])
 
   return <AuthContext.Provider value={{ loading, user, signIn, signOut }}>{children}</AuthContext.Provider>
 }
@@ -46,7 +47,10 @@ export const RequireAuth = () => {
 
   React.useEffect(() => {
     if (!user.id && !loading) {
-      router.push('/login')
+      router.replace({
+        pathname: '/login',
+        query: { ref: window.location.pathname + window.location.search }
+      })
     }
   }, [user, loading, router])
 }

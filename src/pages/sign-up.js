@@ -21,7 +21,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required('لطفا رمز عبور خود را وارد کنید').min(5, 'رمز عبور باید بیشتر از 5 کاراکتر باشد')
 })
 
-function Login() {
+function SignUp({ query }) {
   const [createUser] = useMutation(CREATE_USER)
   const { signIn } = useAuth()
 
@@ -31,18 +31,18 @@ function Login() {
     (variables) =>
       createUser({ variables })
         .then(async ({ data: { createUser } }) => {
-          await signIn(createUser.token, true)
+          await signIn(createUser.token, query?.ref || true)
           toast.success('ثبت نام باموقیت انجام شد! لطفا ایمیل خود را بررسی کنید', { id: 'createUser', duration: 5000 })
           return true
         })
         .catch((err) => console.log(err)),
-    [signIn, createUser]
+    [query, signIn, createUser]
   )
 
   return (
     <Auth
       extra={
-        <Link href="/login" className="py-2 my-2">
+        <Link href={`/login${query?.ref ? '?ref=' + query.ref : ''}`} className="py-2 my-2">
           ثبت نام کرده اید؟
         </Link>
       }
@@ -68,4 +68,12 @@ function Login() {
   )
 }
 
-export default Login
+export async function getServerSideProps({ query }) {
+  return {
+    props: {
+      query
+    }
+  }
+}
+
+export default SignUp
