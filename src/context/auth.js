@@ -15,14 +15,7 @@ const AuthProvider = ({ children }) => {
   const router = useRouter()
   const { data, loading, error, refetch } = useQuery(SHOW_ME, { skip: !getToken() })
 
-  const user = React.useMemo(
-    () => ({
-      ...data?.showMe,
-      loading,
-      error
-    }),
-    [data, loading, error]
-  )
+  const user = React.useMemo(() => ({ ...data?.showMe, error }), [data, error])
 
   const signIn = React.useCallback(
     async (token, redirect) => {
@@ -48,14 +41,14 @@ AuthProvider.propTypes = {
 const useAuth = () => React.useContext(AuthContext)
 
 export const RequireAuth = () => {
-  const { user } = useAuth()
+  const { user, loading } = useAuth()
   const router = useRouter()
 
   React.useEffect(() => {
-    if (!user.id && !user.loading) {
-      router.push('/')
+    if (!user.id && !loading) {
+      router.push('/login')
     }
-  }, [user, router])
+  }, [user, loading, router])
 }
 
 export { AuthProvider, useAuth }
