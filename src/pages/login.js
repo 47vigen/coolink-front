@@ -41,7 +41,7 @@ function Login({ query }) {
   return (
     <Auth
       extra={
-        <Link href={`/sign-up${query?.ref ? '?ref=' + query.ref : ''}`} className="py-2 my-2">
+        <Link replace href={`/sign-up${query?.ref ? '?ref=' + query.ref : ''}`} className="py-2 my-2">
           ثبت نام نکرده اید؟
         </Link>
       }
