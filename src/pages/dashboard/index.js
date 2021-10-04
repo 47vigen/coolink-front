@@ -4,6 +4,7 @@ import { NextSeo } from 'next-seo'
 // ** UI
 import Layout from '../../components/Layout'
 import { Avatar, Button, Icon, Loader } from '../../components/Tools'
+import ConfirmEmail from '../../components/Tools/ConfirmEmail'
 
 // ** Graphql
 import { useQuery } from '@apollo/client'
@@ -35,6 +36,7 @@ function Dashboard(props) {
         <span>آموزش ایجاد کولینک</span>
         <Icon name="graduation-cap" className="text-base" />
       </Button>
+      <ConfirmEmail />
       <Loader loading={loading} className="min-h-[10rem]">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {data?.showMyPages?.map((item) => (
