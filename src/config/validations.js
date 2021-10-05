@@ -103,7 +103,45 @@ export const section = Yup.object().shape({
                   .required('لطفا سرویس خود را انتخاب کنید')
                   .oneOf(services.map((service) => service.value)),
                 key: Yup.string().required('لطفا عنوان سرویس خود را وارد کنید'),
-                value: Yup.string().required('لطفا متن خود را وارد کنید'),
+                value: Yup.string().when('type', {
+                  is: 'instagram',
+                  then: Yup.string()
+                    .required('لطفا آیدی اینستاگرام خود را وارد کنید')
+                    .matches(/^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/g, 'آیدی اینستاگرام وارد شده صحیح نمی‌باشد'),
+                  otherwise: Yup.string().when('type', {
+                    is: 'telegram',
+                    then: Yup.string()
+                      .required('لطفا آیدی یا لینک تلگرام خود را وارد کنید')
+                      .matches(/((http(s)?:\/\/)?t\.me\/)?(joinchat\/)?[a-zA-Z0-9\-_]{5,32}$/g, 'آیدی یا لینک تلگرام وارد شده صحیح نمی‌باشد'),
+                    otherwise: Yup.string().when('type', {
+                      is: 'twitter',
+                      then: Yup.string()
+                        .required('لطفا آیدی توییتر خود را وارد کنید')
+                        .matches(/^[a-zA-Z0-9_]{1,15}$/g, 'آیدی توییتر وارد شده صحیح نمی‌باشد'),
+                      otherwise: Yup.string().when('type', {
+                        is: 'youtube',
+                        then: Yup.string()
+                          .required('لطفا لینک یوتیوب خود را وارد کنید')
+                          .matches(
+                            /(?:(http(?:s?):\/\/)?)(?:(www\.)?)youtube\.com\/(watch|channel\/|c\/)(\?v=|)([\w\-\_]*)$/g,
+                            'لینک یوتیوب وارد شده صحیح نمی‌باشد'
+                          ),
+                        otherwise: Yup.string().when('type', {
+                          is: 'tiktok',
+                          then: Yup.string()
+                            .required('لطفا آیدی تیک‌تاک خود را وارد کنید')
+                            .matches(/@?(?!.*\.\.)(?!.*\.$)[^\W][\w.]{2,24}$/g, 'آیدی تیک‌تاک وارد شده صحیح نمی‌باشد'),
+                          otherwise: Yup.string()
+                            .required('لطفا آدرس لینک را وارد کنید')
+                            .matches(
+                              /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g,
+                              'آدرس لینک وارد شده صحیح نمی‌باشد'
+                            )
+                        })
+                      })
+                    })
+                  })
+                }),
                 options
               })
             ),
