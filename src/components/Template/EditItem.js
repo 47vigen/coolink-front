@@ -273,7 +273,7 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
             className="h-[20rem] flex-1 rounded-md z-0"
           />
           <Field name="items.2.value" label="عنوان آدرس" placeholder="عنوان آدرس را وارد کنید ..." />
-          <EmojiFeild idx={2} item={item} setFieldValue={setFieldValue} />
+          <EmojiFeild idx={2} item={values.items[2]} setFieldValue={setFieldValue} />
         </>
       )
 
@@ -320,7 +320,7 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
       return (
         <>
           <Field name="items.0.key" label="عنوان" placeholder="عنوان را وارد کنید ..." />
-          <EmojiFeild idx={0} item={item} setFieldValue={setFieldValue} />
+          <EmojiFeild idx={0} item={values.items[0]} setFieldValue={setFieldValue} />
         </>
       )
 
@@ -328,7 +328,7 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
       return (
         <>
           <Field name="items.0.key" label="عنوان" placeholder="عنوان را وارد کنید ..." />
-          <EmojiFeild idx={0} item={item} setFieldValue={setFieldValue} />
+          <EmojiFeild idx={0} item={values.items[0]} setFieldValue={setFieldValue} />
         </>
       )
 
