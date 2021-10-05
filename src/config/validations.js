@@ -240,5 +240,5 @@ export const section = Yup.object().shape({
     }),
   arrangement: Yup.string().nullable(),
   customized: Yup.boolean().default(false),
-  customize: Yup.array().of(customize)
+  customize: Yup.array().of(customize).nullable()
 })

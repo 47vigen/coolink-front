@@ -41,8 +41,9 @@ const RenderEditItem = React.memo(function Component({ page, currentEditItem: { 
       validationSchema={sectionValidate}
       onSubmit={(values) => onEditItem({ ...values, type, id })}
     >
-      {({ isSubmitting, setFieldValue, values }) => (
+      {({ isSubmitting, setFieldValue, values, errors }) => (
         <Form className="space-y-4">
+          {console.log({ values, errors })}
           <Tab.Panels>
             <Tab.Panel className="space-y-4">
               <InsideBody type={type} values={values} setFieldValue={setFieldValue} />
