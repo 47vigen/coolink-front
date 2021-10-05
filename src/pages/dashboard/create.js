@@ -12,6 +12,7 @@ import { Avatar, Field, Upload, Button, Icon, Loader } from '../../components/To
 
 // ** Grapgql
 import { useMutation } from '@apollo/client'
+import { SHOW_MY_PAGES } from '../../graphql/queries'
 import { CREATE_PAGE, GET_PAGE_INFO, UPLOAD_IMAGE } from '../../graphql/mutations'
 
 // ** Utils
@@ -53,7 +54,18 @@ function Create(props) {
   const Router = useRouter()
   const [step, setStep] = React.useState(0)
   const [getPageInfo] = useMutation(GET_PAGE_INFO)
-  const [createPage] = useMutation(CREATE_PAGE)
+  const [createPage] = useMutation(CREATE_PAGE, {
+    update: (cache, mutationResult) => {
+      const data = mutationResult.data.createPage
+      const query = cache.readQuery({
+        query: SHOW_MY_PAGES
+      })
+      cache.writeQuery({
+        query: SHOW_MY_PAGES,
+        data: { showMyPages: [data, ...query?.showMyPages] }
+      })
+    }
+  })
   const [uploadImage] = useMutation(UPLOAD_IMAGE)
   const { data: dominantColor } = usePalette(ref.current?.values.avatar?.url)
 
@@ -94,7 +106,7 @@ function Create(props) {
           setStep(2)
           const newAvatarUrl = avatar.url?.includes('base64') ? await uploadBase64Image(values.pk, avatar.url) : avatar.url
           await createPage({ variables: { pageInput: { ...values, avatar: { url: newAvatarUrl } } } })
-          return await Router.push('/dashboard')
+          return await Router.push(`/dashboard/edit/${values.slug}`)
         } catch (err) {
           setStep(1)
           return console.log(err)
@@ -151,7 +163,11 @@ function Create(props) {
                     <Avatar url={values.avatar?.url} fullName={values.title} className="w-20 h-20 rounded-lg mx-auto mb-2" />
                     <Icon name="plus" className="absolute bottom-0 left-0 bg-body text-sm leading-4 p-1 rounded-ts-md transition duration-300" />
                   </Upload.Single>
-                  <Field name="slug" label="آیدی کولینک" placeholder="لطفا آیدی اینستاگرام خود را وارد کنید ..." />
+                  <Field name="slug" label="آیدی کولینک" placeholder="لطفا آیدی اینستاگرام خود را وارد کنید ...">
+                    <span className="flex items-center text-line absolute top-0 bottom-0 end-2" dir="ltr">
+                      https://colk.ir/
+                    </span>
+                  </Field>
                   <Field name="title" label="نام/عنوان" placeholder="لطفا نام/عنوان خود را وارد کنید ..." />
                   <Field name="subTitle" label="زیر عنوان" placeholder="لطفا زیر عنوان خود را وارد کنید ..." />
                   <Button type="secondary" className="px-4 ml-2" onClick={() => setStep(0)}>
