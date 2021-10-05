@@ -401,7 +401,7 @@ export const CustomizeHandlare = (props = DEFAULT_CUSTOMIZE_OPTIONS) => {
                   onChange={(value) => setFieldValue(`customize.${idx}.type`, value, false)}
                 />
               ) : null}
-              {custom?.type !== 'default' && customizeProps[idx].color.available ? (
+              {customizeProps[idx].color.available ? (
                 <Disclosure label={customizeProps[idx].color.label}>
                   <ChooseColor
                     active={custom?.color}
@@ -410,7 +410,7 @@ export const CustomizeHandlare = (props = DEFAULT_CUSTOMIZE_OPTIONS) => {
                   />
                 </Disclosure>
               ) : null}
-              {customizeProps[idx].second.available ? (
+              {custom?.type !== 'default' && customizeProps[idx].second.available ? (
                 <Disclosure label={customizeProps[idx].second.label}>
                   <ChooseColor nullable active={custom?.second} setActive={(color) => setFieldValue(`customize.${idx}.second`, color)} />
                 </Disclosure>

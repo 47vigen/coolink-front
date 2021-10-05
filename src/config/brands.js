@@ -1,4 +1,4 @@
-export const BRANDS = {
+export const brands = {
   telegram: {
     from: 'blue-300',
     to: 'blue-400',

@@ -7,6 +7,7 @@ export const SHOW_ME = gql`
       name
       picture
       email
+      role
     }
   }
 `

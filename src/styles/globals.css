@@ -18,6 +18,21 @@ html {
   scroll-behavior: smooth;
 }
 
+button {
+  outline: 0;
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  -webkit-appearance: button;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -khtml-user-select: none;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 #__next {
   flex: 1;
   display: flex;
@@ -54,14 +69,14 @@ html {
   transform-origin: center bottom;
 }
 
-.option-btn {
+/* .option-btn {
   background: #7ecfe2;
   background: -webkit-linear-gradient(to right, #7ecfe2 0%, #c8d5a7 100%);
   background: -moz-linear-gradient(to right, #7ecfe2 0%, #c8d5a7 100%);
   background: linear-gradient(to right, #7ecfe2 0%, #c8d5a7 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
+} */
 
 .empty-btn {
   background-color: white;

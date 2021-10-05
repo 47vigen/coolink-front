@@ -10,5 +10,6 @@ import Disclosure from './Disclosure'
 import RadioGroup from './RadioGroup'
 import Switch from './Switch'
 import DragableList from './DragableList'
+import Loader from './Loader'
 
-export { Button, Field, Upload, Icon, Link, Modal, Avatar, Element, Listbox, Disclosure, RadioGroup, Switch, DragableList }
+export { Button, Field, Upload, Icon, Link, Modal, Avatar, Element, Listbox, Disclosure, RadioGroup, Switch, DragableList, Loader }

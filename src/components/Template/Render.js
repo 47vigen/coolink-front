@@ -8,9 +8,10 @@ import { EmojiOrIcon } from '../Tools/EmojiPicker'
 
 // ** Utils
 import classNames from '../../utils/classNames'
+import onDeepLink from '../../utils/onDeepLink'
 
 // ** Configs
-import { BRANDS } from '../../config'
+import { brands } from '../../config'
 
 import { textCustomize } from './Customize'
 import dynamic from 'next/dynamic'
@@ -82,19 +83,15 @@ const RenderInsideOfSection = React.memo(function Component({ item: { type, ...d
 
     case 'services':
       return data.items?.map(({ id, type, key, value, ...item }, index) => {
-        const url = () => {
-          switch (type) {
-            default:
-              return value
-          }
-        }
-        const brandStyle = item.options[1].value == 1 ? { type: 'gradient', second: 'white', ...BRANDS[type] } : {}
+        const brandStyle = item.options[1].value == 1 ? { type: 'gradient', second: 'white', ...brands[type] } : {}
+
         return (
           <LinkItem
             key={id}
-            url={url()}
+            url={value}
             options={item?.options}
             arrangement={data.arrangement}
+            {...onDeepLink(type, value)}
             customize={{ ...customize, ...custom(0), ...brandStyle }}
           >
             {key}
@@ -116,9 +113,9 @@ const RenderInsideOfSection = React.memo(function Component({ item: { type, ...d
             url={`https://www.google.com/maps/@${data.items[0]?.value},${data.items[1]?.value},18z`}
             deep-link={`comgooglemapsurl://www.google.com/maps/@${data.items[0]?.value},${data.items[1]?.value},18z`}
             deep-link-ad={`intent://www.google.com/maps/@${data.items[0]?.value},${data.items[1]?.value},18z#Intent;package=com.google.android.apps.maps;scheme=https;end`}
-            emojiOrIcon={{ key: 'icon', value: 'marker' }}
+            options={data.items[2]?.options}
           >
-            باز کردن در نقشه
+            {data.items[2]?.value}
           </LinkItem>
         </>
       )

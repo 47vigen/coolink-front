@@ -10,7 +10,7 @@ import { getImgSrc } from '../../utils/getImgSrc'
 
 const AVATAR_COLORS = ['#B2BEC3', '#273C75', '#FFD32A', '#DFBCF9', '#Eb2F06', '#75E08F']
 
-function Avatar({ url, fullName, loading, rounded, className, icon }) {
+function Avatar({ url, fullName, loading, rounded, className, icon, priority }) {
   const [backgroundColor] = React.useState(AVATAR_COLORS[Math.floor(Math.random() * AVATAR_COLORS.length)])
 
   return (
@@ -33,7 +33,7 @@ function Avatar({ url, fullName, loading, rounded, className, icon }) {
       )}
       {url ? (
         <div className="absolute top-[-0.5px] left-[-0.5px] right-[-0.5px] bottom-[-0.5px]">
-          <Image alt="avatar" key={url} width={100} height={100} src={getImgSrc(url)} />
+          <Image alt="avatar" key={url} width={100} height={100} src={getImgSrc(url)} priority={priority} />
         </div>
       ) : null}
     </div>

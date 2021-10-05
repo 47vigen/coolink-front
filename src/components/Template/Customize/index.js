@@ -44,6 +44,18 @@ function Customize({ type, page, values, setFieldValue }) {
   }, [page.style?.customize, type])
 
   switch (type) {
+    case 'links':
+      return (
+        <Handler
+          toggle
+          arrangement
+          values={values}
+          defaultProps={defaultProps}
+          setFieldValue={setFieldValue}
+          customizeProps={[{ animate: { available: true } }]}
+        />
+      )
+
     case 'text':
       return (
         <Handler
@@ -121,7 +133,7 @@ function Customize({ type, page, values, setFieldValue }) {
           values={values}
           defaultProps={defaultProps}
           setFieldValue={setFieldValue}
-          arrangement={['links', 'contacts', 'services'].includes(type)}
+          arrangement={['contacts', 'services'].includes(type)}
         />
       )
   }

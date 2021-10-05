@@ -20,7 +20,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required('لطفا رمز عبور خود را وارد کنید').min(5, 'رمز عبور باید بیشتر از 5 کاراکتر باشد')
 })
 
-function Login() {
+function Login({ query }) {
   const [login] = useMutation(LOGIN)
   const { signIn } = useAuth()
 
@@ -29,15 +29,19 @@ function Login() {
   const onSubmit = React.useCallback(
     (variables) =>
       login({ variables })
-        .then(async ({ data: { login } }) => await signIn(login.token, true))
+        .then(async ({ data: { login } }) => {
+          await signIn(login.token, query?.ref || true)
+          toast.success('با موفقیت وارد شدید!', { id: 'login' })
+          return true
+        })
         .catch((err) => console.log(err)),
-    [signIn, login]
+    [query, signIn, login]
   )
 
   return (
     <Auth
       extra={
-        <Link href="/sign-up" className="py-2 my-2">
+        <Link replace href={`/sign-up${query?.ref ? '?ref=' + query.ref : ''}`} className="py-2 my-2">
           ثبت نام نکرده اید؟
         </Link>
       }
@@ -60,6 +64,14 @@ function Login() {
       </Formik>
     </Auth>
   )
+}
+
+export async function getServerSideProps({ query }) {
+  return {
+    props: {
+      query
+    }
+  }
 }
 
 export default Login

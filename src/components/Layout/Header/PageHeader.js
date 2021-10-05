@@ -1,4 +1,7 @@
 import React from 'react'
+import Image from 'next/image'
+
+// ** Utils
 import classNames from '../../../utils/classNames'
 import { getImgSrc } from '../../../utils/getImgSrc'
 
@@ -16,16 +19,31 @@ function PageHeader({ page, linked, onEdit }) {
       {page.style?.cover?.url ? (
         <Element
           hoverable={false}
-          className="h-40 -mb-10 rounded-t-none -mt-10 -mx-4 bg-cover"
-          customize={{ ...page.style?.customize, ...page.style?.cover?.customize }}
-          style={{
-            backgroundImage: `url('${getImgSrc(page.style.cover.url)}')`
+          className={classNames(
+            'h-40 -mb-10 rounded-t-none -mt-10 -mx-4 overflow-hidden',
+            page.style?.cover?.customize?.rounded === 'full' ? '!rounded-b-[100%]' : '',
+            page.style?.cover?.customize?.rounded === 'lg' ? '!rounded-b-3xl' : ''
+          )}
+          customize={{
+            ...page.style?.customize,
+            ...page.style?.cover?.customize
           }}
-        />
+        >
+          <Image
+            alt="cover"
+            width={500}
+            height={230}
+            objectFit="cover"
+            layout="responsive"
+            key={page.style.cover.url}
+            src={getImgSrc(page.style.cover.url)}
+            priority
+          />
+        </Element>
       ) : null}
       <div
         className={classNames(
-          'flex items-center container lg:max-w-md mx-auto',
+          'flex items-center container max-w-md mx-auto',
           page.avatar?.position === 'center' ? 'flex-col items-center' : 'space-s-4'
         )}
       >
@@ -51,10 +69,10 @@ const AvatarSection = ({ page, linked, onEdit }) => {
     <div className="relative w-min">
       {linked ? (
         <Link href={`/${page.slug}`}>
-          <Avatar url={page.avatar?.url} className="w-20 h-20" rounded={page.avatar?.customize?.rounded} />
+          <Avatar url={page.avatar?.url} className="w-20 h-20" rounded={page.avatar?.customize?.rounded} priority />
         </Link>
       ) : (
-        <Avatar url={page.avatar?.url} className="w-20 h-20" rounded={page.avatar?.customize?.rounded} />
+        <Avatar url={page.avatar?.url} className="w-20 h-20" rounded={page.avatar?.customize?.rounded} priority />
       )}
       {onEdit ? (
         <button className="absolute bottom-0 left-0 transition duration-300 hover:opacity-60" onClick={onEdit}>

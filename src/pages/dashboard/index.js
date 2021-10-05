@@ -1,40 +1,49 @@
 import React from 'react'
+import { NextSeo } from 'next-seo'
 
 // ** UI
 import Layout from '../../components/Layout'
-import { Avatar, Button, Icon } from '../../components/Tools'
+import { Avatar, Button, Icon, Loader, Link } from '../../components/Tools'
+import ConfirmEmail from '../../components/Tools/ConfirmEmail'
 
 // ** Graphql
 import { useQuery } from '@apollo/client'
 import { SHOW_MY_PAGES } from '../../graphql/queries'
 
+// ** Images
+import Image from 'next/image'
+import dude from '../../../public/images/dude.svg'
+
 function Dashboard(props) {
-  const { data, loading, error } = useQuery(SHOW_MY_PAGES)
+  const { data, loading } = useQuery(SHOW_MY_PAGES)
 
   return (
     <Layout dashboard className="space-y-4">
-      <div className="flex relative items-center bg-gradient-to-r from-primary to-primary-hover h-32 sm:h-22 rounded-lg px-10">
-        <div>
-          <img src="/images/dude.svg" className="absolute w-auto h-40 bottom-0 pt-2 transform ltr:scale-x-[-1]" />
+      <NextSeo title="داشبورد" noindex />
+      <div className="flex items-center justify-between bg-gradient-to-r from-primary to-primary-hover h-32 sm:h-22 rounded-lg md:px-10 px-4">
+        <div className="max-w-[13.7rem] min-w-[13.7rem] -mt-5">
+          <Image alt="dude" src={dude} width={250} height={176} className="transform ltr:scale-x-[-1]" />
         </div>
-        <div className="flex-1" />
-        <div className="space-y-1 text-white">
+        <div className="space-y-1 text-white -ms-10 md:ms-0">
           <h4 className="text-lg font-bold">به کولینک خوش آمدید</h4>
-          <div className="flex items-center">
-            <span className="text">شروع کنید</span>
+          <Link href="/dashboard/create" className="flex items-center hover:text-content">
+            شروع کنید
             <Icon name="angle-small-left" className="text-base" />
-          </div>
+          </Link>
         </div>
       </div>
       <Button type="secondary" className="w-full justify-between px-4">
         <span>آموزش ایجاد کولینک</span>
         <Icon name="graduation-cap" className="text-base" />
       </Button>
-      <div className="grid grid-cols-2 gap-4">
-        {data?.showMyPages?.map((item) => (
-          <Item key={item.id} {...item} />
-        ))}
-      </div>
+      <ConfirmEmail />
+      <Loader loading={loading} className="min-h-[10rem]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {data?.showMyPages?.map((item) => (
+            <Item key={item.id} {...item} />
+          ))}
+        </div>
+      </Loader>
     </Layout>
   )
 }
