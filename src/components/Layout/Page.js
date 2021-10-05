@@ -1,32 +1,23 @@
 import React from 'react'
-import Head from 'next/head'
 import { NextSeo } from 'next-seo'
 
 // ** UI
 import Link from '../Tools/Link'
 import PageHeader from './Header/PageHeader'
+import ThemeColor from '../Tools/ThemeColor'
 
 // ** Utils
 import { getImgSrc } from '../../utils/getImgSrc'
+import classNames from '../../utils/classNames'
 
 // ** Images
 import Image from 'next/image'
 import CoolinkLogo from '../../../public/images/coolink-logo.svg'
 
-// ** Utils
-import classNames from '../../utils/classNames'
-import { rgbToHex } from '../../utils/rgbToHex'
+// ** Config
 import Seo from '../../config/seo'
 
 function Page({ page, title, children }) {
-  const [themeColor, setThemeColor] = React.useState('')
-
-  React.useEffect(() => {
-    const colorComponent = document.getElementById('color')
-    const color = window.getComputedStyle(colorComponent).getPropertyValue('background-color')
-    setThemeColor(rgbToHex(color))
-  }, [])
-
   return (
     <div
       className={classNames(
@@ -37,31 +28,17 @@ function Page({ page, title, children }) {
         backgroundImage: page.style?.background?.url ? `url('${getImgSrc(page.style.background.url)}')` : null
       }}
     >
-      <Head>
-        <style>
-          {themeColor
-            ? `
-          #nprogress .bar {
-            background: ${themeColor} !important;
-          }
-          #nprogress .peg {
-            box-shadow: 0 0 10px ${themeColor}, 0 0 5px ${themeColor} !important;
-          }
-          #nprogress .spinner-icon {
-            border-top-color: ${themeColor} !important;
-            border-left-color: ${themeColor} !important;
-          }
-        `
-            : null}
-        </style>
-      </Head>
-      <NextSeo
-        {...Seo(themeColor || '#F1F1F1')}
-        title={title || page.title}
-        titleTemplate={title ? `%s | ${page.title}` : page.subTitle ? `%s | ${page.subTitle}` : '%s'}
-      />
+      <ThemeColor page={page}>
+        {(themeColor) => (
+          <NextSeo
+            {...Seo(themeColor || '#F1F1F1')}
+            title={title || page.title}
+            titleTemplate={title ? `%s | ${page.title}` : page.subTitle ? `%s | ${page.subTitle}` : '%s'}
+            description={page.subTitle}
+          />
+        )}
+      </ThemeColor>
       <PageHeader linked page={page} />
-      <span id="color" className={`sr-only bg-${page?.style?.customize?.color}`}></span>
       <main className="flex-1 container max-w-md mx-auto">{children}</main>
       <footer>
         <Link
