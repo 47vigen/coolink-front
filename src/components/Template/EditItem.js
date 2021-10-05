@@ -15,10 +15,12 @@ import { brands, services, contacts } from '../../config'
 // ** UI
 import { Button, Modal, Field, Listbox, Disclosure, Switch, Element, DragableList } from '../Tools'
 import { EmojiOrIcon, EmojiSelector } from '../Tools/EmojiPicker'
-// import generateDeepLink from '../../utils/generateDeepLink'
 
 // ** Validations
 import { section as sectionValidate } from '../../config/validations'
+
+// ** Utils
+import generateDeepLink from '../../utils/generateDeepLink'
 
 const dI = (item = {}) => ({ type: '', key: '', value: '', ...item })
 
@@ -185,9 +187,6 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
               <DragableList list={values.items} onChange={(items) => setFieldValue('items', items, false)}>
                 {({ item, idx, dragHandleProps, onOpenDisclosure, canDrag }) => {
                   const selected = (value = values.items[idx]?.type) => services.find((item) => item.value === value)
-                  // if (values.items[idx]?.type && values.items[idx]?.value) {
-                  //   console.log(generateDeepLink(values.items[idx]?.type, values.items[idx]?.value))
-                  // }
                   return (
                     <Disclosure
                       dragable={{ canDrag, dragHandleProps }}
@@ -238,6 +237,15 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
                         checked={values.items[idx].options[1]?.value === '1'}
                         onChange={(toggle) => setFieldValue(`items.${idx}.options.1`, { key: 'brandStyle', value: toggle ? '1' : '0' }, false)}
                       />
+                      {values.items[idx]?.type &&
+                      values.items[idx]?.value &&
+                      !generateDeepLink(values.items[idx].type, values.items[idx].value)['deep-link'] ? (
+                        <Switch
+                          label="این لینک اجبارا خارج از اینستاگرام باز شود؟"
+                          checked={values.items[idx].options[2]?.value === '1'}
+                          onChange={(toggle) => setFieldValue(`items.${idx}.options.2`, { key: 'redirect', value: toggle ? '1' : '0' }, false)}
+                        />
+                      ) : null}
                       <EmojiFeild idx={idx} values={values} setFieldValue={setFieldValue} />
                     </Disclosure>
                   )
