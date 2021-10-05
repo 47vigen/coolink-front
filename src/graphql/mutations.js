@@ -65,6 +65,13 @@ export const CREATE_PAGE = gql`
   mutation CreatePage($pageInput: PageInput!) {
     createPage(pageInput: $pageInput) {
       id
+      pk
+      slug
+      title
+      subTitle
+      avatar {
+        url
+      }
     }
   }
 `
