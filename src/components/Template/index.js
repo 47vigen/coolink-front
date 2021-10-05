@@ -1,10 +1,12 @@
 import React from 'react'
-import { uuid, isUuid } from 'uuidv4'
+import { NextSeo } from 'next-seo'
+import { v4 as uuid, validate as isUuid } from 'uuid'
 import { Menu, Transition } from '@headlessui/react'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 // ** UI
 import { Button, Icon } from '../Tools'
+import ThemeColor from '../Tools/ThemeColor'
 import PageHeader from '../Layout/Header/PageHeader'
 
 // ** Template
@@ -23,6 +25,9 @@ import deepCleaner from '../../utils/deepCleaner'
 import { useMutation } from '@apollo/client'
 import { SHOW_PAGE_WITH_SECTIONS, SHOW_SECTIONS } from '../../graphql/queries'
 import { DESTROY_SECTION, UPDATE_INSERT_MANY_SECTIONS, UPDATE_PAGE } from '../../graphql/mutations'
+
+// ** Config
+import Seo from '../../config/seo'
 
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list)
@@ -247,6 +252,7 @@ function Edit({ page: pageData, sections: sectionsData }) {
         backgroundImage: page.style?.background?.url ? `url('${getImgSrc(page.style.background.url)}')` : null
       }}
     >
+      <ThemeColor page={page}>{(themeColor) => <NextSeo {...Seo(themeColor || '#F1F1F1')} title={`ویرایش ${page.title}`} noindex />}</ThemeColor>
       <PageHeader page={page} onEdit={openEditInfoModal} />
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable">
