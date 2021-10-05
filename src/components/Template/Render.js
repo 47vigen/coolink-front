@@ -8,7 +8,7 @@ import { EmojiOrIcon } from '../Tools/EmojiPicker'
 
 // ** Utils
 import classNames from '../../utils/classNames'
-import generateDeepLink from '../../utils/generateDeepLink'
+import onDeepLink from '../../utils/onDeepLink'
 
 // ** Configs
 import { brands } from '../../config'
@@ -84,13 +84,14 @@ const RenderInsideOfSection = React.memo(function Component({ item: { type, ...d
     case 'services':
       return data.items?.map(({ id, type, key, value, ...item }, index) => {
         const brandStyle = item.options[1].value == 1 ? { type: 'gradient', second: 'white', ...brands[type] } : {}
+
         return (
           <LinkItem
             key={id}
             url={value}
             options={item?.options}
             arrangement={data.arrangement}
-            {...generateDeepLink(type, value)}
+            {...onDeepLink(type, value)}
             customize={{ ...customize, ...custom(0), ...brandStyle }}
           >
             {key}
