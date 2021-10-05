@@ -1,6 +1,53 @@
 import * as Yup from 'yup'
 import { contacts, services, animate, borderStyle, direction, rounded, type, types } from '.'
 
+export const customize = Yup.object().shape({
+  type: Yup.string().oneOf(type),
+  rounded: Yup.string().oneOf(rounded).nullable(),
+  animate: Yup.string().oneOf(animate).nullable(),
+  color: Yup.string()
+    .matches(/[a-z]+-[1-9]0{1,2}/g)
+    .nullable(),
+  second: Yup.string()
+    .matches(/[a-z]+-[1-9]0{1,2}/g)
+    .nullable(),
+  border: Yup.string()
+    .matches(/[a-z]+-[1-9]0{1,2}/g)
+    .nullable(),
+  borderStyle: Yup.string().oneOf(borderStyle).nullable(),
+  direction: Yup.string().oneOf(direction).nullable(),
+  from: Yup.string()
+    .matches(/[a-z]+-[1-9]0{1,2}/g)
+    .nullable(),
+  to: Yup.string()
+    .matches(/[a-z]+-[1-9]0{1,2}/g)
+    .nullable(),
+  via: Yup.string()
+    .matches(/[a-z]+-[1-9]0{1,2}/g)
+    .nullable()
+})
+
+export const options = Yup.array().of(
+  Yup.object().shape({
+    key: Yup.string().nullable(),
+    value: Yup.string().nullable()
+  })
+)
+
+export const style = Yup.object().shape({
+  customize,
+  background: Yup.object().shape({
+    url: Yup.string().nullable(),
+    color: Yup.string()
+      .matches(/[a-z]+-[1-9]0{1,2}/g)
+      .nullable()
+  }),
+  cover: Yup.object().shape({
+    url: Yup.string().nullable(),
+    customize
+  })
+})
+
 export const page = Yup.object().shape({
   pk: Yup.string()
     .required()
@@ -16,20 +63,6 @@ export const page = Yup.object().shape({
     customize
   }),
   style
-})
-
-export const style = Yup.object().shape({
-  customize,
-  background: Yup.object().shape({
-    url: Yup.string().nullable(),
-    color: Yup.string()
-      .matches(/[a-z]+-[1-9]0{1,2}/g)
-      .nullable()
-  }),
-  cover: Yup.object().shape({
-    url: Yup.string().nullable(),
-    customize
-  })
 })
 
 export const section = Yup.object().shape({
@@ -208,37 +241,4 @@ export const section = Yup.object().shape({
   arrangement: Yup.string().nullable(),
   customized: Yup.boolean().default(false),
   customize: Yup.array().of(customize)
-})
-
-export const options = Yup.array().of(
-  Yup.object().shape({
-    key: Yup.string().nullable(),
-    value: Yup.string().nullable()
-  })
-)
-
-export const customize = Yup.object().shape({
-  type: Yup.string().oneOf(type),
-  rounded: Yup.string().oneOf(rounded).nullable(),
-  animate: Yup.string().oneOf(animate).nullable(),
-  color: Yup.string()
-    .matches(/[a-z]+-[1-9]0{1,2}/g)
-    .nullable(),
-  second: Yup.string()
-    .matches(/[a-z]+-[1-9]0{1,2}/g)
-    .nullable(),
-  border: Yup.string()
-    .matches(/[a-z]+-[1-9]0{1,2}/g)
-    .nullable(),
-  borderStyle: Yup.string().oneOf(borderStyle).nullable(),
-  direction: Yup.string().oneOf(direction).nullable(),
-  from: Yup.string()
-    .matches(/[a-z]+-[1-9]0{1,2}/g)
-    .nullable(),
-  to: Yup.string()
-    .matches(/[a-z]+-[1-9]0{1,2}/g)
-    .nullable(),
-  via: Yup.string()
-    .matches(/[a-z]+-[1-9]0{1,2}/g)
-    .nullable()
 })
