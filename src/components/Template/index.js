@@ -252,7 +252,7 @@ function Edit({ page: pageData, sections: sectionsData }) {
         backgroundImage: page.style?.background?.url ? `url('${getImgSrc(page.style.background.url)}')` : null
       }}
     >
-      <ThemeColor page={page}>{(themeColor) => <NextSeo {...Seo(themeColor || '#F1F1F1')} title={`ویرایش ${page.title}`} noindex />}</ThemeColor>
+      <ThemeColor page={page}>{(themeColor) => <NextSeo {...Seo(themeColor)} title={`ویرایش ${page.title}`} noindex />}</ThemeColor>
       <PageHeader page={page} onEdit={openEditInfoModal} />
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable">

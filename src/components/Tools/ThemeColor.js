@@ -5,7 +5,7 @@ import Head from 'next/head'
 import { rgbToHex } from '../../utils/rgbToHex'
 
 function ThemeColor({ page, children }) {
-  const [themeColor, setThemeColor] = React.useState('')
+  const [themeColor, setThemeColor] = React.useState(undefined)
 
   React.useEffect(() => {
     const colorComponent = document.getElementById('color')
