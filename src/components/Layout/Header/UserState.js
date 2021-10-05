@@ -21,7 +21,7 @@ function Header(props) {
             {({ open }) => (
               <div className="flex items-center space-s-2">
                 <Avatar url={user.picture} fullName={user.name} className="w-8 h-8" />
-                <span className="hidden md:!block">{user.name}</span>
+                <span className="hidden md:!block capitalize">{user.name}</span>
                 <Icon name="angle-small-left" className={classNames('transition ease-in-out duration-200', open ? 'transform -rotate-90' : '')} />
               </div>
             )}
