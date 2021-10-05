@@ -43,7 +43,6 @@ const RenderEditItem = React.memo(function Component({ page, currentEditItem: { 
     >
       {({ isSubmitting, setFieldValue, values, errors }) => (
         <Form className="space-y-4">
-          {console.log({ values, errors })}
           <Tab.Panels>
             <Tab.Panel className="space-y-4">
               <InsideBody type={type} values={values} setFieldValue={setFieldValue} />
