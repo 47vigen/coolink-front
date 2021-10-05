@@ -1,6 +1,7 @@
 export const services = [
   {
     label: 'تلگرام',
+    input: 'لینک یا آیدی تلگرام',
     value: 'telegram',
     options: [
       {
@@ -57,6 +58,7 @@ export const services = [
   },
   {
     label: 'واتساپ',
+    input: 'شماره واتساپ',
     value: 'whatsapp',
     options: [
       {
@@ -113,6 +115,7 @@ export const services = [
   },
   {
     label: 'اینستاگرام',
+    input: 'آیدی اینستاگرام',
     value: 'instagram',
     options: [
       {
@@ -155,6 +158,7 @@ export const services = [
   },
   {
     label: 'توییتر',
+    input: 'آیدی توییتر',
     value: 'twitter',
     options: [
       {
@@ -238,7 +242,8 @@ export const services = [
     ]
   },
   {
-    label: 'تیک تاک',
+    label: 'تیک‌تاک',
+    input: 'آیدی تیک‌تاک',
     value: 'tiktok',
     options: [
       {
