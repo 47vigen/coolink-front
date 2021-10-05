@@ -223,13 +223,17 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
                         }
                       />
                       <Field name={`items.${idx}.key`} label="عنوان" placeholder="عنوان را وارد کنید ..." />
-                      <Field name={`items.${idx}.value`} label={selected().label} placeholder={`${selected().label} را وارد کنید ...`} />
+                      <Field
+                        name={`items.${idx}.value`}
+                        label={selected().input || `لینک ${selected().label}`}
+                        placeholder={`${selected().input || `لینک ${selected().label}`} را وارد کنید ...`}
+                      />
                       <Switch
                         label="از رنگ‌بندی برند استفاده شود؟"
                         checked={item.options[1]?.value === '1'}
                         onChange={(toggle) => setFieldValue(`items.${idx}.options.1`, { key: 'brandStyle', value: toggle ? '1' : '0' }, false)}
                       />
-                      {item?.type && item?.value && !generateDeepLink(item.type, item.value)['deep-link'] ? (
+                      {item?.type && !generateDeepLink(item.type, item.value)['deep-link'] ? (
                         <Switch
                           label="این لینک اجبارا خارج از اینستاگرام باز شود؟"
                           checked={item.options[2]?.value === '1'}
