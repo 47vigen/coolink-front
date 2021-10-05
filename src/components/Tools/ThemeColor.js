@@ -5,13 +5,13 @@ import Head from 'next/head'
 import { rgbToHex } from '../../utils/rgbToHex'
 
 function ThemeColor({ page, children }) {
+  const ref = React.useRef()
   const [themeColor, setThemeColor] = React.useState(undefined)
 
   React.useEffect(() => {
-    const colorComponent = document.getElementById('color')
-    const color = window.getComputedStyle(colorComponent).getPropertyValue('background-color')
+    const color = window.getComputedStyle(ref.current).getPropertyValue('background-color')
     setThemeColor(rgbToHex(color))
-  }, [])
+  }, [ref?.current?.className])
 
   return (
     <>
@@ -34,7 +34,7 @@ function ThemeColor({ page, children }) {
         </style>
       </Head>
       {children(themeColor)}
-      <span id="color" className={`sr-only bg-${page?.style?.customize?.color}`} />
+      <span ref={ref} className={`sr-only bg-${page?.style?.customize?.color}`} />
     </>
   )
 }
