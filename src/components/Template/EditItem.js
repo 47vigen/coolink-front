@@ -20,7 +20,7 @@ import { EmojiOrIcon, EmojiSelector } from '../Tools/EmojiPicker'
 import { section as sectionValidate } from '../../config/validations'
 
 // ** Utils
-import generateDeepLink from '../../utils/generateDeepLink'
+import { generateDeepLink } from '../../utils/onDeepLink'
 
 const dI = (item = {}) => ({ type: '', key: '', value: '', ...item })
 
