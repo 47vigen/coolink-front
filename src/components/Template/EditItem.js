@@ -99,10 +99,10 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
                     <Field name={`items.${idx}.value`} label="آدرس لینک" placeholder="آدرس لینک را وارد کنید ..." />
                     <Switch
                       label="این لینک اجبارا خارج از اینستاگرام باز شود؟"
-                      checked={values.items[idx].options[1]?.value === '1'}
+                      checked={item.options[1]?.value === '1'}
                       onChange={(toggle) => setFieldValue(`items.${idx}.options.1`, { key: 'redirect', value: toggle ? '1' : '0' }, false)}
                     />
-                    <EmojiFeild idx={idx} values={values} setFieldValue={setFieldValue} />
+                    <EmojiFeild idx={idx} item={item} setFieldValue={setFieldValue} />
                   </Disclosure>
                 )}
               </DragableList>
@@ -130,12 +130,12 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
             <>
               <DragableList list={values.items} onChange={(items) => setFieldValue('items', items, false)}>
                 {({ item, idx, dragHandleProps, onOpenDisclosure, canDrag }) => {
-                  const selected = (value = values.items[idx]?.type) => contacts.find((item) => item.value === value)
+                  const selected = (value = item?.type) => contacts.find((item) => item.value === value)
                   return (
                     <Disclosure
                       dragable={{ canDrag, dragHandleProps }}
                       isOpen={(open) => onOpenDisclosure(open)}
-                      label={values.items[idx]?.key || selected().label}
+                      label={item?.key || selected().label}
                       className="space-y-4 border border-line rounded-lg p-4 mt-4"
                       extera={
                         <Button
@@ -149,18 +149,14 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
                       <Listbox
                         label="راه ارتباطی"
                         options={contacts}
-                        value={values.items[idx]?.type}
+                        value={item?.type}
                         onChange={(value) =>
-                          setFieldValue(
-                            `items.${idx}`,
-                            { ...values.items[idx], type: value, key: selected(value).label, options: selected(value).options },
-                            false
-                          )
+                          setFieldValue(`items.${idx}`, { ...item, type: value, key: selected(value).label, options: selected(value).options }, false)
                         }
                       />
                       <Field name={`items.${idx}.key`} label="عنوان" placeholder="عنوان را وارد کنید ..." />
                       <Field name={`items.${idx}.value`} label={selected().label} placeholder={`${selected().label} را وارد کنید ...`} />
-                      <EmojiFeild idx={idx} values={values} setFieldValue={setFieldValue} />
+                      <EmojiFeild idx={idx} item={item} setFieldValue={setFieldValue} />
                     </Disclosure>
                   )
                 }}
@@ -186,12 +182,12 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
             <>
               <DragableList list={values.items} onChange={(items) => setFieldValue('items', items, false)}>
                 {({ item, idx, dragHandleProps, onOpenDisclosure, canDrag }) => {
-                  const selected = (value = values.items[idx]?.type) => services.find((item) => item.value === value)
+                  const selected = (value = item?.type) => services.find((item) => item.value === value)
                   return (
                     <Disclosure
                       dragable={{ canDrag, dragHandleProps }}
                       isOpen={(open) => onOpenDisclosure(open)}
-                      label={values.items[idx]?.key || selected().label}
+                      label={item?.key || selected().label}
                       className="space-y-4 border border-line rounded-lg p-4 mt-4"
                       extera={
                         <Button
@@ -205,7 +201,7 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
                       <Listbox
                         label="سرویس ها"
                         options={services}
-                        value={values.items[idx]?.type}
+                        value={item?.type}
                         renderLabel={({ option, selected }) => (
                           <Element
                             className="flex items-center -my-1 -mx-2 py-1.5 px-4"
@@ -223,30 +219,24 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
                           </Element>
                         )}
                         onChange={(value) =>
-                          setFieldValue(
-                            `items.${idx}`,
-                            { ...values.items[idx], type: value, key: selected(value).label, options: selected(value).options },
-                            false
-                          )
+                          setFieldValue(`items.${idx}`, { ...item, type: value, key: selected(value).label, options: selected(value).options }, false)
                         }
                       />
                       <Field name={`items.${idx}.key`} label="عنوان" placeholder="عنوان را وارد کنید ..." />
                       <Field name={`items.${idx}.value`} label={selected().label} placeholder={`${selected().label} را وارد کنید ...`} />
                       <Switch
                         label="از رنگ‌بندی برند استفاده شود؟"
-                        checked={values.items[idx].options[1]?.value === '1'}
+                        checked={item.options[1]?.value === '1'}
                         onChange={(toggle) => setFieldValue(`items.${idx}.options.1`, { key: 'brandStyle', value: toggle ? '1' : '0' }, false)}
                       />
-                      {values.items[idx]?.type &&
-                      values.items[idx]?.value &&
-                      !generateDeepLink(values.items[idx].type, values.items[idx].value)['deep-link'] ? (
+                      {item?.type && item?.value && !generateDeepLink(item.type, item.value)['deep-link'] ? (
                         <Switch
                           label="این لینک اجبارا خارج از اینستاگرام باز شود؟"
-                          checked={values.items[idx].options[2]?.value === '1'}
+                          checked={item.options[2]?.value === '1'}
                           onChange={(toggle) => setFieldValue(`items.${idx}.options.2`, { key: 'redirect', value: toggle ? '1' : '0' }, false)}
                         />
                       ) : null}
-                      <EmojiFeild idx={idx} values={values} setFieldValue={setFieldValue} />
+                      <EmojiFeild idx={idx} item={item} setFieldValue={setFieldValue} />
                     </Disclosure>
                   )
                 }}
@@ -279,7 +269,7 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
             className="h-[20rem] flex-1 rounded-md z-0"
           />
           <Field name="items.2.value" label="عنوان آدرس" placeholder="عنوان آدرس را وارد کنید ..." />
-          <EmojiFeild idx={2} values={values} setFieldValue={setFieldValue} />
+          <EmojiFeild idx={2} item={item} setFieldValue={setFieldValue} />
         </>
       )
 
@@ -294,7 +284,7 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
                   <Disclosure
                     dragable={{ canDrag, dragHandleProps }}
                     isOpen={(open) => onOpenDisclosure(open)}
-                    label={values.items[idx]?.key || `پرسش‌وپاسخ #${idx + 1}`}
+                    label={item?.key || `پرسش‌وپاسخ #${idx + 1}`}
                     className="space-y-4 border border-line rounded-lg p-4 mt-4"
                     extera={
                       <Button
@@ -326,7 +316,7 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
       return (
         <>
           <Field name="items.0.key" label="عنوان" placeholder="عنوان را وارد کنید ..." />
-          <EmojiFeild idx={0} values={values} setFieldValue={setFieldValue} />
+          <EmojiFeild idx={0} item={item} setFieldValue={setFieldValue} />
         </>
       )
 
@@ -334,7 +324,7 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
       return (
         <>
           <Field name="items.0.key" label="عنوان" placeholder="عنوان را وارد کنید ..." />
-          <EmojiFeild idx={0} values={values} setFieldValue={setFieldValue} />
+          <EmojiFeild idx={0} item={item} setFieldValue={setFieldValue} />
         </>
       )
 
@@ -347,8 +337,8 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
   }
 })
 
-const EmojiFeild = React.memo(function Component({ idx, values, setFieldValue }) {
-  const selected = React.useMemo(() => values.items[idx]?.options[0], [idx, values])
+const EmojiFeild = React.memo(function Component({ idx, item, setFieldValue }) {
+  const selected = React.useMemo(() => item?.options[0], [item])
   const iconLabel = React.useMemo(
     () => selected?.value?.split('|')[0]?.replace(/-/g, ' ')?.replace(/_/g, ' ')?.replace('brand', '')?.trim() || 'انتخاب آیکون',
     [selected]
