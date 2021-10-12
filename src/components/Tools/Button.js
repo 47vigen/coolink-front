@@ -1,7 +1,12 @@
 import React from 'react'
 import Link from 'next/link'
-import classNames from '../../utils/classNames'
+import Router from 'next/router'
+
+// ** UI
 import Icon from './Icon'
+
+// ** Utils
+import classNames from '../../utils/classNames'
 
 function Button({
   children,
@@ -20,6 +25,7 @@ function Button({
   disabled,
   iconClassName
 }) {
+  const [pageLoading, setPageLoading] = React.useState(false)
   const [currentLoading, setCurrentLoading] = React.useState(false)
 
   const roundedClass = React.useMemo(() => (circle ? 'rounded-full' : roundless ? 'rounded' : 'rounded-md'), [circle, roundless])
@@ -42,6 +48,10 @@ function Button({
         return `bg-primary hover:bg-opacity-80 text-white`
     }
   }, [type])
+
+  Router.events.on('routeChangeStart', () => setPageLoading(true))
+  Router.events.on('routeChangeComplete', () => setPageLoading(false))
+  Router.events.on('routeChangeError', () => setPageLoading(false))
 
   const borderedClasses = React.useMemo(() => {
     switch (type) {
@@ -68,7 +78,7 @@ function Button({
       <button
         className={classNames(bordered ? borderedClasses : typeClasses, roundedClass, defaultClasses, disabledClasses, className)}
         onClick={
-          !disabled && !loading && !currentLoading
+          !disabled && !loading && !currentLoading && !pageLoading
             ? autoLoading
               ? async () => {
                   setCurrentLoading(true)
