@@ -1,4 +1,5 @@
 import React from 'react'
+import Router from 'next/router'
 import { NextSeo } from 'next-seo'
 
 // ** UI
@@ -18,6 +19,21 @@ import CoolinkLogo from '../../../public/images/coolink-logo.svg'
 import Seo from '../../config/seo'
 
 function Page({ page, title, children }) {
+  // ** Change favicon
+  React.useEffect(() => {
+    const timeout = setTimeout(() => {
+      ;[...document.getElementsByTagName('link')].map((link) => {
+        if (link.type === 'image/x-icon') {
+          link.href = getImgSrc(page.avatar?.url)
+        }
+        return link
+      })
+    }, 50)
+    return () => {
+      clearTimeout(timeout)
+    }
+  }, [page.avatar?.url])
+
   return (
     <div
       className={classNames(
