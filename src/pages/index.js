@@ -145,7 +145,6 @@ import { Icon } from '../components/Tools'
 function Soon(props) {
   return (
     <div className="flex-1 flex justify-center items-center text-xs">
-      <NextSeo title="500" />
       <h1 className="text-primary font-bold text-5xl ml-4" dir="ltr">
         Soon!
       </h1>
