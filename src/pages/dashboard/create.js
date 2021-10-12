@@ -106,7 +106,8 @@ function Create(props) {
           setStep(2)
           const newAvatarUrl = avatar.url?.includes('base64') ? await uploadBase64Image(values.pk, avatar.url) : avatar.url
           await createPage({ variables: { pageInput: { ...values, avatar: { url: newAvatarUrl } } } })
-          return await Router.push(`/dashboard/edit/${values.slug}`)
+          Router.push(`/dashboard/edit/${values.slug}`)
+          return true
         } catch (err) {
           setStep(1)
           return console.log(err)
