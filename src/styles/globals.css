@@ -1,4 +1,24 @@
 @font-face {
+  font-family: Peyda;
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+  src: url('/fonts/eot/peyda-regular.eot');
+  src: local('Peyda'), url('/fonts/eot/peyda-regular.eot') format('embedded-opentype'), url('/fonts/woff/peyda-regular.woff') format('woff'),
+    url('/fonts/woff2/peyda-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Peyda;
+  font-style: normal;
+  font-weight: bold;
+  font-display: swap;
+  src: url('/fonts/eot/peyda-regular.eot');
+  src: local('Peyda'), url('/fonts/eot/peyda-regular.eot') format('embedded-opentype'), url('/fonts/woff/peyda-bold.woff') format('woff'),
+    url('/fonts/woff2/peyda-bold.woff2') format('woff2');
+}
+
+@font-face {
   font-family: IRANSansX;
   font-style: normal;
   font-weight: normal;

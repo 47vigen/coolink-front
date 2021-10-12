@@ -126,7 +126,8 @@ module.exports = {
       pink: colors.pink
     },
     fontFamily: {
-      body: ['IRANSansX']
+      peyda: ['Peyda'],
+      iransans: ['IRANSansX']
     },
     fontWeight: {
       normal: 'normal',

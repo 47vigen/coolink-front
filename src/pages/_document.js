@@ -8,7 +8,7 @@ class HtmlDocument extends Document {
     return (
       <Html dir={isRtl(this.props.locale) ? 'rtl' : 'ltr'} className="min-h-full flex flex-col">
         <Head />
-        <body className="bg-body font-body text-sm flex-1 flex flex-col">
+        <body className="bg-body font-iransans text-sm flex-1 flex flex-col">
           <Main />
           <NextScript />
         </body>
