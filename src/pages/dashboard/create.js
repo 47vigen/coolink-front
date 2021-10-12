@@ -182,7 +182,7 @@ function Create(props) {
             </Form>
           )}
         </Formik>
-        <ConfirmEmail className="absolute inset-0 bg-white bg-opacity-50 flex justify-center items-center z-[1005] px-4 rounded-b-lg" />
+        <ConfirmEmail type="modal" />
       </Loader>
     </Layout>
   )
