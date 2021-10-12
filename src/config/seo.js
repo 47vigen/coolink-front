@@ -37,9 +37,9 @@ const Seo = (primary = '#05C46B') => ({
     { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/icons/favicon-32x32.png' },
     { rel: 'icon', type: 'image/png', sizes: '96x96', href: '/icons/favicon-96x96.png' },
     { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/icons/favicon-16x16.png' },
-    { rel: 'preload', href: '/fonts/woff/iransans-x-regular.woff', as: 'font', type: 'font/woff', crossorigin: 'anonymous' },
-    { rel: 'preload', href: '/fonts/woff/iransans-x-bold.woff', as: 'font', type: 'font/woff', crossorigin: 'anonymous' },
-    { rel: 'preload', href: '/fonts/ttf/icon.ttf?22ycys', as: 'font', type: 'font/truetype', crossorigin: 'anonymous' }
+    { rel: 'preload', href: '/fonts/woff/iransans-x-regular.woff', as: 'font', type: 'font/woff' },
+    { rel: 'preload', href: '/fonts/woff/iransans-x-bold.woff', as: 'font', type: 'font/woff' },
+    { rel: 'preload', href: '/fonts/ttf/icon.ttf?22ycys', as: 'font', type: 'font/truetype' }
   ]
 })
 
