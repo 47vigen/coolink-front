@@ -1,4 +1,5 @@
 import React from 'react'
+import { useAuth } from '../context/auth'
 // import { useKeenSlider } from 'keen-slider/react'
 // import 'keen-slider/keen-slider.min.css'
 
@@ -10,6 +11,8 @@ import { Button, Icon } from '../components/Tools'
 import classNames from '../utils/classNames'
 
 export default function Home() {
+  const { user } = useAuth()
+
   // const [sliderRef, slider] = useKeenSlider({
   //   slidesPerView: 1,
   //   spacing: 16,
@@ -36,7 +39,7 @@ export default function Home() {
       <section className="flex flex-col text-center">
         <div className="flex flex-col items-center space-y-2 mt-4">
           <h1 className="text-primary font-bold text-2xl">لینکاتو باحال کن !</h1>
-          <Button link="/dashboard/create" bordered className="w-max py-1 px-4">
+          <Button link={user.id ? '/dashboard/create' : '/sign-up?ref=/dashboard/create'} bordered className="w-max py-1 px-4">
             ایجاد رایگان اکانت کولینک
           </Button>
         </div>
