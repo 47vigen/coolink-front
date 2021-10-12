@@ -8,11 +8,11 @@ import Auth from '../components/Layout/Auth'
 import { Button, Field, Icon, Link } from '../components/Tools'
 
 // ** Context
-import { useAuth } from '../context/auth'
+// import { useAuth } from '../context/auth'
 
 // ** Graphql
-import { CREATE_USER } from '../graphql/mutations'
-import { useMutation } from '@apollo/client'
+// import { CREATE_USER } from '../graphql/mutations'
+// import { useMutation } from '@apollo/client'
 
 // ** Validation
 import * as Yup from 'yup'
@@ -22,21 +22,22 @@ const validationSchema = Yup.object().shape({
 })
 
 function SignUp({ query }) {
-  const [createUser] = useMutation(CREATE_USER)
-  const { signIn } = useAuth()
+  // const [createUser] = useMutation(CREATE_USER)
+  // const { signIn } = useAuth()
 
   const [show, setShow] = React.useState(false)
 
   const onSubmit = React.useCallback(
-    (variables) =>
-      createUser({ variables })
-        .then(async ({ data: { createUser } }) => {
-          await signIn(createUser.token, query?.ref || true)
-          toast.success('ثبت نام باموقیت انجام شد! لطفا ایمیل خود را بررسی کنید', { id: 'createUser', duration: 5000 })
-          return true
-        })
-        .catch((err) => console.log(err)),
-    [query, signIn, createUser]
+    (variables) => toast.success('اطلاعاتتون رو نگه دارید! ما هنوز تو راهیم :(', { id: 'createUser', duration: 5000 }),
+    []
+    // createUser({ variables })
+    //   .then(async ({ data: { createUser } }) => {
+    //     await signIn(createUser.token, query?.ref || true)
+    //     toast.success('ثبت نام باموقیت انجام شد! لطفا ایمیل خود را بررسی کنید', { id: 'createUser', duration: 5000 })
+    //     return true
+    //   })
+    //   .catch((err) => console.log(err)),
+    // [query, signIn, createUser]
   )
 
   return (
