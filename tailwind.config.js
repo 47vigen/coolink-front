@@ -8,6 +8,7 @@ module.exports = {
     extend: {
       // ** animation from https://github.com/animate-css/animate.css
       animation: {
+        'small-bounce': 'small-bounce 4s linear 0s infinite normal',
         bounce: 'bounce 1.5s linear 0s infinite normal',
         flash: 'flash 1.5s linear 0s infinite normal',
         pulse: 'pulse 1.5s ease-in-out 0s infinite normal',
@@ -22,6 +23,13 @@ module.exports = {
         heartBeat: 'heartBeat 1.5s ease-in-out 0s infinite normal'
       },
       keyframes: {
+        'small-bounce': {
+          '0%, 20%, 53%, 100%': { animationTimingFunction: 'cubic-bezier(0.215, 0.61, 0.355, 1)', transform: 'translate3d(0, 0, 0)' },
+          '40%, 43%': { animationTimingFunction: 'cubic-bezier(0.755, 0.05, 0.855, 0.06)', transform: 'translate3d(0, -10px, 0) scaleY(1.1)' },
+          '70%': { animationTimingFunction: 'cubic-bezier(0.755, 0.05, 0.855, 0.06)', transform: 'translate3d(0, -5px, 0) scaleY(1.05)' },
+          '80%': { animationTimingFunction: 'cubic-bezier(0.215, 0.61, 0.355, 1)', transform: 'translate3d(0, 0, 0) scaleY(0.95)' },
+          '90%': { transform: 'translate3d(0, -4px, 0) scaleY(1.02)' }
+        },
         bounce: {
           '0%, 20%, 53%, 100%': { animationTimingFunction: 'cubic-bezier(0.215, 0.61, 0.355, 1)', transform: 'translate3d(0, 0, 0)' },
           '40%, 43%': { animationTimingFunction: 'cubic-bezier(0.755, 0.05, 0.855, 0.06)', transform: 'translate3d(0, -20px, 0) scaleY(1.1)' },

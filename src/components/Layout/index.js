@@ -14,7 +14,7 @@ function Layout({ children, className, dashboard, footer = true }) {
   return (
     <>
       <Header />
-      <main className={classNames('flex-1 container mx-auto px-4', dashboard ? 'max-w-3xl py-8' : 'max-w-screen-xl', className)}>{children}</main>
+      <main className={classNames('flex-1 container mx-auto px-4', dashboard ? '' : '', className)}>{children}</main>
       {footer ? <Footer /> : null}
     </>
   )

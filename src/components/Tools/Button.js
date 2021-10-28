@@ -44,6 +44,8 @@ function Button({
         return `bg-line hover:bg-opacity-80 text-content`
       case 'ghost':
         return `bg-white hover:bg-opacity-80 text-content`
+      case 'black':
+        return `bg-content hover:bg-opacity-80 text-white`
       default:
         return `bg-primary hover:bg-opacity-80 text-white`
     }

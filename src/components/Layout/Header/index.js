@@ -21,7 +21,7 @@ function Header(props) {
 
   return (
     <>
-      <header className="container max-w-screen-xl flex justify-between items-center m-auto py-2 px-4">
+      <header className="container m-auto mb-4 p-4 flex justify-between items-center">
         <div className="md:w-40 flex items-center">
           <Button
             type="ghost"

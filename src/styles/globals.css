@@ -13,9 +13,9 @@
   font-style: normal;
   font-weight: bold;
   font-display: swap;
-  src: url('/fonts/eot/peyda-regular.eot');
-  src: local('Peyda'), url('/fonts/eot/peyda-regular.eot') format('embedded-opentype'), url('/fonts/woff/peyda-bold.woff') format('woff'),
-    url('/fonts/woff2/peyda-bold.woff2') format('woff2');
+  src: url('/fonts/eot/peyda-semi-bold.eot');
+  src: local('Peyda'), url('/fonts/eot/peyda-semi-bold.eot') format('embedded-opentype'), url('/fonts/woff/peyda-semi-bold.woff') format('woff'),
+    url('/fonts/woff2/peyda-semi-bold.woff2') format('woff2');
 }
 
 @font-face {
@@ -215,4 +215,41 @@ button {
 }
 .smooth-scrollbar::-webkit-scrollbar-corner {
   background: transparent;
+}
+
+.animate-small-bounce {
+  animation-duration: 4s;
+}
+
+.coolcard-slider {
+  height: 48px;
+  overflow: hidden;
+  position: relative;
+  transform: translate3d(0, 0, 0);
+}
+
+.coolcard-slider > div {
+  top: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2000px;
+  position: absolute;
+  transform: translate3d(0, 0, 0);
+  background: url('/images/box.svg');
+  animation: slider 128s linear infinite;
+}
+
+.coolcard-slider.reverse > div {
+  animation-direction: reverse;
+}
+
+@keyframes slider {
+  100% {
+    transform: translateX(-66.6666%);
+  }
+}
+
+.cards:hover > div:not(:hover) {
+  filter: blur(4px);
 }

@@ -115,7 +115,7 @@ function ChoosableMap({ className, position: currentPosition, onChoose }) {
           canChoose ? 'bottom-2' : '-bottom-8'
         )}
       >
-        <Button autoLoading roundless className="font-iransans text-sm" icon="cursor-finger" onClick={onChooseLocation}>
+        <Button autoLoading roundless className="font-peyda text-sm" icon="cursor-finger" onClick={onChooseLocation}>
           انتخاب نشانی
         </Button>
       </div>
