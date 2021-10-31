@@ -135,6 +135,12 @@ function Edit({ page, sections }) {
                     <Button className="w-full" disabled={!isNeedSave} onClick={() => save()} loading={loading}>
                       ذخیره آخرین تغییرات
                     </Button>
+                    <Button
+                      bordered
+                      type="secondary"
+                      icon="interrogation"
+                      className="px-3 text-base option-btn bg-body bg-opacity-10 backdrop-filter backdrop-blur-md group"
+                    />
                   </div>
                 </div>
               </div>
