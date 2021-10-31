@@ -114,13 +114,13 @@ function Edit({ page, sections }) {
                   </Button>
                 </div>
               </div>
-              <div className="flex-1 h-full pt-4 pb-24 lg:pb-10 lg:pt-[4.5rem] !bg-none lg:rounded-2xl lg:overflow-hidden lg:max-h-[calc(100vh-5rem)] lg:max-w-[26.5rem] lg:bg-no-repeat lg:bg-top lg:bg-phone">
+              <div className="flex-1 h-full pt-4 pb-28 lg:pb-10 lg:pt-[4.5rem] !bg-none lg:rounded-2xl lg:overflow-hidden lg:max-h-[calc(100vh-5rem)] lg:max-w-[26.5rem] lg:bg-no-repeat lg:bg-top lg:bg-phone">
                 <ThemeColor page={page}>{(themeColor) => <NextSeo {...Seo(themeColor)} title={`ویرایش ${page.title}`} noindex />}</ThemeColor>
                 <div className="lg:h-[calc(100vh-10rem)] lg:max-h-[44.5rem] lg:overflow-y-scroll lg:ps-12 lg:pe-5 lg:me-3 lg:rounded-b-3xl">
                   <PageHeader page={page} onEdit={openEditInfoModal} />
                   <Template page={page} sections={sections} onDragEnd={onDragEnd} openEditModal={openEditModal} />
                 </div>
-                <div className="lg:hidden fixed z-50 start-0 end-0 bottom-0 p-4 pt-12 space-y-2 bg-gradient-to-t from-white via-body">
+                <div className="lg:hidden fixed z-50 start-0 end-0 bottom-0 p-4 pt-14 space-y-2 bg-gradient-to-t from-white via-body">
                   <Button type="ghost" icon="plus-small" className="w-full" onClick={openAddModal}>
                     افزودن بلوک
                   </Button>
