@@ -2,6 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import { NextSeo } from 'next-seo'
 import { useAuth } from '../context/auth'
+import Seo from '../components/Tools/Seo'
 
 // ** UI
 import Layout from '../components/Layout'
@@ -37,6 +38,7 @@ function Home() {
 
   return user?.id ? (
     <Layout className="space-y-8">
+      <Seo title={user?.id ? null : 'بزودی ...'} />
       <section
         className="p-8 rounded-2xl bg-primary bg-cover bg-right lg:flex min-h-[26rem] lg:min-h-[29rem]"
         style={{ backgroundImage: "url('/images/slide-bg.svg')" }}
