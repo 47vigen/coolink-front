@@ -38,7 +38,7 @@ function Home() {
 
   return user?.id ? (
     <Layout className="space-y-8">
-      <Seo title={user?.id ? null : 'بزودی ...'} />
+      <Seo title="معرف، خودت باش!" />
       <section
         className="p-8 rounded-2xl bg-primary bg-cover bg-right lg:flex min-h-[26rem] lg:min-h-[29rem]"
         style={{ backgroundImage: "url('/images/slide-bg.svg')" }}
@@ -305,6 +305,7 @@ function Home() {
     </Layout>
   ) : (
     <div className="flex-1 flex justify-center items-center text-xs">
+      <Seo title="بزودی ..." />
       <h1 className="text-primary font-bold text-5xl ml-4" dir="ltr">
         Soon!
       </h1>
