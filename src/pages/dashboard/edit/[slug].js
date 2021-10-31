@@ -44,7 +44,7 @@ function Edit({ page, sections }) {
             openEditModal,
             onAddItem
           }) => (
-            <div className="flex flex-col lg:flex-row items-stretch">
+            <div className="flex flex-col lg:flex-row -mt-4 lg:mt-0 items-stretch">
               <div className="flex-1 flex flex-col lg:pe-8 lg:space-y-4">
                 <div className="flex items-center text-white space-s-2 bg-gradient-to-l from-primary to-primary-hover p-2 rounded-lg">
                   <Icon name="angle-small-left" />
@@ -120,7 +120,7 @@ function Edit({ page, sections }) {
                   <PageHeader page={page} onEdit={openEditInfoModal} />
                   <Template page={page} sections={sections} onDragEnd={onDragEnd} openEditModal={openEditModal} />
                 </div>
-                <div className="lg:hidden fixed start-0 end-0 bottom-0 p-4 pt-10 space-y-2 bg-gradient-to-t from-white via-body">
+                <div className="lg:hidden fixed z-50 start-0 end-0 bottom-0 p-4 pt-12 space-y-2 bg-gradient-to-t from-white via-body">
                   <Button type="ghost" icon="plus-small" className="w-full" onClick={openAddModal}>
                     افزودن بلوک
                   </Button>
