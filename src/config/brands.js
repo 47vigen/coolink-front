@@ -48,9 +48,9 @@ export const brands = {
     direction: 'l'
   },
   instagram: {
-    from: 'yellow-500',
-    to: 'blue-500',
-    via: null,
+    from: 'yellow-400',
+    to: 'pink-500',
+    via: 'red-500',
     direction: 'l'
   },
   youtube: {

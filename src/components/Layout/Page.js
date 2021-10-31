@@ -37,7 +37,7 @@ function Page({ page, title, children }) {
   return (
     <div
       className={classNames(
-        'w-full max-w-md md:my-4 md:rounded-xl mx-auto flex-1 flex flex-col p-4 overflow-hidden',
+        'w-full max-w-md lg:my-4 lg:rounded-xl mx-auto flex-1 flex flex-col p-4 overflow-hidden',
         page.style?.background?.color ? `bg-${page.style.background.color} bg-cover bg-top` : ''
       )}
       style={{

@@ -1,5 +1,5 @@
 import React from 'react'
-import Image from 'next/image'
+// import Image from 'next/image'
 import { Form, Formik } from 'formik'
 import { Tab } from '@headlessui/react'
 
@@ -11,8 +11,8 @@ import { ChooseColor } from './ChooseColor'
 import { DEFAULT_CUSTOMIZE, DefaultCustomize } from './Customize/Handler'
 
 // ** Utils
-import classNames from '../../utils/classNames'
-import { getImgSrc } from '../../utils/getImgSrc'
+// import classNames from '../../utils/classNames'
+// import { getImgSrc } from '../../utils/getImgSrc'
 
 // ** Validations
 import { style as styleValidate } from '../../config/validations'
@@ -32,10 +32,10 @@ function EditStyle({ isOpenEditStyle, closeEditStyleModal, pk, style, onEditStyl
                 <DefaultCustomize values={values} setFieldValue={setFieldValue} />
               </Tab.Panel>
               <Tab.Panel className="space-y-4">
-                <Disclosure label="رنگ پس زمینه">
+                <Disclosure label="رنگ پس زمینه" defaultOpen>
                   <ChooseColor nullable active={values.background?.color} setActive={(color) => setFieldValue('background.color', color)} />
                 </Disclosure>
-                <Disclosure label="تصویر پس زمینه" className="upload">
+                {/* <Disclosure label="تصویر پس زمینه" className="upload">
                   <Upload.Single
                     pk={pk}
                     type="background"
@@ -70,7 +70,7 @@ function EditStyle({ isOpenEditStyle, closeEditStyleModal, pk, style, onEditStyl
                     )}
                     <Icon name="plus" className="absolute bottom-0 left-0 bg-body text-sm leading-4 p-1 rounded-ts-md" />
                   </Upload.Single>
-                </Disclosure>
+                </Disclosure> */}
               </Tab.Panel>
             </Tab.Panels>
             <Button className="w-full" loading={isSubmitting} htmlType="submit">

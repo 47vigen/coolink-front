@@ -1,4 +1,24 @@
 @font-face {
+  font-family: Dana;
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+  src: url('/fonts/eot/dana-regular.eot');
+  src: local('Peyda'), url('/fonts/eot/dana-regular.eot') format('embedded-opentype'), url('/fonts/woff/dana-regular.woff') format('woff'),
+    url('/fonts/woff2/dana-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Dana;
+  font-style: normal;
+  font-weight: bold;
+  font-display: swap;
+  src: url('/fonts/eot/dana-bold.eot');
+  src: local('Peyda'), url('/fonts/eot/dana-bold.eot') format('embedded-opentype'), url('/fonts/woff/dana-bold.woff') format('woff'),
+    url('/fonts/woff2/dana-bold.woff2') format('woff2');
+}
+
+@font-face {
   font-family: Peyda;
   font-style: normal;
   font-weight: normal;
@@ -252,4 +272,10 @@ button {
 
 .cards:hover > div:not(:hover) {
   filter: blur(4px);
+}
+
+@media (min-width: 1024px) {
+  .lg\:bg-phone {
+    background-image: url('/images/phone.svg') !important;
+  }
 }

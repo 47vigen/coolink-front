@@ -26,7 +26,7 @@ function Header(props) {
           <Button
             type="ghost"
             icon="menu-burger"
-            className="-my-2 me-2 -ms-2 block md:hidden bg-transparent border-line border-e !min-h-0 h-[min-content] py-2 rounded-none"
+            className="-my-2 me-2 -ms-2 block lg:hidden bg-transparent border-line border-e !min-h-0 h-[min-content] py-2 rounded-none"
             onClick={() => setOpen(true)}
           />
           <UserState />
@@ -34,7 +34,7 @@ function Header(props) {
         <nav
           id="mobile-navbar"
           className={classNames(
-            'absolute start-0 end-0 flex bg-white top-0 py-3 px-4 z-10 transform transition-all md:relative md:p-0 md:bg-transparent md:shadow-none md:z-0 md:translate-y-0',
+            'absolute start-0 end-0 flex bg-white top-0 py-3 px-4 z-10 transform transition-all lg:relative lg:p-0 lg:bg-transparent lg:shadow-none lg:z-0 lg:translate-y-0',
             open ? 'shadow-lg' : '-translate-y-11'
           )}
         >
@@ -49,9 +49,9 @@ function Header(props) {
               <Link href={user.id ? '/dashboard/create' : '/sign-up?ref=/dashboard/create'}>شروع کنید!</Link>
             </li>
           </ul>
-          <Button type="ghost" icon="angle-small-up" className="block md:hidden ms-auto -m-2" onClick={() => setOpen(false)} />
+          <Button type="ghost" icon="angle-small-up" className="block lg:hidden ms-auto -m-2" onClick={() => setOpen(false)} />
         </nav>
-        <Link href="/" className="md:w-40 ms-4 md:ms-0">
+        <Link href="/" className="md:w-40 ms-4 lg:ms-0">
           <Image src={CoolinkLogo} alt="Coolink" />
         </Link>
       </header>

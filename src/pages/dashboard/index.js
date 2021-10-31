@@ -20,11 +20,11 @@ function Dashboard(props) {
   return (
     <Layout dashboard className="space-y-4">
       <NextSeo title="داشبورد" noindex />
-      <div className="flex items-center justify-between bg-gradient-to-r from-primary to-primary-hover h-32 sm:h-22 rounded-lg md:px-10 px-4">
+      <div className="flex items-center justify-between bg-gradient-to-r from-primary to-primary-hover h-32 sm:h-22 rounded-lg lg:px-10 px-4">
         <div className="max-w-[13.7rem] min-w-[13.7rem] -mt-5">
           <Image alt="dude" src={dude} width={250} height={176} className="transform ltr:scale-x-[-1]" />
         </div>
-        <div className="space-y-1 text-white -ms-10 md:ms-0">
+        <div className="space-y-1 text-white -ms-10 lg:ms-0">
           <h4 className="text-lg font-bold">به کولینک خوش آمدید</h4>
           <Link href="/dashboard/create" className="flex items-center hover:text-content">
             شروع کنید
@@ -38,7 +38,7 @@ function Dashboard(props) {
       </Button>
       <ConfirmEmail />
       <Loader loading={loading} className="min-h-[10rem]">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {data?.showMyPages?.map((item) => (
             <Item key={item.id} {...item} />
           ))}

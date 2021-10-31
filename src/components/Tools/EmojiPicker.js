@@ -120,7 +120,7 @@ export const EmojiSelector = React.memo(function Component({ onSelect }) {
               {({ values }) => (
                 <Form className="w-full">
                   <Field name="title" placeholder="جستجو کنید ..." className="focus:text-content" errorless />
-                  <div className="grid md:grid-cols-8 grid-cols-6 gap-1 pe-2 -ms-2 my-2 max-h-48 smooth-scrollbar overflow-y-auto overflow-x-hidden">
+                  <div className="grid lg:grid-cols-8 grid-cols-6 gap-1 pe-2 -ms-2 my-2 max-h-48 smooth-scrollbar overflow-y-auto overflow-x-hidden">
                     {searched(values.title)?.map(({ item: { type, name } }, idx) => (
                       <button
                         type="button"

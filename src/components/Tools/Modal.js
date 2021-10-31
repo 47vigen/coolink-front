@@ -11,7 +11,7 @@ import classNames from '../../utils/classNames'
 function Modal({ tabMode, children, isOpen, closeModal, labels, className, staticContent, theme = 'light' }) {
   return (
     <Transition appear show={isOpen} as={React.Fragment}>
-      <Dialog as="div" className="font-peyda fixed inset-0 z-[1001] overflow-y-auto" dir="rtl" onClose={closeModal} static={staticContent}>
+      <Dialog as="div" className="font-dana fixed inset-0 z-[1001] overflow-y-auto" dir="rtl" onClose={closeModal} static={staticContent}>
         <div className="min-h-screen p-4 text-center">
           <Transition.Child
             as={React.Fragment}

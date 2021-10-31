@@ -1,21 +1,26 @@
 import React from 'react'
+import { Tab } from '@headlessui/react'
 
 // ** UI
 import { Modal, Icon } from '../Tools'
 
 function AddItem({ isOpenAdd, closeAddModal, onAddItem }) {
   return (
-    <Modal labels="افزودن آپشن" isOpen={isOpenAdd} closeModal={closeAddModal} className="max-w-sm">
-      <div className="grid grid-cols-2 gap-4 p-4">
-        <Item type="links" icon="link" label="لینک یا پیوند" onAddItem={onAddItem} />
-        <Item type="text" icon="document" label="متن یا توضیح" onAddItem={onAddItem} />
-        <Item type="contacts" icon="smartphone" label="اطلاعات تماس" onAddItem={onAddItem} />
-        <Item type="services" icon="comment" label="شبکه‌های‌اجتماعی و سرویس‌ها" onAddItem={onAddItem} />
-        <Item type="locations" icon="location-alt" label="مسیریابی" onAddItem={onAddItem} />
-        <Item type="faq" icon="interrogation" label="پرسش های پرتکرار" onAddItem={onAddItem} />
-        <Item type="igFeedsLink" icon="picture" label="لینک پست ها" onAddItem={onAddItem} />
-        <Item type="igFeedsDownload" icon="download" label="دانلود پست ها" onAddItem={onAddItem} />
-      </div>
+    <Modal tabMode labels={['عمومی', 'اینستاگرام']} isOpen={isOpenAdd} closeModal={closeAddModal} className="max-w-sm">
+      <Tab.Panels>
+        <Tab.Panel className="grid grid-cols-2 gap-4 p-4">
+          <Item type="links" icon="link" label="لینک یا پیوند" onAddItem={onAddItem} />
+          <Item type="text" icon="document" label="متن یا توضیح" onAddItem={onAddItem} />
+          <Item type="contacts" icon="smartphone" label="اطلاعات تماس" onAddItem={onAddItem} />
+          <Item type="services" icon="comment" label="شبکه‌های‌اجتماعی و سرویس‌ها" onAddItem={onAddItem} />
+          <Item type="locations" icon="location-alt" label="مسیریابی" onAddItem={onAddItem} />
+          <Item type="faq" icon="interrogation" label="پرسش های پرتکرار" onAddItem={onAddItem} />
+        </Tab.Panel>
+        <Tab.Panel className="grid grid-cols-2 gap-4 p-4">
+          <Item type="igFeedsLink" icon="picture" label="لینک پست ها" onAddItem={onAddItem} />
+          <Item type="igFeedsDownload" icon="download" label="دانلود پست ها" onAddItem={onAddItem} />
+        </Tab.Panel>
+      </Tab.Panels>
     </Modal>
   )
 }

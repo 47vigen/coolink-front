@@ -38,10 +38,10 @@ function Home() {
   return user?.id ? (
     <Layout className="space-y-8">
       <section
-        className="p-8 rounded-2xl bg-primary bg-cover bg-right md:flex min-h-[26rem] md:min-h-[70vh]"
+        className="p-8 rounded-2xl bg-primary bg-cover bg-right lg:flex min-h-[26rem] lg:min-h-[29rem]"
         style={{ backgroundImage: "url('/images/slide-bg.svg')" }}
       >
-        <div className="space-y-4 text-white md:w-1/3">
+        <div className="space-y-4 text-white lg:w-1/3">
           <h1 className="font-bold text-6xl">
             معرف، <br /> خودت باش!
           </h1>
@@ -53,19 +53,19 @@ function Home() {
             ایجاد کولینک
           </Button>
         </div>
-        <div className="flex-1 relative mt-8 md:mt-0">
-          <div className="absolute -end-4 md:end-8 w-[12rem] md:w-[19rem] h-[21rem] md:h-[33rem] bg-white rounded-2xl transform rotate-[-9deg] shadow-2xl"></div>
-          <div className="absolute end-36 md:end-60 w-[12rem] md:w-[19rem] h-[21rem] md:h-[33rem] bg-white rounded-2xl transform rotate-2 shadow-2xl"></div>
+        <div className="flex-1 relative mt-8 lg:mt-0">
+          <div className="absolute -end-4 lg:end-8 w-[12rem] lg:w-[19rem] h-[21rem] lg:h-[33rem] bg-white rounded-2xl transform rotate-[-9deg] shadow-2xl"></div>
+          <div className="absolute end-36 lg:end-60 w-[12rem] lg:w-[19rem] h-[21rem] lg:h-[33rem] bg-white rounded-2xl transform rotate-2 shadow-2xl"></div>
         </div>
       </section>
-      <div className="h-[18rem] !mt-0 md:hidden" />
-      <Link href="#more" className="hidden md:!flex !mt-4 !mb-24 items-center">
+      <div className="h-[18rem] !mt-0 lg:hidden" />
+      <Link href="#more" className="hidden lg:!flex !mt-4 !mb-24 items-center">
         <Icon name="arrow-small-down" className="animate-small-bounce mx-2 text-lg" />
         اطلاعات بیشتر
       </Link>
-      <section id="more" className="grid grid-cols-1 md:grid-cols-2 gap-8 cards">
+      <section id="more" className="grid grid-cols-1 lg:grid-cols-2 gap-8 cards">
         <div className="relative flex overflow-hidden bg-white p-4 rounded-lg transition-all duration-300 hover:scale-[1.02]">
-          <div className="w-3/4 md:w-2/3 space-y-2">
+          <div className="w-3/4 lg:w-2/3 space-y-2">
             <h3 className="font-bold text-2xl">کول‌کارت</h3>
             <p>
               کولینک یک سرویس رایگان با برای کسب و کار ها و اشخاص است که امکانات بی نظیری مثل اشتراک لینک‌ها، کانال‌های ارتباطی، دانلود پست ها و ...
@@ -76,7 +76,7 @@ function Home() {
               اطلاعات بیشتر
             </Link>
           </div>
-          <div className="absolute top-8 md:top-4 -end-48 md:-end-36 w-96 transform rotate-[55deg] md:rotate-[50deg]">
+          <div className="absolute top-8 lg:top-4 -end-48 lg:-end-36 w-96 transform rotate-[55deg] lg:rotate-[50deg]">
             <div className="coolcard-slider">
               <div />
             </div>
@@ -92,7 +92,7 @@ function Home() {
           </div>
         </div>
         <div className="relative flex space-s-2 overflow-hidden bg-white p-4 rounded-lg transition-all duration-300 hover:scale-[1.02]">
-          <div className="w-3/4 md:w-2/3 space-y-2">
+          <div className="w-3/4 lg:w-2/3 space-y-2">
             <h3 className="font-bold text-2xl">آموزش ساخت کولینک</h3>
             <p>
               کولینک یک سرویس رایگان با برای کسب و کار ها و اشخاص است که امکانات بی نظیری مثل اشتراک لینک‌ها، کانال‌های ارتباطی، دانلود پست ها و ...
@@ -114,14 +114,14 @@ function Home() {
         </div>
       </section>
       <section className="md:flex">
-        <div className="space-y-2 md:w-1/3 mb-8 md:mb-0 me-8">
+        <div className="space-y-2 lg:w-1/3 mb-8 lg:mb-0 me-8">
           <h3 className="font-bold text-2xl">امکانات</h3>
           <p>
             کولینک یک سرویس رایگان با برای کسب و کار ها و اشخاص است که امکانات بی نظیری مثل اشتراک لینک‌ها، کانال‌های ارتباطی، دانلود پست ها و ... در
             اختیار کاربران قرار می‌دهد.
           </p>
         </div>
-        <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-4">
           <div className="flex space-s-2 items-start">
             <div className="relative w-10">
               <svg viewBox="0 0 99 105" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -196,7 +196,7 @@ function Home() {
           </div>
         </div>
       </section>
-      <section className="bg-content text-white text-center space-y-2 p-4 rounded-2xl max-h-72 md:max-h-44">
+      <section className="bg-content text-white text-center space-y-2 p-4 rounded-2xl max-h-72 lg:max-h-44">
         <h3 className="font-bold text-2xl">چه کسانی از کولینک استفاده می‌کنند؟</h3>
         <p>
           کولینک یک سرویس رایگان با برای کسب و کار ها و اشخاص است که امکانات بی نظیری مثل اشتراک لینک‌ها، کانال‌های ارتباطی، دانلود پست ها و ... در
@@ -204,7 +204,7 @@ function Home() {
         </p>
         <div className="flex pt-4 -mx-4">
           <Icon name="angle-right" onClick={() => slider.prev()} className="w-8 cursor-pointer max-h-24 flex items-center justify-center" />
-          <div className="flex-1 max-w-[80vw] md:max-w-none">
+          <div className="flex-1 max-w-[80vw] lg:max-w-none">
             <div ref={sliderRef} className="keen-slider" dir="ltr">
               <div className="keen-slider__slide bg-white text-content text-end rounded-2xl p-4" dir="rtl">
                 <div className="flex items-stretch space-s-2">

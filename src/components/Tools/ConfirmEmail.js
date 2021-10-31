@@ -43,11 +43,11 @@ function ConfirmEmail({ type }) {
       default:
         return (
           <div
-            className="flex-1 flex flex-col md:flex-row justify-between items-center bg-yellow-100 border border-yellow-300 rounded-lg mb-4 p-4"
+            className="flex-1 flex flex-col lg:flex-row justify-between items-center bg-yellow-100 border border-yellow-300 rounded-lg mb-4 p-4"
             role="alert"
           >
             برای دسترسی به امکانات کولینک لطفا ایمیل خود را تایید کنید سپس این صفحه را رفرش کنید!
-            <Button autoLoading type="ghost" className="block mt-2 md:mt-0" onClick={onClick}>
+            <Button autoLoading type="ghost" className="block mt-2 lg:mt-0" onClick={onClick}>
               ارسال مجدد ایمیل تایید
             </Button>
           </div>
