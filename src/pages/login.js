@@ -1,6 +1,6 @@
 import React from 'react'
 import { Form, Formik } from 'formik'
-import { NextSeo } from 'next-seo'
+import Seo from '../components/Tools/Seo'
 
 // ** UI
 import Auth from '../components/Layout/Auth'
@@ -46,7 +46,7 @@ function Login({ query }) {
         </Link>
       }
     >
-      <NextSeo title="ورود" noindex />
+      <Seo title="ورود" noindex />
       <Formik validationSchema={validationSchema} initialValues={{ email: '', password: '' }} onSubmit={onSubmit}>
         {({ isSubmitting }) => (
           <Form className="w-full space-y-4">

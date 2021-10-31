@@ -8,10 +8,6 @@ import 'tailwindcss/tailwind.css'
 import '../styles/globals.css'
 import '../styles/progress.css'
 
-// ** Seo
-import { DefaultSeo } from 'next-seo'
-import Seo from '../config/seo'
-
 // ** NProgress
 import Router from 'next/router'
 import NProgress from 'nprogress'
@@ -22,7 +18,6 @@ Router.events.on('routeChangeError', () => NProgress.done())
 function MyApp({ Component, pageProps }) {
   return (
     <AuthProvider>
-      <DefaultSeo {...Seo()} />
       <Component {...pageProps} />
       <Toaster reverseOrder />
     </AuthProvider>

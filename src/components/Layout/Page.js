@@ -1,11 +1,8 @@
 import React from 'react'
-import Router from 'next/router'
-import { NextSeo } from 'next-seo'
 
 // ** UI
 import Link from '../Tools/Link'
 import PageHeader from './Header/PageHeader'
-import ThemeColor from '../Tools/ThemeColor'
 
 // ** Utils
 import { getImgSrc } from '../../utils/getImgSrc'
@@ -14,9 +11,7 @@ import classNames from '../../utils/classNames'
 // ** Images
 import Image from 'next/image'
 import CoolinkLogo from '../../../public/images/coolink-logo.svg'
-
-// ** Config
-import Seo from '../../config/seo'
+import Seo from '../Tools/Seo'
 
 function Page({ page, title, children }) {
   // ** Change favicon
@@ -44,16 +39,7 @@ function Page({ page, title, children }) {
         backgroundImage: page.style?.background?.url ? `url('${getImgSrc(page.style.background.url)}')` : null
       }}
     >
-      <ThemeColor page={page}>
-        {(themeColor) => (
-          <NextSeo
-            {...Seo(themeColor || '#F1F1F1')}
-            title={title || page.title}
-            titleTemplate={title ? `%s | ${page.title}` : page.subTitle ? `%s | ${page.subTitle}` : '%s'}
-            description={page.subTitle}
-          />
-        )}
-      </ThemeColor>
+      <Seo page={page} title={title || page.subTitle} titleTemplate={`%s | ${page.title}`} description={page.subTitle} />
       <PageHeader linked page={page} />
       <main className="flex-1 container max-w-md mx-auto">{children}</main>
       <footer>

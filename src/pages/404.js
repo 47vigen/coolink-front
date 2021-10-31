@@ -1,5 +1,5 @@
 import React from 'react'
-import { NextSeo } from 'next-seo'
+import Seo from '../components/Tools/Seo'
 
 // ** UI
 import { Button } from '../components/Tools'
@@ -7,7 +7,7 @@ import { Button } from '../components/Tools'
 function NotFound(props) {
   return (
     <div className="flex-1 flex justify-center items-center text-xs">
-      <NextSeo title="404" />
+      <Seo title="404" />
       <h1 className="text-primary font-bold text-5xl ml-4">404</h1>
       <div className=" flex flex-col border-r border-line pr-4">
         <h2 className="mb-4"> صفحه مورد نظر پیدا نشد!</h2>

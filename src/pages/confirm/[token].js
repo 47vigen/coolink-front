@@ -1,6 +1,6 @@
 import React from 'react'
-import { NextSeo } from 'next-seo'
 import { useAuth } from '../../context/auth'
+import Seo from '../../components/Tools/Seo'
 
 // ** Graphql
 import { createApolloClient } from '../../graphql/apollo'
@@ -18,7 +18,7 @@ function Confirm({ confirm }) {
 
   return (
     <div className="flex-1 flex justify-center items-center text-xs">
-      <NextSeo title="تایید حساب کاربری" />
+      <Seo title="تایید حساب کاربری" />
       <h1 dir="ltr" className="text-primary font-bold text-5xl ml-4">
         Ok!
       </h1>

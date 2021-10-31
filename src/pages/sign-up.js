@@ -1,7 +1,7 @@
 import React from 'react'
-import { NextSeo } from 'next-seo'
 import toast from 'react-hot-toast'
 import { Form, Formik } from 'formik'
+import Seo from '../components/Tools/Seo'
 
 // ** UI
 import Auth from '../components/Layout/Auth'
@@ -48,7 +48,7 @@ function SignUp({ query }) {
         </Link>
       }
     >
-      <NextSeo title="ثبت نام" noindex />
+      <Seo title="ثبت نام" noindex />
       <Formik validationSchema={validationSchema} initialValues={{ name: '', email: '', password: '' }} onSubmit={onSubmit}>
         {({ isSubmitting }) => (
           <Form className="w-full space-y-4">

@@ -1,9 +1,9 @@
 import React from 'react'
-import { NextSeo } from 'next-seo'
 import { Form, Formik } from 'formik'
 import { useRouter } from 'next/router'
 import { usePalette } from 'react-palette'
 import { useAuth } from '../../context/auth'
+import Seo from '../../components/Tools/Seo'
 
 // ** UI
 import Layout from '../../components/Layout'
@@ -126,7 +126,7 @@ function Create(props) {
 
   return (
     <Layout dashboard>
-      <NextSeo title="ایجاد کولینک" noindex />
+      <Seo title="ایجاد کولینک" noindex />
       <div className="flex space-s-2 mb-4">
         <StepItem label="تایید آیدی" num={0} step={step} />
         <StepItem label="تکمیل اطلاعات" num={1} step={step} />

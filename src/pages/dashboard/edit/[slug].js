@@ -1,12 +1,11 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
-import { NextSeo } from 'next-seo'
 import { useAuth } from '../../../context/auth'
+import Seo from '../../../components/Tools/Seo'
 
 // ** UI
 import Layout from '../../../components/Layout'
 import { Button, Icon, Loader } from '../../../components/Tools'
-import ThemeColor from '../../../components/Tools/ThemeColor'
 
 // ** Graphql
 import { createApolloClient } from '../../../graphql/apollo'
@@ -16,7 +15,6 @@ import { SHOW_PAGE_WITH_SECTIONS } from '../../../graphql/queries'
 import deepCleaner from '../../../utils/deepCleaner'
 import Editor from '../../../components/Editor'
 import PageHeader from '../../../components/Layout/Header/PageHeader'
-import Seo from '../../../config/seo'
 import { Tab } from '@headlessui/react'
 import classNames from '../../../utils/classNames'
 
@@ -57,7 +55,7 @@ function Edit({ page, sections }) {
                   </Button>
                 </div>
                 <div className="hidden lg:!block">
-                  <h3 className="flex-1 text-xl font-bold">افزودن بلاک</h3>
+                  <h3 className="flex-1 text-xl font-bold">افزودن بلوک</h3>
                   <p>
                     کولینک یک سرویس رایگان با برای کسب و کار ها و اشخاص است که امکانات بی نظیری مثل اشتراک لینک‌ها، کانال‌های ارتباطی، دانلود پست ها و
                     ... در اختیار کاربران قرار می‌دهد.
@@ -115,7 +113,7 @@ function Edit({ page, sections }) {
                 </div>
               </div>
               <div className="flex-1 h-full pt-4 pb-28 lg:pb-10 lg:pt-[4.5rem] !bg-none lg:rounded-2xl lg:overflow-hidden lg:max-h-[calc(100vh-5rem)] lg:max-w-[26.5rem] lg:bg-no-repeat lg:bg-top lg:bg-phone">
-                <ThemeColor page={page}>{(themeColor) => <NextSeo {...Seo(themeColor)} title={`ویرایش ${page.title}`} noindex />}</ThemeColor>
+                <Seo page={page} title={`ویرایش ${page.title}`} noindex />
                 <div className="lg:h-[calc(100vh-10rem)] lg:max-h-[44.5rem] lg:overflow-y-scroll lg:ps-12 lg:pe-5 lg:me-3 lg:rounded-b-3xl">
                   <PageHeader page={page} onEdit={openEditInfoModal} />
                   <Template page={page} sections={sections} onDragEnd={onDragEnd} openEditModal={openEditModal} />

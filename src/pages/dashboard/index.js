@@ -1,5 +1,5 @@
 import React from 'react'
-import { NextSeo } from 'next-seo'
+import Seo from '../../components/Tools/Seo'
 
 // ** UI
 import Layout from '../../components/Layout'
@@ -19,7 +19,7 @@ function Dashboard(props) {
 
   return (
     <Layout dashboard className="space-y-4">
-      <NextSeo title="داشبورد" noindex />
+      <Seo title="داشبورد" noindex />
       <div className="flex items-center justify-between bg-gradient-to-r from-primary to-primary-hover h-32 sm:h-22 rounded-lg lg:px-10 px-4">
         <div className="max-w-[13.7rem] min-w-[13.7rem] -mt-5">
           <Image alt="dude" src={dude} width={250} height={176} className="transform ltr:scale-x-[-1]" />
