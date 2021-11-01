@@ -2,21 +2,21 @@ import React from 'react'
 import dynamic from 'next/dynamic'
 import { useAuth } from '../../../context/auth'
 import Seo from '../../../components/Tools/Seo'
+import { Menu, Tab, Transition } from '@headlessui/react'
 
 // ** UI
 import Layout from '../../../components/Layout'
 import { Button, Icon, Loader } from '../../../components/Tools'
+import PageHeader from '../../../components/Layout/Header/PageHeader'
 
 // ** Graphql
 import { createApolloClient } from '../../../graphql/apollo'
 import { SHOW_PAGE_WITH_SECTIONS } from '../../../graphql/queries'
 
 // ** Utils
-import deepCleaner from '../../../utils/deepCleaner'
 import Editor from '../../../components/Editor'
-import PageHeader from '../../../components/Layout/Header/PageHeader'
-import { Menu, Tab, Transition } from '@headlessui/react'
 import classNames from '../../../utils/classNames'
+import deepCleaner from '../../../utils/deepCleaner'
 
 // ** Template
 const Template = dynamic(() => import('../../../components/Template'), {
@@ -27,7 +27,7 @@ function Edit({ page, sections }) {
   const { loading } = useAuth()
   return (
     <Layout className="flex flex-col" dashboard footer={false}>
-      <Loader loading={loading} className="w-full flex-1">
+      <Loader loading={loading} className="flex flex-col w-full flex-1">
         <Editor page={page} sections={sections}>
           {({
             page,
@@ -42,8 +42,8 @@ function Edit({ page, sections }) {
             openEditModal,
             onAddItem
           }) => (
-            <div className="flex flex-col lg:flex-row -mt-4 lg:mt-0 items-stretch">
-              <div className="flex-1 flex flex-col lg:pe-8 lg:space-y-4">
+            <div className="flex-1 flex flex-col lg:flex-row -mt-4 lg:mt-0 items-stretch">
+              <div className="lg:flex-1 flex flex-col lg:pe-8 lg:space-y-4">
                 <div className="flex items-center space-s-2 -mt-2 -mx-4 mb-2 py-2 bg-white px-2 lg:bg-transparent sm:rounded-lg lg:border border-line lg:mx-0 ">
                   <div className="flex-1 flex items-center justify-end" dir="ltr">
                     <span className="me-1">colk.ir/</span>
@@ -136,9 +136,9 @@ function Edit({ page, sections }) {
                   </Button>
                 </div>
               </div>
-              <div className="flex-1 h-full pt-2 rounded-t-2xl !bg-none lg:pb-10 lg:pt-[3.5rem] lg:rounded-2xl lg:max-h-[calc(100vh-5rem)] lg:max-w-[26.5rem] lg:bg-no-repeat lg:bg-top lg:bg-phone">
+              <div className="flex-1 flex flex-col lg:block h-full pt-2 rounded-t-2xl !bg-none lg:pb-10 lg:pt-[3.5rem] lg:rounded-2xl lg:max-h-[calc(100vh-5rem)] lg:max-w-[26.5rem] lg:bg-no-repeat lg:bg-top lg:bg-phone">
                 <Seo page={page} title={`ویرایش ${page.title}`} noindex />
-                <div className="flex flex-col lg:h-[calc(100vh-9rem)] lg:max-h-[44.5rem] lg:overflow-y-scroll lg:ps-12 lg:pe-5 lg:me-3">
+                <div className="flex-1 flex flex-col lg:h-[calc(100vh-9rem)] lg:max-h-[44.5rem] lg:overflow-y-scroll lg:ps-12 lg:pe-5 lg:me-3">
                   <div
                     className={classNames(
                       '-mx-3 lg:py-4 px-2 rounded-lg flex-1 pb-32',
@@ -149,28 +149,31 @@ function Edit({ page, sections }) {
                     <Template page={page} sections={sections} onDragEnd={onDragEnd} openEditModal={openEditModal} />
                   </div>
                 </div>
-                <div className="lg:hidden fixed z-50 start-0 end-0 bottom-0 p-4 pt-14 space-y-2 bg-gradient-to-t from-white via-body">
-                  <Button type="ghost" icon="plus-small" className="w-full border border-line" onClick={openAddModal}>
-                    افزودن بلوک
-                  </Button>
-                  <div className="flex space-s-2">
-                    <Button
-                      bordered
-                      icon="eye"
-                      type="secondary"
-                      link={`/${page.slug}`}
-                      target="_blank"
-                      className="px-3 text-base option-btn bg-body bg-opacity-10 backdrop-filter backdrop-blur-md group"
-                    />
-                    <Button className="w-full" disabled={!isNeedSave} onClick={() => save()} loading={loading}>
-                      ذخیره آخرین تغییرات
+                <div className="lg:hidden fixed z-10 start-0 end-0 bottom-0 py-16 bg-gradient-to-t from-white via-body" />
+                <div className="lg:hidden fixed z-20 start-0 end-0 bottom-0 bg-gradient-to-t from-white via-body">
+                  <div className="relative z-30 container mx-auto p-4 space-y-2">
+                    <Button type="ghost" icon="plus-small" className="w-full border border-line" onClick={openAddModal}>
+                      افزودن بلوک
                     </Button>
-                    <Button
-                      bordered
-                      type="secondary"
-                      icon="interrogation"
-                      className="px-3 text-base option-btn bg-body bg-opacity-10 backdrop-filter backdrop-blur-md group"
-                    />
+                    <div className="flex space-s-2">
+                      <Button
+                        bordered
+                        icon="eye"
+                        type="secondary"
+                        link={`/${page.slug}`}
+                        target="_blank"
+                        className="px-3 text-base option-btn bg-body bg-opacity-10 backdrop-filter backdrop-blur-md group"
+                      />
+                      <Button className="w-full" disabled={!isNeedSave} onClick={() => save()} loading={loading}>
+                        ذخیره آخرین تغییرات
+                      </Button>
+                      <Button
+                        bordered
+                        type="secondary"
+                        icon="interrogation"
+                        className="px-3 text-base option-btn bg-body bg-opacity-10 backdrop-filter backdrop-blur-md group"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>

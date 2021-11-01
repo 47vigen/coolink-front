@@ -13,7 +13,7 @@ import classNames from '../../utils/classNames'
 
 function Edit({ page, sections, onDragEnd, openEditModal }) {
   return (
-    <>
+    <div className="relative z-20">
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable">
           {(provided, snapshot) => (
@@ -39,7 +39,7 @@ function Edit({ page, sections, onDragEnd, openEditModal }) {
           )}
         </Droppable>
       </DragDropContext>
-    </>
+    </div>
   )
 }
 
