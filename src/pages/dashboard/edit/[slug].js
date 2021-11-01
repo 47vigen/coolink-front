@@ -15,7 +15,7 @@ import { SHOW_PAGE_WITH_SECTIONS } from '../../../graphql/queries'
 import deepCleaner from '../../../utils/deepCleaner'
 import Editor from '../../../components/Editor'
 import PageHeader from '../../../components/Layout/Header/PageHeader'
-import { Tab } from '@headlessui/react'
+import { Menu, Tab, Transition } from '@headlessui/react'
 import classNames from '../../../utils/classNames'
 
 // ** Template
@@ -44,15 +44,39 @@ function Edit({ page, sections }) {
           }) => (
             <div className="flex flex-col lg:flex-row -mt-4 lg:mt-0 items-stretch">
               <div className="flex-1 flex flex-col lg:pe-8 lg:space-y-4">
-                <div className="flex items-center text-white space-s-2 bg-gradient-to-l from-primary to-primary-hover p-2 rounded-lg">
-                  <Icon name="angle-small-left" />
-                  <h3 className="flex-1 text-3xl font-bold">{page.slug}</h3>
-                  <Button onClick={openEditStyleModal} icon="share" type="ghost">
-                    انتشار
-                  </Button>
-                  <Button onClick={openEditStyleModal} icon="brush" type="ghost">
-                    شخصی سازی
-                  </Button>
+                <div className="flex items-center space-s-2 -mt-2 -mx-4 mb-2 py-2 bg-white px-2 lg:bg-transparent lg:rounded-lg lg:border border-line lg:mx-0 ">
+                  <div className="flex-1 flex items-center justify-end" dir="ltr">
+                    <span className="me-1">colk.ir/</span>
+                    <h3 className="text-primary text-2xl font-bold">{page.slug}</h3>
+                  </div>
+                  <Menu as="div" className="relative inline-block text-end">
+                    <Menu.Button as={Button} type="ghost" icon="settings" />
+                    <Transition
+                      as={React.Fragment}
+                      enter="transition ease-out duration-200"
+                      enterFrom="transform opacity-0 scale-95"
+                      enterTo="transform opacity-100 scale-100"
+                      leave="transition ease-in duration-75"
+                      leaveFrom="transform opacity-100 scale-100"
+                      leaveTo="transform opacity-0 scale-95"
+                    >
+                      <Menu.Items className="absolute z-10 end-0 w-40 mt-2 origin-top-end bg-white border border-line lg:border-0 divide-y divide-line rounded-lg shadow-lg focus:outline-none">
+                        <div className="ps-1 py-1">
+                          <Menu.Item as={Button} type="ghost" icon="share" className="!justify-start w-full" onClick={openEditStyleModal}>
+                            انتشار
+                          </Menu.Item>
+                          <Menu.Item as={Button} type="ghost" icon="brush" className="!justify-start w-full" onClick={openEditStyleModal}>
+                            شخصی سازی
+                          </Menu.Item>
+                        </div>
+                        <div className="ps-1 py-1">
+                          <Menu.Item as={Button} type="ghost" icon="trash" className="text-danger !justify-start w-full" onClick={openEditStyleModal}>
+                            حذف کولینک
+                          </Menu.Item>
+                        </div>
+                      </Menu.Items>
+                    </Transition>
+                  </Menu>
                 </div>
                 <div className="hidden lg:!block">
                   <h3 className="flex-1 text-xl font-bold">افزودن بلوک</h3>
@@ -103,7 +127,7 @@ function Edit({ page, sections }) {
                     </Tab.Panel>
                   </Tab.Panels>
                 </Tab.Group>
-                <div className="hidden lg:!flex border border-b-0 border-line space-s-4 p-4 rounded-t-xl">
+                <div className="hidden lg:!flex border border-b-0 border-line space-s-2 p-2 rounded-t-xl">
                   <Button className="w-full" disabled={!isNeedSave} onClick={() => save()} loading={loading}>
                     ذخیره آخرین تغییرات
                   </Button>
@@ -112,14 +136,14 @@ function Edit({ page, sections }) {
                   </Button>
                 </div>
               </div>
-              <div className="flex-1 h-full pt-4 pb-28 lg:pb-10 lg:pt-[4.5rem] !bg-none lg:rounded-2xl lg:overflow-hidden lg:max-h-[calc(100vh-5rem)] lg:max-w-[26.5rem] lg:bg-no-repeat lg:bg-top lg:bg-phone">
+              <div className="flex-1 h-full pt-2 pb-28 overflow-hidden rounded-t-2xl !bg-none lg:pb-10 lg:pt-[4.5rem] lg:rounded-2xl lg:max-h-[calc(100vh-5rem)] lg:max-w-[26.5rem] lg:bg-no-repeat lg:bg-top lg:bg-phone">
                 <Seo page={page} title={`ویرایش ${page.title}`} noindex />
                 <div className="lg:h-[calc(100vh-10rem)] lg:max-h-[44.5rem] lg:overflow-y-scroll lg:ps-12 lg:pe-5 lg:me-3 lg:rounded-b-3xl">
                   <PageHeader page={page} onEdit={openEditInfoModal} />
                   <Template page={page} sections={sections} onDragEnd={onDragEnd} openEditModal={openEditModal} />
                 </div>
                 <div className="lg:hidden fixed z-50 start-0 end-0 bottom-0 p-4 pt-14 space-y-2 bg-gradient-to-t from-white via-body">
-                  <Button type="ghost" icon="plus-small" className="w-full" onClick={openAddModal}>
+                  <Button type="ghost" icon="plus-small" className="w-full border border-line" onClick={openAddModal}>
                     افزودن بلوک
                   </Button>
                   <div className="flex space-s-2">
