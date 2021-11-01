@@ -68,7 +68,7 @@ function Seo({ page, ...props }) {
   return (
     <>
       <NextSeo {...seoConfig} title={seoConfig.title || seoConfig.defaultTitle} />
-      <span ref={ref} className={`sr-only bg-${page?.style?.customize?.color}`} />
+      <span ref={ref} className={`!sr-only bg-${page?.style?.customize?.color}`} />
     </>
   )
 }
