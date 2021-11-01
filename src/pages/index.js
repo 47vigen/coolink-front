@@ -40,7 +40,7 @@ function Home() {
     <Layout className="space-y-8">
       <Seo title="معرف، خودت باش!" />
       <section
-        className="p-8 rounded-2xl bg-primary bg-cover bg-right lg:flex min-h-[26rem] lg:min-h-[29rem]"
+        className="p-8 !mt-0 rounded-2xl bg-primary bg-cover bg-right lg:flex min-h-[26rem] lg:min-h-[29rem]"
         style={{ backgroundImage: "url('/images/slide-bg.svg')" }}
       >
         <div className="space-y-4 text-white lg:w-1/3">
