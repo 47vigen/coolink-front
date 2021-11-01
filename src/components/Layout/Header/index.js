@@ -26,7 +26,7 @@ function Header(props) {
           <Button
             type="ghost"
             icon="menu-burger"
-            className="-my-2 me-2 -ms-2 block lg:hidden bg-transparent border-line border-e !min-h-0 h-[min-content] py-2 rounded-none"
+            className="-my-2 me-4 pe-4 -ms-2 block lg:hidden bg-transparent border-line border-e !min-h-0 h-[min-content] py-2 rounded-none"
             onClick={() => setOpen(true)}
           />
           <UserState />

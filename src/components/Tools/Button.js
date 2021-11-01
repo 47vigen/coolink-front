@@ -29,7 +29,10 @@ function Button({
   const [pageLoading, setPageLoading] = React.useState(false)
   const [currentLoading, setCurrentLoading] = React.useState(false)
 
-  const roundedClass = React.useMemo(() => (circle ? 'rounded-full' : roundless ? 'rounded' : 'rounded-md'), [circle, roundless])
+  const roundedClass = React.useMemo(
+    () => (circle ? 'rounded-full min-h-[2rem] max-h-[2rem] min-w-[2rem] max-w-[2rem]' : roundless ? 'rounded' : 'rounded-md'),
+    [circle, roundless]
+  )
 
   const defaultClasses = React.useMemo(() => 'px-2 min-h-[2rem] inline-flex items-center justify-center transition-all ease-in-out duration-200', [])
 

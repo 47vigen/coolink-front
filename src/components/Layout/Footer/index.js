@@ -11,7 +11,7 @@ function Footer(props) {
   return (
     <footer className="container mx-auto mt-8 px-4">
       <div className="flex flex-col lg:flex-row justify-between items-center bg-content text-white rounded-t-2xl p-4">
-        <p className="">
+        <p className="text-center lg:text-start pb-4 lg:pb-0">
           کولینک یک سرویس رایگان با برای کسب و کار ها و اشخاص است که امکانات بی نظیری مثل اشتراک لینک‌ها، کانال‌های ارتباطی، دانلود پست ها و ... در
           اختیار کاربران قرار دارد.
         </p>
