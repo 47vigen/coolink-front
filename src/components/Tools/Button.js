@@ -23,7 +23,8 @@ function Button({
   icon,
   end,
   disabled,
-  iconClassName
+  iconClassName,
+  target
 }) {
   const [pageLoading, setPageLoading] = React.useState(false)
   const [currentLoading, setCurrentLoading] = React.useState(false)
@@ -69,7 +70,7 @@ function Button({
   if (link && !disabled) {
     return (
       <Link href={link}>
-        <a className={classNames(bordered ? borderedClasses : typeClasses, roundedClass, defaultClasses, className)}>
+        <a className={classNames(bordered ? borderedClasses : typeClasses, roundedClass, defaultClasses, className)} target={target}>
           {icon ? <Icon name={icon} className={classNames(end ? 'order-1 mr-2' : children ? 'ml-2' : '', iconClassName)} /> : null}
           {children}
         </a>
