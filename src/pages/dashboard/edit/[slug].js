@@ -136,13 +136,13 @@ function Edit({ page, sections }) {
                   </Button>
                 </div>
               </div>
-              <div className="flex-1 h-full pt-2 pb-28 rounded-t-2xl !bg-none lg:pb-10 lg:pt-[3.5rem] lg:rounded-2xl lg:max-h-[calc(100vh-5rem)] lg:max-w-[26.5rem] lg:bg-no-repeat lg:bg-top lg:bg-phone">
+              <div className="flex-1 h-full pt-2 rounded-t-2xl !bg-none lg:pb-10 lg:pt-[3.5rem] lg:rounded-2xl lg:max-h-[calc(100vh-5rem)] lg:max-w-[26.5rem] lg:bg-no-repeat lg:bg-top lg:bg-phone">
                 <Seo page={page} title={`ویرایش ${page.title}`} noindex />
-                <div className="lg:h-[calc(100vh-9rem)] lg:max-h-[44.5rem] lg:overflow-y-scroll lg:ps-12 lg:pe-5 lg:me-3">
+                <div className="flex flex-col lg:h-[calc(100vh-9rem)] lg:max-h-[44.5rem] lg:overflow-y-scroll lg:ps-12 lg:pe-5 lg:me-3">
                   <div
                     className={classNames(
-                      '-mx-3 lg:py-4 px-2 rounded-lg',
-                      page.style?.background?.color ? `bg-${page.style.background.color} !py-4 !px-3` : ''
+                      '-mx-3 lg:py-4 px-2 rounded-lg flex-1',
+                      page.style?.background?.color ? `bg-${page.style.background.color} !pt-4 pb-28 !px-3` : ''
                     )}
                   >
                     <PageHeader page={page} onEdit={openEditInfoModal} />
