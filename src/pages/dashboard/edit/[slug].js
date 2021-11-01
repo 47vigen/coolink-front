@@ -149,7 +149,7 @@ function Edit({ page, sections }) {
                     <Template page={page} sections={sections} onDragEnd={onDragEnd} openEditModal={openEditModal} />
                   </div>
                 </div>
-                <div className="lg:hidden fixed z-10 start-0 end-0 bottom-0 py-16 bg-gradient-to-t from-white via-body" />
+                <div className="lg:hidden fixed z-10 start-0 end-0 bottom-0 py-16 bg-gradient-to-t from-body to-transparent" />
                 <div className="lg:hidden fixed z-20 start-0 end-0 bottom-0 bg-gradient-to-t from-white via-body">
                   <div className="relative z-30 container mx-auto p-4 space-y-2">
                     <Button type="ghost" icon="plus-small" className="w-full border border-line" onClick={openAddModal}>
