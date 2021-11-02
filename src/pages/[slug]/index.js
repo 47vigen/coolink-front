@@ -35,7 +35,7 @@ export async function getServerSideProps({ params, req }) {
         page: dataPage.showPageWithSections.page,
         sections: dataPage.showPageWithSections.sections,
         apolloState: client.cache.extract(),
-        referrer: req.headers.referrer || req.headers.referer
+        referrer: req.headers.referrer || req.headers.referer || null
       }
     }
   }
