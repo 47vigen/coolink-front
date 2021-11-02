@@ -59,7 +59,7 @@ export default function Home({ page, section, referrer }) {
   )
 }
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({ params, req }) {
   const client = createApolloClient()
   const { data, error } = await client.query({
     query: SHOW_PAGE_WITH_SECTIONS,
