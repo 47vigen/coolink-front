@@ -11,6 +11,8 @@ import { SHOW_PAGE_WITH_SECTIONS } from '../../graphql/queries'
 import classNames from '../../utils/classNames'
 
 export default function Home({ page, section }) {
+  const { sendStatistic } = useSendStatistic(page.id)
+
   const generateLinks = React.useCallback((caption) => {
     const exportedLinks = caption?.match(/[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi)
     const links = exportedLinks?.map((link) => ({

@@ -10,6 +10,8 @@ import { createApolloClient } from '../../graphql/apollo'
 import { SHOW_PAGE_WITH_SECTIONS } from '../../graphql/queries'
 
 export default function Home({ page, section }) {
+  const { sendStatistic } = useSendStatistic(page.id)
+
   return (
     <Page page={page} title={section.items[0].key || 'دانلود پست ها'}>
       <Feeds page={page} section={section}>

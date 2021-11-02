@@ -6,8 +6,11 @@ import Render from '../../components/Template/Render'
 // ** Graphql
 import { createApolloClient } from '../../graphql/apollo'
 import { SHOW_PAGE_WITH_SECTIONS } from '../../graphql/queries'
+import useSendStatistic from '../../utils/useSendStatistic'
 
 export default function Home({ page, sections }) {
+  const { sendStatistic } = useSendStatistic(page.id)
+
   return (
     <Page page={page}>
       <Render page={page} sections={sections} />
