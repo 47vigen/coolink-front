@@ -191,8 +191,8 @@ export const DESTROY_SECTION = gql`
 `
 
 export const CREATE_STATISTIC = gql`
-  mutation CreateStatistic($page: ID!, $event: String!, $ids: [ID!], $agent: String, $referrer: String) {
-    createStatistic(statisticInput: { page: $page, event: $event, ids: $ids, agent: $agent, referrer: $referrer }) {
+  mutation CreateStatistic($page: ID!, $event: String!, $ids: [ID!], $agent: String, $referrer: String, $pathname: String) {
+    createStatistic(statisticInput: { page: $page, event: $event, ids: $ids, agent: $agent, referrer: $referrer, pathname: $pathname }) {
       id
     }
   }

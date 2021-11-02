@@ -8,8 +8,9 @@ function useSendStatistic(page, pageReferrer) {
   const sendStatistic = React.useCallback(
     (event = 'pageView', ...ids) => {
       const agent = typeof navigator !== 'undefined' ? navigator.userAgent : null
+      const pathname = typeof window !== 'undefined' ? window.location.pathname : null
       const referrer = pageReferrer || typeof document !== 'undefined' ? document.referrer : null
-      createStatistic({ variables: deepCleaner({ event, ids, page, agent, referrer }) })
+      createStatistic({ variables: deepCleaner({ event, ids, page, agent, referrer, pathname }) })
     },
     [createStatistic, page, pageReferrer]
   )
