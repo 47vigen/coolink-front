@@ -1,17 +1,17 @@
 import React from 'react'
 import { useMutation } from '@apollo/client'
 import { CREATE_STATISTIC } from '../graphql/mutations'
-import deepCleaner from './deepCleaner'
+import deepCleaner from '../utils/deepCleaner'
 
-function useSendStatistic(page) {
+function useSendStatistic(page, pageReferrer) {
   const [createStatistic] = useMutation(CREATE_STATISTIC)
   const sendStatistic = React.useCallback(
     (event = 'pageView', ...ids) => {
       const agent = typeof navigator !== 'undefined' ? navigator.userAgent : null
-      const referrer = typeof document !== 'undefined' ? document.referrer : null
+      const referrer = pageReferrer || typeof document !== 'undefined' ? document.referrer : null
       createStatistic({ variables: deepCleaner({ event, ids, page, agent, referrer }) })
     },
-    [createStatistic, page]
+    [createStatistic, page, pageReferrer]
   )
 
   React.useEffect(() => {

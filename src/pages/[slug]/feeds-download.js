@@ -9,8 +9,11 @@ import { Element, Icon } from '../../components/Tools'
 import { createApolloClient } from '../../graphql/apollo'
 import { SHOW_PAGE_WITH_SECTIONS } from '../../graphql/queries'
 
-export default function Home({ page, section }) {
-  const { sendStatistic } = useSendStatistic(page.id)
+// ** Hooks
+import useSendStatistic from '../../hooks/useSendStatistic'
+
+export default function Home({ page, section, referrer }) {
+  const { sendStatistic } = useSendStatistic(page.id, referrer)
 
   return (
     <Page page={page} title={section.items[0].key || 'دانلود پست ها'}>
@@ -50,9 +53,10 @@ export async function getServerSideProps({ params }) {
   if (data?.showPageWithSections?.page && section && !error) {
     return {
       props: {
+        section,
         page: data.showPageWithSections?.page,
         apolloState: client.cache.extract(),
-        section
+        referrer: req.headers.referrer || req.headers.referer
       }
     }
   }

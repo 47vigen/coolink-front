@@ -10,8 +10,11 @@ import { createApolloClient } from '../../graphql/apollo'
 import { SHOW_PAGE_WITH_SECTIONS } from '../../graphql/queries'
 import classNames from '../../utils/classNames'
 
-export default function Home({ page, section }) {
-  const { sendStatistic } = useSendStatistic(page.id)
+// ** Hooks
+import useSendStatistic from '../../hooks/useSendStatistic'
+
+export default function Home({ page, section, referrer }) {
+  const { sendStatistic } = useSendStatistic(page.id, referrer)
 
   const generateLinks = React.useCallback((caption) => {
     const exportedLinks = caption?.match(/[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi)
@@ -69,9 +72,10 @@ export async function getServerSideProps({ params }) {
   if (data?.showPageWithSections?.page && section && !error) {
     return {
       props: {
+        section,
         page: data.showPageWithSections?.page,
         apolloState: client.cache.extract(),
-        section
+        referrer: req.headers.referrer || req.headers.referer
       }
     }
   }

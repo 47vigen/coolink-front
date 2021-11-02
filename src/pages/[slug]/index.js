@@ -6,10 +6,12 @@ import Render from '../../components/Template/Render'
 // ** Graphql
 import { createApolloClient } from '../../graphql/apollo'
 import { SHOW_PAGE_WITH_SECTIONS } from '../../graphql/queries'
-import useSendStatistic from '../../utils/useSendStatistic'
 
-export default function Home({ page, sections }) {
-  const { sendStatistic } = useSendStatistic(page.id)
+// ** Hooks
+import useSendStatistic from '../../hooks/useSendStatistic'
+
+export default function Home({ page, sections, referrer }) {
+  const { sendStatistic } = useSendStatistic(page.id, referrer)
 
   return (
     <Page page={page}>
@@ -18,7 +20,7 @@ export default function Home({ page, sections }) {
   )
 }
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({ params, req }) {
   const client = createApolloClient()
   const { data: dataPage, error: errorPage } = await client.query({
     query: SHOW_PAGE_WITH_SECTIONS,
@@ -32,7 +34,8 @@ export async function getServerSideProps({ params }) {
       props: {
         page: dataPage.showPageWithSections.page,
         sections: dataPage.showPageWithSections.sections,
-        apolloState: client.cache.extract()
+        apolloState: client.cache.extract(),
+        referrer: req.headers.referrer || req.headers.referer
       }
     }
   }
