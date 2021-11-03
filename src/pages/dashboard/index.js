@@ -55,8 +55,8 @@ function Dashboard(props) {
             <Link href="/dashboard" className="group flex items-baseline text-secondary hover:text-content">
               <Avatar
                 className="w-[1.625rem] h-[1.625rem] self-center lg:me-2 lg:mb-1 border-2 border-secondary group-hover:border-content rounded-full"
-                url={user.picture}
-                fullName={user.name}
+                url={user?.picture}
+                fullName={user?.name}
               />
               <h6 className="hidden lg:!block">پروفایل</h6>
             </Link>
