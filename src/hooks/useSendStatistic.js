@@ -6,17 +6,17 @@ import deepCleaner from '../utils/deepCleaner'
 function useSendStatistic(page, pageReferrer) {
   const [createStatistic] = useMutation(CREATE_STATISTIC)
   const sendStatistic = React.useCallback(
-    (event = 'pageView', ...ids) => {
+    async (event = 'view', ...ids) => {
       const agent = typeof navigator !== 'undefined' ? navigator.userAgent : null
       const pathname = typeof window !== 'undefined' ? window.location.pathname : null
       const referrer = pageReferrer || typeof document !== 'undefined' ? document.referrer : null
-      createStatistic({ variables: deepCleaner({ event, ids, page, agent, referrer, pathname }) })
+      return await createStatistic({ variables: deepCleaner({ event, ids, page, agent, referrer, pathname }) })
     },
     [createStatistic, page, pageReferrer]
   )
 
   React.useEffect(() => {
-    sendStatistic('pageView')
+    sendStatistic('view')
   }, [sendStatistic])
 
   return { sendStatistic }

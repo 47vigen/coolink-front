@@ -15,7 +15,7 @@ export default function Home({ page, sections, referrer }) {
 
   return (
     <Page page={page}>
-      <Render page={page} sections={sections} />
+      <Render page={page} sections={sections} sendStatistic={sendStatistic} />
     </Page>
   )
 }

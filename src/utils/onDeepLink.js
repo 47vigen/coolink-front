@@ -102,8 +102,7 @@ const onDeepLink = (type, link) => {
   if (urls['deep-link']) {
     return {
       url: urls.url,
-      onClick: (event) => {
-        event.preventDefault()
+      onClick: () => {
         const isAndroid = navigator.userAgent.toLowerCase().indexOf('android') > -1
         openUrlWithFallback(isAndroid ? urls['deep-link-ad'] : urls['deep-link'], urls.url)
       }

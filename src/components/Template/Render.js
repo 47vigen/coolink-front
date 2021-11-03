@@ -19,33 +19,54 @@ const Map = dynamic(() => import('../Tools/Map'), {
   ssr: false
 })
 
-function Render({ page: { slug, style }, sections }) {
+function Render({ page: { slug, style }, sections, sendStatistic = async () => null }) {
   return (
     <div className="parts my-4 space-y-2">
       {sections.map((section, index) => (
-        <RenderSection key={index} index={index} item={section} customize={style?.customize} slug={slug} />
+        <RenderSection
+          key={section.id || index}
+          slug={slug}
+          index={index}
+          item={section}
+          customize={style?.customize}
+          sendStatistic={sendStatistic}
+        />
       ))}
     </div>
   )
 }
 
-export const RenderSection = React.memo(function Component({ index, item, customize, slug }) {
+export const RenderSection = React.memo(function Component({ index, item, customize, slug, sendStatistic }) {
   return (
     <section className={classNames(`part-${index + 1} grid-cols-${item.arrangement || '1'}`, 'grid gap-2')}>
       {item.title ? <h3 className="text-center text-base pt-2 col-span-full">{item.title}</h3> : null}
-      <RenderInsideOfSection key={item.id} item={item} customize={customize} slug={slug} />
+      <RenderInsideOfSection
+        key={item.id}
+        item={item}
+        slug={slug}
+        customize={customize}
+        sendStatistic={(id) => sendStatistic('click', item.id, id)}
+      />
     </section>
   )
 })
 
-const RenderInsideOfSection = React.memo(function Component({ item: { type, ...data }, customize, slug }) {
+const RenderInsideOfSection = React.memo(function Component({ item: { type, ...data }, customize, slug, sendStatistic }) {
   const custom = React.useCallback((idx) => (data.customized ? data.customize[idx] || {} : {}), [data.customized, data.customize])
 
   if (!data.items?.length) return null
+
   switch (type) {
     case 'links':
       return data.items?.map(({ id, key, value, ...item }, index) => (
-        <LinkItem key={id} url={value} customize={{ ...customize, ...custom(0) }} options={item?.options} arrangement={data.arrangement}>
+        <LinkItem
+          key={id}
+          url={value}
+          options={item?.options}
+          arrangement={data.arrangement}
+          sendStatistic={() => sendStatistic(id)}
+          customize={{ ...customize, ...custom(0) }}
+        >
           {key}
         </LinkItem>
       ))
@@ -92,6 +113,7 @@ const RenderInsideOfSection = React.memo(function Component({ item: { type, ...d
             options={item?.options}
             arrangement={data.arrangement}
             {...onDeepLink(type, value)}
+            sendStatistic={() => sendStatistic(id)}
             customize={{ ...customize, ...custom(0), ...brandStyle }}
           >
             {key}
@@ -147,14 +169,26 @@ const RenderInsideOfSection = React.memo(function Component({ item: { type, ...d
 
     case 'igFeedsLink':
       return (
-        <LinkItem url={`/${slug}/feeds-link`} noHttp customize={{ ...customize, ...custom(0) }} options={data.items[0]?.options}>
+        <LinkItem
+          noHttp
+          url={`/${slug}/feeds-link`}
+          options={data.items[0]?.options}
+          customize={{ ...customize, ...custom(0) }}
+          sendStatistic={() => sendStatistic(data.items[0].id)}
+        >
           {data.items[0]?.key}
         </LinkItem>
       )
 
     case 'igFeedsDownload':
       return (
-        <LinkItem url={`/${slug}/feeds-download`} noHttp customize={{ ...customize, ...custom(0) }} options={data.items[0]?.options}>
+        <LinkItem
+          noHttp
+          url={`/${slug}/feeds-download`}
+          options={data.items[0]?.options}
+          customize={{ ...customize, ...custom(0) }}
+          sendStatistic={() => sendStatistic(data.items[0].id)}
+        >
           {data.items[0]?.key}
         </LinkItem>
       )
@@ -164,18 +198,45 @@ const RenderInsideOfSection = React.memo(function Component({ item: { type, ...d
   }
 })
 
-const LinkItem = React.memo(function Component({ children, customize, url, noHttp, emojiOrIcon, options = [], className, arrangement, ...props }) {
+const LinkItem = React.memo(function Component({
+  url,
+  noHttp,
+  children,
+  customize,
+  className,
+  emojiOrIcon,
+  arrangement,
+  options = [],
+  sendStatistic,
+  onClick: onDefualtClick,
+  ...props
+}) {
   const emojiIcon = React.useMemo(
     () => (emojiOrIcon ? emojiOrIcon : options && ['icon', 'emoji'].includes(options[0]?.key) ? options[0] : null),
     [emojiOrIcon, options]
   )
   const quadrupleArrangement = React.useMemo(() => arrangement == 4, [arrangement])
+  const href = React.useMemo(() => (!url.includes('http') && !noHttp ? `http://${url} ` : url), [url, noHttp])
+  const onClick = React.useCallback(
+    async (e) => {
+      if (!noHttp) e.preventDefault()
+      if (sendStatistic) sendStatistic()
+      if (onDefualtClick) {
+        onDefualtClick(e)
+      } else if (!noHttp && typeof window !== 'undefined') {
+        window.location = href
+      }
+    },
+    [href, noHttp, onDefualtClick, sendStatistic]
+  )
+
   return (
     <Element
       tag={SimpleLink}
       customize={customize}
-      href={!url.includes('http') && !noHttp ? `http://${url} ` : url}
+      href={href}
       className={classNames('flex items-center py-2 px-4', quadrupleArrangement ? 'justify-center' : '', className)}
+      onClick={onClick}
       {...props}
     >
       {emojiIcon ? (
