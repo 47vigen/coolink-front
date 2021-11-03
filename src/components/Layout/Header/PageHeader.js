@@ -10,7 +10,7 @@ import { Link, Icon, Avatar, Element } from '../../Tools'
 
 function PageHeader({ page, linked, onEdit }) {
   const titles = React.useMemo(
-    () => ({ title: page.avatar?.customize?.color || 'content', subTitle: page.avatar?.customize?.second || 'line' }),
+    () => ({ title: page.avatar?.customize?.color || 'content', subTitle: page.avatar?.customize?.second || 'secondary' }),
     [page]
   )
 

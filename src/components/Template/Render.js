@@ -96,7 +96,14 @@ const RenderInsideOfSection = React.memo(function Component({ item: { type, ...d
           }
         }
         return (
-          <LinkItem key={id} url={url()} customize={{ ...customize, ...custom(0) }} options={item?.options} arrangement={data.arrangement}>
+          <LinkItem
+            key={id}
+            url={url()}
+            options={item?.options}
+            arrangement={data.arrangement}
+            sendStatistic={() => sendStatistic(id)}
+            customize={{ ...customize, ...custom(0) }}
+          >
             {key}
           </LinkItem>
         )
@@ -216,7 +223,7 @@ const LinkItem = React.memo(function Component({
     [emojiOrIcon, options]
   )
   const quadrupleArrangement = React.useMemo(() => arrangement == 4, [arrangement])
-  const href = React.useMemo(() => (!url.includes('http') && !noHttp ? `http://${url} ` : url), [url, noHttp])
+  const href = React.useMemo(() => (!url.includes('http') && !noHttp ? `http://${url} ` : url).trim(), [url, noHttp])
   const onClick = React.useCallback(
     async (e) => {
       if (!noHttp) e.preventDefault()

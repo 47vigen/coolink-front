@@ -66,7 +66,7 @@ function EditStyle({ isOpenEditStyle, closeEditStyleModal, pk, style, onEditStyl
                         </Button>
                       </>
                     ) : (
-                      <span className="text-sm text-line">تصویری برای پس زمینه صفحه خود انتخاب کنید!</span>
+                      <span className="text-sm text-secondary">تصویری برای پس زمینه صفحه خود انتخاب کنید!</span>
                     )}
                     <Icon name="plus" className="absolute bottom-0 left-0 bg-body text-sm leading-4 p-1 rounded-ts-md" />
                   </Upload.Single>

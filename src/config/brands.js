@@ -51,7 +51,7 @@ export const brands = {
     from: 'yellow-400',
     to: 'pink-500',
     via: 'red-500',
-    direction: 'l'
+    direction: 'r'
   },
   youtube: {
     from: 'red-600',

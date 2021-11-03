@@ -165,7 +165,7 @@ function Create(props) {
                     <Icon name="plus" className="absolute bottom-0 left-0 bg-body text-sm leading-4 p-1 rounded-ts-md transition duration-300" />
                   </Upload.Single>
                   <Field name="slug" label="آیدی کولینک" placeholder="لطفا آیدی اینستاگرام خود را وارد کنید ...">
-                    <span className="flex items-center text-line absolute top-0 bottom-0 end-2" dir="ltr">
+                    <span className="flex items-center text-secondary absolute top-0 bottom-0 end-2" dir="ltr">
                       https://colk.ir/
                     </span>
                   </Field>
@@ -191,7 +191,7 @@ function Create(props) {
 const StepItem = React.memo(function Component({ label, step, num }) {
   return (
     <div className="relative flex-1 py-2 border-b-2 border-line">
-      <span className={classNames('transition-all ease-in-out duration-300', step >= num ? '' : 'text-line')}>{label}</span>
+      <span className={classNames('transition-all ease-in-out duration-300', step >= num ? '' : 'text-secondary')}>{label}</span>
       <div
         className={classNames('absolute border-b-2 border-primary transition-all ease-in-out duration-300', step > num ? 'w-full' : 'w-0')}
         style={{ bottom: -2 }}
