@@ -176,3 +176,49 @@ export const GET_PAGE_FEEDS = gql`
     }
   }
 `
+
+export const SHOW_STATISTICS_AND_SECTIONS_BY_PAGE = gql`
+  query ShowStatisticsAndSectionsByPage($page: String!) {
+    showStatisticsByPage(page: $page) {
+      id
+      ids
+      event
+      agent
+      referrer
+      pathname
+      ip
+    }
+
+    showSection(page: $page) {
+      id
+      type
+      position
+      title
+      items {
+        id
+        type
+        key
+        value
+        options {
+          key
+          value
+        }
+      }
+      arrangement
+      customized
+      customize {
+        type
+        rounded
+        animate
+        color
+        second
+        border
+        borderStyle
+        direction
+        from
+        to
+        via
+      }
+    }
+  }
+`
