@@ -26,10 +26,10 @@ function Statistics(props) {
     ({ option: { id, title, subTitle, avatar }, selected }) => (
       <div className="space-y-2 text-start" key={id}>
         <div className="flex items-center">
-          <Avatar fullName={title} url={avatar?.url} className="w-12 h-12 me-2" />
+          <Avatar fullName={title} url={avatar?.url} className="min-w-[3rem] max-w-[3rem] min-h-[3rem] max-h-[3rem] me-2" />
           <div className="flex flex-col flex-1">
-            <h5>{title}</h5>
-            <span className="text-secondary">{subTitle}</span>
+            <h5 className="truncate">{title}</h5>
+            <span className="block truncate text-secondary">{subTitle}</span>
           </div>
         </div>
       </div>
