@@ -3,10 +3,6 @@ import React from 'react'
 // ** UI
 import { Button } from '../../Tools'
 
-// ** Images
-import Image from 'next/image'
-import FooterLogo from '../../../../public/images/footer-logo.svg'
-
 function Footer(props) {
   return (
     <footer className="container mx-auto mt-8 px-4">
