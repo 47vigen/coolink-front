@@ -197,7 +197,7 @@ function Create(props) {
 
 const StepItem = React.memo(function Component({ label, step, num }) {
   return (
-    <div className="relative flex-1 py-2 border-b-2 border-line">
+    <div className="relative flex-1 pb-2 border-b-2 border-line">
       <span className={classNames('transition-all ease-in-out duration-300', step >= num ? '' : 'text-secondary')}>{label}</span>
       <div
         className={classNames('absolute border-b-2 border-primary transition-all ease-in-out duration-300', step > num ? 'w-full' : 'w-0')}
