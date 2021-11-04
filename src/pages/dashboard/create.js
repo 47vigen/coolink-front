@@ -6,7 +6,7 @@ import { useAuth } from '../../context/auth'
 import Seo from '../../components/Tools/Seo'
 
 // ** UI
-import Layout from '../../components/Layout'
+import Dashboard from '../../components/Layout/Dashboard'
 import ConfirmEmail from '../../components/Tools/ConfirmEmail'
 import { Avatar, Field, Upload, Button, Icon, Loader } from '../../components/Tools'
 
@@ -125,7 +125,7 @@ function Create(props) {
   }, [dominantColor])
 
   return (
-    <Layout dashboard>
+    <Dashboard dashboard>
       <Seo title="ایجاد کولینک" noindex />
       <div className="flex space-s-2 mb-4">
         <StepItem label="تایید آیدی" num={0} step={step} />
@@ -149,9 +149,16 @@ function Create(props) {
               {step === 0 ? (
                 <>
                   <Field name="username" label="آیدی اینستاگرام" placeholder="لطفا آیدی اینستاگرام خود را وارد کنید ..." />
-                  <Button className="px-4" loading={isSubmitting} htmlType="submit">
-                    تایید
-                  </Button>
+                  <div className="flex">
+                    <Button className="max-h-8 px-4 me-2" loading={isSubmitting} htmlType="submit">
+                      تایید
+                    </Button>
+                    {isSubmitting ? (
+                      <div className="flex-1 flex items-center bg-yellow-100 border border-yellow-300 rounded-md min-h-8 px-2 py-1" role="alert">
+                        دریافت اطلاعات شما از اینستاگرام ممکن است کمی زمان بر باشد!
+                      </div>
+                    ) : null}
+                  </div>
                 </>
               ) : (
                 <>
@@ -184,7 +191,7 @@ function Create(props) {
         </Formik>
         <ConfirmEmail type="modal" />
       </Loader>
-    </Layout>
+    </Dashboard>
   )
 }
 
