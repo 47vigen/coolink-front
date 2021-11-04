@@ -187,6 +187,7 @@ export const SHOW_STATISTICS_AND_SECTIONS_BY_PAGE = gql`
       referrer
       pathname
       ip
+      createdAt
     }
 
     showSection(page: $page) {
