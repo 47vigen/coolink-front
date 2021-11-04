@@ -1,4 +1,5 @@
 import React from 'react'
+import { useRouter } from 'next/router'
 import { useAuth } from '../../context/auth'
 
 // ** UI
@@ -73,7 +74,8 @@ function Dashboard({ className, children }) {
 }
 
 const MenuItem = ({ pathname, label, children, soon }) => {
-  const active = React.useMemo(() => (typeof window !== 'undefined' ? pathname === window.location.pathname : false), [pathname])
+  const router = useRouter()
+  const active = React.useMemo(() => pathname === router.pathname, [pathname, router.pathname])
 
   return !soon ? (
     <Link
