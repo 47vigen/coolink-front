@@ -51,9 +51,10 @@ function Seo({ page, ...props }) {
       { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/icons/favicon-32x32.png' },
       { rel: 'icon', type: 'image/png', sizes: '96x96', href: '/icons/favicon-96x96.png' },
       { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/icons/favicon-16x16.png' },
-      { rel: 'preload', href: '/fonts/woff/iransans-x-regular.woff', as: 'font', type: 'font/woff' },
-      { rel: 'preload', href: '/fonts/woff/iransans-x-bold.woff', as: 'font', type: 'font/woff' },
-      { rel: 'preload', href: '/fonts/ttf/icon.ttf?22ycys', as: 'font', type: 'font/truetype' }
+      { rel: 'preload', href: '/fonts/woff/dana-regular.woff', as: 'font', type: 'font/woff' },
+      { rel: 'preload', href: '/fonts/woff/dana-bold.woff', as: 'font', type: 'font/woff' },
+      { rel: 'preload', href: '/fonts/ttf/icon.ttf?22ycys', as: 'font', type: 'font/truetype' },
+      { rel: 'preload', href: 'https://unpkg.com/emoji-datasource-apple@5.0.1/img/apple/sheets-256/32.png', as: 'image' }
     ],
     ...deepCleaner(props)
   }
