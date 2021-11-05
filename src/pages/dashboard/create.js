@@ -8,6 +8,7 @@ import Seo from '../../components/Tools/Seo'
 // ** UI
 import Dashboard from '../../components/Layout/Dashboard'
 import ConfirmEmail from '../../components/Tools/ConfirmEmail'
+import { ChooseColor } from '../../components/Template/ChooseColor'
 import { Avatar, Field, Upload, Button, Icon, Loader } from '../../components/Tools'
 
 // ** Grapgql
@@ -17,8 +18,9 @@ import { CREATE_PAGE, GET_PAGE_INFO, UPLOAD_IMAGE } from '../../graphql/mutation
 
 // ** Utils
 import classNames from '../../utils/classNames'
-import { getSimilarColor } from '../../utils/getColors'
+import { getImgSrc } from '../../utils/getImgSrc'
 import { getFileBase } from '../../utils/fileBase'
+import { getSimilarColor } from '../../utils/getColors'
 
 // ** Validations
 import * as Yup from 'yup'
@@ -67,7 +69,8 @@ function Create(props) {
     }
   })
   const [uploadImage] = useMutation(UPLOAD_IMAGE)
-  const { data: dominantColor } = usePalette(ref.current?.values.avatar?.url)
+
+  const [dominantColor, setDominantColor] = React.useState({})
 
   const uploadBase64Image = React.useCallback(
     async (pk, dataurl) => {
@@ -116,6 +119,14 @@ function Create(props) {
     },
     [step, Router, createPage, getPageInfo, uploadBase64Image]
   )
+
+  const colors = React.useMemo(() => {
+    const colors =
+      Object.values(dominantColor)
+        .filter((color) => color)
+        .map((color) => getSimilarColor(color).class) || []
+    return Array.from(new Set(colors))?.map((color) => ({ class: color }))
+  }, [dominantColor])
 
   React.useEffect(() => {
     if (dominantColor?.vibrant) {
@@ -166,11 +177,12 @@ function Create(props) {
                     type="profile"
                     pk={values.pk}
                     onChange={(url) => setFieldValue('avatar.url', url, false)}
-                    className="w-20 h-20 mx-auto rounded-lg overflow-hidden"
+                    className="w-24 h-24 mx-auto rounded-lg overflow-hidden"
                   >
-                    <Avatar url={values.avatar?.url} fullName={values.title} className="w-20 h-20 rounded-lg mx-auto mb-2" />
+                    <Avatar url={values.avatar?.url} fullName={values.title} className="w-24 h-24 rounded-lg mx-auto mb-2" />
                     <Icon name="plus" className="absolute bottom-0 left-0 bg-body text-sm leading-4 p-1 rounded-ts-md transition duration-300" />
                   </Upload.Single>
+                  <DominantColor key={values.avatar?.url} src={values.avatar?.url} onChange={setDominantColor} />
                   <Field name="slug" label="آیدی کولینک" placeholder="لطفا آیدی اینستاگرام خود را وارد کنید ...">
                     <span className="flex items-center text-secondary absolute top-0 bottom-0 end-2" dir="ltr">
                       https://colk.ir/
@@ -178,6 +190,14 @@ function Create(props) {
                   </Field>
                   <Field name="title" label="نام/عنوان" placeholder="لطفا نام/عنوان خود را وارد کنید ..." />
                   <Field name="subTitle" label="زیر عنوان" placeholder="لطفا زیر عنوان خود را وارد کنید ..." />
+                  <div className="p-2 pt-0">
+                    <label className="mb-3 -ms-2 inline-block">رنگ اصلی</label>
+                    <ChooseColor
+                      colors={colors}
+                      active={values?.style?.customize?.color}
+                      setActive={(color) => setFieldValue('style.customize.color', color, false)}
+                    />
+                  </div>
                   <Button type="secondary" className="px-4 ml-2" onClick={() => setStep(0)}>
                     قبلی
                   </Button>
@@ -205,6 +225,16 @@ const StepItem = React.memo(function Component({ label, step, num }) {
       />
     </div>
   )
+})
+
+const DominantColor = React.memo(function Component({ src, onChange }) {
+  const { data: dominantColor } = usePalette(getImgSrc(src))
+
+  React.useEffect(() => {
+    onChange(dominantColor)
+  }, [dominantColor, onChange])
+
+  return null
 })
 
 export default Create
