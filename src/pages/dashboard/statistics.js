@@ -204,32 +204,34 @@ function Statistics(props) {
 
 function Topest({ topest = [], label }) {
   return (
-    <div className="bg-white rounded-lg p-4 grid grid-cols-2 lg:grid-cols-3 gap-2">
-      <div className="mb-2 col-span-full flex flex-col justify-center">
-        <h3 className="font-bold">{label}</h3>
-        <p>کولینک یک سرویس رایگان با برای کسب و کار ها و اشخاص است.</p>
+    <div className="bg-white rounded-lg p-4">
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-2">
+        <div className="mb-2 col-span-full flex flex-col justify-center">
+          <h3 className="font-bold">{label}</h3>
+          <p>کولینک یک سرویس رایگان با برای کسب و کار ها و اشخاص است.</p>
+        </div>
+        {topest.map(({ key, value }) => {
+          const color = brandChart(key)
+          return (
+            <div
+              key={key}
+              className={classNames(
+                'relative overflow-hidden flex justify-between items-center text-lg p-2 font-bold rounded-md border',
+                `border-${color} text-${color}`
+              )}
+            >
+              {styles[`brand-${key?.toLowerCase()}`] ? (
+                <Icon name={`brand-${key.toLowerCase()}`} />
+              ) : (
+                <span className="truncate capitalize" dir="ltr">
+                  {key}
+                </span>
+              )}
+              <div className="ms-4">{value}</div>
+            </div>
+          )
+        })}
       </div>
-      {topest.map(({ key, value }) => {
-        const color = brandChart(key)
-        return (
-          <div
-            key={key}
-            className={classNames(
-              'relative overflow-hidden flex justify-between items-center text-lg p-2 font-bold rounded-md border',
-              `border-${color} text-${color}`
-            )}
-          >
-            {styles[`brand-${key?.toLowerCase()}`] ? (
-              <Icon name={`brand-${key.toLowerCase()}`} />
-            ) : (
-              <span className="truncate capitalize" dir="ltr">
-                {key}
-              </span>
-            )}
-            <div className="ms-4">{value}</div>
-          </div>
-        )
-      })}
     </div>
   )
 }
