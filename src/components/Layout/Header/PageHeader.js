@@ -43,7 +43,7 @@ function PageHeader({ page, linked, onEdit }) {
       ) : null}
       <div
         className={classNames(
-          'flex items-center',
+          'relative z-10 flex items-center',
           onEdit ? '' : 'container max-w-md mx-auto',
           page.avatar?.position === 'center' ? 'flex-col items-center' : 'space-s-4'
         )}

@@ -141,7 +141,7 @@ function Edit({ page, sections }) {
                 <div className="flex-1 flex flex-col lg:h-[calc(100vh-9rem)] lg:max-h-[44.5rem] lg:overflow-y-scroll lg:ps-12 lg:pe-5 lg:me-3">
                   <div
                     className={classNames(
-                      '-mx-3 lg:py-4 px-2 rounded-lg flex-1 pb-32',
+                      '-mx-3 lg:py-4 px-2 rounded-lg flex-1 pb-32 overflow-hidden',
                       page.style?.background?.color ? `bg-${page.style.background.color} !pt-4 !px-3` : ''
                     )}
                   >
