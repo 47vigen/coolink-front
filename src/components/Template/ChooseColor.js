@@ -7,11 +7,11 @@ import { Icon } from '../Tools'
 import classNames from '../../utils/classNames'
 import { getPalette } from '../../utils/getColors'
 
-export const ChooseColor = ({ active, setActive, nullable, colorFull }) => {
+export const ChooseColor = ({ active, setActive, colors, nullable, colorFull }) => {
   return (
     <div className="max-h-48 -m-4 overflow-y-auto smooth-scrollbar">
       <div className="grid grid-cols-10 gap-1 m-2">
-        {getPalette(nullable, colorFull).map(({ class: color }) => {
+        {(colors || getPalette(nullable, colorFull))?.map(({ class: color }) => {
           return <ColorItem key={color} color={color} active={active || null} setActive={() => setActive(color)} />
         })}
       </div>
