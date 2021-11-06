@@ -85,7 +85,7 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
                   <Disclosure
                     dragable={{ canDrag, dragHandleProps }}
                     isOpen={(open) => onOpenDisclosure(open)}
-                    label={item?.key || `پرسش‌وپاسخ #${idx + 1}`}
+                    label={item?.key || `لینک #${idx + 1}`}
                     className="space-y-4 border border-t-0 border-line rounded-b-lg p-4"
                     labelClassName={(open) => classNames('bg-white', open ? 'rounded-b-none' : '')}
                     extera={
