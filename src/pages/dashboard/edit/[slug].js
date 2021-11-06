@@ -60,7 +60,7 @@ function Edit({ page, sections }) {
                       leaveFrom="transform opacity-100 scale-100"
                       leaveTo="transform opacity-0 scale-95"
                     >
-                      <Menu.Items className="absolute z-10 end-0 w-40 mt-2 origin-top-end bg-white border border-line lg:border-0 divide-y divide-line rounded-lg shadow-lg focus:outline-none">
+                      <Menu.Items className="absolute z-50 end-0 w-40 mt-2 origin-top-end bg-white border border-line lg:border-0 divide-y divide-line rounded-lg shadow-lg focus:outline-none">
                         <div className="ps-1 py-1">
                           <Menu.Item as={Button} type="ghost" icon="share" className="!justify-start w-full" onClick={openEditStyleModal}>
                             انتشار

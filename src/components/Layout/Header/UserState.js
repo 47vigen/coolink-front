@@ -35,7 +35,7 @@ function Header(props) {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items className="absolute z-10 start-0 w-40 mt-2 origin-top-start bg-white border border-line lg:border-0 divide-y divide-line rounded-lg shadow-lg focus:outline-none">
+            <Menu.Items className="absolute z-50 start-0 w-40 mt-2 origin-top-start bg-white border border-line lg:border-0 divide-y divide-line rounded-lg shadow-lg focus:outline-none">
               <div className="ps-1 py-1">
                 <Menu.Item>
                   <Link href="/dashboard" className={classNames('group flex rounded-md items-center w-full ps-2 py-2')}>
