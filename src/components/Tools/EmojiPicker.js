@@ -113,8 +113,8 @@ export const EmojiSelector = React.memo(function Component({ onSelect }) {
         </Tab.List>
         <Tab.Panels>
           <Tab.Panel className="w-full">
-            <Formik initialValues={{ title: '' }}>
-              {({ values }) => (
+            <Formik initialValues={{ title: '' }} onSubmit={(v) => onSearch(v.title)}>
+              {() => (
                 <Form className="w-full" onChange={(e) => onSearch(e.target?.value)}>
                   <Field name="title" placeholder="جستجو کنید ..." className="focus:text-content" errorless />
                   <div className="grid lg:grid-cols-8 grid-cols-6 gap-1 pe-2 -ms-2 my-2 max-h-48 smooth-scrollbar overflow-y-auto overflow-x-hidden">
