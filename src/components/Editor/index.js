@@ -274,4 +274,4 @@ function Editor({ page: pageData, sections: sectionsData, children }) {
   )
 }
 
-export default Editor
+export default React.memo(Editor)
