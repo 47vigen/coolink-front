@@ -86,6 +86,7 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
                     dragable={{ canDrag, dragHandleProps }}
                     isOpen={(open) => onOpenDisclosure(open)}
                     label={item?.key || `لینک #${idx + 1}`}
+                    defaultOpen={idx === 0 && values.items?.length === 1}
                     className="space-y-4 border border-t-0 border-line rounded-b-lg p-4"
                     labelClassName={(open) => classNames('bg-white', open ? 'rounded-b-none' : '')}
                     extera={
@@ -138,6 +139,7 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
                       label={item?.key || selected().label}
                       dragable={{ canDrag, dragHandleProps }}
                       isOpen={(open) => onOpenDisclosure(open)}
+                      defaultOpen={idx === 0 && values.items?.length === 1}
                       className="space-y-4 border border-t-0 border-line rounded-b-lg p-4"
                       labelClassName={(open) => classNames('bg-white', open ? 'rounded-b-none' : '')}
                       extera={
@@ -191,6 +193,7 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
                       label={item?.key || selected().label}
                       dragable={{ canDrag, dragHandleProps }}
                       isOpen={(open) => onOpenDisclosure(open)}
+                      defaultOpen={idx === 0 && values.items?.length === 1}
                       className="space-y-4 border border-t-0 border-line rounded-b-lg p-4"
                       labelClassName={(open) => classNames('bg-white', open ? 'rounded-b-none' : '')}
                       extera={
@@ -293,8 +296,9 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
                     dragable={{ canDrag, dragHandleProps }}
                     isOpen={(open) => onOpenDisclosure(open)}
                     label={item?.key || `پرسش‌وپاسخ #${idx + 1}`}
-                    labelClassName={(open) => classNames('bg-white', open ? 'rounded-b-none' : '')}
+                    defaultOpen={idx === 0 && values.items?.length === 1}
                     className="space-y-4 border border-t-0 border-line rounded-b-lg p-4"
+                    labelClassName={(open) => classNames('bg-white', open ? 'rounded-b-none' : '')}
                     extera={
                       <Button
                         icon="trash"
