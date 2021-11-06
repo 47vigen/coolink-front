@@ -279,3 +279,10 @@ button {
     background-image: url('/images/phone.svg') !important;
   }
 }
+
+.emoji-mart-emoji {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -4px;
+}
