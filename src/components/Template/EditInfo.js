@@ -29,9 +29,9 @@ function EditInfo({ page, isOpenEditInfo, closeEditInfoModal, onEditInfo }) {
                   type="profile"
                   pk={values.pk}
                   onChange={(url) => setFieldValue('avatar.url', url, false)}
-                  className="w-20 h-20 mx-auto rounded-lg overflow-hidden"
+                  className="w-24 h-24 mx-auto rounded-lg overflow-hidden"
                 >
-                  <Avatar url={values.avatar?.url} className="w-20 h-20 rounded-lg mx-auto mb-2" />
+                  <Avatar url={values.avatar?.url} className="w-24 h-24 rounded-lg mx-auto mb-2" />
                   <Icon name="plus" className="absolute bottom-0 left-0 bg-body text-sm leading-4 p-1 rounded-ts-md transition duration-300" />
                 </Upload.Single>
                 <Field name="title" label="نام/عنوان" placeholder="لطفا نام/عنوان خود را وارد کنید ..." />
