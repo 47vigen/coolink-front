@@ -9,6 +9,28 @@ import Icon from './Icon'
 import classNames from '../../utils/classNames'
 
 function Modal({ tabMode, children, isOpen, closeModal, labels, className, staticContent, theme = 'light' }) {
+  const [minHeight, setMinHeight] = React.useState(0)
+
+  const onResizeModal = React.useCallback(() => (typeof window !== 'undefined' ? setMinHeight(window.innerHeight) : null), [])
+
+  React.useEffect(() => {
+    window.addEventListener('scroll', onResizeModal)
+    return () => {
+      window.removeEventListener('scroll', onResizeModal)
+    }
+  }, [onResizeModal])
+
+  React.useEffect(() => {
+    window.addEventListener('resize', onResizeModal)
+    return () => {
+      window.removeEventListener('resize', onResizeModal)
+    }
+  }, [onResizeModal])
+
+  React.useEffect(() => {
+    onResizeModal()
+  }, [isOpen, onResizeModal])
+
   return (
     <Transition appear show={isOpen} as={React.Fragment}>
       <Dialog as="div" className="font-dana fixed inset-0 z-[1001] overflow-y-auto" dir="rtl" onClose={closeModal} static={staticContent}>
@@ -40,10 +62,11 @@ function Modal({ tabMode, children, isOpen, closeModal, labels, className, stati
           >
             <div
               className={classNames(
-                'md:inline-block inline-flex flex-col w-full text-right align-middle transition-all transform md:rounded-md md:min-h-0 min-h-screen',
+                'md:inline-block inline-flex flex-col w-full text-right align-middle transition-all transform md:rounded-md md:!min-h-0',
                 theme === 'transparent' ? '' : 'bg-white md:shadow-md',
                 className
               )}
+              style={{ minHeight }}
             >
               {tabMode ? (
                 <Tab.Group>

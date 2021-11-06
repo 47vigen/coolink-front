@@ -73,11 +73,9 @@ function EditStyle({ isOpenEditStyle, closeEditStyleModal, pk, style, onEditStyl
                 </Disclosure> */}
               </Tab.Panel>
             </Tab.Panels>
-            <div className="pb-8 md:pb-0">
-              <Button className="w-full" loading={isSubmitting} htmlType="submit">
-                ذخیره
-              </Button>
-            </div>
+            <Button className="w-full" loading={isSubmitting} htmlType="submit">
+              ذخیره
+            </Button>
           </Form>
         )}
       </Formik>
