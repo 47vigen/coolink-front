@@ -12,7 +12,7 @@ import classNames from '../../utils/classNames'
 function Page({ page, title, children }) {
   const logo = React.useMemo(() => {
     const code = page.style?.background?.color ? Number(page.style?.background?.color.split('-').pop()) : 50
-    return code >= 500 ? { svg: '#B7AB9F', class: 'border-white' } : { svg: '#485460', class: 'border-content' }
+    return code >= 500 ? { svg: '#FFFFFF', class: 'border-white' } : { svg: '#2D2D2D', class: 'border-content' }
   }, [page.style?.background?.color])
 
   return (
