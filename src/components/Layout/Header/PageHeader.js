@@ -51,13 +51,13 @@ function PageHeader({ page, linked, onEdit }) {
         <AvatarSection page={page} linked={linked} onEdit={onEdit} />
         {page.avatar?.position === 'center' ? (
           <>
-            <h1 className={classNames('text-lg mt-1', `text-${titles.title}`)}>{page?.title}</h1>
-            <span className={classNames('text-base', `text-${titles.subTitle}`)}>{page?.subTitle}</span>
+            <h1 className={classNames('text-xl mt-2', `text-${titles.title}`)}>{page?.title}</h1>
+            <span className={classNames('text-lg', `text-${titles.subTitle}`)}>{page?.subTitle}</span>
           </>
         ) : (
           <div className="flex flex-col flex-1">
-            <h1 className={classNames('text-lg mb-1', `text-${titles.title}`)}>{page?.title}</h1>
-            <span className={classNames('text-base', `text-${titles.subTitle}`)}>{page?.subTitle}</span>
+            <h1 className={classNames('text-xl mb-1', `text-${titles.title}`)}>{page?.title}</h1>
+            <span className={classNames('text-lg', `text-${titles.subTitle}`)}>{page?.subTitle}</span>
           </div>
         )}
       </div>
@@ -70,10 +70,10 @@ const AvatarSection = ({ page, linked, onEdit }) => {
     <div className="relative w-min">
       {linked ? (
         <Link href={`/${page.slug}`}>
-          <Avatar url={page.avatar?.url} className="w-20 h-20" rounded={page.avatar?.customize?.rounded} priority />
+          <Avatar url={page.avatar?.url} className="w-24 h-24" rounded={page.avatar?.customize?.rounded} priority />
         </Link>
       ) : (
-        <Avatar url={page.avatar?.url} className="w-20 h-20" rounded={page.avatar?.customize?.rounded} priority />
+        <Avatar url={page.avatar?.url} className="w-24 h-24" rounded={page.avatar?.customize?.rounded} priority />
       )}
       {onEdit ? (
         <button className="absolute bottom-0 left-0 transition duration-300 hover:opacity-60" onClick={onEdit}>

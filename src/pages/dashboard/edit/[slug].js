@@ -44,7 +44,7 @@ function Edit({ page, sections }) {
           }) => (
             <div className="flex-1 flex flex-col lg:flex-row -mt-4 lg:mt-0 items-stretch">
               <div className="lg:flex-1 flex flex-col lg:pe-8 lg:space-y-4">
-                <div className="flex items-center space-s-2 -mt-2 -mx-4 mb-2 py-2 bg-white px-2 lg:bg-transparent sm:rounded-lg lg:border border-line lg:mx-0 ">
+                <div className="flex items-center space-s-2 -mt-2 -mx-4 mb-2 py-2 bg-white shadow-lg px-2 sm:rounded-lg sm:shadow-none lg:bg-transparent lg:border border-line lg:mx-0 ">
                   <div className="flex-1 flex items-center justify-end" dir="ltr">
                     <span className="me-1">colk.ir/</span>
                     <h3 className="text-primary text-2xl font-bold">{page.slug}</h3>
@@ -136,12 +136,12 @@ function Edit({ page, sections }) {
                   </Button>
                 </div>
               </div>
-              <div className="flex-1 flex flex-col lg:block h-full pt-2 rounded-t-2xl !bg-none lg:pb-10 lg:pt-[3.5rem] lg:rounded-2xl lg:max-h-[calc(100vh-5rem)] lg:max-w-[26.5rem] lg:bg-no-repeat lg:bg-top lg:bg-phone">
+              <div className="flex-1 flex flex-col h-full rounded-t-2xl !bg-none -mt-1 lg:mt-0 lg:block lg:pb-10 lg:pt-[3.5rem] lg:rounded-2xl lg:max-h-[calc(100vh-5rem)] lg:max-w-[26.5rem] lg:bg-no-repeat lg:bg-top lg:bg-phone">
                 <Seo page={page} title={`ویرایش ${page.title}`} noindex />
-                <div className="flex-1 flex flex-col lg:h-[calc(100vh-9rem)] lg:max-h-[44.5rem] lg:overflow-y-scroll lg:ps-12 lg:pe-5 lg:me-3">
+                <div className="flex-1 flex flex-col lg:h-[calc(100vh-8.75rem)] lg:max-h-[44.5rem] lg:overflow-y-scroll lg:ps-12 lg:pe-5 lg:me-3">
                   <div
                     className={classNames(
-                      '-mx-3 lg:py-4 px-2 rounded-lg flex-1 pb-32 overflow-hidden',
+                      '-mx-3 lg:py-4 px-2 rounded flex-1 pb-32 overflow-hidden',
                       page.style?.background?.color ? `bg-${page.style.background.color} !pt-4 !px-3` : ''
                     )}
                   >
