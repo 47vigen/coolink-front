@@ -26,8 +26,8 @@ function EditStyle({ isOpenEditStyle, closeEditStyleModal, pk, style, onEditStyl
         onSubmit={onEditStyle}
       >
         {({ values, setFieldValue, isSubmitting }) => (
-          <Form className="p-4 space-y-4">
-            <Tab.Panels>
+          <Form className="flex-1 flex flex-col p-4 space-y-4">
+            <Tab.Panels className="flex-1">
               <Tab.Panel className="space-y-4">
                 <DefaultCustomize values={values} setFieldValue={setFieldValue} />
               </Tab.Panel>
@@ -73,9 +73,11 @@ function EditStyle({ isOpenEditStyle, closeEditStyleModal, pk, style, onEditStyl
                 </Disclosure> */}
               </Tab.Panel>
             </Tab.Panels>
-            <Button className="w-full" loading={isSubmitting} htmlType="submit">
-              ذخیره
-            </Button>
+            <div className="pb-8 md:pb-0">
+              <Button className="w-full" loading={isSubmitting} htmlType="submit">
+                ذخیره
+              </Button>
+            </div>
           </Form>
         )}
       </Formik>

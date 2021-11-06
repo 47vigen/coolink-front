@@ -6,7 +6,7 @@ import { Modal, Icon } from '../Tools'
 
 function AddItem({ isOpenAdd, closeAddModal, onAddItem }) {
   return (
-    <Modal tabMode labels={['عمومی', 'اینستاگرام']} isOpen={isOpenAdd} closeModal={closeAddModal} className="max-w-sm">
+    <Modal tabMode labels={['عمومی', 'اینستاگرام']} isOpen={isOpenAdd} closeModal={closeAddModal} className="md:max-w-md">
       <Tab.Panels>
         <Tab.Panel className="grid grid-cols-2 gap-4 p-4">
           <Item type="links" icon="link" label="لینک یا پیوند" onAddItem={onAddItem} />

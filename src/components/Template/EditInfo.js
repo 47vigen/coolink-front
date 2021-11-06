@@ -22,8 +22,8 @@ function EditInfo({ page, isOpenEditInfo, closeEditInfoModal, onEditInfo }) {
     <Modal tabMode labels={['ویرایش مشخصات', 'آواتار', 'سربرگ']} isOpen={isOpenEditInfo} closeModal={closeEditInfoModal} className="md:max-w-md">
       <Formik initialValues={{ avatar: { url: '' }, title: '', subTitle: '', ...page }} validationSchema={pageValidate} onSubmit={onEditInfo}>
         {({ values, setFieldValue, isSubmitting }) => (
-          <Form className="p-4 space-y-4">
-            <Tab.Panels>
+          <Form className="flex-1 flex flex-col p-4 space-y-4">
+            <Tab.Panels className="flex-1">
               <Tab.Panel className="space-y-4">
                 <Upload.Single
                   type="profile"
@@ -116,9 +116,11 @@ function EditInfo({ page, isOpenEditInfo, closeEditInfoModal, onEditInfo }) {
                 </Disclosure>
               </Tab.Panel>
             </Tab.Panels>
-            <Button className="w-full" loading={isSubmitting} htmlType="submit">
-              ذخیره
-            </Button>
+            <div className="pb-8 md:pb-0">
+              <Button className="w-full" loading={isSubmitting} htmlType="submit">
+                ذخیره
+              </Button>
+            </div>
           </Form>
         )}
       </Formik>

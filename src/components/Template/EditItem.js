@@ -53,7 +53,7 @@ const RenderEditItem = React.memo(function Component({ page, currentEditItem: { 
               <Customize type={type} page={page} values={values} setFieldValue={setFieldValue} />
             </Tab.Panel>
           </Tab.Panels>
-          <div className="flex space-s-2">
+          <div className="flex space-s-2 pb-8 md:pb-0">
             <Button className="w-full" loading={isSubmitting} htmlType="submit">
               ذخیره
             </Button>
