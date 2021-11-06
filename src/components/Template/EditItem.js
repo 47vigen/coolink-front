@@ -21,13 +21,14 @@ import { section as sectionValidate } from '../../config/validations'
 
 // ** Utils
 import { generateDeepLink } from '../../utils/onDeepLink'
+import classNames from '../../utils/classNames'
 
 const dI = (item = {}) => ({ type: '', key: '', value: '', ...item })
 
 function EditItem({ page, isOpenEdit, closeEditModal, onEditItem, currentEditItem, onRemoveItem }) {
   return (
-    <Modal tabMode labels={['ویرایش آپشن', 'سفارشی سازی']} isOpen={isOpenEdit} closeModal={() => closeEditModal(false)} className="max-w-sm">
-      <div className="p-4">
+    <Modal tabMode labels={['ویرایش آپشن', 'سفارشی سازی']} isOpen={isOpenEdit} closeModal={() => closeEditModal(false)} className="max-w-md">
+      <div className="p-4 flex-1 flex flex-col">
         <RenderEditItem page={page} currentEditItem={currentEditItem} onEditItem={onEditItem} onRemoveItem={onRemoveItem} />
       </div>
     </Modal>
@@ -42,7 +43,7 @@ const RenderEditItem = React.memo(function Component({ page, currentEditItem: { 
       onSubmit={(values) => onEditItem({ ...values, type, id })}
     >
       {({ isSubmitting, setFieldValue, values, errors }) => (
-        <Form className="space-y-4">
+        <Form className="space-y-4 flex-1 flex flex-col justify-between">
           <Tab.Panels>
             <Tab.Panel className="space-y-4">
               <InsideBody type={type} values={values} setFieldValue={setFieldValue} />
@@ -82,10 +83,11 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
               <DragableList list={values.items} onChange={(items) => setFieldValue('items', items, false)}>
                 {({ item, idx, dragHandleProps, onOpenDisclosure, canDrag }) => (
                   <Disclosure
-                    label={`لینک #${idx + 1}`}
                     dragable={{ canDrag, dragHandleProps }}
                     isOpen={(open) => onOpenDisclosure(open)}
-                    className="space-y-4 border border-line rounded-lg p-4 mt-4"
+                    label={item?.key || `پرسش‌وپاسخ #${idx + 1}`}
+                    className="space-y-4 border border-t-0 border-line rounded-b-lg p-4"
+                    labelClassName={(open) => classNames('bg-white', open ? 'rounded-b-none' : '')}
                     extera={
                       <Button
                         icon="trash"
@@ -133,10 +135,11 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
                   const selected = (value = item?.type) => contacts.find((item) => item.value === value)
                   return (
                     <Disclosure
+                      label={item?.key || selected().label}
                       dragable={{ canDrag, dragHandleProps }}
                       isOpen={(open) => onOpenDisclosure(open)}
-                      label={item?.key || selected().label}
-                      className="space-y-4 border border-line rounded-lg p-4 mt-4"
+                      className="space-y-4 border border-t-0 border-line rounded-b-lg p-4"
+                      labelClassName={(open) => classNames('bg-white', open ? 'rounded-b-none' : '')}
                       extera={
                         <Button
                           icon="trash"
@@ -185,10 +188,11 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
                   const selected = (value = item?.type) => services.find((item) => item.value === value)
                   return (
                     <Disclosure
+                      label={item?.key || selected().label}
                       dragable={{ canDrag, dragHandleProps }}
                       isOpen={(open) => onOpenDisclosure(open)}
-                      label={item?.key || selected().label}
-                      className="space-y-4 border border-line rounded-lg p-4 mt-4"
+                      className="space-y-4 border border-t-0 border-line rounded-b-lg p-4"
+                      labelClassName={(open) => classNames('bg-white', open ? 'rounded-b-none' : '')}
                       extera={
                         <Button
                           icon="trash"
@@ -289,7 +293,8 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
                     dragable={{ canDrag, dragHandleProps }}
                     isOpen={(open) => onOpenDisclosure(open)}
                     label={item?.key || `پرسش‌وپاسخ #${idx + 1}`}
-                    className="space-y-4 border border-line rounded-lg p-4 mt-4"
+                    labelClassName={(open) => classNames('bg-white', open ? 'rounded-b-none' : '')}
+                    className="space-y-4 border border-t-0 border-line rounded-b-lg p-4"
                     extera={
                       <Button
                         icon="trash"
@@ -357,8 +362,9 @@ const EmojiFeild = React.memo(function Component({ idx, item, setFieldValue }) {
           <span className="capitalize">{iconLabel}</span>
         </>
       }
-      extera={
-        selected?.value ? (
+      labelClassName={(open) => (open ? 'rounded-b-none' : '')}
+      extera={(open) =>
+        open && selected?.value ? (
           <Button icon="trash" className="text-danger border-line border-s !rounded-none self-stretch" onClick={() => select(null)} type="ghost" />
         ) : null
       }

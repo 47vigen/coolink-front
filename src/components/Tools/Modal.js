@@ -12,7 +12,7 @@ function Modal({ tabMode, children, isOpen, closeModal, labels, className, stati
   return (
     <Transition appear show={isOpen} as={React.Fragment}>
       <Dialog as="div" className="font-dana fixed inset-0 z-[1001] overflow-y-auto" dir="rtl" onClose={closeModal} static={staticContent}>
-        <div className="min-h-screen p-4 text-center">
+        <div className="min-h-screen md:p-4 text-center">
           <Transition.Child
             as={React.Fragment}
             enter="ease-out duration-100"
@@ -40,8 +40,8 @@ function Modal({ tabMode, children, isOpen, closeModal, labels, className, stati
           >
             <div
               className={classNames(
-                'inline-block w-full text-right align-middle transition-all transform rounded-md',
-                theme === 'transparent' ? '' : 'bg-white shadow-md',
+                'md:inline-block inline-flex flex-col w-full text-right align-middle transition-all transform md:rounded-md md:h-auto h-screen',
+                theme === 'transparent' ? '' : 'bg-white md:shadow-md',
                 className
               )}
             >

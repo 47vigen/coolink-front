@@ -77,7 +77,7 @@ export const EmojiSelector = React.memo(function Component({ onSelect }) {
 
   if (typeof document !== 'undefined') {
     return (
-      <Tab.Group as="div" dir="rtl" className="bg-white border border-line rounded-lg p-4">
+      <Tab.Group as="div" dir="rtl" className="bg-white border border-t-0 border-line rounded-b-lg px-4 py-2 -mt-4">
         <Tab.List className="flex self-stretch -mx-2 pb-2 mb-4 border-b border-line overflow-x-auto hide-scrollbar">
           <TabUnderLine>
             <Icon name="search" className="text-lg" />
