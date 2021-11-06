@@ -56,7 +56,7 @@ function PageHeader({ page, linked, onEdit }) {
           </>
         ) : (
           <div className="flex flex-col flex-1">
-            <h1 className={classNames('text-xl mb-1', `text-${titles.title}`)}>{page?.title}</h1>
+            <h1 className={classNames('text-xl', `text-${titles.title}`)}>{page?.title}</h1>
             <span className={classNames('text-lg', `text-${titles.subTitle}`)}>{page?.subTitle}</span>
           </div>
         )}
