@@ -39,4 +39,4 @@ function ThemeColor({ page, children }) {
   )
 }
 
-export default ThemeColor
+export default React.memo(ThemeColor)

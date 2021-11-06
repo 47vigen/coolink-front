@@ -20,4 +20,4 @@ export function SimpleLink({ href, children, ...props }) {
   )
 }
 
-export default Link
+export default React.memo(Link)

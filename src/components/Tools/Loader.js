@@ -25,4 +25,4 @@ function Loader({ tag = 'div', loading, label = true, className, loaderClassName
   )
 }
 
-export default Loader
+export default React.memo(Loader)

@@ -101,4 +101,4 @@ const MenuItem = ({ pathname, label, children, soon }) => {
   )
 }
 
-export default Dashboard
+export default React.memo(Dashboard)

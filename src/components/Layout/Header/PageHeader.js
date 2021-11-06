@@ -84,4 +84,4 @@ const AvatarSection = ({ page, linked, onEdit }) => {
   )
 }
 
-export default PageHeader
+export default React.memo(PageHeader)

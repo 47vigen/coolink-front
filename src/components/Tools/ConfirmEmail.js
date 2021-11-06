@@ -56,4 +56,4 @@ function ConfirmEmail({ type }) {
   } else return null
 }
 
-export default ConfirmEmail
+export default React.memo(ConfirmEmail)

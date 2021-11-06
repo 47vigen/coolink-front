@@ -10,7 +10,7 @@ import { Button, Link, Icon, Avatar, Loader } from '../../Tools'
 // ** Utils
 import classNames from '../../../utils/classNames'
 
-function Header(props) {
+function UserState(props) {
   const { user, signOut, loading } = useAuth()
 
   return (
@@ -75,4 +75,4 @@ function Header(props) {
   )
 }
 
-export default Header
+export default React.memo(UserState)

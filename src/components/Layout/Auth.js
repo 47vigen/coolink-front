@@ -20,4 +20,4 @@ function Auth({ children, extra, className }) {
   )
 }
 
-export default Auth
+export default React.memo(Auth)

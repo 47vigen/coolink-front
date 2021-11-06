@@ -20,4 +20,4 @@ function Layout({ children, className, dashboard, footer = true }) {
   )
 }
 
-export default Layout
+export default React.memo(Layout)
