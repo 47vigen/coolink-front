@@ -19,7 +19,7 @@ import { page as pageValidate } from '../../config/validations'
 
 function EditInfo({ page, isOpenEditInfo, closeEditInfoModal, onEditInfo }) {
   return (
-    <Modal tabMode labels={['ویرایش مشخصات', 'آواتار', 'سربرگ']} isOpen={isOpenEditInfo} closeModal={closeEditInfoModal} className="max-w-sm">
+    <Modal tabMode labels={['ویرایش مشخصات', 'آواتار', 'سربرگ']} isOpen={isOpenEditInfo} closeModal={closeEditInfoModal} className="md:max-w-md">
       <Formik initialValues={{ avatar: { url: '' }, title: '', subTitle: '', ...page }} validationSchema={pageValidate} onSubmit={onEditInfo}>
         {({ values, setFieldValue, isSubmitting }) => (
           <Form className="p-4 space-y-4">

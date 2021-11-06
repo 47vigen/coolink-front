@@ -19,7 +19,7 @@ import { style as styleValidate } from '../../config/validations'
 
 function EditStyle({ isOpenEditStyle, closeEditStyleModal, pk, style, onEditStyle }) {
   return (
-    <Modal tabMode labels={['ظاهر پیشفرض آیتم ها', 'پس زمینه']} isOpen={isOpenEditStyle} closeModal={closeEditStyleModal} className="max-w-sm">
+    <Modal tabMode labels={['ظاهر پیشفرض آیتم ها', 'پس زمینه']} isOpen={isOpenEditStyle} closeModal={closeEditStyleModal} className="md:max-w-md">
       <Formik
         initialValues={{ customize: DEFAULT_CUSTOMIZE, background: { url: '', color: '' }, ...style }}
         validationSchema={styleValidate}

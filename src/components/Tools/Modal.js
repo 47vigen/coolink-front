@@ -40,7 +40,7 @@ function Modal({ tabMode, children, isOpen, closeModal, labels, className, stati
           >
             <div
               className={classNames(
-                'md:inline-block inline-flex flex-col w-full text-right align-middle transition-all transform md:rounded-md md:h-auto h-screen',
+                'md:inline-block inline-flex flex-col w-full text-right align-middle transition-all transform md:rounded-md md:min-h-0 min-h-screen',
                 theme === 'transparent' ? '' : 'bg-white md:shadow-md',
                 className
               )}
@@ -103,4 +103,4 @@ const DialogTitle = ({ theme, closeModal, children }) => {
   )
 }
 
-export default Modal
+export default React.memo(Modal)

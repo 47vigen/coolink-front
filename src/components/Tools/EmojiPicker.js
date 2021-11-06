@@ -14,6 +14,7 @@ import { Field, Icon } from '.'
 
 // ** Utils
 import classNames from '../../utils/classNames'
+import debounce from '../../utils/debounce'
 
 const ICONS = {
   brands: Object.keys(styles).filter((key) => key.includes('brand-')),
@@ -41,6 +42,8 @@ const TabUnderLine = React.memo(function Component({ children }) {
 
 export const EmojiSelector = React.memo(function Component({ onSelect }) {
   const [skin, setSkin] = React.useState(1)
+  const [searched, setSearched] = React.useState([])
+
   const fuse = React.useMemo(() => {
     const all = []
     all.push(
@@ -67,13 +70,7 @@ export const EmojiSelector = React.memo(function Component({ onSelect }) {
       threshold: 0.2
     })
   }, [])
-
-  const searched = React.useCallback(
-    (title) => {
-      return fuse.search(title?.toLowerCase() || '')
-    },
-    [fuse]
-  )
+  const onSearch = React.useMemo(() => debounce((title) => setSearched(fuse.search(title?.toLowerCase() || '') || []), 500), [fuse])
 
   if (typeof document !== 'undefined') {
     return (
@@ -118,10 +115,10 @@ export const EmojiSelector = React.memo(function Component({ onSelect }) {
           <Tab.Panel className="w-full">
             <Formik initialValues={{ title: '' }}>
               {({ values }) => (
-                <Form className="w-full">
+                <Form className="w-full" onChange={(e) => onSearch(e.target?.value)}>
                   <Field name="title" placeholder="جستجو کنید ..." className="focus:text-content" errorless />
                   <div className="grid lg:grid-cols-8 grid-cols-6 gap-1 pe-2 -ms-2 my-2 max-h-48 smooth-scrollbar overflow-y-auto overflow-x-hidden">
-                    {searched(values.title)?.map(({ item: { type, name } }, idx) => (
+                    {searched.map(({ item: { type, name } }, idx) => (
                       <button
                         type="button"
                         key={`${type}-${name}`}

@@ -7,7 +7,7 @@ import { Icon } from '../Tools'
 import classNames from '../../utils/classNames'
 import { getPalette } from '../../utils/getColors'
 
-export const ChooseColor = ({ active, setActive, colors, nullable, colorFull }) => {
+const ChooseColorUnmemo = ({ active, setActive, colors, nullable, colorFull }) => {
   return (
     <div className="max-h-48 -m-4 overflow-y-auto smooth-scrollbar">
       <div className="grid grid-cols-10 gap-1 m-2">
@@ -19,7 +19,7 @@ export const ChooseColor = ({ active, setActive, colors, nullable, colorFull }) 
   )
 }
 
-export const ColorItem = ({ color, active, setActive }) => {
+const ColorItemUnmemo = ({ color, active, setActive }) => {
   const code = React.useMemo(() => (color ? Number(color.split('-').pop()) : 50), [color])
 
   return (
@@ -35,3 +35,6 @@ export const ColorItem = ({ color, active, setActive }) => {
     </button>
   )
 }
+
+export const ColorItem = React.memo(ColorItemUnmemo)
+export const ChooseColor = React.memo(ChooseColorUnmemo)
