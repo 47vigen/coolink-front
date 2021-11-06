@@ -34,7 +34,7 @@ function Modal({ tabMode, children, isOpen, closeModal, labels, className, stati
   return (
     <Transition appear show={isOpen} as={React.Fragment}>
       <Dialog as="div" className="font-dana fixed inset-0 z-[1001] overflow-y-auto" dir="rtl" onClose={closeModal} static={staticContent}>
-        <div className="min-h-screen md:p-4 text-center">
+        <div className="md:!min-h-screen md:p-4 text-center" style={{ minHeight }}>
           <Transition.Child
             as={React.Fragment}
             enter="ease-out duration-100"
@@ -48,7 +48,7 @@ function Modal({ tabMode, children, isOpen, closeModal, labels, className, stati
           </Transition.Child>
 
           {/* This element is to trick the browser into centering the modal contents. */}
-          <span className="inline-block h-screen align-middle" aria-hidden="true">
+          <span className="inline-block md:!h-screen align-middle" style={{ height: minHeight }} aria-hidden="true">
             &#8203;
           </span>
           <Transition.Child
