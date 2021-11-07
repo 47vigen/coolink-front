@@ -426,7 +426,7 @@ export const CustomizeHandlare = (props = DEFAULT_CUSTOMIZE_OPTIONS) => {
               className="space-y-4 border border-line p-4 rounded-lg"
             >
               {customizeProps[idx].preView ? (
-                <Element hoverable={false} customize={custom} className="p-4 text-center relative">
+                <Element hoverable={false} customize={{ ...(idx ? { color: null } : {}), ...custom }} className="p-4 text-center relative">
                   نمونه آیتم
                   {custom?.type === 'gradient' && customizeProps[idx].direction.available ? (
                     <Button
