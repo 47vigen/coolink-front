@@ -55,7 +55,7 @@ const Item = React.memo(function Component({ index, slug, style, item, onEdit, d
             )}
           >
             <div
-              className={classNames('transition ease-in-out duration-300', open ? 'transform -translate-y-3 -translate-x-3' : '')}
+              className={classNames('transition ease-in-out duration-300', open ? 'transform -translate-y-3 -translate-s-3' : '')}
               style={{ pointerEvents: 'none' }}
             >
               <RenderSection item={item} style={style} index={index} slug={slug} />
