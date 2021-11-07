@@ -45,12 +45,12 @@ function Edit({ page, sections, onDragEnd, openEditModal }) {
 
 const Item = React.memo(function Component({ index, slug, style, item, onEdit, dragHandleProps }) {
   return (
-    <Menu as="div" className="relative text-right">
+    <Menu as="div" className="relative text-start">
       <Menu.Button className="w-full">
         {({ open }) => (
           <div
             className={classNames(
-              'z-30 w-full rounded-lg rounded-br-none border-dashed border-line transition ease-in-out duration-300',
+              'z-30 w-full rounded-lg rounded-bs-none border-dashed border-line transition ease-in-out duration-300',
               open ? 'bg-body bg-opacity-70 border' : ''
             )}
           >
@@ -72,14 +72,14 @@ const Item = React.memo(function Component({ index, slug, style, item, onEdit, d
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute bg-body bg-opacity-70 rounded-b-lg -mt-1 z-[1000] right-0 w-max origin-top-right focus:outline-none">
+        <Menu.Items className="absolute bg-body bg-opacity-70 rounded-b-lg -mt-1 z-[1000] start-0 w-max origin-top-start focus:outline-none">
           {({ open }) => (
             <div className="flex rounded-b-lg mt-1 border border-t-0 border-dashed border-line text-lg">
-              <Menu.Item as="button" className="pb-1 pr-3 pl-1 pt-0" onClick={onEdit}>
+              <Menu.Item as="button" className="pb-1 ps-3 pe-1 pt-0" onClick={onEdit}>
                 <Icon name="edit" />
               </Menu.Item>
               <Menu.Item {...dragHandleProps}>
-                <Icon name="interlining" className="pb-1 pr-3 pl-3 pt-0" />
+                <Icon name="interlining" className="pb-1 ps-3 pe-3 pt-0" />
               </Menu.Item>
             </div>
           )}
