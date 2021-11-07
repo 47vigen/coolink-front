@@ -46,6 +46,7 @@ function Disclosure({ isDisclosure = true, label, children, className, labelClas
             </div>
             <Transition
               show={open}
+              as={React.Fragment}
               enter="transition duration-75 ease-out"
               enterFrom="transform scale-95 opacity-0"
               enterTo="transform scale-100 opacity-100"
@@ -53,7 +54,9 @@ function Disclosure({ isDisclosure = true, label, children, className, labelClas
               leaveFrom="transform scale-100 opacity-100"
               leaveTo="transform scale-95 opacity-0"
             >
-              <HeadlessDisclosure.Panel className={className || 'p-4 leading-6 border border-line rounded-lg overflow-hidden'}>
+              <HeadlessDisclosure.Panel
+                className={classNames('origin-top', className || 'p-4 leading-6 border border-line rounded-lg overflow-hidden')}
+              >
                 {children}
               </HeadlessDisclosure.Panel>
             </Transition>

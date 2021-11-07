@@ -18,8 +18,16 @@ function Listbox({ label, options, value, onChange, renderLabel, renderSelected,
           {renderSelected ? renderSelected({ option: selected || {} }) : <span className="block truncate ps-2">{selected.label}</span>}
           <Icon name="angle-small-down" className="pe-2" />
         </HeadlessListbox.Button>
-        <Transition as={React.Fragment} leave="transition ease-in duration-100" leaveFrom="opacity-100" leaveTo="opacity-0">
-          <HeadlessListbox.Options className="absolute w-full py-1 mt-2 overflow-auto bg-white border border-line rounded-md shadow-2xl max-h-60 smooth-scrollbar focus:outline-none z-10">
+        <Transition
+          as={React.Fragment}
+          enter="transition duration-75 ease-out"
+          enterFrom="transform scale-95 opacity-0"
+          enterTo="transform scale-100 opacity-100"
+          leave="transition duration-75 ease-out"
+          leaveFrom="transform scale-100 opacity-100"
+          leaveTo="transform scale-95 opacity-0"
+        >
+          <HeadlessListbox.Options className="origin-top absolute w-full py-1 mt-2 overflow-auto bg-white border border-line rounded-md shadow-2xl max-h-60 smooth-scrollbar focus:outline-none z-10">
             {options.map((option, idx) => (
               <HeadlessListbox.Option
                 key={option?.id || `option-${idx}`}

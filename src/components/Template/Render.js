@@ -1,5 +1,5 @@
 import React from 'react'
-import { Disclosure } from '@headlessui/react'
+import { Disclosure, Transition } from '@headlessui/react'
 
 // ** UI
 import { Element, Icon } from '../Tools'
@@ -161,9 +161,20 @@ const RenderInsideOfSection = React.memo(function Component({ item: { type, ...d
                   className={classNames('text-base transform transition-transform duration-300', open ? '-rotate-90' : '')}
                 />
               </Disclosure.Button>
-              <Disclosure.Panel as={Element} customize={{ ...textCustomize(customize), ...custom(1) }} className="text p-2 leading-6">
-                {value}
-              </Disclosure.Panel>
+              <Transition
+                show={open}
+                className="origin-top"
+                enter="transition duration-75 ease-out"
+                enterFrom="transform scale-95 opacity-0"
+                enterTo="transform scale-100 opacity-100"
+                leave="transition duration-75 ease-out"
+                leaveFrom="transform scale-100 opacity-100"
+                leaveTo="transform scale-95 opacity-0"
+              >
+                <Disclosure.Panel as={Element} customize={{ ...textCustomize(customize), ...custom(1) }} className="origin-top text p-2 leading-6">
+                  {value}
+                </Disclosure.Panel>
+              </Transition>
             </>
           )}
         </Disclosure>

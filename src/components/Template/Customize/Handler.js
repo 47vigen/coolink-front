@@ -349,8 +349,8 @@ export const DEFAULT_CUSTOMIZE_OPTIONS = {
       label: '',
       preView: false,
       type: { available: false, exclude: [] },
-      color: { available: false, label: 'رنگ اصلی' },
-      second: { available: false, label: 'رنگ متن' },
+      color: { available: false, label: 'رنگ اصلی', nullable: false },
+      second: { available: false, label: 'رنگ متن', nullable: true },
       rounded: { available: false, label: 'خمیدگی آیتم', exclude: [] },
       direction: { available: false },
       // custom
@@ -452,13 +452,18 @@ export const CustomizeHandlare = (props = DEFAULT_CUSTOMIZE_OPTIONS) => {
                   <ChooseColor
                     active={custom?.color}
                     colorFull={custom?.type === 'default'}
+                    nullable={customizeProps[idx].color.nullable || false}
                     setActive={(color) => setFieldValue(`customize.${idx}.color`, color)}
                   />
                 </Disclosure>
               ) : null}
               {custom?.type !== 'default' && customizeProps[idx].second.available ? (
                 <Disclosure label={customizeProps[idx].second.label}>
-                  <ChooseColor nullable active={custom?.second} setActive={(color) => setFieldValue(`customize.${idx}.second`, color)} />
+                  <ChooseColor
+                    active={custom?.second}
+                    nullable={customizeProps[idx].second.nullable || false}
+                    setActive={(color) => setFieldValue(`customize.${idx}.second`, color)}
+                  />
                 </Disclosure>
               ) : null}
               {custom?.type === 'gradient' ? (

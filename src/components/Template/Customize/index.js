@@ -81,7 +81,7 @@ function Customize({ type, page, values, setFieldValue }) {
               preView: true,
               type: { available: true, exclude: ['gradient'] },
               rounded: { available: true, exclude: ['full'] },
-              color: { available: true },
+              color: { available: true, nullable: true },
               second: { available: true },
               animate: { available: false },
               border: { available: true },
