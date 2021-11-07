@@ -23,28 +23,23 @@ function Render({ page: { slug, style }, sections, sendStatistic = async () => n
   return (
     <div className="parts my-4 space-y-2">
       {sections.map((section, index) => (
-        <RenderSection
-          key={section.id || index}
-          slug={slug}
-          index={index}
-          item={section}
-          customize={style?.customize}
-          sendStatistic={sendStatistic}
-        />
+        <RenderSection key={section.id || index} slug={slug} index={index} item={section} style={style} sendStatistic={sendStatistic} />
       ))}
     </div>
   )
 }
 
-export const RenderSection = React.memo(function Component({ index, item, customize, slug, sendStatistic }) {
+export const RenderSection = React.memo(function Component({ index, item, style, slug, sendStatistic }) {
   return (
     <section className={classNames(`part-${index + 1} grid-cols-${item.arrangement || '1'}`, 'grid gap-2')}>
-      {item.title ? <h3 className="text-center text-base pt-2 col-span-full">{item.title}</h3> : null}
+      {item.title ? (
+        <h3 className={classNames('text-center text-base pt-2 col-span-full', `text-${style?.titles?.color || 'content'}`)}>{item.title}</h3>
+      ) : null}
       <RenderInsideOfSection
         key={item.id}
         item={item}
         slug={slug}
-        customize={customize}
+        customize={style?.customize}
         sendStatistic={(id) => sendStatistic('click', item.id, id)}
       />
     </section>

@@ -110,6 +110,52 @@ export const AVATAR_POSITION = (rounded) => [
   }
 ]
 
+export const DIRECTIIONS = [
+  {
+    value: 'rtl',
+    content: (
+      <div dir="rtl" className="flex items-center w-full space-s-2">
+        <div className="w-8 h-8 flex items-center justify-center border border-content rounded-lg">
+          <Icon name="picture" />
+        </div>
+        <div className="flex-1 space-y-1">
+          <div className="w-2/3 h-1.5 bg-content rounded-full" />
+          <div className="w-full h-1.5 bg-content rounded-full" />
+        </div>
+      </div>
+    )
+  },
+  {
+    value: 'ltr',
+    content: (
+      <div dir="ltr" className="flex items-center w-full space-s-2">
+        <div className="w-8 h-8 flex items-center justify-center border border-content rounded-lg">
+          <Icon name="picture" />
+        </div>
+        <div className="flex-1 space-y-1">
+          <div className="w-2/3 h-1.5 bg-content rounded-full" />
+          <div className="w-full h-1.5 bg-content rounded-full" />
+        </div>
+      </div>
+    )
+  }
+]
+
+export const FONTS = [
+  {
+    value: 'dana',
+    content: <div className="font-dana text-center">این فونت دانا است</div>
+  },
+  {
+    value: 'peyda',
+    content: <div className="font-peyda text-center">این فونت پیدا است</div>
+  },
+  {
+    value: 'iransans',
+    content: <div className="font-iransans text-center">این فونت ایران سنس است</div>
+  }
+]
+
 // ** Default
 export const DEFAULT_CUSTOMIZE = {
   type: 'default',

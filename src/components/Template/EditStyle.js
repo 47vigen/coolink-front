@@ -4,11 +4,11 @@ import { Form, Formik } from 'formik'
 import { Tab } from '@headlessui/react'
 
 // ** UI
-import { Icon, Modal, Button, Upload, Disclosure } from '../Tools'
+import { Icon, Modal, Button, Upload, Disclosure, RadioGroup } from '../Tools'
 
 // ** Template
 import { ChooseColor } from './ChooseColor'
-import { DEFAULT_CUSTOMIZE, DefaultCustomize } from './Customize/Handler'
+import { DIRECTIIONS, DEFAULT_CUSTOMIZE, DefaultCustomize, FONTS } from './Customize/Handler'
 
 // ** Utils
 // import classNames from '../../utils/classNames'
@@ -19,9 +19,9 @@ import { style as styleValidate } from '../../config/validations'
 
 function EditStyle({ isOpenEditStyle, closeEditStyleModal, pk, style, onEditStyle }) {
   return (
-    <Modal tabMode labels={['ظاهر پیشفرض آیتم ها', 'پس زمینه']} isOpen={isOpenEditStyle} closeModal={closeEditStyleModal} className="md:max-w-md">
+    <Modal tabMode labels={['ظاهر پیشفرض آیتم ها', 'ظاهر کلی']} isOpen={isOpenEditStyle} closeModal={closeEditStyleModal} className="md:max-w-md">
       <Formik
-        initialValues={{ customize: DEFAULT_CUSTOMIZE, background: { url: '', color: '' }, ...style }}
+        initialValues={{ customize: DEFAULT_CUSTOMIZE, background: { url: '', color: '' }, display: { direction: 'rtl', font: 'dana' }, ...style }}
         validationSchema={styleValidate}
         onSubmit={onEditStyle}
       >
@@ -32,8 +32,28 @@ function EditStyle({ isOpenEditStyle, closeEditStyleModal, pk, style, onEditStyl
                 <DefaultCustomize values={values} setFieldValue={setFieldValue} />
               </Tab.Panel>
               <Tab.Panel className="space-y-4">
-                <Disclosure label="رنگ پس زمینه" defaultOpen>
+                <Disclosure label="فونت صفحه" className="radio-group">
+                  <RadioGroup
+                    options={FONTS}
+                    value={values?.display?.font}
+                    onChange={(value) => setFieldValue('display.font', value, false)}
+                    className="py-3 px-6 w-full"
+                    wrapperClassName="space-y-2"
+                  />
+                </Disclosure>
+                <Disclosure label="رنگ عنوان بلوک ها">
+                  <ChooseColor nullable active={values.titles?.color} setActive={(color) => setFieldValue('titles.color', color)} />
+                </Disclosure>
+                <Disclosure label="رنگ پس زمینه">
                   <ChooseColor nullable active={values.background?.color} setActive={(color) => setFieldValue('background.color', color)} />
+                </Disclosure>
+                <Disclosure label="تراز محتوا" className="radio-group">
+                  <RadioGroup
+                    options={DIRECTIIONS}
+                    value={values?.display?.direction}
+                    onChange={(value) => setFieldValue('display.direction', value, false)}
+                    className="py-3 px-6"
+                  />
                 </Disclosure>
                 {/* <Disclosure label="تصویر پس زمینه" className="upload">
                   <Upload.Single

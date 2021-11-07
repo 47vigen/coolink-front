@@ -17,9 +17,11 @@ function Page({ page, title, children }) {
 
   return (
     <div
+      dir={page.style?.display?.direction || 'rtl'}
       className={classNames(
         'w-full max-w-md lg:my-4 lg:rounded-xl mx-auto flex-1 flex flex-col p-4 overflow-hidden',
-        page.style?.background?.color ? `bg-${page.style.background.color} bg-cover bg-top` : ''
+        page.style?.background?.color ? `bg-${page.style.background.color} bg-cover bg-top` : '',
+        `font-${page.style?.display?.font || 'dana'}`
       )}
       style={{
         backgroundImage: page.style?.background?.url ? `url('${getImgSrc(page.style.background.url)}')` : null

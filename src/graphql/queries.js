@@ -67,6 +67,13 @@ export const SHOW_PAGE_WITH_SECTIONS = gql`
             to
             via
           }
+          display {
+            font
+            direction
+          }
+          titles {
+            color
+          }
           background {
             url
             color

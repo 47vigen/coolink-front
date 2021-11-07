@@ -36,6 +36,15 @@ export const options = Yup.array().of(
 
 export const style = Yup.object().shape({
   customize,
+  display: Yup.object().shape({
+    font: Yup.string().oneOf(['dana', 'peyda', 'iransans']).nullable(),
+    direction: Yup.string().oneOf(['rtl', 'ltr']).nullable()
+  }),
+  titles: Yup.object().shape({
+    color: Yup.string()
+      .matches(/[a-z]+-[1-9]0{1,2}/g)
+      .nullable()
+  }),
   background: Yup.object().shape({
     url: Yup.string().nullable(),
     color: Yup.string()

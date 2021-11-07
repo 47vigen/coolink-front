@@ -24,9 +24,9 @@ function Edit({ page, sections, onDragEnd, openEditModal }) {
                     <div ref={provided.innerRef} {...provided.draggableProps} style={provided.draggableProps.style}>
                       <Item
                         item={item}
-                        customize={page.style?.customize}
                         index={index}
                         slug={page.slug}
+                        style={page.style}
                         onEdit={() => openEditModal(item)}
                         dragHandleProps={provided.dragHandleProps}
                       />
@@ -43,7 +43,7 @@ function Edit({ page, sections, onDragEnd, openEditModal }) {
   )
 }
 
-const Item = React.memo(function Component({ index, slug, customize, item, onEdit, dragHandleProps }) {
+const Item = React.memo(function Component({ index, slug, style, item, onEdit, dragHandleProps }) {
   return (
     <Menu as="div" className="relative text-right">
       <Menu.Button className="w-full">
@@ -58,7 +58,7 @@ const Item = React.memo(function Component({ index, slug, customize, item, onEdi
               className={classNames('transition ease-in-out duration-300', open ? 'transform -translate-y-3 -translate-x-3' : '')}
               style={{ pointerEvents: 'none' }}
             >
-              <RenderSection item={item} customize={customize} index={index} slug={slug} />
+              <RenderSection item={item} style={style} index={index} slug={slug} />
             </div>
           </div>
         )}

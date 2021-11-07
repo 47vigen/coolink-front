@@ -115,6 +115,13 @@ export const UPDATE_PAGE = gql`
           to
           via
         }
+        display {
+          font
+          direction
+        }
+        titles {
+          color
+        }
         background {
           url
           color
