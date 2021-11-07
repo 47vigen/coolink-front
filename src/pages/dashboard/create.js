@@ -136,7 +136,7 @@ function Create(props) {
   }, [dominantColor])
 
   return (
-    <Dashboard dashboard>
+    <Dashboard dashboard hide={step !== 0}>
       <Seo title="ایجاد کولینک" noindex />
       <div className="flex space-s-2 mb-4">
         <StepItem label="تایید آیدی" num={0} step={step} />

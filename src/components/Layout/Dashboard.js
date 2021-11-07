@@ -9,13 +9,13 @@ import { Avatar, Button, Link } from '../Tools'
 // ** Utils
 import classNames from '../../utils/classNames'
 
-function Dashboard({ className, children }) {
+function Dashboard({ className, children, hide }) {
   const { user } = useAuth()
 
   return (
     <Layout dashboard>
-      <div className="flex items-stretch space-s-4 lg:space-s-8">
-        <div className="relative lg:flex-1 max-w-[16rem]">
+      <div className="flex items-stretch space-s-4 lg:space-s-8 overflow-hidden">
+        <div className={classNames('relative lg:flex-1 max-w-[16rem] transition-all duration-300', hide ? '-ms-14 pe-1 lg:ms-0 lg:pe-0' : '')}>
           <div className="flex flex-col sticky top-4 items-center lg:items-start space-y-5 text-2xl">
             <MenuItem pathname="/dashboard" label="داشبورد">
               {({ active }) => (
