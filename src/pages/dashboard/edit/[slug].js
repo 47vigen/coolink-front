@@ -142,9 +142,9 @@ function Edit({ page, sections }) {
                   <div
                     dir={page.style?.display?.direction || 'rtl'}
                     className={classNames(
-                      '-mx-3 lg:py-4 px-2 rounded flex-1 pb-32 overflow-hidden',
-                      page.style?.background?.color ? `bg-${page.style.background.color} !pt-4 !px-3` : '',
-                      `font-${page.style?.display?.font || 'dana'}`
+                      `font-${page.style?.display?.font || 'dana'}`,
+                      'flex-1 -mx-3 pt-4 pb-32 lg:pb-4 px-2 rounded overflow-hidden',
+                      page.style?.background?.color ? `bg-${page.style.background.color} !px-3` : ''
                     )}
                   >
                     <PageHeader page={page} onEdit={openEditInfoModal} />
