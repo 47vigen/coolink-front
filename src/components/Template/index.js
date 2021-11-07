@@ -76,7 +76,12 @@ const Item = React.memo(function Component({ index, slug, style, item, onEdit, d
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute bg-body bg-opacity-70 rounded-b-lg -mt-1 z-[1000] start-0 w-max origin-top-start focus:outline-none">
+        <Menu.Items
+          className={classNames(
+            'absolute bg-body bg-opacity-70 rounded-b-lg -mt-1 z-[1000] start-0 w-max focus:outline-none',
+            style?.display?.direction === 'ltr' ? ' origin-top-left' : ' origin-top-right'
+          )}
+        >
           {({ open }) => (
             <div className="flex rounded-b-lg mt-1 border border-t-0 border-dashed border-line text-lg">
               <Menu.Item as="button" className="pb-1 ps-3 pe-1 pt-0" onClick={onEdit}>
