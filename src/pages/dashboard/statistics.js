@@ -15,7 +15,7 @@ import styles from '../../components/Tools/Icon/icon.module.css'
 // ** Graphql
 import { useLazyQuery, useQuery } from '@apollo/client'
 import { SHOW_MY_PAGES, SHOW_STATISTICS_AND_SECTIONS_BY_PAGE } from '../../graphql/queries'
-import topest from '../../utils/topest'
+import toppest from '../../utils/toppest'
 import { getPalette } from '../../utils/getColors'
 import classNames from '../../utils/classNames'
 
@@ -186,15 +186,15 @@ function Statistics(props) {
             <Chart options={options} series={series} type="area" height={350} />
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <Topest
+            <Toppest
               label="ارجاع دهنده ها"
-              topest={topest(views, 'referrer').map(({ key, value }) => {
+              toppest={toppest(views, 'referrer').map(({ key, value }) => {
                 const hostName = key !== 'others' ? new URL(key).hostname.split('.') : [key, '']
                 return { key: hostName[hostName.length - 2] || hostName[0], value }
               })}
             />
-            <Topest label="سیستم عامل ها" topest={topest(views, 'agent.os.name')} />
-            <Topest label="مرورگر ها" topest={topest(views, 'agent.browser.name')} />
+            <Toppest label="سیستم عامل ها" toppest={toppest(views, 'agent.os.name')} />
+            <Toppest label="مرورگر ها" toppest={toppest(views, 'agent.browser.name')} />
           </div>
         </div>
       </Loader>
@@ -202,7 +202,7 @@ function Statistics(props) {
   )
 }
 
-function Topest({ topest = [], label }) {
+function Toppest({ toppest = [], label }) {
   return (
     <div className="bg-white rounded-lg p-4">
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-2">
@@ -210,7 +210,7 @@ function Topest({ topest = [], label }) {
           <h3 className="font-bold">{label}</h3>
           <p>کولینک یک سرویس رایگان با برای کسب و کار ها و اشخاص است.</p>
         </div>
-        {topest.map(({ key, value }) => {
+        {toppest.map(({ key, value }) => {
           const color = brandChart(key)
           return (
             <div
