@@ -50,12 +50,16 @@ const Item = React.memo(function Component({ index, slug, style, item, onEdit, d
         {({ open }) => (
           <div
             className={classNames(
-              'z-30 w-full rounded-lg rounded-bs-none border-dashed border-line transition ease-in-out duration-300',
+              'z-30 w-full rounded-lg border-dashed border-line transition ease-in-out duration-300',
+              style?.display?.direction === 'ltr' ? 'rounded-bl-none' : 'rounded-br-none',
               open ? 'bg-body bg-opacity-70 border' : ''
             )}
           >
             <div
-              className={classNames('transition ease-in-out duration-300', open ? 'transform -translate-y-3 -translate-s-3' : '')}
+              className={classNames(
+                'transition ease-in-out duration-300',
+                open ? classNames('transform -translate-y-3', style?.display?.direction === 'ltr' ? 'translate-x-3' : '-translate-x-3') : ''
+              )}
               style={{ pointerEvents: 'none' }}
             >
               <RenderSection item={item} style={style} index={index} slug={slug} />
