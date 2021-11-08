@@ -37,10 +37,10 @@ function UserState(props) {
           >
             <Menu.Items className="absolute z-50 start-0 w-40 mt-2 origin-top-start bg-white border border-line lg:border-0 divide-y divide-line rounded-lg shadow-lg focus:outline-none">
               <div className="ps-1 py-1">
-                <Menu.Item as={Button} href="/dashboard" type="ghost" className="!justify-start w-full">
+                <Menu.Item as={Button} link="/dashboard" type="ghost" className="!justify-start w-full">
                   داشبورد
                 </Menu.Item>
-                <Menu.Item as={Button} href="/dashboard/create" type="ghost" className="!justify-start w-full">
+                <Menu.Item as={Button} link="/dashboard/create" type="ghost" className="!justify-start w-full">
                   ایجاد کولینک
                 </Menu.Item>
               </div>
