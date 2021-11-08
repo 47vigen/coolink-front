@@ -78,7 +78,7 @@ const Item = React.memo(function Component({ index, slug, style, item, onEdit, d
       >
         <Menu.Items
           className={classNames(
-            'absolute bg-body bg-opacity-70 rounded-b-lg -mt-1 z-[1000] start-0 w-max focus:outline-none',
+            'absolute bg-body bg-opacity-70 rounded-b-lg z-[1000] start-0 w-max focus:outline-none',
             style?.display?.direction === 'ltr' ? ' origin-top-left' : ' origin-top-right'
           )}
         >
