@@ -1,12 +1,13 @@
 import { sort } from 'fast-sort'
 import { isArray, isObject } from './is'
 
-function toppest(array = [], dependeds = '') {
+function toppest(array = [], dependeds = '', renderKey = null) {
   const data = {}
 
   array.map((item) => {
     const key = depends(item, dependeds)?.toString()?.toLowerCase()?.trim()
-    if (key) Object.assign(data, { [key]: (data[key] || 0) + 1 })
+    const renderedKey = key ? (renderKey ? renderKey(key)?.toString()?.toLowerCase()?.trim() : key) : null
+    if (renderedKey) Object.assign(data, { [renderedKey]: (data[renderedKey] || 0) + 1 })
   })
 
   if (data.undefined || data.null) Object.assign(data, { others: (data.undefined || 0) + (data.null || 0) })

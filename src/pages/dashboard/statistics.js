@@ -188,9 +188,9 @@ function Statistics(props) {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <Toppest
               label="ارجاع دهنده ها"
-              toppest={toppest(views, 'referrer').map(({ key, value }) => {
+              toppest={toppest(views, 'referrer', (key) => {
                 const hostName = key !== 'others' ? new URL(key).hostname.split('.') : [key, '']
-                return { key: hostName[hostName.length - 2] || hostName[0], value }
+                return hostName[hostName.length - 2] || hostName[0]
               })}
             />
             <Toppest label="سیستم عامل ها" toppest={toppest(views, 'agent.os.name')} />
