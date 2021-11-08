@@ -12,7 +12,7 @@ const TemplateItem = ({ avatar, style, title, subTitle, slug, onSelect }) => {
   return (
     <Menu as="div" className="relative flex flex-col">
       <Menu.Button className="flex flex-col flex-1 w-full">
-        {({ open }) => (
+        {() => (
           <div
             dir={style?.display?.direction || 'rtl'}
             className={classNames(
