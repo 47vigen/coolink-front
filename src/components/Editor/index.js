@@ -129,34 +129,12 @@ function Editor({ page: pageData, sections: sectionsData, children }) {
   const openAddModal = React.useCallback(() => setIsOpenAdd(true), [setIsOpenAdd])
   const onAddItem = React.useCallback(
     (type) => {
-      const defaultValue = () => {
-        switch (type) {
-          case 'locations':
-            return {
-              items: [
-                { key: 'lat', value: '' },
-                { key: 'lng', value: '' },
-                { key: 'label', value: 'باز کردن در نقشه', options: [{ key: 'icon', value: 'marker' }] }
-              ]
-            }
-
-          case 'igFeedsLink':
-            return { items: [{ key: 'لینک پست ها', options: [{ key: 'icon', value: 'link' }] }] }
-
-          case 'igFeedsDownload':
-            return { items: [{ key: 'لینک پست ها', options: [{ key: 'icon', value: 'download' }] }] }
-
-          default:
-            return {}
-        }
-      }
       setSections((prev) => [
         ...prev,
         {
           type,
           id: uuid(),
-          position: prev.length,
-          ...defaultValue()
+          position: prev.length
         }
       ])
       setIsOpenAdd(false)
