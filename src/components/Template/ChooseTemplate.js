@@ -1,4 +1,5 @@
 import React from 'react'
+import toast from 'react-hot-toast'
 import { useRouter } from 'next/router'
 
 // ** UI
@@ -44,8 +45,10 @@ function ChooseTemplate({ page: { slug, id, ...page }, dominantColor }) {
   const onSelect = React.useCallback(
     ({ style, avatar }) =>
       async () => {
+        toast.loading('در حال تنظیم قالب ...', { id: 'template' })
         const pageInput = deepCleaner(deepMerger({ slug, ...page }, { style, avatar: { ...avatar, url: page?.avatar?.url } }))
         await updatePage({ variables: { id, pageInput } })
+        toast.success('کولینک شما آمادس!', { id: 'template' })
         router.push(`/dashboard/edit/${slug}`)
       },
     [id, page, router, slug, updatePage]
