@@ -10,12 +10,12 @@ function Icon({ name, className, ...props }) {
   const { locale } = useRouter()
   const renderedName = isRtl(locale) ? name : name.replace('right', 'left') === name ? name.replace('left', 'right') : name.replace('right', 'left')
 
-  return (
+  return styles[renderedName] ? (
     <i
       className={classNames(styles.base, styles[renderedName], isRtl(locale) ? className : className?.replace('-rotate-90', 'rotate-90'))}
       {...props}
     />
-  )
+  ) : null
 }
 
 export default React.memo(Icon)
