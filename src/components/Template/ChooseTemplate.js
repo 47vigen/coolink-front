@@ -53,17 +53,17 @@ function ChooseTemplate({ page: { slug, id, ...page }, dominantColor }) {
 
   return (
     <Tabs labels={['کولینک', 'ترند کاربران', 'اخرین بروز شده ها']} extera={<Link href={`/dashboard/edit/${page?.slug}`}>خودتان بسازید؟</Link>}>
-      <Tab className="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <Tab className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {defaultTemplates.map((template, idx) => (
           <TemplateItem key={`template-${idx}`} {...template} onSelect={onSelect(template)} />
         ))}
       </Tab>
-      <Tab className="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <Tab className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {templates?.showTrendTemplates?.map(({ id, ...template }) => (
           <TemplateItem key={id} {...template} onSelect={onSelect(template)} />
         ))}
       </Tab>
-      <Tab className="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <Tab className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {templates?.showLastTemplates?.map(({ id, ...template }) => (
           <TemplateItem key={id} {...template} onSelect={onSelect(template)} />
         ))}
