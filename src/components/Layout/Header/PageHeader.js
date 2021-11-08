@@ -77,7 +77,7 @@ const AvatarSection = ({ page, linked, onEdit }) => {
       )}
       {onEdit ? (
         <button className="absolute bottom-0 left-0 transition duration-300 hover:opacity-60" onClick={onEdit}>
-          <Icon name="edit" className="bg-white p-1.5 rounded-ts-md rounded-be-md" />
+          <Icon name="edit" className="bg-white p-1.5 rounded-md rounded-be-md" />
         </button>
       ) : null}
     </div>
