@@ -23,11 +23,41 @@ import { section as sectionValidate } from '../../config/validations'
 import { generateDeepLink } from '../../utils/onDeepLink'
 import classNames from '../../utils/classNames'
 
-const dI = (item = {}) => ({ type: '', key: '', value: '', ...item })
+const defaultItems = (type) => {
+  switch (type) {
+    case 'links':
+      return [{ type: '', key: '', value: '', options: [{ key: 'icon', value: 'link' }] }]
+
+    case 'text':
+      return [{ value: '' }]
+
+    case 'contacts':
+      return [{ type: contacts[0].value, key: contacts[0].label, value: '', options: contacts[0].options }]
+
+    case 'services':
+      return [{ type: services[0].value, key: services[0].label, value: '', options: services[0].options }]
+
+    case 'locations':
+      return [
+        { key: 'lat', value: '' },
+        { key: 'lng', value: '' },
+        { key: 'label', value: 'باز کردن در نقشه', options: [{ key: 'icon', value: 'marker' }] }
+      ]
+
+    case 'faq':
+      return [{ type: '', key: '', value: '' }]
+
+    case 'igFeedsLink':
+      return [{ key: 'لینک پست ها', options: [{ key: 'icon', value: 'link' }] }]
+
+    case 'igFeedsDownload':
+      return [{ key: 'دانلود پست ها', options: [{ key: 'icon', value: 'download' }] }]
+  }
+}
 
 function EditItem({ page, isOpenEdit, closeEditModal, onEditItem, currentEditItem, onRemoveItem }) {
   return (
-    <Modal tabMode labels={['ویرایش آپشن', 'سفارشی سازی']} isOpen={isOpenEdit} closeModal={() => closeEditModal(false)} className="md:max-w-md">
+    <Modal tabMode labels={['ویرایش بلوک', 'سفارشی سازی']} isOpen={isOpenEdit} closeModal={() => closeEditModal(false)} className="md:max-w-md">
       <div className="p-4 flex-1 flex flex-col">
         <RenderEditItem page={page} currentEditItem={currentEditItem} onEditItem={onEditItem} onRemoveItem={onRemoveItem} />
       </div>
@@ -38,7 +68,7 @@ function EditItem({ page, isOpenEdit, closeEditModal, onEditItem, currentEditIte
 const RenderEditItem = React.memo(function Component({ page, currentEditItem: { id, type, ...data }, onEditItem, onRemoveItem }) {
   return (
     <Formik
-      initialValues={{ type, title: '', items: [], ...data }}
+      initialValues={{ type, title: '', items: defaultItems(type), ...data }}
       validationSchema={sectionValidate}
       onSubmit={(values) => onEditItem({ ...values, type, id })}
     >
@@ -49,7 +79,7 @@ const RenderEditItem = React.memo(function Component({ page, currentEditItem: { 
               <InsideBody type={type} values={values} setFieldValue={setFieldValue} />
             </Tab.Panel>
             <Tab.Panel className="space-y-4">
-              <Field name="title" label="عنوان بخش" placeholder="عنوان بخش را وارد کنید ..." />
+              <Field name="title" label="عنوان بلوک" placeholder="عنوان بلوک را وارد کنید ..." />
               <Customize type={type} page={page} values={values} setFieldValue={setFieldValue} />
             </Tab.Panel>
           </Tab.Panels>
@@ -73,6 +103,8 @@ const RenderEditItem = React.memo(function Component({ page, currentEditItem: { 
 })
 
 const InsideBody = React.memo(function Component({ type, values, setFieldValue }) {
+  const defaultItem = React.useMemo(() => defaultItems(type)[0], [type])
+
   switch (type) {
     case 'links':
       return (
@@ -90,12 +122,14 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
                     className="space-y-4 border border-t-0 border-line rounded-b-lg p-4"
                     labelClassName={(open) => classNames('bg-white', open ? 'rounded-b-none' : '')}
                     extera={
-                      <Button
-                        icon="trash"
-                        className="text-danger border-line border-s !rounded-none self-stretch"
-                        onClick={() => arrayHelpers.remove(idx)}
-                        type="ghost"
-                      />
+                      values.items?.length > 1 ? (
+                        <Button
+                          icon="trash"
+                          className="text-danger border-line border-s !rounded-none self-stretch"
+                          onClick={() => arrayHelpers.remove(idx)}
+                          type="ghost"
+                        />
+                      ) : null
                     }
                   >
                     <Field name={`items.${idx}.key`} label="عنوان لینک" placeholder="عنوان لینک را وارد کنید ..." />
@@ -109,12 +143,7 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
                   </Disclosure>
                 )}
               </DragableList>
-              <Button
-                type="secondary"
-                bordered
-                className="w-full"
-                onClick={() => arrayHelpers.push(dI({ options: [{ key: 'icon', value: 'link' }] }))}
-              >
+              <Button type="secondary" bordered className="w-full" onClick={() => arrayHelpers.push(defaultItem)}>
                 ایجاد لینک
               </Button>
             </>
@@ -143,12 +172,14 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
                       className="space-y-4 border border-t-0 border-line rounded-b-lg p-4"
                       labelClassName={(open) => classNames('bg-white', open ? 'rounded-b-none' : '')}
                       extera={
-                        <Button
-                          icon="trash"
-                          className="text-danger border-line border-s !rounded-none self-stretch"
-                          onClick={() => arrayHelpers.remove(idx)}
-                          type="ghost"
-                        />
+                        values.items?.length > 1 ? (
+                          <Button
+                            icon="trash"
+                            className="text-danger border-line border-s !rounded-none self-stretch"
+                            onClick={() => arrayHelpers.remove(idx)}
+                            type="ghost"
+                          />
+                        ) : null
                       }
                     >
                       <Listbox
@@ -166,12 +197,7 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
                   )
                 }}
               </DragableList>
-              <Button
-                bordered
-                type="secondary"
-                className="w-full"
-                onClick={() => arrayHelpers.push(dI({ type: contacts[0].value, key: contacts[0].label, options: contacts[0].options }))}
-              >
+              <Button bordered type="secondary" className="w-full" onClick={() => arrayHelpers.push(defaultItem)}>
                 ایجاد راه ارتباطی
               </Button>
             </>
@@ -197,12 +223,14 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
                       className="space-y-4 border border-t-0 border-line rounded-b-lg p-4"
                       labelClassName={(open) => classNames('bg-white', open ? 'rounded-b-none' : '')}
                       extera={
-                        <Button
-                          icon="trash"
-                          className="text-danger border-line border-s !rounded-none self-stretch"
-                          onClick={() => arrayHelpers.remove(idx)}
-                          type="ghost"
-                        />
+                        values.items?.length > 1 ? (
+                          <Button
+                            icon="trash"
+                            className="text-danger border-line border-s !rounded-none self-stretch"
+                            onClick={() => arrayHelpers.remove(idx)}
+                            type="ghost"
+                          />
+                        ) : null
                       }
                     >
                       <Listbox
@@ -214,14 +242,12 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
                             className="flex items-center -my-1 -mx-2 py-1.5 px-4"
                             customize={{ type: 'gradient', second: 'white', ...brands[option.value] }}
                           >
-                            <span className="emoji-or-icon flex items-center me-2">
-                              <EmojiOrIcon
-                                size={20}
-                                type={option.options[0].key}
-                                name={option.options[0].value}
-                                className="text-base flex items-center"
-                              />
-                            </span>
+                            <EmojiOrIcon
+                              size={20}
+                              type={option.options[0].key}
+                              name={option.options[0].value}
+                              className="text-base flex items-center me-2"
+                            />
                             {option.label}
                           </Element>
                         )}
@@ -252,12 +278,7 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
                   )
                 }}
               </DragableList>
-              <Button
-                bordered
-                type="secondary"
-                className="w-full"
-                onClick={() => arrayHelpers.push(dI({ type: services[0].value, key: services[0].label, options: services[0].options }))}
-              >
+              <Button bordered type="secondary" className="w-full" onClick={() => arrayHelpers.push(defaultItem)}>
                 ایجاد سرویس جدید
               </Button>
             </>
@@ -300,12 +321,14 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
                     className="space-y-4 border border-t-0 border-line rounded-b-lg p-4"
                     labelClassName={(open) => classNames('bg-white', open ? 'rounded-b-none' : '')}
                     extera={
-                      <Button
-                        icon="trash"
-                        className="text-danger border-line border-s !rounded-none self-stretch"
-                        onClick={() => arrayHelpers.remove(idx)}
-                        type="ghost"
-                      />
+                      values.items?.length > 1 ? (
+                        <Button
+                          icon="trash"
+                          className="text-danger border-line border-s !rounded-none self-stretch"
+                          onClick={() => arrayHelpers.remove(idx)}
+                          type="ghost"
+                        />
+                      ) : null
                     }
                   >
                     <Field name={`items.${idx}.key`} placeholder="پرسش را وارد کنید ..." className="ps-10">
@@ -317,7 +340,7 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
                   </Disclosure>
                 )}
               </DragableList>
-              <Button type="secondary" bordered className="w-full" onClick={() => arrayHelpers.push(dI())}>
+              <Button type="secondary" bordered className="w-full" onClick={() => arrayHelpers.push(defaultItem)}>
                 ایجاد پرسش‌وپاسخ
               </Button>
             </>
@@ -344,7 +367,7 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
     default:
       return (
         <div className="bg-yellow-100 border border-yellow-300 rounded-lg mb-4 p-4" role="alert">
-          تنظیماتی برای این آپشن وجود ندارد!
+          تنظیماتی برای این بلوک وجود ندارد!
         </div>
       )
   }
