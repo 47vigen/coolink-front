@@ -144,7 +144,7 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
                 )}
               </DragableList>
               <Button type="secondary" bordered className="w-full" onClick={() => arrayHelpers.push(defaultItem)}>
-                ایجاد لینک
+                اضافه کردن لینک
               </Button>
             </>
           )}
@@ -198,7 +198,7 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
                 }}
               </DragableList>
               <Button bordered type="secondary" className="w-full" onClick={() => arrayHelpers.push(defaultItem)}>
-                ایجاد راه ارتباطی
+                اضافه کردن راه ارتباطی
               </Button>
             </>
           )}
@@ -279,7 +279,7 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
                 }}
               </DragableList>
               <Button bordered type="secondary" className="w-full" onClick={() => arrayHelpers.push(defaultItem)}>
-                ایجاد سرویس جدید
+                اضافه کردن سرویس جدید
               </Button>
             </>
           )}
@@ -341,7 +341,7 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
                 )}
               </DragableList>
               <Button type="secondary" bordered className="w-full" onClick={() => arrayHelpers.push(defaultItem)}>
-                ایجاد پرسش‌وپاسخ
+                اضافه کردن پرسش‌وپاسخ
               </Button>
             </>
           )}
