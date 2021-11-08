@@ -1,4 +1,4 @@
-export const generateDeepLink = (type, link) => {
+export const generateDeepLink = (type = '', link = '') => {
   switch (type) {
     case 'instagram': {
       return {
@@ -59,6 +59,11 @@ export const generateDeepLink = (type, link) => {
         url: 'https://tiktok.com/@' + link.replace(/@/g, '')
       }
     }
+
+    case 'whatsapp':
+      return {
+        url: 'https://wa.me/98' + link.substring(1)
+      }
   }
 
   return {
