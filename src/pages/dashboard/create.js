@@ -1,6 +1,5 @@
 import React from 'react'
 import { Form, Formik } from 'formik'
-import { useRouter } from 'next/router'
 import { usePalette } from 'react-palette'
 import { useAuth } from '../../context/auth'
 import Seo from '../../components/Tools/Seo'
@@ -12,7 +11,6 @@ import { Avatar, Field, Upload, Button, Icon, Loader } from '../../components/To
 
 // ** Grapgql
 import { useMutation } from '@apollo/client'
-import { SHOW_MY_PAGES } from '../../graphql/queries'
 import { CREATE_PAGE, GET_PAGE_INFO, UPLOAD_IMAGE } from '../../graphql/mutations'
 import ChooseTemplate from '../../components/Template/ChooseTemplate'
 
@@ -140,7 +138,7 @@ function Create(props) {
   return (
     <Dashboard dashboard hide={step > 1}>
       <Seo title="ایجاد کولینک" noindex />
-      <div className="flex space-s-2 mb-4">
+      <div className="flex flex-col mb-4 -mt-4 md:mt-0 md:flex-row md:space-s-2">
         <StepItem num={0} step={step}>
           تایید آیدی
         </StepItem>
@@ -222,16 +220,10 @@ function Create(props) {
 
 const StepItem = React.memo(function Component({ children, step, num }) {
   return (
-    <div
-      className={classNames('relative pb-2 border-b-2 border-line transition-all ease-in-out duration-300', step - 1 > num ? 'sm:flex-1' : 'flex-1')}
-    >
-      <span className={classNames('flex transition-all ease-in-out duration-300 truncate', step >= num ? '' : 'text-secondary')}>
-        <span className={classNames('text-lg font-bold me-1 transition-all ease-in-out duration-300', step === num ? 'text-primary' : '')}>
-          {num / 2 + 1}.
-        </span>
-        <span className={classNames('block transition-all ease-in-out duration-300', step - 1 > num ? 'max-w-0 sm:max-w-none overflow-hidden' : '')}>
-          {children}
-        </span>
+    <div className="relative pt-3 pb-1 md:pt-0 md:pb-2 border-b-2 border-line transition-all ease-in-out duration-300 md:flex-1">
+      <span className={classNames('flex items-center transition-all ease-in-out duration-300 truncate', step >= num ? '' : 'text-secondary')}>
+        <span className="text-lg font-bold me-1">{num / 2 + 1}.</span>
+        <span className="block transition-all ease-in-out duration-300">{children}</span>
       </span>
       <div
         className={classNames('absolute border-b-2 border-primary transition-all ease-in-out duration-300', step > num ? 'w-full' : 'w-0')}
