@@ -2,7 +2,7 @@ import React from 'react'
 import { useRouter } from 'next/router'
 
 // ** UI
-import { Button, Link, Tab, Tabs } from '../Tools'
+import { Button, Icon, Link, Tab, Tabs } from '../Tools'
 import TemplateItem from './TemplateItem'
 
 // ** Graphql
@@ -52,7 +52,23 @@ function ChooseTemplate({ page: { slug, id, ...page }, dominantColor }) {
   )
 
   return (
-    <Tabs labels={['کولینک', 'ترند کاربران', 'اخرین بروز شده ها']} extera={<Link href={`/dashboard/edit/${page?.slug}`}>خودتان بسازید؟</Link>}>
+    <Tabs
+      labels={[
+        <>
+          <Icon name="link" className="px-2 md:ps-0" />
+          <span className="hidden md:!inline-block">پیشنهاد کولینک</span>
+        </>,
+        <>
+          <Icon name="flame" className="px-2 md:ps-0" />
+          <span className="hidden md:!inline-block">ترند کاربران</span>
+        </>,
+        <>
+          <Icon name="clock" className="px-2 md:ps-0" />
+          <span className="hidden md:!inline-block">اخرین بروز شده ها</span>
+        </>
+      ]}
+      extera={<Button link={`/dashboard/edit/${slug}`}>خودتان بسازید؟</Button>}
+    >
       <Tab className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {defaultTemplates.map((template, idx) => (
           <TemplateItem key={`template-${idx}`} {...template} onSelect={onSelect(template)} />

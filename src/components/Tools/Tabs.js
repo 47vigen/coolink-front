@@ -13,9 +13,9 @@ function Tabs({ labels = [], className, extera, children }) {
             key={`label-${idx}`}
             className={({ selected }) =>
               classNames(
-                'px-2',
+                'flex items-center px-2 self-stretch',
                 selected
-                  ? 'font-bold text-primary relative after:block after:absolute after:start-2 after:end-2 after:-bottom-2 after:h-0.5 after:bg-primary after:rounded-t-full'
+                  ? 'text-primary relative after:block after:absolute after:start-2 after:end-2 after:-bottom-2 after:h-0.5 after:bg-primary after:rounded-t-full'
                   : ''
               )
             }

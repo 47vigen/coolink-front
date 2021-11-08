@@ -141,9 +141,15 @@ function Create(props) {
     <Dashboard dashboard hide={step > 1}>
       <Seo title="ایجاد کولینک" noindex />
       <div className="flex space-s-2 mb-4">
-        <StepItem label="تایید آیدی" num={0} step={step} />
-        <StepItem label="تکمیل اطلاعات" num={1} step={step} />
-        <StepItem label="انتخاب قالب" num={3} step={step} />
+        <StepItem num={0} step={step}>
+          تایید آیدی
+        </StepItem>
+        <StepItem num={2} step={step}>
+          تکمیل اطلاعات
+        </StepItem>
+        <StepItem num={4} step={step}>
+          انتخاب قالب
+        </StepItem>
       </div>
       <Loader loading={loading} className="bg-white rounded-lg p-4">
         {step < 4 ? (
@@ -214,10 +220,19 @@ function Create(props) {
   )
 }
 
-const StepItem = React.memo(function Component({ label, step, num }) {
+const StepItem = React.memo(function Component({ children, step, num }) {
   return (
-    <div className="relative flex-1 pb-2 border-b-2 border-line">
-      <span className={classNames('transition-all ease-in-out duration-300', step >= num ? '' : 'text-secondary')}>{label}</span>
+    <div
+      className={classNames('relative pb-2 border-b-2 border-line transition-all ease-in-out duration-300', step - 1 > num ? 'sm:flex-1' : 'flex-1')}
+    >
+      <span className={classNames('flex transition-all ease-in-out duration-300 truncate', step >= num ? '' : 'text-secondary')}>
+        <span className={classNames('text-lg font-bold me-1 transition-all ease-in-out duration-300', step === num ? 'text-primary' : '')}>
+          {num / 2 + 1}.
+        </span>
+        <span className={classNames('block transition-all ease-in-out duration-300', step - 1 > num ? 'max-w-0 sm:max-w-none overflow-hidden' : '')}>
+          {children}
+        </span>
+      </span>
       <div
         className={classNames('absolute border-b-2 border-primary transition-all ease-in-out duration-300', step > num ? 'w-full' : 'w-0')}
         style={{ bottom: -2 }}
