@@ -71,6 +71,62 @@ export const CREATE_PAGE = gql`
       subTitle
       avatar {
         url
+        position
+        customize {
+          type
+          rounded
+          animate
+          color
+          second
+          border
+          borderStyle
+          direction
+          from
+          to
+          via
+        }
+      }
+      style {
+        customize {
+          type
+          rounded
+          animate
+          color
+          second
+          border
+          borderStyle
+          direction
+          from
+          to
+          via
+        }
+        display {
+          font
+          direction
+        }
+        titles {
+          color
+        }
+        background {
+          url
+          color
+        }
+        cover {
+          url
+          customize {
+            type
+            rounded
+            animate
+            color
+            second
+            border
+            borderStyle
+            direction
+            from
+            to
+            via
+          }
+        }
       }
     }
   }

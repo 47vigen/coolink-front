@@ -230,3 +230,134 @@ export const SHOW_STATISTICS_AND_SECTIONS_BY_PAGE = gql`
     }
   }
 `
+
+export const SHOW_TEMPLATES = gql`
+  {
+    showTrendTemplates {
+      id
+      slug
+      title
+      subTitle
+      avatar {
+        url
+        position
+        customize {
+          type
+          rounded
+          animate
+          color
+          second
+          border
+          borderStyle
+          direction
+          from
+          to
+          via
+        }
+      }
+      style {
+        customize {
+          type
+          rounded
+          color
+          second
+          border
+          borderStyle
+          direction
+          from
+          to
+          via
+        }
+        display {
+          font
+          direction
+        }
+        titles {
+          color
+        }
+        background {
+          url
+          color
+        }
+        cover {
+          url
+          customize {
+            type
+            rounded
+            color
+            second
+            border
+            borderStyle
+            direction
+            from
+            to
+            via
+          }
+        }
+      }
+    }
+    showLastTemplates {
+      id
+      slug
+      title
+      subTitle
+      avatar {
+        url
+        position
+        customize {
+          type
+          rounded
+          animate
+          color
+          second
+          border
+          borderStyle
+          direction
+          from
+          to
+          via
+        }
+      }
+      style {
+        customize {
+          type
+          rounded
+          color
+          second
+          border
+          borderStyle
+          direction
+          from
+          to
+          via
+        }
+        display {
+          font
+          direction
+        }
+        titles {
+          color
+        }
+        background {
+          url
+          color
+        }
+        cover {
+          url
+          customize {
+            type
+            rounded
+            color
+            second
+            border
+            borderStyle
+            direction
+            from
+            to
+            via
+          }
+        }
+      }
+    }
+  }
+`

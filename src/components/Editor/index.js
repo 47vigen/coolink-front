@@ -32,7 +32,7 @@ function Editor({ page: pageData, sections: sectionsData, children }) {
       const data = mutationResult.data.updatePage
       const query = cache.readQuery({
         query: SHOW_PAGE_WITH_SECTIONS,
-        variables: { page: pageData.slug }
+        variables: { slug: pageData.slug }
       })
       cache.writeQuery({
         query: SHOW_PAGE_WITH_SECTIONS,

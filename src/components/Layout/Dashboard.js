@@ -14,8 +14,13 @@ function Dashboard({ className, children, hide }) {
 
   return (
     <Layout dashboard>
-      <div className="flex items-stretch space-s-4 lg:space-s-8 overflow-hidden">
-        <div className={classNames('relative lg:flex-1 max-w-[16rem] transition-all duration-300', hide ? '-ms-14 pe-1 lg:ms-0 lg:pe-0' : '')}>
+      <div className="flex items-stretch space-s-4 lg:space-s-8">
+        <div
+          className={classNames(
+            'relative lg:flex-1 max-w-[16rem] transition-all duration-300',
+            hide ? '-ms-14 pe-1 opacity-0 invisible lg:opacity-100 lg:visible lg:ms-0 lg:pe-0' : ''
+          )}
+        >
           <div className="flex flex-col sticky top-4 items-center lg:items-start space-y-5 text-2xl">
             <MenuItem pathname="/dashboard" label="داشبورد">
               {({ active }) => (

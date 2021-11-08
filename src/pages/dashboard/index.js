@@ -11,7 +11,7 @@ import { useQuery } from '@apollo/client'
 import { SHOW_MY_PAGES } from '../../graphql/queries'
 
 function Dashboard(props) {
-  const { data, loading } = useQuery(SHOW_MY_PAGES)
+  const { data, loading } = useQuery(SHOW_MY_PAGES, { fetchPolicy: 'cache-and-network' })
 
   return (
     <DashboardLayout className="flex-1 space-y-4">

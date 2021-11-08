@@ -11,5 +11,7 @@ import RadioGroup from './RadioGroup'
 import Switch from './Switch'
 import DragableList from './DragableList'
 import Loader from './Loader'
+import Tabs from './Tabs'
+import { Tab } from './Tabs'
 
-export { Button, Field, Upload, Icon, Link, Modal, Avatar, Element, Listbox, Disclosure, RadioGroup, Switch, DragableList, Loader }
+export { Button, Field, Upload, Icon, Link, Modal, Avatar, Element, Listbox, Disclosure, RadioGroup, Switch, DragableList, Loader, Tabs, Tab }
