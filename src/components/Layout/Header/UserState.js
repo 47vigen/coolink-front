@@ -17,13 +17,13 @@ function UserState(props) {
     <Loader label={false} loading={loading}>
       {user.id ? (
         <Menu as="div" className="relative inline-block text-end">
-          <Menu.Button>
+          <Menu.Button className="flex items-center space-s-2">
             {({ open }) => (
-              <div className="flex items-center space-s-2">
+              <>
                 <Avatar url={user.picture} fullName={user.name} className="w-8 h-8" />
                 <span className="hidden lg:!block capitalize">{user.name}</span>
                 <Icon name="angle-small-left" className={classNames('transition ease-in-out duration-200', open ? 'transform -rotate-90' : '')} />
-              </div>
+              </>
             )}
           </Menu.Button>
           <Transition
@@ -37,24 +37,15 @@ function UserState(props) {
           >
             <Menu.Items className="absolute z-50 start-0 w-40 mt-2 origin-top-start bg-white border border-line lg:border-0 divide-y divide-line rounded-lg shadow-lg focus:outline-none">
               <div className="ps-1 py-1">
-                <Menu.Item>
-                  <Link href="/dashboard" className={classNames('group flex rounded-md items-center w-full ps-2 py-2')}>
-                    داشبورد
-                  </Link>
+                <Menu.Item as={Button} href="/dashboard" type="ghost" className="!justify-start w-full">
+                  داشبورد
                 </Menu.Item>
-                <Menu.Item>
-                  <Link href="/dashboard/create" className={classNames('group flex rounded-md items-center w-full ps-2 py-2')}>
-                    ایجاد کولینک
-                  </Link>
+                <Menu.Item as={Button} href="/dashboard/create" type="ghost" className="!justify-start w-full">
+                  ایجاد کولینک
                 </Menu.Item>
               </div>
               <div className="ps-1 py-1">
-                <Menu.Item
-                  as="button"
-                  className={classNames('text-danger group flex rounded-md items-center w-full ps-2 py-2')}
-                  onClick={() => signOut()}
-                >
-                  <Icon name="sign-out" className="me-2" />
+                <Menu.Item as={Button} type="ghost" icon="sign-out" className="text-danger !justify-start w-full" onClick={() => signOut()}>
                   خروج
                 </Menu.Item>
               </div>
