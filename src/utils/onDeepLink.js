@@ -109,7 +109,6 @@ const onDeepLink = (type, link) => {
   const urls = generateDeepLink(type, link)
   if (typeof window !== 'undefined') {
     const os = new UAParser().getOS().name
-    alert(os)
     if (urls['deep-link'] && os === 'iOS') {
       return {
         url: urls.url,
