@@ -108,6 +108,7 @@ const openUrlWithFallback = (t, e) => {
 const onDeepLink = (type, link) => {
   const urls = generateDeepLink(type, link)
   const os = new UAParser().getOS().name
+  alert(os)
   if (urls['deep-link'] && os === 'iOS') {
     return {
       url: urls.url,
