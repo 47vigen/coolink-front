@@ -224,6 +224,7 @@ const LinkItem = React.memo(function Component({
   onClick: onDefualtClick,
   ...props
 }) {
+  const [loading, setLoading] = React.useState(false)
   const emojiIcon = React.useMemo(
     () => (emojiOrIcon ? emojiOrIcon : options && ['icon', 'emoji'].includes(options[0]?.key) ? options[0] : null),
     [emojiOrIcon, options]
@@ -232,12 +233,19 @@ const LinkItem = React.memo(function Component({
   const href = React.useMemo(() => (!url.includes('http') && !noHttp ? `http://${url} ` : url).trim(), [url, noHttp])
   const onClick = React.useCallback(
     async (e) => {
-      if (!noHttp) e.preventDefault()
-      if (sendStatistic) sendStatistic()
-      if (onDefualtClick) {
-        onDefualtClick(e)
-      } else if (!noHttp && typeof window !== 'undefined') {
-        window.location = href
+      try {
+        setLoading(true)
+        if (!noHttp) e.preventDefault()
+        if (sendStatistic) await sendStatistic()
+      } catch (error) {
+        console.log(error)
+      } finally {
+        setLoading(false)
+        if (onDefualtClick) {
+          onDefualtClick(e)
+        } else if (!noHttp && typeof window !== 'undefined') {
+          window.location = href
+        }
       }
     },
     [href, noHttp, onDefualtClick, sendStatistic]
@@ -253,14 +261,16 @@ const LinkItem = React.memo(function Component({
       {...props}
     >
       {emojiIcon ? (
-        <span className={classNames('emoji-or-icon flex items-center', quadrupleArrangement ? '' : 'me-2')}>
-          <EmojiOrIcon
-            type={emojiIcon?.key}
-            name={emojiIcon?.value}
-            size={quadrupleArrangement ? 24 : 20}
-            className={classNames('flex items-center justify-center', quadrupleArrangement ? 'text-lg' : 'text-base')}
-          />
-        </span>
+        <EmojiOrIcon
+          type={loading ? 'icon' : emojiIcon?.key}
+          name={loading ? 'spinner' : emojiIcon?.value}
+          size={quadrupleArrangement ? 24 : 20}
+          className={classNames(
+            'flex items-center justify-center',
+            loading ? 'animate-spin' : '',
+            quadrupleArrangement ? 'text-lg' : 'text-base me-2'
+          )}
+        />
       ) : null}
       {quadrupleArrangement ? null : children}
     </Element>
