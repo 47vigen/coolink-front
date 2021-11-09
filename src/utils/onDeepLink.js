@@ -64,6 +64,7 @@ export const generateDeepLink = (type = '', link = '') => {
 
     case 'whatsapp':
       return {
+        'deep-link': 'whatsapp://send?phone=+98' + link.substring(1),
         'deep-link-ad': 'intent://send/+98' + link.substring(1) + '#Intent;scheme=smsto;package=com.whatsapp;action=android.intent.action.SENDTO;end',
         url: 'https://wa.me/+98' + link.substring(1)
       }
