@@ -110,18 +110,18 @@ const onDeepLink = (type, link) => {
   const urls = generateDeepLink(type, link)
   if (typeof window !== 'undefined') {
     const os = new UAParser().getOS().name
-    if (urls['deep-link'] && os === 'iOS') {
-      return {
-        url: urls.url,
-        onClick: () => {
-          openUrlWithFallback(urls['deep-link'], urls.url)
-        }
-      }
-    } else if (urls['deep-link-ad'] && os === 'Android') {
+    if (urls['deep-link-ad'] && os === 'Android') {
       return {
         url: urls.url,
         onClick: () => {
           openUrlWithFallback(urls['deep-link-ad'], urls.url)
+        }
+      }
+    } else if (urls['deep-link'] && os !== 'Android') {
+      return {
+        url: urls.url,
+        onClick: () => {
+          openUrlWithFallback(urls['deep-link'], urls.url)
         }
       }
     }
