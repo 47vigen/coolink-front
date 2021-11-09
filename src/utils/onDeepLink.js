@@ -107,23 +107,26 @@ const openUrlWithFallback = (t, e) => {
 
 const onDeepLink = (type, link) => {
   const urls = generateDeepLink(type, link)
-  const os = new UAParser().getOS().name
-  alert(os)
-  if (urls['deep-link'] && os === 'iOS') {
-    return {
-      url: urls.url,
-      onClick: () => {
-        openUrlWithFallback(urls['deep-link'], urls.url)
+  if (typeof window !== 'undefined') {
+    const os = new UAParser().getOS().name
+    alert(os)
+    if (urls['deep-link'] && os === 'iOS') {
+      return {
+        url: urls.url,
+        onClick: () => {
+          openUrlWithFallback(urls['deep-link'], urls.url)
+        }
+      }
+    } else if (urls['deep-link-ad'] && os === 'Android') {
+      return {
+        url: urls.url,
+        onClick: () => {
+          openUrlWithFallback(urls['deep-link-ad'], urls.url)
+        }
       }
     }
-  } else if (urls['deep-link-ad'] && os === 'Android') {
-    return {
-      url: urls.url,
-      onClick: () => {
-        openUrlWithFallback(urls['deep-link-ad'], urls.url)
-      }
-    }
-  } else return { url: urls.url }
+  }
+  return { url: urls.url }
 }
 
 export default onDeepLink
