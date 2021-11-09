@@ -1,3 +1,5 @@
+import UAParser from 'ua-parser-js'
+
 export const generateDeepLink = (type = '', link = '') => {
   switch (type) {
     case 'instagram': {
@@ -62,7 +64,8 @@ export const generateDeepLink = (type = '', link = '') => {
 
     case 'whatsapp':
       return {
-        url: 'https://wa.me/98' + link.substring(1)
+        'deep-link-ad': 'intent://send/+98' + link.substring(1) + '#Intent;scheme=smsto;package=com.whatsapp;action=android.intent.action.SENDTO;end',
+        url: 'https://wa.me/+98' + link.substring(1)
       }
   }
 
@@ -104,15 +107,22 @@ const openUrlWithFallback = (t, e) => {
 
 const onDeepLink = (type, link) => {
   const urls = generateDeepLink(type, link)
-  if (urls['deep-link']) {
+  const os = new UAParser().getOS().name
+  if (urls['deep-link'] && os === 'iOS') {
     return {
       url: urls.url,
       onClick: () => {
-        const isAndroid = navigator.userAgent.toLowerCase().indexOf('android') > -1
-        openUrlWithFallback(isAndroid ? urls['deep-link-ad'] : urls['deep-link'], urls.url)
+        openUrlWithFallback(urls['deep-link'], urls.url)
       }
     }
-  } else return urls
+  } else if (urls['deep-link-ad'] && os === 'Android') {
+    return {
+      url: urls.url,
+      onClick: () => {
+        openUrlWithFallback(urls['deep-link-ad'], urls.url)
+      }
+    }
+  } else return { url: urls.url }
 }
 
 export default onDeepLink
