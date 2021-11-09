@@ -138,7 +138,7 @@ export const EmojiSelector = React.memo(function Component({ onSelect }) {
               <Tab.List className="flex self-stretch -mx-2 pb-2 mb-4 border-b border-line overflow-x-auto hide-scrollbar">
                 {Object.keys(ICONS).map((category) => (
                   <TabUnderLine key={category}>
-                    <EmojiOrIcon size={20} type="icon" name={ICONS[category][0]} className="flex items-center justify-center" />
+                    <EmojiOrIcon size={20} type="icon" name={ICONS[category][0]} />
                   </TabUnderLine>
                 ))}
               </Tab.List>
@@ -185,7 +185,7 @@ export const EmojiSelector = React.memo(function Component({ onSelect }) {
               <Tab.List className="flex self-stretch -mx-2 pb-2 mb-4 border-b border-line overflow-x-auto hide-scrollbar">
                 {emojis.categories.map((category) => (
                   <TabUnderLine key={category.name}>
-                    <EmojiOrIcon size={20} type="emoji" name={category.emojis[0]} />
+                    <EmojiOrIcon size={20} type="emoji" name={category.emojis[0]} className="pt-1" />
                   </TabUnderLine>
                 ))}
               </Tab.List>
@@ -238,7 +238,11 @@ export const EmojiSelector = React.memo(function Component({ onSelect }) {
 export const EmojiOrIcon = React.memo(function Component({ type, name, size = 20, className, ...props }) {
   switch (type) {
     case 'emoji':
-      return <Emoji sheetSize={32} size={size} set="apple" emoji={name.split('|')[0]} skin={Number(name.split('|')[1]) || 1} />
+      return (
+        <i className={('max-w-min max-h-[min-content]', classNames(name.split('|')[0], className))} {...props}>
+          <Emoji sheetSize={32} size={size} set="apple" emoji={name.split('|')[0]} skin={Number(name.split('|')[1]) || 1} />
+        </i>
+      )
     case 'icon':
       return (
         <Icon
