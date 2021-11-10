@@ -143,7 +143,7 @@ function Edit({ page, sections }) {
                     dir={page.style?.display?.direction || 'rtl'}
                     className={classNames(
                       `font-${page.style?.display?.font || 'dana'}`,
-                      'flex-1 -mx-3 pt-4 pb-32 lg:pb-4 px-2 rounded overflow-hidden',
+                      'flex-1 -mx-3 pt-4 pb-32 px-2 rounded overflow-hidden lg:pb-4 lg:flex-none',
                       page.style?.background?.color ? `bg-${page.style.background.color} !px-3` : ''
                     )}
                   >
