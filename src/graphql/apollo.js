@@ -43,27 +43,32 @@ const createIsomorphLink = () =>
     new TokenRefreshLink({
       accessTokenField: 'token',
       isTokenValidOrUndefined: () => {
-        if (!getToken()) return true
         try {
-          const { exp } = jwtDecode(getToken())
-          if (Date.now() >= exp * 1000) {
-            return false
-          } else return true
+          if (getToken()) {
+            const { exp } = jwtDecode(getToken())
+            if (Date.now() >= exp * 1000) {
+              return false
+            } else return true
+          } else true
         } catch {
           return false
         }
       },
       fetchAccessToken: () =>
         fetch(process.env.API_URI_REFRESH, {
-          credentials: 'include'
+          method: 'GET',
+          credentials: 'include',
+          headers: {
+            Authorization: `Bearer ${getToken()}`
+          }
         }),
       handleFetch: (token) => {
         setToken(token)
       },
       handleError: (err) => {
         removeToken()
-        console.warn('Your refresh token is invalid. Try to relogin')
         console.error(err)
+        console.warn('Your refresh token is invalid. Try to relogin')
       }
     }),
     onError(({ graphQLErrors, networkError }) => {
