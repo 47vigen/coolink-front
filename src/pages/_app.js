@@ -17,10 +17,12 @@ Router.events.on('routeChangeError', () => NProgress.done())
 
 function MyApp({ Component, pageProps }) {
   return (
-    <AuthProvider>
-      <Component {...pageProps} />
+    <>
+      <AuthProvider>
+        <Component {...pageProps} />
+      </AuthProvider>
       <Toaster reverseOrder />
-    </AuthProvider>
+    </>
   )
 }
 

@@ -87,13 +87,13 @@ export function createApolloClient(initialState = {}) {
   })
 }
 
-const withApollo = (Component) => {
-  const WithApollo = (props) => {
-    const [client] = React.useState(props.pageProps?.apolloClient || createApolloClient(props.pageProps?.apolloState))
+const withApollo = (WithOutApollo) => {
+  const WithApollo = ({ pageProps, Component }) => {
+    const [client] = React.useState(pageProps?.apolloClient || createApolloClient(pageProps?.apolloState))
 
     return (
       <ApolloProvider client={client}>
-        <Component {...props} />
+        <WithOutApollo Component={Component} pageProps={pageProps} />
       </ApolloProvider>
     )
   }
