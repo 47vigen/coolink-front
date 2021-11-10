@@ -49,7 +49,7 @@ export const RequireAuth = () => {
     if (!user.id && !loading) {
       router.replace({
         pathname: '/login',
-        query: { ref: router.pathname }
+        query: { ref: window.location.pathname + window.location.search }
       })
     }
   }, [user, loading, router])
