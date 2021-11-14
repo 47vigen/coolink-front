@@ -11,6 +11,8 @@
   "dependencies": {
     "@apollo/client": "^3.4.10",
     "@headlessui/react": "^1.4.1",
+    "@tiptap/react": "^2.0.0-beta.93",
+    "@tiptap/starter-kit": "^2.0.0-beta.140",
     "apexcharts": "^3.29.0",
     "apollo-link-error": "^1.1.13",
     "apollo-link-token-refresh": "^0.3.2",
