@@ -8,14 +8,14 @@ import Footer from './Footer'
 // ** Utils
 import classNames from '../../utils/classNames'
 
-function Layout({ children, className, dashboard, footer = true }) {
+function Layout({ children, className, dashboard, wrapperName, footer = true }) {
   if (dashboard) RequireAuth()
 
   return (
     <>
-      <Header />
-      <main className={classNames('flex-1 container mx-auto px-4', dashboard ? '' : '', className)}>{children}</main>
-      {footer ? <Footer /> : null}
+      <Header wrapperName={wrapperName} />
+      <main className={classNames('flex-1 container mx-auto px-4', wrapperName, dashboard ? '' : '', className)}>{children}</main>
+      {footer ? <Footer wrapperName={wrapperName} /> : null}
     </>
   )
 }
