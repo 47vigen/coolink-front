@@ -260,3 +260,46 @@ export const CREATE_STATISTIC = gql`
     }
   }
 `
+
+// Blog
+export const CREATE_POST = gql`
+  mutation CreatePost($postInput: PostInput!) {
+    createPost(postInput: $postInput) {
+      id
+      views
+      body
+      slug
+      cover
+      title
+      subTitle
+      attachment
+      user {
+        id
+        name
+        picture
+        role
+      }
+    }
+  }
+`
+
+export const UPDATE_POST = gql`
+  mutation UpdatePost($id: ID!, $postInput: PostInput!) {
+    updatePost(id: $id, postInput: $postInput) {
+      id
+      views
+      body
+      slug
+      cover
+      title
+      subTitle
+      attachment
+      user {
+        id
+        name
+        picture
+        role
+      }
+    }
+  }
+`
