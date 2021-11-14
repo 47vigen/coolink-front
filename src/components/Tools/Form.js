@@ -91,7 +91,7 @@ const SingleUpload = ({ label, type, pk, children, onChange, className, wrapperC
     <div className={classNames('uploader', wrapperClassName)}>
       {label ? <label className="mb-1 inline-block">{label}</label> : null}
       <div className={classNames('relative', className)}>
-        {children}
+        {typeof children === 'function' ? children({ loading }) : children}
         <input
           type="file"
           name="upload"
@@ -103,7 +103,7 @@ const SingleUpload = ({ label, type, pk, children, onChange, className, wrapperC
         />
         {loading ? (
           <div className="absolute top-0 right-0 w-full h-full flex items-center justify-center bg-primary bg-opacity-10 backdrop-filter backdrop-blur-sm">
-            <Icon name="spinner" className="animate-spin text-base text-white" />
+            <Icon name="spinner" className="animate-spin text-base text-white mix-blend-exclusion" />
           </div>
         ) : null}
       </div>
