@@ -361,3 +361,45 @@ export const SHOW_TEMPLATES = gql`
     }
   }
 `
+
+// Blog
+export const SHOW_POSTS = gql`
+  {
+    showPosts {
+      id
+      views
+      body
+      slug
+      cover
+      title
+      subTitle
+      attachment
+      user {
+        id
+        name
+        picture
+        role
+      }
+    }
+  }
+`
+export const SHOW_ONE_POST = gql`
+  query ShowOnePost($slug: String!) {
+    showOnePost(slug: $slug) {
+      id
+      views
+      body
+      slug
+      cover
+      title
+      subTitle
+      attachment
+      user {
+        id
+        name
+        picture
+        role
+      }
+    }
+  }
+`
