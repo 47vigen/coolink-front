@@ -5,7 +5,7 @@ import { Menu, Transition } from '@headlessui/react'
 import { useAuth } from '../../../context/auth'
 
 // ** UI
-import { Button, Link, Icon, Avatar, Loader } from '../../Tools'
+import { Button, Icon, Avatar, Loader } from '../../Tools'
 
 // ** Utils
 import classNames from '../../../utils/classNames'
@@ -44,6 +44,13 @@ function UserState(props) {
                   ایجاد کولینک
                 </Menu.Item>
               </div>
+              {user?.role === 'ADMIN' ? (
+                <div className="ps-1 py-1">
+                  <Menu.Item as={Button} link="/admin" type="ghost" className="!justify-start w-full">
+                    پیشخوان ادمین
+                  </Menu.Item>
+                </div>
+              ) : null}
               <div className="ps-1 py-1">
                 <Menu.Item as={Button} type="ghost" icon="sign-out" className="text-danger !justify-start w-full" onClick={() => signOut()}>
                   خروج
