@@ -22,7 +22,7 @@ function ChooseTemplate({ page: { slug, id, ...page }, dominantColor }) {
   const [updatePage] = useMutation(UPDATE_PAGE, {
     update: async (cache, mutationResult) => {
       const data = mutationResult.data.updatePage
-      const query = cache.readQuery({
+      const query = await cache.readQuery({
         query: SHOW_PAGE_WITH_SECTIONS,
         variables: { slug }
       })
