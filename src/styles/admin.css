@@ -1,0 +1,25 @@
+.admin .text-primary {
+  color: rgba(92, 84, 138, var(--tw-text-opacity));
+}
+
+.admin .border-primary {
+  border-color: rgba(92, 84, 138, var(--tw-border-opacity));
+}
+
+.admin .bg-primary {
+  background-color: rgba(92, 84, 138, var(--tw-bg-opacity));
+}
+
+.admin .hover\:text-primary:hover {
+  color: rgba(92, 84, 138, var(--tw-text-opacity));
+}
+
+.admin .focus\:border-primary:focus {
+  border-color: rgba(92, 84, 138, var(--tw-border-opacity));
+}
+
+.admin .editor .ProseMirror {
+  min-height: 14rem;
+  border: none !important;
+  outline: none !important;
+}

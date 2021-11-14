@@ -7,6 +7,7 @@ import { AuthProvider } from '../context/auth'
 import 'tailwindcss/tailwind.css'
 import '../styles/globals.css'
 import '../styles/progress.css'
+import '../styles/admin.css'
 
 // ** NProgress
 import Router from 'next/router'
