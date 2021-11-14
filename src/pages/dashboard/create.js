@@ -54,7 +54,7 @@ function Create(props) {
   const [step, setStep] = React.useState(0)
   const [getPageInfo] = useMutation(GET_PAGE_INFO)
   const [createPage, { data: created }] = useMutation(CREATE_PAGE, {
-    // update: (cache, mutationResult) => {
+    // update: async (cache, mutationResult) => {
     //   const data = mutationResult.data.createPage
     //   const rendered = {
     //     id: data?.id,
@@ -66,7 +66,7 @@ function Create(props) {
     //       url: data?.avatar?.url
     //     }
     //   }
-    //   const query = cache.readQuery({
+    //   const query = await cache.readQuery({
     //     query: SHOW_MY_PAGES
     //   })
     //   cache.writeQuery({
