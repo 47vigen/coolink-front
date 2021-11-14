@@ -30,7 +30,7 @@ function Editor({ page: pageData, sections: sectionsData, children }) {
     onCompleted: ({ updatePage }) => setPage(deepCleaner(updatePage)),
     update: async (cache, mutationResult) => {
       const data = mutationResult.data.updatePage
-      const query = cache.readQuery({
+      const query = await cache.readQuery({
         query: SHOW_PAGE_WITH_SECTIONS,
         variables: { slug: pageData.slug }
       })
@@ -53,9 +53,9 @@ function Editor({ page: pageData, sections: sectionsData, children }) {
       setSections(deepCleaner(updateInsertManySections))
       setIsNeedSave(false)
     },
-    update: (cache, mutationResult) => {
+    update: async (cache, mutationResult) => {
       const data = mutationResult.data.updateInsertManySections
-      const query = cache.readQuery({
+      const query = await cache.readQuery({
         query: SHOW_PAGE_WITH_SECTIONS,
         variables: { page: pageData.slug }
       })
@@ -72,9 +72,9 @@ function Editor({ page: pageData, sections: sectionsData, children }) {
     }
   })
   const [destroySection] = useMutation(DESTROY_SECTION, {
-    update: (cache, mutationResult) => {
+    update: async (cache, mutationResult) => {
       const data = mutationResult.data.destroySection
-      // const querySections = cache.readQuery({
+      // const querySections = await cache.readQuery({
       //   query: SHOW_SECTIONS,
       //   variables: { page: pageData.id }
       // })
@@ -83,7 +83,7 @@ function Editor({ page: pageData, sections: sectionsData, children }) {
       //   variables: { page: pageData.id },
       //   data: { showSection: querySections.showSection?.filter((section) => section.id !== data.id) }
       // })
-      const queryPage = cache.readQuery({
+      const queryPage = await cache.readQuery({
         query: SHOW_PAGE_WITH_SECTIONS,
         variables: { page: pageData.slug }
       })
