@@ -124,9 +124,9 @@ function PostEditor({ slug = '' }) {
               </Upload.Single>
             </div>
             <div className="bg-white p-4 rounded-xl space-y-4">
-              <Field required name="title" label="عنوان نوشته" placeholder="لطفا عنوان نوشته خود را وارد کنید ..." />
-              <Field name="subTitle" label="زیر عنوان نوشته" placeholder="لطفا زیر عنوان نوشته خود را وارد کنید ..." />
-              <Field required name="slug" label="پیوند یکتا نوشته" placeholder="لطفا پیوند یکتا نوشته خود را وارد کنید ..." />
+              <Field required name="title" label="عنوان" placeholder="لطفا عنوان نوشته خود را وارد کنید ..." />
+              <Field name="subTitle" label="زیر عنوان" placeholder="لطفا زیر عنوان نوشته خود را وارد کنید ..." />
+              <Field required name="slug" label="پیوند یکتا" placeholder="لطفا پیوند یکتا نوشته خود را وارد کنید ..." />
               <TiptopEditor value={values.body} onChange={(e) => setFieldValue('body', e, false)} />
             </div>
             <Button loading={isSubmitting} htmlType="submit" className="w-full">
