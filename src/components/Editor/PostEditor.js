@@ -15,10 +15,19 @@ import { getImgSrc } from '../../utils/getImgSrc'
 import { useLazyQuery, useMutation } from '@apollo/client'
 import { SHOW_ONE_POST, SHOW_POSTS } from '../../graphql/queries'
 import { CREATE_POST, UPDATE_POST } from '../../graphql/mutations'
+import { useEditor } from '@tiptap/react'
+import StarterKit from '@tiptap/starter-kit'
+import Highlight from '@tiptap/extension-highlight'
 
 function PostEditor({ slug = '' }) {
   const router = useRouter()
-  const [run, { data, loading }] = useLazyQuery(SHOW_ONE_POST, { variables: { slug }, fetchPolicy: 'cache-and-network' })
+  const editor = useEditor({ extensions: [StarterKit, Highlight], content: '' })
+
+  const [run, { data, loading }] = useLazyQuery(SHOW_ONE_POST, {
+    variables: { slug },
+    onCompleted: (data) => editor.commands.insertContent(data?.showOnePost?.body),
+    fetchPolicy: 'cache-and-network'
+  })
   const [create] = useMutation(CREATE_POST, {
     onCompleted: () => router.push('/admin/post'),
     update: async (cache, mutationResult) => {
@@ -65,13 +74,14 @@ function PostEditor({ slug = '' }) {
 
   const onSubmit = React.useCallback(
     ({ id, user, views, ...values }) => {
+      const body = editor.getHTML()
       if (slug) {
-        return update({ variables: { id: data?.showOnePost?.id, postInput: values } })
+        return update({ variables: { id: data?.showOnePost?.id, postInput: { body, ...values } } })
       } else {
-        return create({ variables: { postInput: values } })
+        return create({ variables: { postInput: { body, ...values } } })
       }
     },
-    [create, data?.showOnePost?.id, slug, update]
+    [create, data?.showOnePost?.id, editor, slug, update]
   )
 
   React.useEffect(() => {
@@ -127,7 +137,7 @@ function PostEditor({ slug = '' }) {
               <Field required name="title" label="عنوان" placeholder="لطفا عنوان نوشته خود را وارد کنید ..." />
               <Field name="subTitle" label="زیر عنوان" placeholder="لطفا زیر عنوان نوشته خود را وارد کنید ..." />
               <Field required name="slug" label="پیوند یکتا" placeholder="لطفا پیوند یکتا نوشته خود را وارد کنید ..." />
-              <TiptopEditor value={values.body} onChange={(e) => setFieldValue('body', e, false)} />
+              <TiptopEditor editor={editor} />
             </div>
             <Button loading={isSubmitting} htmlType="submit" className="w-full">
               ذخیره نوشته

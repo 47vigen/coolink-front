@@ -1,29 +1,14 @@
 import React from 'react'
-import StarterKit from '@tiptap/starter-kit'
-import Highlight from '@tiptap/extension-highlight'
-import { useEditor, EditorContent } from '@tiptap/react'
+import { EditorContent } from '@tiptap/react'
 
 // ** UI
 import { Button } from '../Tools'
 
-// ** Utils
-import debounce from '../../utils/debounce'
-
-const TiptopEditor = ({ value, onChange }) => {
-  const editor = useEditor({
-    extensions: [StarterKit, Highlight],
-    content: value
-  })
-
-  const onChangeCallback = React.useMemo(() => debounce(() => onChange(editor.getHTML()), 500), [editor, onChange])
-  editor?.on('update', () => {
-    onChangeCallback()
-  })
-
+const TiptopEditor = ({ editor }) => {
   return (
     <div className="border border-line rounded-lg overflow-hidden" dir="rtl">
       {editor && <MenuBar editor={editor} />}
-      <EditorContent editor={editor} className="p-2 editor content" />
+      <EditorContent editor={editor} className="p-2 editor content" onChange={(e) => console.log(e)} />
     </div>
   )
 }
