@@ -56,7 +56,7 @@ function Post({ post, posts, comments }) {
         <section id="content" className="row-span-1 col-span-4 lg:col-span-3">
           <h1 className="font-bold text-2xl">{post.title}</h1>
           <h2 className="text-lg text-secondary mb-4">{post.subTitle}</h2>
-          <Image width={1000} height={400} objectFit="cover" className="rounded-lg" src={getImgSrc(post?.cover)} alt={post?.title} />
+          <Image width={1000} height={400} objectFit="cover" className="rounded-lg" src={getImgSrc(post?.cover)} alt={post?.title} priority />
           <div className="content py-4" dangerouslySetInnerHTML={{ __html: post.body }} />
           <div className="flex items-center mb-4 pb-4 border-b border-line">
             <Avatar fullName={post.user.name} url={post.user.picture} className="w-10 h-10 me-2" />
