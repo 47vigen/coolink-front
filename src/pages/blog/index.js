@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import moment from 'jalali-moment'
+import Seo from '../../components/Tools/Seo'
 
 // ** UI
 import Layout from '../../components/Layout'
@@ -17,6 +18,7 @@ import { getImgSrc } from '../../utils/getImgSrc'
 function index({ posts }) {
   return (
     <Layout>
+      <Seo title="وبلاگ" description="جایی برای استفاده از تجارب کاربران کولینک" />
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-4 transition-transform duration-500 transform hover:scale-105 !mt-0">
         <Link href={`/blog/${posts[0].slug}`}>
           <Image width={1000} height={425} objectFit="cover" className="rounded-lg" src={getImgSrc(posts[0]?.cover)} alt={posts[0]?.title} />

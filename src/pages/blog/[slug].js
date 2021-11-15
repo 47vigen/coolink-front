@@ -4,11 +4,12 @@ import moment from 'jalali-moment'
 import toast from 'react-hot-toast'
 import { Form, Formik } from 'formik'
 import { useAuth } from '../../context/auth'
+import Seo from '../../components/Tools/Seo'
 
 // ** UI
 import Layout from '../../components/Layout'
 import PostItem from '../../components/Tools/Post'
-import { Avatar, Button, Field, Icon, Link } from '../../components/Tools'
+import { Avatar, Button, Field } from '../../components/Tools'
 
 // ** Graphql
 import { useMutation } from '@apollo/client'
@@ -38,6 +39,7 @@ function Post({ post, posts, comments }) {
 
   return (
     <Layout className="flex">
+      <Seo title={post.title} description={post.subTitle} />
       <article className="grid grid-cols-4">
         <section id="content" className="row-span-1 col-span-4 lg:col-span-3">
           <h1 className="font-bold text-2xl">{post.title}</h1>
@@ -85,8 +87,8 @@ function Post({ post, posts, comments }) {
           {user?.id ? (
             <Formik innerRef={ref} key={user.id} initialValues={{ body: '', post: post.id, user: user.id }} onSubmit={onSubmit}>
               {({ isSubmitting }) => (
-                <Form id="add-comment">
-                  <div className="flex items-center mb-2">
+                <Form id="add-comment" className="space-y-2">
+                  <div className="flex items-center">
                     <Avatar fullName={user.name} url={user.picture} className="w-10 h-10 me-2" />
                     <div className="flex flex-col flex-1">
                       <h6 className="capitalize">{user.name}</h6>
