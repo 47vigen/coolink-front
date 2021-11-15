@@ -1,5 +1,6 @@
 import React from 'react'
 import StarterKit from '@tiptap/starter-kit'
+import Highlight from '@tiptap/extension-highlight'
 import { useEditor, EditorContent } from '@tiptap/react'
 
 // ** UI
@@ -10,7 +11,7 @@ import debounce from '../../utils/debounce'
 
 const TiptopEditor = ({ value, onChange }) => {
   const editor = useEditor({
-    extensions: [StarterKit],
+    extensions: [StarterKit, Highlight],
     content: value
   })
 
@@ -22,7 +23,7 @@ const TiptopEditor = ({ value, onChange }) => {
   return (
     <div className="border border-line rounded-lg overflow-hidden" dir="rtl">
       {editor && <MenuBar editor={editor} />}
-      <EditorContent editor={editor} className="p-2 editor" />
+      <EditorContent editor={editor} className="p-2 editor content" />
     </div>
   )
 }
@@ -72,6 +73,18 @@ const MenuBar = ({ editor }) => {
       isActive: () => editor.isActive('heading', { level: 2 })
     },
     {
+      icon: 'h-3',
+      title: 'Heading 3',
+      action: () => editor.chain().focus().toggleHeading({ level: 3 }).run(),
+      isActive: () => editor.isActive('heading', { level: 3 })
+    },
+    {
+      icon: 'h-4',
+      title: 'Heading 4',
+      action: () => editor.chain().focus().toggleHeading({ level: 4 }).run(),
+      isActive: () => editor.isActive('heading', { level: 4 })
+    },
+    {
       icon: 'paragraph',
       title: 'Paragraph',
       action: () => editor.chain().focus().setParagraph().run(),
@@ -90,12 +103,6 @@ const MenuBar = ({ editor }) => {
       isActive: () => editor.isActive('orderedList')
     },
     {
-      icon: 'list-check-2',
-      title: 'Task List',
-      action: () => editor.chain().focus().toggleTaskList().run(),
-      isActive: () => editor.isActive('taskList')
-    },
-    {
       icon: 'code-box-line',
       title: 'Code Block',
       action: () => editor.chain().focus().toggleCodeBlock().run(),
@@ -106,16 +113,6 @@ const MenuBar = ({ editor }) => {
       title: 'Blockquote',
       action: () => editor.chain().focus().toggleBlockquote().run(),
       isActive: () => editor.isActive('blockquote')
-    },
-    {
-      icon: 'separator',
-      title: 'Horizontal Rule',
-      action: () => editor.chain().focus().setHorizontalRule().run()
-    },
-    {
-      icon: 'text-wrap',
-      title: 'Hard Break',
-      action: () => editor.chain().focus().setHardBreak().run()
     },
     {
       icon: 'format-clear',
@@ -137,7 +134,7 @@ const MenuBar = ({ editor }) => {
   return (
     <div className="flex flex-wrap p-2 border-b border-line bg-body">
       {items.map((item, index) => (
-        <Button bordered roundless key={index} className="!px-1 !min-h-0 m-0.5" onClick={item.action}>
+        <Button bordered={item.isActive !== true} roundless key={index} className="!px-1 !min-h-0 m-0.5" onClick={item.action}>
           {item.title}
         </Button>
       ))}
