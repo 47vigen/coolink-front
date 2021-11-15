@@ -76,9 +76,9 @@ function PostEditor({ slug = '' }) {
     ({ id, user, views, ...values }) => {
       const body = editor.getHTML()
       if (slug) {
-        return update({ variables: { id: data?.showOnePost?.id, postInput: { body, ...values } } })
+        return update({ variables: { id: data?.showOnePost?.id, postInput: { ...values, body } } })
       } else {
-        return create({ variables: { postInput: { body, ...values } } })
+        return create({ variables: { postInput: { ...values, body } } })
       }
     },
     [create, data?.showOnePost?.id, editor, slug, update]
@@ -91,9 +91,9 @@ function PostEditor({ slug = '' }) {
   return (
     <Loader loading={loading}>
       <Formik
-        key={JSON.stringify(data || {})}
-        initialValues={{ title: '', subTitle: '', slug: '', cover: '', body: '', ...data?.showOnePost }}
         onSubmit={onSubmit}
+        key={JSON.stringify(data || {})}
+        initialValues={{ title: '', subTitle: '', slug: '', cover: '', ...data?.showOnePost }}
       >
         {({ values, setFieldValue, isSubmitting }) => (
           <Form className="flex-1 flex flex-col space-y-4">
