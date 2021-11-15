@@ -20,6 +20,7 @@ import { SHOW_COMMENTS, SHOW_ONE_POST, SHOW_POSTS } from '../../graphql/queries'
 // ** Utils
 import classNames from '../../utils/classNames'
 import { getImgSrc } from '../../utils/getImgSrc'
+import { ArticleJsonLd } from 'next-seo'
 
 function Post({ post, posts, comments }) {
   const { user } = useAuth()
@@ -40,6 +41,17 @@ function Post({ post, posts, comments }) {
   return (
     <Layout className="flex">
       <Seo title={post.title} description={post.subTitle} />
+      <ArticleJsonLd
+        url={`https://coolink.ir/blog/${post.slug}`}
+        title={post.title}
+        description={post.subTitle}
+        authorName={[post.user.name]}
+        images={[getImgSrc(post.cover)]}
+        publisherName="Coolink"
+        publisherLogo="https://coolink.ir/images/coolink-logo.png"
+        dateModified={new Date(+post.createdAt).toISOString()}
+        datePublished={new Date(+post.createdAt).toISOString()}
+      />
       <article className="grid grid-cols-4">
         <section id="content" className="row-span-1 col-span-4 lg:col-span-3">
           <h1 className="font-bold text-2xl">{post.title}</h1>
