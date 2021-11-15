@@ -1,0 +1,82 @@
+.content > * + * {
+  margin-top: 0.75rem;
+}
+
+.content ul,
+.content ol {
+  padding: 0 1rem;
+}
+
+.content h1 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.content h2 {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.content h3 {
+  font-size: 1.125rem;
+  line-height: 1.75;
+}
+
+.content h4 {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.content code {
+  background-color: #6161611a;
+  color: #616161;
+}
+
+.content pre {
+  background: #0d0d0d;
+  color: #fff;
+  font-family: monospace;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.content pre code {
+  color: inherit;
+  padding: 0;
+  background: none;
+  font-size: 0.8rem;
+}
+
+.content mark {
+  background-color: #86efac;
+}
+
+.content img {
+  max-width: 100%;
+  height: auto;
+}
+
+.content hr {
+  margin: 1rem 0;
+}
+
+.content blockquote {
+  padding-right: 1rem;
+  border-right: 2px solid rgba(13, 13, 13, 0.1);
+}
+
+.content hr {
+  border: none;
+  border-top: 2px solid rgba(13, 13, 13, 0.1);
+  margin: 2rem 0;
+}
+
+.content ul {
+  list-style: disc;
+  padding-right: 1rem;
+}
+
+.content ol {
+  list-style: decimal;
+  padding-right: 1rem;
+}

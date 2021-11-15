@@ -8,6 +8,7 @@ import 'tailwindcss/tailwind.css'
 import '../styles/globals.css'
 import '../styles/progress.css'
 import '../styles/admin.css'
+import '../styles/content.css'
 
 // ** NProgress
 import Router from 'next/router'
