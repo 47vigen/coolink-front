@@ -39,9 +39,9 @@ function Post({ post, posts, comments }) {
   return (
     <Layout className="flex">
       <article className="grid grid-cols-4">
-        <section id="#content" className="row-span-1 col-span-4 lg:col-span-3">
+        <section id="content" className="row-span-1 col-span-4 lg:col-span-3">
           <h1 className="font-bold text-2xl">{post.title}</h1>
-          <h2 className="text-xl text-secondary mb-4">{post.subTitle}</h2>
+          <h2 className="text-lg text-secondary mb-4">{post.subTitle}</h2>
           <Image width={1000} height={400} objectFit="cover" className="rounded-lg" src={getImgSrc(post?.cover)} alt={post?.title} />
           <div className="content py-4" dangerouslySetInnerHTML={{ __html: post.body }} />
           <div className="flex items-center mb-4 pb-4 border-b border-line">
@@ -64,7 +64,7 @@ function Post({ post, posts, comments }) {
             ))}
           </div>
         </aside>
-        <section id="#comment" className="space-y-6 row-span-1 col-span-4 lg:col-span-3">
+        <section id="comments" className="space-y-6 row-span-1 col-span-4 lg:col-span-3">
           <h1 className="font-bold text-xl -mb-2">دیدگاه ها</h1>
           {comments.map((comment) => (
             <div key={comment.id} className="space-y-2">
@@ -85,8 +85,8 @@ function Post({ post, posts, comments }) {
           {user?.id ? (
             <Formik innerRef={ref} key={user.id} initialValues={{ body: '', post: post.id, user: user.id }} onSubmit={onSubmit}>
               {({ isSubmitting }) => (
-                <Form className="space-y-2">
-                  <div className="flex items-center">
+                <Form id="add-comment">
+                  <div className="flex items-center mb-2">
                     <Avatar fullName={user.name} url={user.picture} className="w-10 h-10 me-2" />
                     <div className="flex flex-col flex-1">
                       <h6 className="capitalize">{user.name}</h6>

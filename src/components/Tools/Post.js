@@ -18,8 +18,8 @@ function Post({ title, subTitle, slug, cover, user, createdAt, className, userCl
       <div className="space-y-2">
         <Link href={`/blog/${slug}`}>
           <h4 className="font-bold">{title}</h4>
+          <h5 className="text-secondary !mt-1">{subTitle}</h5>
         </Link>
-        <h5 className="text-secondary !mt-1">{subTitle}</h5>
         <div className={classNames('flex items-center', userClassName)}>
           <Avatar fullName={user.name} url={user.picture} className="w-9 h-9 me-2" />
           <div className="flex flex-col flex-1">

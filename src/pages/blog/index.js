@@ -24,8 +24,8 @@ function index({ posts }) {
         <div className="flex flex-col justify-end space-y-2 pb-2">
           <Link href={`/blog/${posts[0].slug}`}>
             <h2 className="font-bold text-xl">{posts[0].title}</h2>
+            <h3 className="text-lg text-secondary !mt-0">{posts[0].subTitle}</h3>
           </Link>
-          <h3 className="text-xl text-secondary !mt-0">{posts[0].subTitle}</h3>
           <p>{posts[0].body?.replace(/<.+?>/g, ' ').replace(/\s+/g, ' ').trim().substring(0, 400)} ...</p>
           <div className="flex items-center">
             <Avatar fullName={posts[0].user.name} url={posts[0].user.picture} className="w-10 h-10 me-2" />
