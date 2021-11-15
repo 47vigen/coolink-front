@@ -2,6 +2,9 @@ import React from 'react'
 import Image from 'next/image'
 import { Form, Formik } from 'formik'
 import { useRouter } from 'next/router'
+import { useEditor } from '@tiptap/react'
+import StarterKit from '@tiptap/starter-kit'
+import Highlight from '@tiptap/extension-highlight'
 
 // ** UI
 import TiptopEditor from './TiptopEditor'
@@ -15,9 +18,6 @@ import { getImgSrc } from '../../utils/getImgSrc'
 import { useLazyQuery, useMutation } from '@apollo/client'
 import { SHOW_ONE_POST, SHOW_POSTS } from '../../graphql/queries'
 import { CREATE_POST, UPDATE_POST } from '../../graphql/mutations'
-import { useEditor } from '@tiptap/react'
-import StarterKit from '@tiptap/starter-kit'
-import Highlight from '@tiptap/extension-highlight'
 
 function PostEditor({ slug = '' }) {
   const router = useRouter()
