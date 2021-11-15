@@ -73,7 +73,7 @@ function PostEditor({ slug = '' }) {
   })
 
   const onSubmit = React.useCallback(
-    ({ id, user, views, ...values }) => {
+    ({ id, user, views, createdAt, ...values }) => {
       const body = editor.getHTML()
       if (slug) {
         return update({ variables: { id: data?.showOnePost?.id, postInput: { ...values, body } } })
