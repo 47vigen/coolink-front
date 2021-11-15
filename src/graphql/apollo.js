@@ -49,7 +49,7 @@ const createIsomorphLink = () =>
             if (Date.now() >= exp * 1000) {
               return false
             } else return true
-          } else true
+          } else return true
         } catch {
           return false
         }
