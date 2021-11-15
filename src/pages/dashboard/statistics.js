@@ -91,26 +91,28 @@ function Statistics(props) {
 
     const viewsData = { ...dates }
     views.map((item) => {
-      const key = moment(item.createdAt - 100721).format('jYY-jMM-jDD')
-      if (key) Object.assign(viewsData, { [key]: (viewsData[key] || 0) + 1 })
+      const key = moment(+item.createdAt).format('jYY-jMM-jDD')
+      if (key && ~dates[key]) Object.assign(viewsData, { [key]: (viewsData[key] || 0) + 1 })
     })
     const clicksData = { ...dates }
     clicks.map((item) => {
-      const key = moment(item.createdAt - 100721).format('jYY-jMM-jDD')
-      if (key) Object.assign(clicksData, { [key]: (clicksData[key] || 0) + 1 })
+      const key = moment(+item.createdAt).format('jYY-jMM-jDD')
+      if (key && ~dates[key]) Object.assign(clicksData, { [key]: (clicksData[key] || 0) + 1 })
     })
+
     return { dates, views: viewsData, clicks: clicksData }
   }, [clicks, views])
+
   const series = React.useMemo(
     () => [
       {
         name: 'Views',
-        data: Object.values(chart.views).reverse(),
+        data: Object.values(chart.views).slice(0, 7).reverse(),
         color: '#3B82F6'
       },
       {
         name: 'Clicks',
-        data: Object.values(chart.clicks).reverse(),
+        data: Object.values(chart.clicks).slice(0, 7).reverse(),
         color: '#10B981'
       }
     ],
@@ -130,7 +132,7 @@ function Statistics(props) {
         curve: 'smooth'
       },
       xaxis: {
-        categories: Object.keys(chart.dates).reverse()
+        categories: Object.keys(chart.dates).slice(0, 7).reverse()
       }
     }),
     [chart.dates]
