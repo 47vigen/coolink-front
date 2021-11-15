@@ -42,7 +42,7 @@ function Header({ wrapperName }) {
             <Link href="/">خانه</Link>
           </li>
           <li>
-            <Link href="https://virgool.io/coolink">وبلاگ</Link>
+            <Link href="/blog">وبلاگ</Link>
           </li>
           <li>
             <Link href={user.id ? '/dashboard/create' : '/sign-up?ref=/dashboard/create'}>شروع کنید!</Link>
