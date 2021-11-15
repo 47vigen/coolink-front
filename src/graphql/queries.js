@@ -374,6 +374,7 @@ export const SHOW_POSTS = gql`
       title
       subTitle
       attachment
+      createdAt
       user {
         id
         name
@@ -394,11 +395,37 @@ export const SHOW_ONE_POST = gql`
       title
       subTitle
       attachment
+      createdAt
       user {
         id
         name
         picture
         role
+      }
+    }
+  }
+`
+
+export const SHOW_COMMENTS = gql`
+  query ShowComments($post: ID!) {
+    showComments(post: $post) {
+      id
+      body
+      createdAt
+      user {
+        id
+        name
+        picture
+      }
+      replies {
+        id
+        body
+        createdAt
+        user {
+          id
+          name
+          picture
+        }
       }
     }
   }
