@@ -303,3 +303,17 @@ export const UPDATE_POST = gql`
     }
   }
 `
+
+export const CREATE_COMMENT = gql`
+  mutation CreateComment($post: ID!, $body: String!, $repliedTo: ID) {
+    createComment(commentInput: { post: $post, body: $body, repliedTo: $repliedTo }) {
+      id
+      body
+      user {
+        id
+        name
+        picture
+      }
+    }
+  }
+`
