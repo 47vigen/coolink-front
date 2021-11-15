@@ -8,7 +8,7 @@ import deepCleaner from '../../utils/deepCleaner'
 
 const PRIMARY_COLOR = '#05C46B'
 
-function Seo({ page, ...props }) {
+function Seo({ page = null, ...props }) {
   const ref = React.useRef()
   const [themeColor, setThemeColor] = React.useState(undefined)
 
@@ -54,7 +54,7 @@ function Seo({ page, ...props }) {
       { rel: 'preload', href: '/fonts/woff/dana-regular.woff', as: 'font', type: 'font/woff' },
       { rel: 'preload', href: '/fonts/woff/dana-bold.woff', as: 'font', type: 'font/woff' },
       { rel: 'preload', href: '/fonts/ttf/icon.ttf?22ycys', as: 'font', type: 'font/truetype' },
-      { rel: 'preload', href: 'https://unpkg.com/emoji-datasource-apple@5.0.1/img/apple/sheets-256/32.png', as: 'image' }
+      ...(page ? [{ rel: 'preload', href: 'https://unpkg.com/emoji-datasource-apple@5.0.1/img/apple/sheets-256/32.png', as: 'image' }] : [])
     ],
     ...deepCleaner(props)
   }
