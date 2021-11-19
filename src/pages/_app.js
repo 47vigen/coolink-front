@@ -1,3 +1,4 @@
+import React from 'react'
 import { Toaster } from 'react-hot-toast'
 
 import withApollo from '../graphql/apollo'
@@ -17,7 +18,20 @@ Router.events.on('routeChangeStart', () => NProgress.start())
 Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', () => NProgress.done())
 
-function MyApp({ Component, pageProps }) {
+// ** Analytics
+import * as gtag from '../utils/gtag'
+
+function Coolink({ Component, pageProps }) {
+  React.useEffect(() => {
+    const handleRouteChange = (url) => {
+      gtag.pageview(url)
+    }
+    Router.events.on('routeChangeComplete', handleRouteChange)
+    return () => {
+      Router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [])
+
   return (
     <>
       <AuthProvider>
@@ -28,4 +42,4 @@ function MyApp({ Component, pageProps }) {
   )
 }
 
-export default withApollo(MyApp)
+export default withApollo(Coolink)
