@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import { NextSeo } from 'next-seo'
+import { useRouter } from 'next/router'
 import { useAuth } from '../context/auth'
 import Seo from '../components/Tools/Seo'
 
@@ -17,6 +17,7 @@ import 'keen-slider/keen-slider.min.css'
 
 function Home() {
   const { user } = useAuth()
+  const router = useRouter()
 
   const [sliderRef, slider] = useKeenSlider({
     slidesPerView: 1,
@@ -35,6 +36,17 @@ function Home() {
       }
     }
   })
+
+  const handleRouteChange = React.useCallback(() => {
+    slider?.refresh()
+  }, [slider])
+
+  React.useEffect(() => {
+    router.events.on('routeChangeComplete', handleRouteChange)
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [slider, handleRouteChange, router.events])
 
   return user?.id ? (
     <Layout className="space-y-8">
