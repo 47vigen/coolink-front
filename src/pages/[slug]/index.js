@@ -17,7 +17,7 @@ export default function Home({ page = {}, sections = [], referrer = '' }) {
 
   const sameAsSocialProfiles = React.useMemo(() => {
     const sameAs = []
-    const supported = ['facebook', 'twitter', 'instagram', 'youtube', 'linkedin', 'myspace', 'pinterest', 'soundCloud', 'tumblr']
+    const supported = ['facebook', 'twitter', 'instagram', 'youtube', 'linkedin', 'myspace', 'pinterest', 'soundcloud', 'tumblr']
     sections
       .filter((section) => section.type === 'services')
       ?.map((section) => section?.items?.map((item) => (supported.includes(item.type) ? sameAs.push(onDeepLink(item.type, item.value).url) : null)))
