@@ -6,8 +6,8 @@ import Link from '../Tools/Link'
 import PageHeader from './Header/PageHeader'
 
 // ** Utils
-import { getImgSrc } from '../../utils/getImgSrc'
 import classNames from '../../utils/classNames'
+import { getImgSrc } from '../../utils/getImgSrc'
 
 function Page({ page, title, children }) {
   const logo = React.useMemo(() => {
@@ -27,7 +27,27 @@ function Page({ page, title, children }) {
         backgroundImage: page.style?.background?.url ? `url('${getImgSrc(page.style.background.url)}')` : null
       }}
     >
-      <Seo page={page} title={title || page.subTitle} titleTemplate={`%s | ${page.title}`} description={page.subTitle} />
+      <Seo
+        page={page}
+        title={title || page.subTitle}
+        titleTemplate={`%s | ${page.title}`}
+        description={page.subTitle}
+        openGraph={{
+          title: page.title + ' | ' + (title || page.subTitle),
+          description: page.subTitle,
+          url: 'https://coolink.ir/' + page.slug,
+          type: 'profile',
+          profile: { firstName: page.title, username: page.slug },
+          images: [
+            {
+              width: 250,
+              height: 250,
+              url: getImgSrc(page.avatar?.url),
+              alt: 'تصویر کولینک ' + page.title
+            }
+          ]
+        }}
+      />
       <PageHeader linked page={page} />
       <main className="flex-1 container max-w-md mx-auto">{children}</main>
       <footer>
