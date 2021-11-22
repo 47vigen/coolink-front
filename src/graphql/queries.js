@@ -430,3 +430,14 @@ export const SHOW_COMMENTS = gql`
     }
   }
 `
+// Xml
+export const SHOW_XML = gql`
+  {
+    showXml {
+      loc
+      priority
+      lastmod
+      changefreq
+    }
+  }
+`
