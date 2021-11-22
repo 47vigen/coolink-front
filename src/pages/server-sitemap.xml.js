@@ -10,7 +10,21 @@ export async function getServerSideProps(ctx) {
     query: SHOW_XML
   })
 
-  return getServerSideSitemap(ctx, data.showXml || [])
+  return getServerSideSitemap(ctx, [
+    ...(data?.showXml || []),
+    {
+      lastmod: new Date().toISOString(),
+      loc: 'https://coolink.ir/blog',
+      changefreq: 'daily',
+      priority: 1
+    },
+    {
+      lastmod: new Date().toISOString(),
+      loc: 'https://coolink.ir',
+      changefreq: 'daily',
+      priority: 1
+    }
+  ])
 }
 
 const Xml = () => {}
