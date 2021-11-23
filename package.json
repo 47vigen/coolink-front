@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "start:production": "pm2 delete front && yarn install && yarn build && pm2 start yarn --name 'front' -- start",
     "lint": "next lint"
   },
   "dependencies": {
