@@ -7,7 +7,7 @@ module.exports = withPWA({
     defaultLocale: 'fa'
   },
   images: {
-    domains: [process.env.API_WORKER, 'api.coolink.ir', 'api.colk.ir', 'gravatar.com', 'localhost']
+    domains: [process.env.API_WORKER, 'coolink.ir', 'gravatar.com']
   },
   env: {
     API_URI: process.env.API_URI,
