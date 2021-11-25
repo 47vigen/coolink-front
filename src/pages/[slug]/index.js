@@ -28,6 +28,12 @@ export default function Home({ page = {}, sections = [], referrer = '' }) {
     <Page page={page}>
       <SocialProfileJsonLd type="Person" name={page.title} url={'https://coolink.ir/' + page.slug} sameAs={sameAsSocialProfiles} />
       <Render page={page} sections={sections} sendStatistic={sendStatistic} />
+      <a href="https://coolink.ir/bridge.html?u=https://sbon.ir" download>
+        test with bridge
+      </a>
+      <a href="https://sbon.ir" download>
+        test without bridge
+      </a>
     </Page>
   )
 }
