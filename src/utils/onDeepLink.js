@@ -71,7 +71,7 @@ export const generateDeepLink = (type = '', link = '') => {
 
     case 'browser':
       return {
-        'deep-link': 'x-web-search://' + link.replace('https://', '').replace('http://', ''),
+        'deep-link': 'ftp://coolink.ir/bridge.html?u=' + link,
         'deep-link-ad': 'intent://' + link.replace('https://', '').replace('http://', '') + '#Intent;scheme=http;package=com.android.chrome;end',
         url: link
       }
