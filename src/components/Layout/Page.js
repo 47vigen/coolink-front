@@ -19,8 +19,8 @@ function Page({ page, title, children }) {
     <div
       dir={page.style?.display?.direction || 'rtl'}
       className={classNames(
-        'w-full max-w-md lg:my-4 lg:rounded-xl mx-auto flex-1 flex flex-col p-4 overflow-hidden',
-        page.style?.background?.color ? `bg-${page.style.background.color} bg-cover bg-top` : '',
+        'w-full mx-auto flex-1 flex flex-col p-4 overflow-hidden',
+        page.style?.background?.color ? `bg-${page.style.background.color}` : '',
         `font-${page.style?.display?.font || 'dana'}`
       )}
       style={{
@@ -49,7 +49,7 @@ function Page({ page, title, children }) {
         }}
       />
       <PageHeader linked page={page} />
-      <main className="flex-1 container max-w-md mx-auto">{children}</main>
+      <main className="flex-1 container max-w-md lg:my-4 lg:rounded-xl mx-auto">{children}</main>
       <footer>
         <Link
           href="/"
