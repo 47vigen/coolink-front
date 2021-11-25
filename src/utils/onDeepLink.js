@@ -71,8 +71,8 @@ export const generateDeepLink = (type = '', link = '') => {
 
     case 'browser':
       return {
-        'deep-link': 'safari-https://' + link.substring,
-        'deep-link-ad': 'intent://' + link.substring + '#Intent;scheme=http;package=com.android.chrome;end',
+        'deep-link': 'safari://' + link,
+        'deep-link-ad': 'intent://' + link + '#Intent;scheme=http;package=com.android.chrome;end',
         url: link
       }
   }
