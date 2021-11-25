@@ -196,26 +196,25 @@ const onDeepLink = (type, link) => {
   const urls = generateDeepLink(type, link)
 
   if (typeof window !== 'undefined') {
-    const os = new UAParser().getOS().name
+    const os = new UAParser().getOS().name?.toLowerCase()
     const href = window.location.href
     const linker = new DeepLinker({
       onIgnored: function () {
         console.log('browser failed to respond to the deep link')
-        window.open(urls.url, '_self')
       },
       onReturn: function () {
         if (window.location.href !== href) window.location.replace(href)
       }
     })
 
-    if (urls['deep-link-ad'] && os === 'Android') {
+    if (urls['deep-link-ad'] && os === 'android') {
       return {
         url: urls.url,
         onClick: () => {
           linker.openURL(urls['deep-link-ad'])
         }
       }
-    } else if (urls['deep-link'] && os !== 'Android') {
+    } else if (urls['deep-link'] && os === 'ios') {
       return {
         url: urls.url,
         onClick: () => {
