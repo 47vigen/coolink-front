@@ -7,7 +7,18 @@ import { Icon } from '.'
 // ** Utils
 import classNames from '../../utils/classNames'
 
-function Disclosure({ isDisclosure = true, label, children, className, labelClassName, defaultOpen, dragable, isOpen, extera }) {
+function Disclosure({
+  isDisclosure = true,
+  label,
+  children,
+  className,
+  labelClassName,
+  wrapperLabelClassName,
+  defaultOpen,
+  dragable,
+  isOpen,
+  extera
+}) {
   return isDisclosure ? (
     <HeadlessDisclosure defaultOpen={defaultOpen}>
       {({ open }) => {
@@ -17,11 +28,11 @@ function Disclosure({ isDisclosure = true, label, children, className, labelClas
             <div
               className={classNames(
                 'flex w-full justify-between items-center border border-line rounded-lg overflow-hidden',
-                typeof labelClassName === 'function' ? labelClassName(open) : labelClassName
+                typeof wrapperLabelClassName === 'function' ? wrapperLabelClassName(open) : wrapperLabelClassName
               )}
             >
               <HeadlessDisclosure.Button className="flex flex-1 items-center py-2 transition duration-300 hover:opacity-70 me-auto px-2">
-                <div className="flex items-center truncate max-w-[16rem] me-auto space-s-2">{label}</div>
+                <div className={classNames('flex items-center truncate max-w-[16rem] me-auto space-s-2', labelClassName)}>{label}</div>
                 <Icon name="angle-small-left" className={classNames('text-base transition-all duration-300', open ? 'transform -rotate-90' : '')} />
               </HeadlessDisclosure.Button>
               {dragable && extera ? (

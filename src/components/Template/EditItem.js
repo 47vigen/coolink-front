@@ -120,7 +120,7 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
                     label={item?.key || `لینک #${idx + 1}`}
                     defaultOpen={idx === 0 && values.items?.length === 1}
                     className="space-y-4 border border-t-0 border-line rounded-b-lg p-4"
-                    labelClassName={(open) => classNames('bg-white', open ? 'rounded-b-none' : '')}
+                    wrapperLabelClassName={(open) => classNames('bg-white', open ? 'rounded-b-none' : '')}
                     extera={
                       values.items?.length > 1 ? (
                         <Button
@@ -136,8 +136,8 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
                     <Field name={`items.${idx}.value`} label="آدرس لینک" placeholder="آدرس لینک را وارد کنید ..." />
                     <Switch
                       label="این لینک اجبارا خارج از اینستاگرام باز شود؟"
-                      checked={item.options[1]?.value === '1'}
-                      onChange={(toggle) => setFieldValue(`items.${idx}.options.1`, { key: 'redirect', value: toggle ? '1' : '0' }, false)}
+                      checked={+item.options[1]?.value}
+                      onChange={(toggle) => setFieldValue(`items.${idx}.options.1`, { key: 'redirect', value: (+toggle).toString() }, false)}
                     />
                     <EmojiFeild idx={idx} item={item} setFieldValue={setFieldValue} />
                   </Disclosure>
@@ -170,7 +170,7 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
                       isOpen={(open) => onOpenDisclosure(open)}
                       defaultOpen={idx === 0 && values.items?.length === 1}
                       className="space-y-4 border border-t-0 border-line rounded-b-lg p-4"
-                      labelClassName={(open) => classNames('bg-white', open ? 'rounded-b-none' : '')}
+                      wrapperLabelClassName={(open) => classNames('bg-white', open ? 'rounded-b-none' : '')}
                       extera={
                         values.items?.length > 1 ? (
                           <Button
@@ -221,7 +221,7 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
                       isOpen={(open) => onOpenDisclosure(open)}
                       defaultOpen={idx === 0 && values.items?.length === 1}
                       className="space-y-4 border border-t-0 border-line rounded-b-lg p-4"
-                      labelClassName={(open) => classNames('bg-white', open ? 'rounded-b-none' : '')}
+                      wrapperLabelClassName={(open) => classNames('bg-white', open ? 'rounded-b-none' : '')}
                       extera={
                         values.items?.length > 1 ? (
                           <Button
@@ -263,14 +263,14 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
                       />
                       <Switch
                         label="از رنگ‌بندی برند استفاده شود؟"
-                        checked={item.options[1]?.value === '1'}
-                        onChange={(toggle) => setFieldValue(`items.${idx}.options.1`, { key: 'brandStyle', value: toggle ? '1' : '0' }, false)}
+                        checked={+item.options[1]?.value}
+                        onChange={(toggle) => setFieldValue(`items.${idx}.options.1`, { key: 'brandStyle', value: (+toggle).toString() }, false)}
                       />
                       {item?.type && !generateDeepLink(item.type, item.value)['deep-link'] ? (
                         <Switch
                           label="این لینک اجبارا خارج از اینستاگرام باز شود؟"
-                          checked={item.options[2]?.value === '1'}
-                          onChange={(toggle) => setFieldValue(`items.${idx}.options.2`, { key: 'redirect', value: toggle ? '1' : '0' }, false)}
+                          checked={+item.options[2]?.value}
+                          onChange={(toggle) => setFieldValue(`items.${idx}.options.2`, { key: 'redirect', value: (+toggle).toString() }, false)}
                         />
                       ) : null}
                       <EmojiFeild idx={idx} item={item} setFieldValue={setFieldValue} />
@@ -319,7 +319,7 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
                     label={item?.key || `پرسش‌وپاسخ #${idx + 1}`}
                     defaultOpen={idx === 0 && values.items?.length === 1}
                     className="space-y-4 border border-t-0 border-line rounded-b-lg p-4"
-                    labelClassName={(open) => classNames('bg-white', open ? 'rounded-b-none' : '')}
+                    wrapperLabelClassName={(open) => classNames('bg-white', open ? 'rounded-b-none' : '')}
                     extera={
                       values.items?.length > 1 ? (
                         <Button
@@ -389,7 +389,7 @@ const EmojiFeild = React.memo(function Component({ idx, item, setFieldValue }) {
           <span className="capitalize">{iconLabel}</span>
         </>
       }
-      labelClassName={(open) => (open ? 'rounded-b-none' : '')}
+      wrapperLabelClassName={(open) => (open ? 'rounded-b-none' : '')}
       extera={(open) =>
         open && selected?.value ? (
           <Button icon="trash" className="text-danger border-line border-s !rounded-none self-stretch" onClick={() => select(null)} type="ghost" />

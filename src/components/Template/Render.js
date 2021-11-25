@@ -19,6 +19,10 @@ const Map = dynamic(() => import('../Tools/Map'), {
   ssr: false
 })
 
+function renderHref(url = '', noHttp = false) {
+  return (!url.includes('http') && !noHttp ? `http://${url} ` : url)?.trim()
+}
+
 function Render({ page: { slug, style }, sections, sendStatistic = async () => null }) {
   return (
     <div className="parts my-4 space-y-2">
@@ -59,6 +63,7 @@ const RenderInsideOfSection = React.memo(function Component({ item: { type, ...d
           url={value}
           options={item?.options}
           arrangement={data.arrangement}
+          {...(+item.options[1]?.value ? onDeepLink('browser', renderHref(value)) : null)}
           sendStatistic={() => sendStatistic(id)}
           customize={{ ...customize, ...custom(0) }}
         >
@@ -230,7 +235,7 @@ const LinkItem = React.memo(function Component({
     [emojiOrIcon, options]
   )
   const quadrupleArrangement = React.useMemo(() => arrangement == 4, [arrangement])
-  const href = React.useMemo(() => (!url.includes('http') && !noHttp ? `http://${url} ` : url).trim(), [url, noHttp])
+  const href = React.useMemo(() => renderHref(url, noHttp), [url, noHttp])
   const onClick = React.useCallback(
     async (e) => {
       try {

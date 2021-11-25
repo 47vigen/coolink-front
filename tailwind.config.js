@@ -3,7 +3,7 @@ const colors = require('tailwindcss/colors')
 module.exports = {
   mode: 'jit',
   purge: ['./src/pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'class',
   theme: {
     extend: {
       // ** animation from https://github.com/animate-css/animate.css
@@ -191,8 +191,8 @@ module.exports = {
       '3xl': ['1.5rem', { lineHeight: '2rem' }],
       '4xl': ['1.875rem', { lineHeight: '2.25rem' }],
       '5xl': ['2.25rem', { lineHeight: '2.25rem' }],
-      '6xl': ['3rem', { lineHeight: '1' }],
-      '7xl': ['3.75rem', { lineHeight: '1' }],
+      '6xl': ['2.5rem', { lineHeight: '1' }],
+      '7xl': ['3rem', { lineHeight: '1' }],
       '8xl': ['4.5rem', { lineHeight: '1' }],
       '9xl': ['6rem', { lineHeight: '1' }]
     },

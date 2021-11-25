@@ -24,7 +24,7 @@ class HtmlDocument extends Document {
             }}
           />
         </Head>
-        <body className="bg-body font-dana text-base flex-1 flex flex-col">
+        <body className="bg-body font-dana text-base text-content flex-1 flex flex-col">
           <Main />
           <NextScript />
         </body>

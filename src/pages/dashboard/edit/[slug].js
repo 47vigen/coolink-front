@@ -2,11 +2,11 @@ import React from 'react'
 import dynamic from 'next/dynamic'
 import { useAuth } from '../../../context/auth'
 import Seo from '../../../components/Tools/Seo'
-import { Menu, Tab, Transition } from '@headlessui/react'
+import { Menu, Transition } from '@headlessui/react'
 
 // ** UI
 import Layout from '../../../components/Layout'
-import { Button, Icon, Loader } from '../../../components/Tools'
+import { Button, Icon, Loader, Tab, Tabs } from '../../../components/Tools'
 import PageHeader from '../../../components/Layout/Header/PageHeader'
 
 // ** Graphql
@@ -85,48 +85,20 @@ function Edit({ page, sections }) {
                     ... در اختیار کاربران قرار می‌دهد.
                   </p>
                 </div>
-                <Tab.Group as="div" className="flex-1 hidden lg:!flex flex-col">
-                  <Tab.List className="flex border-b border-line pb-2">
-                    <Tab
-                      className={({ selected }) =>
-                        classNames(
-                          'px-2',
-                          selected
-                            ? 'font-bold text-primary relative after:block after:absolute after:start-2 after:end-2 after:-bottom-2 after:h-0.5 after:bg-primary after:rounded-t-full'
-                            : ''
-                        )
-                      }
-                    >
-                      عمومی
-                    </Tab>
-                    <Tab
-                      className={({ selected }) =>
-                        classNames(
-                          'px-2',
-                          selected
-                            ? 'font-bold text-primary relative after:block after:absolute after:start-2 after:end-2 after:-bottom-2 after:h-0.5 after:bg-primary after:rounded-t-full'
-                            : ''
-                        )
-                      }
-                    >
-                      اینستاگرام
-                    </Tab>
-                  </Tab.List>
-                  <Tab.Panels className="flex-1 pt-4">
-                    <Tab.Panel className="grid grid-cols-3 gap-4">
-                      <Item type="links" icon="link" label="لینک یا پیوند" onAddItem={onAddItem} />
-                      <Item type="text" icon="document" label="متن یا توضیح" onAddItem={onAddItem} />
-                      <Item type="contacts" icon="smartphone" label="اطلاعات تماس" onAddItem={onAddItem} />
-                      <Item type="services" icon="comment" label="شبکه‌های‌اجتماعی و سرویس‌ها" onAddItem={onAddItem} />
-                      <Item type="locations" icon="location-alt" label="مسیریابی" onAddItem={onAddItem} />
-                      <Item type="faq" icon="interrogation" label="پرسش های پرتکرار" onAddItem={onAddItem} />
-                    </Tab.Panel>
-                    <Tab.Panel className="grid grid-cols-3 gap-4">
-                      <Item type="igFeedsLink" icon="picture" label="لینک پست ها" onAddItem={onAddItem} />
-                      <Item type="igFeedsDownload" icon="download" label="دانلود پست ها" onAddItem={onAddItem} />
-                    </Tab.Panel>
-                  </Tab.Panels>
-                </Tab.Group>
+                <Tabs labels={['عمومی', 'اینستاگرام']} activeClassName="font-bold" className="flex-1 hidden lg:!flex flex-col">
+                  <Tab className="grid grid-cols-3 gap-4">
+                    <Item type="links" icon="link" label="لینک یا پیوند" onAddItem={onAddItem} />
+                    <Item type="text" icon="document" label="متن یا توضیح" onAddItem={onAddItem} />
+                    <Item type="contacts" icon="smartphone" label="اطلاعات تماس" onAddItem={onAddItem} />
+                    <Item type="services" icon="comment" label="شبکه‌های‌اجتماعی و سرویس‌ها" onAddItem={onAddItem} />
+                    <Item type="locations" icon="location-alt" label="مسیریابی" onAddItem={onAddItem} />
+                    <Item type="faq" icon="interrogation" label="پرسش های پرتکرار" onAddItem={onAddItem} />
+                  </Tab>
+                  <Tab className="grid grid-cols-3 gap-4">
+                    <Item type="igFeedsLink" icon="picture" label="لینک پست ها" onAddItem={onAddItem} />
+                    <Item type="igFeedsDownload" icon="download" label="دانلود پست ها" onAddItem={onAddItem} />
+                  </Tab>
+                </Tabs>
                 <div className="hidden lg:!flex border border-b-0 border-line space-s-2 p-2 rounded-t-xl">
                   <Button className="w-full" disabled={!isNeedSave} onClick={() => save()} loading={loading}>
                     ذخیره آخرین تغییرات

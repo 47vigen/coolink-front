@@ -68,6 +68,13 @@ export const generateDeepLink = (type = '', link = '') => {
         'deep-link-ad': 'intent://send/+98' + link.substring(1) + '#Intent;scheme=smsto;package=com.whatsapp;action=android.intent.action.SENDTO;end',
         url: 'https://wa.me/+98' + link.substring(1)
       }
+
+    case 'browser':
+      return {
+        'deep-link': 'safari-https://' + link.substring,
+        'deep-link-ad': 'intent://' + link.substring + '#Intent;scheme=http;package=com.android.chrome;end',
+        url: link
+      }
   }
 
   return {

@@ -4,7 +4,7 @@ import { Tab as HeadlessTab } from '@headlessui/react'
 // ** Utils
 import classNames from '../../utils/classNames'
 
-function Tabs({ labels = [], className, extera, children }) {
+function Tabs({ labels = [], className, activeClassName, extera, children }) {
   return (
     <HeadlessTab.Group {...(className ? { as: 'div', className } : { as: React.Fragment })}>
       <HeadlessTab.List className="flex items-center border-b border-line pb-2">
@@ -15,7 +15,10 @@ function Tabs({ labels = [], className, extera, children }) {
               classNames(
                 'flex items-center px-2 self-stretch',
                 selected
-                  ? 'text-primary relative after:block after:absolute after:start-2 after:end-2 after:-bottom-2 after:h-0.5 after:bg-primary after:rounded-t-full'
+                  ? classNames(
+                      'text-primary relative after:block after:absolute after:start-2 after:end-2 after:-bottom-2 after:h-0.5 after:bg-primary after:rounded-t-full',
+                      activeClassName
+                    )
                   : ''
               )
             }

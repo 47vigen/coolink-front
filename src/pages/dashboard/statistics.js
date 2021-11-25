@@ -33,7 +33,7 @@ function brandChart(brand) {
 }
 
 function Statistics(props) {
-  const { data: pages, loading: pagesLoading } = useQuery(SHOW_MY_PAGES)
+  const { data: pages, loading: pagesLoading } = useQuery(SHOW_MY_PAGES, { fetchPolicy: 'cache-and-network' })
   const [selected, setSelected] = React.useState('')
   const [run, { data, loading }] = useLazyQuery(SHOW_STATISTICS_AND_SECTIONS_BY_PAGE, { fetchPolicy: 'cache-and-network' })
 
