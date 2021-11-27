@@ -15,7 +15,7 @@ import { Avatar, Button, Field } from '../../components/Tools'
 import { useMutation } from '@apollo/client'
 import { CREATE_COMMENT } from '../../graphql/mutations'
 import { createApolloClient } from '../../graphql/apollo'
-import { SHOW_COMMENTS, SHOW_ONE_POST, SHOW_POSTS } from '../../graphql/queries'
+import { SHOW_COMMENTS_BY_POST, SHOW_POST_BY_SLUG, SHOW_POSTS } from '../../graphql/queries'
 
 // ** Utils
 import classNames from '../../utils/classNames'
@@ -124,14 +124,14 @@ function Post({ post, posts, comments }) {
 export async function getServerSideProps({ params }) {
   const client = createApolloClient()
   const { data: dataOne, error } = await client.query({
-    query: SHOW_ONE_POST,
+    query: SHOW_POST_BY_SLUG,
     variables: { slug: params.slug }
   })
 
-  if (dataOne?.showOnePost?.id && !error) {
+  if (dataOne?.showPostBySlug?.id && !error) {
     const { data: comments } = await client.query({
-      query: SHOW_COMMENTS,
-      variables: { post: dataOne.showOnePost.id }
+      query: SHOW_COMMENTS_BY_POST,
+      variables: { post: dataOne.showPostBySlug.id }
     })
 
     const { data } = await client.query({
@@ -141,8 +141,8 @@ export async function getServerSideProps({ params }) {
     return {
       props: {
         posts: data?.showPosts,
-        post: dataOne.showOnePost,
-        comments: comments?.showComments,
+        post: dataOne.showPostBySlug,
+        comments: comments?.showCommentsByPost,
         apolloState: client.cache.extract()
       }
     }

@@ -11,7 +11,7 @@ import PageHeader from '../../../components/Layout/Header/PageHeader'
 
 // ** Graphql
 import { createApolloClient } from '../../../graphql/apollo'
-import { SHOW_PAGE_WITH_SECTIONS } from '../../../graphql/queries'
+import { SHOW_PAGE_WITH_SECTIONS_BY_SLUG } from '../../../graphql/queries'
 
 // ** Utils
 import Editor from '../../../components/Editor'
@@ -174,17 +174,17 @@ const Item = React.memo(function Component({ type, icon, label, onAddItem }) {
 export async function getServerSideProps({ params }) {
   const client = createApolloClient()
   const { data: dataPage, error: errorPage } = await client.query({
-    query: SHOW_PAGE_WITH_SECTIONS,
+    query: SHOW_PAGE_WITH_SECTIONS_BY_SLUG,
     variables: {
       slug: params.slug
     }
   })
 
-  if (dataPage?.showPageWithSections?.page && dataPage?.showPageWithSections?.sections && !errorPage) {
+  if (dataPage?.showPageWithSectionsBySlug?.page && dataPage?.showPageWithSectionsBySlug?.sections && !errorPage) {
     return {
       props: {
-        page: deepCleaner(dataPage.showPageWithSections.page),
-        sections: deepCleaner(dataPage.showPageWithSections.sections),
+        page: deepCleaner(dataPage.showPageWithSectionsBySlug.page),
+        sections: deepCleaner(dataPage.showPageWithSectionsBySlug.sections),
         apolloState: client.cache.extract()
       }
     }

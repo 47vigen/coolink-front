@@ -6,7 +6,7 @@ import Render from '../../components/Template/Render'
 
 // ** Graphql
 import { createApolloClient } from '../../graphql/apollo'
-import { SHOW_PAGE_WITH_SECTIONS } from '../../graphql/queries'
+import { SHOW_PAGE_WITH_SECTIONS_BY_SLUG } from '../../graphql/queries'
 
 // ** Hooks
 import onDeepLink from '../../utils/onDeepLink'
@@ -35,17 +35,17 @@ export default function Home({ page = {}, sections = [], referrer = '' }) {
 export async function getServerSideProps({ params, req }) {
   const client = createApolloClient()
   const { data: dataPage, error: errorPage } = await client.query({
-    query: SHOW_PAGE_WITH_SECTIONS,
+    query: SHOW_PAGE_WITH_SECTIONS_BY_SLUG,
     variables: {
       slug: params.slug
     }
   })
 
-  if (dataPage?.showPageWithSections?.page && dataPage?.showPageWithSections?.sections && !errorPage) {
+  if (dataPage?.showPageWithSectionsBySlug?.page && dataPage?.showPageWithSectionsBySlug?.sections && !errorPage) {
     return {
       props: {
-        page: dataPage.showPageWithSections.page,
-        sections: dataPage.showPageWithSections.sections,
+        page: dataPage.showPageWithSectionsBySlug.page,
+        sections: dataPage.showPageWithSectionsBySlug.sections,
         apolloState: client.cache.extract(),
         referrer: req.headers.referrer || req.headers.referer || null
       }

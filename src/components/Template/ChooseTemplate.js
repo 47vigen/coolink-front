@@ -9,7 +9,7 @@ import TemplateItem from './TemplateItem'
 // ** Graphql
 import { useMutation, useQuery } from '@apollo/client'
 import { UPDATE_PAGE } from '../../graphql/mutations'
-import { SHOW_PAGE_WITH_SECTIONS, SHOW_TEMPLATES } from '../../graphql/queries'
+import { SHOW_PAGE_WITH_SECTIONS_BY_SLUG, SHOW_TEMPLATES } from '../../graphql/queries'
 
 // ** Utils
 import deepMerger from '../../utils/deepMerger'
@@ -23,13 +23,13 @@ function ChooseTemplate({ page: { slug, id, ...page }, dominantColor }) {
     update: async (cache, mutationResult) => {
       const data = mutationResult.data.updatePage
       const query = await cache.readQuery({
-        query: SHOW_PAGE_WITH_SECTIONS,
+        query: SHOW_PAGE_WITH_SECTIONS_BY_SLUG,
         variables: { slug }
       })
       cache.writeQuery({
-        query: SHOW_PAGE_WITH_SECTIONS,
+        query: SHOW_PAGE_WITH_SECTIONS_BY_SLUG,
         variables: { slug },
-        data: { showPageWithSections: { ...query?.showPageWithSections, page: data } }
+        data: { showPageWithSectionsBySlug: { ...query?.showPageWithSectionsBySlug, page: data } }
       })
     }
   })

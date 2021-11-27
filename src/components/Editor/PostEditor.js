@@ -16,16 +16,16 @@ import { getImgSrc } from '../../utils/getImgSrc'
 
 // ** Graphql
 import { useLazyQuery, useMutation } from '@apollo/client'
-import { SHOW_ONE_POST, SHOW_POSTS } from '../../graphql/queries'
+import { SHOW_POST_BY_SLUG, SHOW_POSTS } from '../../graphql/queries'
 import { CREATE_POST, UPDATE_POST } from '../../graphql/mutations'
 
 function PostEditor({ slug = '' }) {
   const router = useRouter()
   const editor = useEditor({ extensions: [StarterKit, Highlight], content: '' })
 
-  const [run, { data, loading }] = useLazyQuery(SHOW_ONE_POST, {
+  const [run, { data, loading }] = useLazyQuery(SHOW_POST_BY_SLUG, {
     variables: { slug },
-    onCompleted: (data) => editor.commands.insertContent(data?.showOnePost?.body),
+    onCompleted: (data) => editor.commands.insertContent(data?.showPostBySlug?.body),
     fetchPolicy: 'cache-and-network'
   })
   const [create] = useMutation(CREATE_POST, {
@@ -61,13 +61,13 @@ function PostEditor({ slug = '' }) {
 
       // show one
       const queryOne = await cache.readQuery({
-        query: SHOW_ONE_POST,
+        query: SHOW_POST_BY_SLUG,
         variables: { slug: data.slug }
       })
       cache.writeQuery({
-        query: SHOW_ONE_POST,
+        query: SHOW_POST_BY_SLUG,
         variables: { slug: data.slug },
-        data: { ...queryOne, showOnePost: { ...queryOne?.showOnePost, ...data } }
+        data: { ...queryOne, showPostBySlug: { ...queryOne?.showPostBySlug, ...data } }
       })
     }
   })
@@ -76,12 +76,12 @@ function PostEditor({ slug = '' }) {
     ({ id, user, views, createdAt, ...values }) => {
       const body = editor.getHTML()
       if (slug) {
-        return update({ variables: { id: data?.showOnePost?.id, postInput: { ...values, body } } })
+        return update({ variables: { id: data?.showPostBySlug?.id, postInput: { ...values, body } } })
       } else {
         return create({ variables: { postInput: { ...values, body } } })
       }
     },
-    [create, data?.showOnePost?.id, editor, slug, update]
+    [create, data?.showPostBySlug?.id, editor, slug, update]
   )
 
   React.useEffect(() => {
@@ -93,7 +93,7 @@ function PostEditor({ slug = '' }) {
       <Formik
         onSubmit={onSubmit}
         key={JSON.stringify(data || {})}
-        initialValues={{ title: '', subTitle: '', slug: '', cover: '', ...data?.showOnePost }}
+        initialValues={{ title: '', subTitle: '', slug: '', cover: '', ...data?.showPostBySlug }}
       >
         {({ values, setFieldValue, isSubmitting }) => (
           <Form className="flex-1 flex flex-col space-y-4">

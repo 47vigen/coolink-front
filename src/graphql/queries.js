@@ -27,9 +27,9 @@ export const SHOW_MY_PAGES = gql`
   }
 `
 
-export const SHOW_PAGE_WITH_SECTIONS = gql`
-  query ShowPageWithSections($slug: String!) {
-    showPageWithSections(slug: $slug) {
+export const SHOW_PAGE_WITH_SECTIONS_BY_SLUG = gql`
+  query ShowPageWithSectionsBySlug($slug: String!) {
+    showPageWithSectionsBySlug(slug: $slug) {
       page {
         id
         pk
@@ -131,61 +131,26 @@ export const SHOW_PAGE_WITH_SECTIONS = gql`
   }
 `
 
-export const SHOW_SECTIONS = gql`
-  query ShowSection($page: String!) {
-    showSection(page: $page) {
-      id
-      type
-      position
-      title
-      items {
-        id
-        type
-        key
-        value
-        options {
-          key
-          value
-        }
-      }
-      arrangement
-      customized
-      customize {
-        type
-        rounded
-        animate
-        color
-        second
-        border
-        borderStyle
-        direction
-        from
-        to
-        via
-      }
-    }
-  }
-`
-
-export const GET_PAGE_FEEDS = gql`
-  query GetPageFeeds($pk: String!, $next: String) {
-    getPageFeeds(pk: $pk, next: $next) {
+export const SHOW_IG_FEEDS_BY_PAGE = gql`
+  query ShowIGFeedsByPage($pk: String!, $next: String) {
+    showIGFeedsByPage(pk: $pk, next: $next) {
       next
       feeds {
         id
+        pk
+        caption
         slides {
           type
           imageUrl
           videoUrl
         }
-        caption
       }
     }
   }
 `
 
-export const SHOW_STATISTICS_AND_SECTIONS_BY_PAGE = gql`
-  query ShowStatisticsAndSectionsByPage($page: String!) {
+export const SHOW_STATISTICS_BY_PAGE = gql`
+  query ShowStatisticsByPage($page: String!) {
     showStatisticsByPage(page: $page) {
       id
       ids
@@ -195,38 +160,6 @@ export const SHOW_STATISTICS_AND_SECTIONS_BY_PAGE = gql`
       pathname
       ip
       createdAt
-    }
-
-    showSection(page: $page) {
-      id
-      type
-      position
-      title
-      items {
-        id
-        type
-        key
-        value
-        options {
-          key
-          value
-        }
-      }
-      arrangement
-      customized
-      customize {
-        type
-        rounded
-        animate
-        color
-        second
-        border
-        borderStyle
-        direction
-        from
-        to
-        via
-      }
     }
   }
 `
@@ -384,9 +317,10 @@ export const SHOW_POSTS = gql`
     }
   }
 `
-export const SHOW_ONE_POST = gql`
-  query ShowOnePost($slug: String!) {
-    showOnePost(slug: $slug) {
+
+export const SHOW_POST_BY_SLUG = gql`
+  query ShowPostBySlug($slug: String!) {
+    showPostBySlug(slug: $slug) {
       id
       views
       body
@@ -406,9 +340,9 @@ export const SHOW_ONE_POST = gql`
   }
 `
 
-export const SHOW_COMMENTS = gql`
-  query ShowComments($post: ID!) {
-    showComments(post: $post) {
+export const SHOW_COMMENTS_BY_POST = gql`
+  query ShowCommentsByPost($post: ID!) {
+    showCommentsByPost(post: $post) {
       id
       body
       createdAt

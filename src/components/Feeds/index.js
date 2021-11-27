@@ -9,25 +9,25 @@ import classNames from '../../utils/classNames'
 
 // ** Graphql
 import { useQuery } from '@apollo/client'
-import { GET_PAGE_FEEDS } from '../../graphql/queries'
+import { SHOW_IG_FEEDS_BY_PAGE } from '../../graphql/queries'
 
 function Feeds({ page, section, children }) {
   const [feeds, setFeeds] = React.useState([])
   const {
     data,
-    loading: getPageFeedsLoading,
+    loading: showIGFeedsByPageLoading,
     refetch
-  } = useQuery(GET_PAGE_FEEDS, {
+  } = useQuery(SHOW_IG_FEEDS_BY_PAGE, {
     variables: { pk: page.pk },
-    onCompleted: ({ getPageFeeds: { feeds } }) => setFeeds(feeds)
+    onCompleted: ({ showIGFeedsByPage: { feeds } }) => setFeeds(feeds)
   })
 
   const [fetchMoreLoading, setFetchMoreLoading] = React.useState(false)
   const fetchMore = React.useCallback(async () => {
     setFetchMoreLoading(true)
     try {
-      const { data: refetchData } = await refetch({ next: data?.getPageFeeds?.next })
-      setFeeds((prev) => [...prev, ...refetchData?.getPageFeeds?.feeds])
+      const { data: refetchData } = await refetch({ next: data?.showIGFeedsByPage?.next })
+      setFeeds((prev) => [...prev, ...refetchData?.showIGFeedsByPage?.feeds])
     } catch (error) {
       console.log(error)
     }
@@ -56,10 +56,10 @@ function Feeds({ page, section, children }) {
       <Element
         tag="button"
         customize={{ ...page.style.customize, ...custom(0) }}
-        onClick={getPageFeedsLoading || fetchMoreLoading ? null : fetchMore}
+        onClick={showIGFeedsByPageLoading || fetchMoreLoading ? null : fetchMore}
         className="flex w-full justify-center items-center min-h-[2rem] mb-4"
       >
-        {getPageFeedsLoading || fetchMoreLoading ? <Icon name="spinner" className="animate-spin text-base ml-2" /> : null}
+        {showIGFeedsByPageLoading || fetchMoreLoading ? <Icon name="spinner" className="animate-spin text-base ml-2" /> : null}
         پست های بیشتر ...
       </Element>
     </>

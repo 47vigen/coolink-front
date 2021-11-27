@@ -3,8 +3,8 @@ import { v4 as uuid, validate as isUuid } from 'uuid'
 
 // ** Graphql
 import { useMutation } from '@apollo/client'
-import { SHOW_PAGE_WITH_SECTIONS, SHOW_SECTIONS } from '../../graphql/queries'
-import { DESTROY_SECTION, UPDATE_INSERT_MANY_SECTIONS, UPDATE_PAGE } from '../../graphql/mutations'
+import { SHOW_PAGE_WITH_SECTIONS_BY_SLUG, SHOW_SECTIONS } from '../../graphql/queries'
+import { DESTROY_SECTION, SAVE_MANY_SECTIONS, UPDATE_PAGE } from '../../graphql/mutations'
 
 //** Template
 import AddItem from '../Template/AddItem'
@@ -31,38 +31,38 @@ function Editor({ page: pageData, sections: sectionsData, children }) {
     update: async (cache, mutationResult) => {
       const data = mutationResult.data.updatePage
       const query = await cache.readQuery({
-        query: SHOW_PAGE_WITH_SECTIONS,
+        query: SHOW_PAGE_WITH_SECTIONS_BY_SLUG,
         variables: { slug: pageData.slug }
       })
       cache.writeQuery({
-        query: SHOW_PAGE_WITH_SECTIONS,
+        query: SHOW_PAGE_WITH_SECTIONS_BY_SLUG,
         variables: { slug: pageData.slug },
-        data: { showPageWithSections: { ...query?.showPageWithSections, page: data } }
+        data: { showPageWithSectionsBySlug: { ...query?.showPageWithSectionsBySlug, page: data } }
       })
     }
   })
   const [sections, setSections] = React.useState(sectionsData)
-  const [updateInsertSections, { loading: updateInsertSectionsLoading }] = useMutation(UPDATE_INSERT_MANY_SECTIONS, {
+  const [updateInsertSections, { loading: updateInsertSectionsLoading }] = useMutation(SAVE_MANY_SECTIONS, {
     variables: {
       sections: sections.map(({ id, ...section }) => ({
         id,
         sectionInput: { ...section, ...deepCleaner({ items: section.items, customize: section.customize }, 'id'), page: pageData.id }
       }))
     },
-    onCompleted: ({ updateInsertManySections }) => {
-      setSections(deepCleaner(updateInsertManySections))
+    onCompleted: ({ saveManySections }) => {
+      setSections(deepCleaner(saveManySections))
       setIsNeedSave(false)
     },
     update: async (cache, mutationResult) => {
-      const data = mutationResult.data.updateInsertManySections
+      const data = mutationResult.data.saveManySections
       const query = await cache.readQuery({
-        query: SHOW_PAGE_WITH_SECTIONS,
+        query: SHOW_PAGE_WITH_SECTIONS_BY_SLUG,
         variables: { page: pageData.slug }
       })
       cache.writeQuery({
-        query: SHOW_PAGE_WITH_SECTIONS,
+        query: SHOW_PAGE_WITH_SECTIONS_BY_SLUG,
         variables: { slug: pageData.slug },
-        data: { showPageWithSections: { ...query?.showPageWithSections, sections: data } }
+        data: { showPageWithSectionsBySlug: { ...query?.showPageWithSectionsBySlug, sections: data } }
       })
       // cache.writeQuery({
       //   query: SHOW_SECTIONS,
@@ -84,16 +84,16 @@ function Editor({ page: pageData, sections: sectionsData, children }) {
       //   data: { showSection: querySections.showSection?.filter((section) => section.id !== data.id) }
       // })
       const queryPage = await cache.readQuery({
-        query: SHOW_PAGE_WITH_SECTIONS,
+        query: SHOW_PAGE_WITH_SECTIONS_BY_SLUG,
         variables: { page: pageData.slug }
       })
       cache.writeQuery({
-        query: SHOW_PAGE_WITH_SECTIONS,
+        query: SHOW_PAGE_WITH_SECTIONS_BY_SLUG,
         variables: { slug: pageData.slug },
         data: {
-          showPageWithSections: {
-            ...queryPage?.showPageWithSections,
-            sections: queryPage?.showPageWithSections?.sections?.filter((section) => section.id !== data.id)
+          showPageWithSectionsBySlug: {
+            ...queryPage?.showPageWithSectionsBySlug,
+            sections: queryPage?.showPageWithSectionsBySlug?.sections?.filter((section) => section.id !== data.id)
           }
         }
       })

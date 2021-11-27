@@ -50,9 +50,9 @@ export const CONFIRM_EMAIL = gql`
   }
 `
 
-export const GET_PAGE_INFO = gql`
-  mutation GetPageInfo($username: String!) {
-    getPageInfo(username: $username) {
+export const SHOW_IG_INFO_BY_USERNAME = gql`
+  mutation ShowIGInfoByUsername($username: String!) {
+    showIGInfoByUsername(username: $username) {
       pk
       fullName
       profilePic
@@ -209,9 +209,9 @@ export const UPLOAD_IMAGE = gql`
   }
 `
 
-export const UPDATE_INSERT_MANY_SECTIONS = gql`
-  mutation UpdateInsertManySections($sections: [SectionManyInput!]) {
-    updateInsertManySections(sections: $sections) {
+export const SAVE_MANY_SECTIONS = gql`
+  mutation SaveManySections($sections: [SectionManyInput!]) {
+    saveManySections(sections: $sections) {
       id
       type
       position

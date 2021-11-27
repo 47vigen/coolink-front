@@ -14,7 +14,7 @@ import styles from '../../components/Tools/Icon/icon.module.css'
 
 // ** Graphql
 import { useLazyQuery, useQuery } from '@apollo/client'
-import { SHOW_MY_PAGES, SHOW_STATISTICS_AND_SECTIONS_BY_PAGE } from '../../graphql/queries'
+import { SHOW_MY_PAGES, SHOW_STATISTICS_BY_PAGE } from '../../graphql/queries'
 import toppest from '../../utils/toppest'
 import { getPalette } from '../../utils/getColors'
 import classNames from '../../utils/classNames'
@@ -35,7 +35,7 @@ function brandChart(brand) {
 function Statistics(props) {
   const { data: pages, loading: pagesLoading } = useQuery(SHOW_MY_PAGES, { fetchPolicy: 'cache-and-network' })
   const [selected, setSelected] = React.useState('')
-  const [run, { data, loading }] = useLazyQuery(SHOW_STATISTICS_AND_SECTIONS_BY_PAGE, { fetchPolicy: 'cache-and-network' })
+  const [run, { data, loading }] = useLazyQuery(SHOW_STATISTICS_BY_PAGE, { fetchPolicy: 'cache-and-network' })
 
   React.useEffect(() => {
     if (pages?.showMyPages) {

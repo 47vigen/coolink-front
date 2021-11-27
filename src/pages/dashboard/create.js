@@ -11,7 +11,7 @@ import { Avatar, Field, Upload, Button, Icon, Loader } from '../../components/To
 
 // ** Grapgql
 import { useMutation } from '@apollo/client'
-import { CREATE_PAGE, GET_PAGE_INFO, UPLOAD_IMAGE } from '../../graphql/mutations'
+import { CREATE_PAGE, SHOW_IG_INFO_BY_USERNAME, UPLOAD_IMAGE } from '../../graphql/mutations'
 import ChooseTemplate from '../../components/Template/ChooseTemplate'
 
 // ** Utils
@@ -52,7 +52,7 @@ function Create(props) {
   const { loading } = useAuth()
   const ref = React.useRef()
   const [step, setStep] = React.useState(0)
-  const [getPageInfo] = useMutation(GET_PAGE_INFO)
+  const [showIGInfoByUsername] = useMutation(SHOW_IG_INFO_BY_USERNAME)
   const [createPage, { data: created }] = useMutation(CREATE_PAGE, {
     // update: async (cache, mutationResult) => {
     //   const data = mutationResult.data.createPage
@@ -104,10 +104,15 @@ function Create(props) {
         try {
           setStep(1)
           const {
-            data: { getPageInfo: getPageInfoData }
-          } = await getPageInfo({ variables: { username } })
-          const { base64 } = await getFileBase(getPageInfoData.profilePic)
-          ref.current.setValues({ pk: getPageInfoData.pk, title: getPageInfoData.fullName, slug: username, avatar: { url: base64 } })
+            data: { showIGInfoByUsername: showIGInfoByUsernameData }
+          } = await showIGInfoByUsername({ variables: { username } })
+          const { base64 } = await getFileBase(showIGInfoByUsernameData.profilePic)
+          ref.current.setValues({
+            pk: showIGInfoByUsernameData.pk,
+            title: showIGInfoByUsernameData.fullName,
+            slug: username,
+            avatar: { url: base64 }
+          })
           setStep(2)
         } catch (err) {
           setStep(0)
@@ -125,7 +130,7 @@ function Create(props) {
         }
       }
     },
-    [step, createPage, getPageInfo, uploadBase64Image]
+    [step, createPage, showIGInfoByUsername, uploadBase64Image]
   )
 
   React.useEffect(() => {
