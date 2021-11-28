@@ -356,7 +356,7 @@ export const SHOW_ONE_FEED_WITH_PAGE_SECTION = gql`
 `
 
 export const SHOW_IG_FEEDS_BY_PAGE = gql`
-  query ShowIGFeedsByPage($page: ID!, $next: String) {
+  query ShowIGFeedsByPage($page: String!, $next: String) {
     showIGFeedsByPage(page: $page, next: $next) {
       next
       feeds {

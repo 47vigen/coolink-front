@@ -36,7 +36,7 @@ function Feeds({ page, section, feeds: serverfeeds = [], referrer }) {
       header={<FeedHeader page={page} section={section} back={`/${page.slug}`} />}
     >
       <div className="grid grid-cols-3 gap-2 my-4 lg:my-0">
-        {(feeds.length ? feeds : serverfeeds).map((feed) => (
+        {(feeds.length ? feeds : serverfeeds.slice(0, 9)).map((feed) => (
           <Link key={feed.pk} href={`/${page.slug}/feeds/${feed.pk}`} className="block w-full h-full relative">
             <FeedImage feed={feed} className={`bg-${custom(1).color || 'white'}`} />
             {feed.slides.length > 1 ? <FeedFlag type="slide" /> : feed.slides[0].type === 'video' ? <FeedFlag type="video" /> : null}
