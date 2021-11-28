@@ -131,13 +131,238 @@ export const SHOW_PAGE_WITH_SECTIONS_BY_SLUG = gql`
   }
 `
 
+export const SHOW_PAGE_WITH_FEEDS_SECTIONS_BY_SLUG = gql`
+  query ShowPageWithFeedsSectionBySlug($slug: String!) {
+    showPageWithFeedsSectionBySlug(slug: $slug) {
+      page {
+        id
+        slug
+        title
+        subTitle
+        avatar {
+          url
+          position
+          customize {
+            type
+            rounded
+            animate
+            color
+            second
+            border
+            borderStyle
+            direction
+            from
+            to
+            via
+          }
+        }
+        style {
+          display {
+            font
+            direction
+          }
+          titles {
+            color
+          }
+          background {
+            url
+            color
+          }
+          cover {
+            url
+            customize {
+              type
+              rounded
+              animate
+              color
+              second
+              border
+              borderStyle
+              direction
+              from
+              to
+              via
+            }
+          }
+          customize {
+            type
+            rounded
+            animate
+            color
+            second
+            border
+            borderStyle
+            direction
+            from
+            to
+            via
+          }
+        }
+      }
+      section {
+        title
+        items {
+          id
+          type
+          key
+          value
+          options {
+            id
+            key
+            value
+          }
+        }
+        arrangement
+        customized
+        customize {
+          id
+          type
+          rounded
+          animate
+          color
+          second
+          border
+          borderStyle
+          direction
+          from
+          to
+          via
+        }
+      }
+      feeds {
+        pk
+        title
+        caption
+        slides {
+          type
+          imageUrl
+          videoUrl
+        }
+      }
+    }
+  }
+`
+
+export const SHOW_ONE_FEED_WITH_PAGE_SECTION = gql`
+  query ShowOneFeedWithPageSection($slug: String!, $pk: String!) {
+    showOneFeedWithPageSection(slug: $slug, pk: $pk) {
+      page {
+        id
+        slug
+        title
+        subTitle
+        avatar {
+          url
+          position
+          customize {
+            type
+            rounded
+            animate
+            color
+            second
+            border
+            borderStyle
+            direction
+            from
+            to
+            via
+          }
+        }
+        style {
+          display {
+            font
+            direction
+          }
+          titles {
+            color
+          }
+          background {
+            url
+            color
+          }
+          cover {
+            url
+            customize {
+              type
+              rounded
+              animate
+              color
+              second
+              border
+              borderStyle
+              direction
+              from
+              to
+              via
+            }
+          }
+          customize {
+            type
+            rounded
+            animate
+            color
+            second
+            border
+            borderStyle
+            direction
+            from
+            to
+            via
+          }
+        }
+      }
+      section {
+        title
+        items {
+          id
+          type
+          key
+          value
+          options {
+            id
+            key
+            value
+          }
+        }
+        arrangement
+        customized
+        customize {
+          id
+          type
+          rounded
+          animate
+          color
+          second
+          border
+          borderStyle
+          direction
+          from
+          to
+          via
+        }
+      }
+      feed {
+        pk
+        title
+        caption
+        slides {
+          type
+          imageUrl
+          videoUrl
+        }
+      }
+    }
+  }
+`
+
 export const SHOW_IG_FEEDS_BY_PAGE = gql`
-  query ShowIGFeedsByPage($pk: String!, $next: String) {
-    showIGFeedsByPage(pk: $pk, next: $next) {
+  query ShowIGFeedsByPage($page: String!, $next: String) {
+    showIGFeedsByPage(page: $page, next: $next) {
       next
       feeds {
         id
         pk
+        title
         caption
         slides {
           type

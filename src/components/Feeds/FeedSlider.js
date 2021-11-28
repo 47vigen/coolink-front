@@ -1,0 +1,59 @@
+import React from 'react'
+
+import { useKeenSlider } from 'keen-slider/react'
+import 'keen-slider/keen-slider.min.css'
+
+// ** UI
+import { Button } from '../Tools'
+import FeedImage from './FeedImage'
+
+const FeedSlider = ({ feed, customize }) => {
+  const [slide, setSlide] = React.useState(0)
+  const [sliderRef, slider] = useKeenSlider({
+    slidesPerView: 1,
+    spacing: 8,
+    rtl: true,
+    slideChanged(s) {
+      setSlide(s.details().relativeSlide)
+    }
+  })
+
+  if (feed.slides?.length <= 1) {
+    return <FeedImage idx={0} feed={feed} className={`bg-${customize.color || 'white'}`} />
+  }
+
+  return (
+    <div ref={sliderRef} className="keen-slider" dir="ltr">
+      {feed.slides.map((_slide, idx) => (
+        <div key={`slide-${idx}`} className="keen-slider__slide flex flex-col">
+          <FeedImage idx={idx} feed={feed} className={`bg-${customize.color || 'white'}`} />
+        </div>
+      ))}
+      {slider && (
+        <>
+          <span className="flex items-center justify-center absolute left-2 top-2 w-[1.375rem] h-[1.375rem] rounded-full bg-white text-xs">
+            {slide + 1}
+          </span>
+          <Button
+            circle
+            type="ghost"
+            icon="angle-small-right"
+            className="absolute top-1/2 transform -translate-y-1/2 right-2 !p-1 !min-h-0"
+            onClick={(e) => e.stopPropagation() || slider.prev()}
+            disabled={slide === 0}
+          />
+          <Button
+            circle
+            type="ghost"
+            icon="angle-small-left"
+            className="absolute top-1/2 transform -translate-y-1/2 left-2 !p-1 !min-h-0"
+            onClick={(e) => e.stopPropagation() || slider.next()}
+            disabled={slide === slider.details().size - 1}
+          />
+        </>
+      )}
+    </div>
+  )
+}
+
+export default React.memo(FeedSlider)

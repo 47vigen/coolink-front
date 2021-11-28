@@ -7,6 +7,7 @@ import jwtDecode from 'jwt-decode'
 
 // ** Utils
 import { getToken, removeToken, setToken } from '../utils/token'
+import lessable from '../utils/lessable'
 
 const requestLink = () =>
   new ApolloLink(
@@ -81,6 +82,11 @@ const createIsomorphLink = () =>
       credentials: 'include'
     })
   ])
+
+export const apolloClient = () =>
+  new Promise(function (resolve, _reject) {
+    resolve({ client: createApolloClient(), lessable })
+  })
 
 export function createApolloClient(initialState = {}) {
   return new ApolloClient({

@@ -5,7 +5,7 @@ import Page from '../../components/Layout/Page'
 import Render from '../../components/Template/Render'
 
 // ** Graphql
-import { createApolloClient } from '../../graphql/apollo'
+import { apolloClient, createApolloClient } from '../../graphql/apollo'
 import { SHOW_PAGE_WITH_SECTIONS_BY_SLUG } from '../../graphql/queries'
 
 // ** Hooks
@@ -32,27 +32,20 @@ export default function Home({ page = {}, sections = [], referrer = '' }) {
   )
 }
 
-export async function getServerSideProps({ params, req }) {
-  const client = createApolloClient()
-  const { data: dataPage, error: errorPage } = await client.query({
-    query: SHOW_PAGE_WITH_SECTIONS_BY_SLUG,
-    variables: {
-      slug: params.slug
-    }
-  })
-
-  if (dataPage?.showPageWithSectionsBySlug?.page && dataPage?.showPageWithSectionsBySlug?.sections && !errorPage) {
-    return {
-      props: {
-        page: dataPage.showPageWithSectionsBySlug.page,
-        sections: dataPage.showPageWithSectionsBySlug.sections,
-        apolloState: client.cache.extract(),
-        referrer: req.headers.referrer || req.headers.referer || null
-      }
-    }
-  }
-
-  return {
-    notFound: true
-  }
-}
+export const getServerSideProps = ({ params, req }) =>
+  apolloClient().then(({ client, lessable }) =>
+    client
+      .query({
+        variables: params,
+        query: SHOW_PAGE_WITH_SECTIONS_BY_SLUG
+      })
+      .then(({ data }) => ({
+        props: {
+          page: lessable(data).page,
+          sections: lessable(data).sections,
+          apolloState: client.cache.extract(),
+          referrer: req.headers.referrer || req.headers.referer || null
+        }
+      }))
+      .catch(() => ({ notFound: true }))
+  )

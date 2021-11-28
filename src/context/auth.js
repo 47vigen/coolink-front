@@ -6,7 +6,8 @@ import { useRouter } from 'next/router'
 import { getToken, removeToken, setToken } from '../utils/token'
 
 // ** Graphql
-import { useQuery } from '@apollo/client'
+import { useQuery, useMutation } from '@apollo/client'
+import { LOGOUT } from '../graphql/mutations'
 import { SHOW_ME } from '../graphql/queries'
 
 const AuthContext = React.createContext({})
@@ -14,6 +15,7 @@ const AuthContext = React.createContext({})
 const AuthProvider = ({ children }) => {
   const router = useRouter()
   const { data, loading, error, refetch } = useQuery(SHOW_ME, { skip: !getToken() })
+  const [logout] = useMutation(LOGOUT)
 
   const user = React.useMemo(() => ({ ...data?.showMe, error }), [data, error])
 
@@ -29,8 +31,9 @@ const AuthProvider = ({ children }) => {
   const signOut = React.useCallback(() => {
     removeToken()
     refetch()
+    logout()
     router.push('/').then(() => router.reload())
-  }, [router, refetch])
+  }, [refetch, logout, router])
 
   return <AuthContext.Provider value={{ loading, user, signIn, signOut }}>{children}</AuthContext.Provider>
 }
