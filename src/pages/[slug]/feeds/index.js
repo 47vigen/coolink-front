@@ -35,7 +35,7 @@ function Feeds({ page, section, feeds: serverfeeds = [], referrer }) {
       title={section.items[0].key || 'پست ها'}
       header={<FeedHeader page={page} section={section} back={`/${page.slug}`} />}
     >
-      <div className="grid grid-cols-3 gap-2">
+      <div className="grid grid-cols-3 gap-2 my-4 lg:my-0">
         {(feeds.length ? feeds : serverfeeds).map((feed) => (
           <Link key={feed.pk} href={`/${page.slug}/feeds/${feed.pk}`} className="block w-full h-full relative">
             <FeedImage feed={feed} className={`bg-${custom(1).color || 'white'}`} />

@@ -25,7 +25,9 @@ function SingleFeed({ page, section, feed, referrer }) {
       title={section.items[0].key || 'لینک پست ها'}
       header={<FeedHeader title={feed.title} page={page} section={section} back={`/${page.slug}/feeds`} />}
     >
-      <FeedSlider feed={feed} customize={custom(1)} />
+      <div className="my-4 lg:my-0">
+        <FeedSlider feed={feed} customize={custom(1)} />
+      </div>
     </Page>
   )
 }
