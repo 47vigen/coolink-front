@@ -48,7 +48,7 @@ function Feeds({ page, section, feeds: serverfeeds = [], referrer }) {
           tag="button"
           customize={{ ...page.style.customize, ...custom(0) }}
           onClick={!loading ? () => fetch({ variables: { page: page.id, next: lessable(data)?.next } }) : null}
-          className="flex w-full justify-center items-center min-h-[2rem] mt-4"
+          className="flex w-full justify-center items-center min-h-[2rem] my-4"
         >
           {loading ? <Icon name="spinner" className="animate-spin text-base ml-2" /> : null}
           پست های بیشتر ...
