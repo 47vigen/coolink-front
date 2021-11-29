@@ -1,7 +1,7 @@
 import React from 'react'
 import { useLazyQuery } from '@apollo/client'
 
-export function useImperativeQuery(query, options) {
+export default function useImperativeQuery(query, options) {
   const [execute, result] = useLazyQuery(query, options)
 
   const resolveRef = React.useRef()
