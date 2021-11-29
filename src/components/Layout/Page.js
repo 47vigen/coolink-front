@@ -34,7 +34,7 @@ function Page({ page, title, children, header, className, ...props }) {
         titleTemplate={`%s | ${page.title}`}
         description={page.subTitle}
         openGraph={{
-          title: page.title + ' | ' + (title || page.subTitle),
+          title: (title ? `${title} | ` : '') + page.title,
           description: page.subTitle,
           url: 'https://coolink.ir/' + page.slug,
           type: 'profile',
