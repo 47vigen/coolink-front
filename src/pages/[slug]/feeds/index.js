@@ -54,7 +54,8 @@ function Feeds({ page, section, feeds: serverfeeds = [], referrer }) {
       </InfiniteScroll>
       {loading || hasMore ? (
         <Element
-          tag="div"
+          tag="button"
+          onClick={!loading ? next : null}
           customize={{ ...page.style.customize, ...custom(0) }}
           className="flex w-full justify-center items-center min-h-[2rem] my-4"
         >
