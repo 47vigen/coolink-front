@@ -1,4 +1,5 @@
 import React from 'react'
+import Linkify from 'linkify-react'
 import useSendStatistic from '../../../hooks/useSendStatistic'
 
 // ** UI
@@ -17,6 +18,7 @@ import classNames from '../../../utils/classNames'
 function SingleFeed({ page, section, feed, referrer }) {
   const { sendStatistic } = useSendStatistic(page.id, referrer)
   const custom = React.useCallback((idx) => (section.customized ? section.customize[idx] || {} : {}), [section.customized, section.customize])
+  const customize = React.useMemo(() => ({ ...page.style.customize, ...custom(0) }), [custom, page.style.customize])
   return (
     <Page
       noindex
@@ -25,9 +27,16 @@ function SingleFeed({ page, section, feed, referrer }) {
       title={section.items[0].key || 'لینک پست ها'}
       header={<FeedHeader title={feed.title} page={page} section={section} back={`/${page.slug}/feeds`} />}
     >
-      <div className="my-4 lg:my-0">
+      <article className="my-4 lg:my-0">
         <FeedSlider feed={feed} customize={custom(1)} />
-      </div>
+        <Linkify
+          tagName="section"
+          className="py-4"
+          options={{ className: `text-${customize.color}`, target: '_blank', rel: 'nofollow', nl2br: true }}
+        >
+          {feed.caption}
+        </Linkify>
+      </article>
     </Page>
   )
 }
@@ -48,7 +57,7 @@ export const getServerSideProps = ({ params, req }) =>
           referrer: req.headers.referrer || req.headers.referer || null
         }
       }))
-      .catch(() => ({ notFound: true }))
+      .catch((e) => (e.includes('not found') ? { notFound: true } : e))
   )
 
 export default SingleFeed

@@ -4,11 +4,13 @@ import { Form, Formik } from 'formik'
 import React from 'react'
 import Dashboard from '../../components/Layout/Dashboard'
 import { Avatar, Button, Field, Icon, Listbox, Switch, Tab, Tabs } from '../../components/Tools'
+import DatePicker from '../../components/Tools/DatePicker'
 import { SHOW_MY_PAGES } from '../../graphql/queries'
 import classNames from '../../utils/classNames'
 
 function ShortLink(props) {
-  const { data: pages, loading: pagesLoading } = useQuery(SHOW_MY_PAGES, { fetchPolicy: 'cache-and-network' })
+  const pages = {}
+  // const { data: pages, loading: pagesLoading } = useQuery(SHOW_MY_PAGES, { fetchPolicy: 'cache-and-network' })
 
   const renderPage = React.useCallback(
     ({ option: { id, title, subTitle, avatar }, selected }) => (
@@ -63,8 +65,9 @@ function ShortLink(props) {
                         options={[{ id: null, title: 'بدون اتصال' }, ...(pages?.showMyPages || [])]}
                       />
                       <Field name="slug" label="پیوند یکتا" placeholder="پیوند یکتا خود را وارد کنید" wrapperClassName="mt-auto" />
-                      <div />
-                      <Switch label="پشتیبانی از لینک عمیق" checked={values.isDeep} onChange={(e) => setFieldValue('isDeep', e, false)} />
+                      <Field name="slug" label="پیوند یکتا" placeholder="پیوند یکتا خود را وارد کنید" wrapperClassName="relative">
+                        <DatePicker className="absolute" />
+                      </Field>
                     </Disclosure.Panel>
                   </Transition>
                 </>
@@ -75,6 +78,10 @@ function ShortLink(props) {
       </Formik>
     </Dashboard>
   )
+}
+
+export async function getServerSideProps({ params, req }) {
+  return { notFound: true }
 }
 
 export default ShortLink

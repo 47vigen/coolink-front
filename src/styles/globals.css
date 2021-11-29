@@ -286,3 +286,13 @@ button {
   align-items: center;
   margin-top: -4px;
 }
+
+.rdp__button--cancel {
+  display: none !important;
+}
+
+.dp__input {
+  cursor: pointer;
+  min-height: 2rem;
+  opacity: 0;
+}

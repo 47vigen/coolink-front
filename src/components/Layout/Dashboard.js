@@ -32,7 +32,7 @@ function Dashboard({ className, children, hide }) {
                 />
               )}
             </MenuItem>
-            <MenuItem pathname="/dashboard/short" label="کوتاه‌کننده">
+            <MenuItem soon pathname="/dashboard/short" label="کوتاه‌کننده">
               {({ active }) => (
                 <div
                   className={classNames('w-[1.375rem] self-center lg:me-2 lg:mb-1 fill-current', active ? 'text-primary' : '')}

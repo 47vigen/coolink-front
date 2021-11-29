@@ -23,7 +23,7 @@ const FeedSlider = ({ feed, customize }) => {
   }
 
   return (
-    <div ref={sliderRef} className="keen-slider" dir="ltr">
+    <div ref={sliderRef} className="group keen-slider" dir="ltr">
       {feed.slides.map((_slide, idx) => (
         <div key={`slide-${idx}`} className="keen-slider__slide flex flex-col">
           <FeedImage idx={idx} feed={feed} className={`bg-${customize.color || 'white'}`} />
@@ -38,7 +38,7 @@ const FeedSlider = ({ feed, customize }) => {
             circle
             type="ghost"
             icon="angle-small-right"
-            className="absolute top-1/2 transform -translate-y-1/2 right-2 !p-1 !min-h-0"
+            className="opacity-0 group-hover:opacity-100 absolute top-1/2 transform -translate-y-1/2 right-2 !p-1 !min-h-0"
             onClick={(e) => e.stopPropagation() || slider.prev()}
             disabled={slide === 0}
           />
@@ -46,7 +46,7 @@ const FeedSlider = ({ feed, customize }) => {
             circle
             type="ghost"
             icon="angle-small-left"
-            className="absolute top-1/2 transform -translate-y-1/2 left-2 !p-1 !min-h-0"
+            className="opacity-0 group-hover:opacity-100 absolute top-1/2 transform -translate-y-1/2 left-2 !p-1 !min-h-0"
             onClick={(e) => e.stopPropagation() || slider.next()}
             disabled={slide === slider.details().size - 1}
           />

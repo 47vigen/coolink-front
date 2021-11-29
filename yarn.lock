@@ -4148,7 +4148,7 @@ isexe@^2.0.0:
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
   integrity sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=
 
-jalali-moment@^3.3.10:
+jalali-moment@^3.3.1, jalali-moment@^3.3.10:
   version "3.3.10"
   resolved "https://registry.yarnpkg.com/jalali-moment/-/jalali-moment-3.3.10.tgz#10cb4c2080925a41ee8c72862ba63f6b5fb04743"
   integrity sha512-hyNsDJXB23MHLnZWPXY+Mu0zsrp+B+KzabyqPP0oGcMsEGp8yMpeVledOY+B/DrIOVeRY7JLz8b3lyJ3/vajsQ==
@@ -4156,6 +4156,13 @@ jalali-moment@^3.3.10:
     commander "^7.0.0"
     inquirer "^7.1.0"
     moment "^2.26.0"
+
+jalali-react-datepicker@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/jalali-react-datepicker/-/jalali-react-datepicker-1.2.1.tgz#0b4bf458867a0ae0eedea0c4c420ef14852cdbe7"
+  integrity sha512-dy4v0/1PskOHHZt4eM2/3MxKwyDZHxW9crXPw8G+ODbXkPIKTkWcYQ6bVYHYIqF3WA48xU3TsxSe6AL9M7uB1g==
+  dependencies:
+    jalali-moment "^3.3.1"
 
 jest-worker@27.0.0-next.5:
   version "27.0.0-next.5"
@@ -4327,6 +4334,16 @@ lines-and-columns@^1.1.6:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
+
+linkify-react@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/linkify-react/-/linkify-react-3.0.4.tgz#5f41ef63efe23eba34d23a091c0054f328323522"
+  integrity sha512-ar/fLlBw4/pbg5BmpH65dSXpGWhts/+BDV8tCdLN8Pd0P/vtHKjaEw9Gf4Za3Utpn5FhWlQyf57SWriPtoBHtw==
+
+linkifyjs@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/linkifyjs/-/linkifyjs-3.0.4.tgz#469a1b44903d179e3b23317fd3c4e995453765b9"
+  integrity sha512-JWw1HHMx54g8mEsG7JwI8I/xh7qeJbF6L9u1dQOYW91RdRqDYpnTn1UaNXYkmLD967Vk0xGuyHzuRnkSApby3w==
 
 load-bmfont@^1.3.1:
   version "1.4.1"

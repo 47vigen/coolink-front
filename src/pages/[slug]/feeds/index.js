@@ -37,10 +37,12 @@ function Feeds({ page, section, feeds: serverfeeds = [], referrer }) {
     >
       <div className="grid grid-cols-3 gap-2 my-4 lg:my-0">
         {(feeds.length ? feeds : serverfeeds).map((feed) => (
-          <Link key={feed.pk} href={`/${page.slug}/feeds/${feed.pk}`} className="block w-full h-full relative">
-            <FeedImage feed={feed} className={`bg-${custom(1).color || 'white'}`} />
-            {feed.slides.length > 1 ? <FeedFlag type="slide" /> : feed.slides[0].type === 'video' ? <FeedFlag type="video" /> : null}
-          </Link>
+          <article key={feed.pk}>
+            <Link href={`/${page.slug}/feeds/${feed.pk}`} className="block relative">
+              <FeedImage feed={feed} className={`bg-${custom(1).color || 'white'}`} />
+              {feed.slides.length > 1 ? <FeedFlag type="slide" /> : feed.slides[0].type === 'video' ? <FeedFlag type="video" /> : null}
+            </Link>
+          </article>
         ))}
       </div>
       {loading || lessable(data)?.next ? (
@@ -74,7 +76,7 @@ export const getServerSideProps = ({ params, req }) =>
           referrer: req.headers.referrer || req.headers.referer || null
         }
       }))
-      .catch(() => ({ notFound: true }))
+      .catch((e) => (e.includes('not found') ? { notFound: true } : e))
   )
 
 export default Feeds

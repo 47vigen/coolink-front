@@ -10,7 +10,7 @@ import { Button, Icon, Loader, Tab, Tabs } from '../../../components/Tools'
 import PageHeader from '../../../components/Layout/Header/PageHeader'
 
 // ** Graphql
-import { createApolloClient } from '../../../graphql/apollo'
+import { apolloClient } from '../../../graphql/apollo'
 import { SHOW_PAGE_WITH_SECTIONS_BY_SLUG } from '../../../graphql/queries'
 
 // ** Utils
@@ -171,28 +171,21 @@ const Item = React.memo(function Component({ type, icon, label, onAddItem }) {
   )
 })
 
-export async function getServerSideProps({ params }) {
-  const client = createApolloClient()
-  const { data: dataPage, error: errorPage } = await client.query({
-    query: SHOW_PAGE_WITH_SECTIONS_BY_SLUG,
-    variables: {
-      slug: params.slug
-    }
-  })
-
-  if (dataPage?.showPageWithSectionsBySlug?.page && dataPage?.showPageWithSectionsBySlug?.sections && !errorPage) {
-    return {
-      props: {
-        page: deepCleaner(dataPage.showPageWithSectionsBySlug.page),
-        sections: deepCleaner(dataPage.showPageWithSectionsBySlug.sections),
-        apolloState: client.cache.extract()
-      }
-    }
-  }
-
-  return {
-    notFound: true
-  }
-}
+export const getServerSideProps = ({ params }) =>
+  apolloClient().then(({ client, lessable }) =>
+    client
+      .query({
+        variables: params,
+        query: SHOW_PAGE_WITH_SECTIONS_BY_SLUG
+      })
+      .then(({ data }) => ({
+        props: {
+          apolloState: client.cache.extract(),
+          page: deepCleaner(lessable(data).page),
+          sections: deepCleaner(lessable(data).sections)
+        }
+      }))
+      .catch((e) => (e.includes('not found') ? { notFound: true } : e))
+  )
 
 export default Edit

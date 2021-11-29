@@ -3,7 +3,7 @@ import Seo from '../../components/Tools/Seo'
 
 // ** UI
 import DashboardLayout from '../../components/Layout/Dashboard'
-import { Avatar, Button, Icon, Loader, Link } from '../../components/Tools'
+import { Avatar, Button, Icon, Loader } from '../../components/Tools'
 import ConfirmEmail from '../../components/Tools/ConfirmEmail'
 
 // ** Graphql
@@ -11,7 +11,7 @@ import { useQuery } from '@apollo/client'
 import { SHOW_MY_PAGES } from '../../graphql/queries'
 
 function Dashboard(props) {
-  const { data, loading } = useQuery(SHOW_MY_PAGES, { fetchPolicy: 'cache-and-network' })
+  const { data, loading } = useQuery(SHOW_MY_PAGES, { fetchPolicy: 'cache-and-network', ssr: false })
 
   return (
     <DashboardLayout className="flex-1 space-y-4">
