@@ -30,12 +30,12 @@ function SingleFeed({ page, section, feed, referrer }) {
       page={page}
       className="pb-16"
       title={feed.title}
-      description={feed.caption.replace(feed.title, '')}
+      description={feed.caption.replace(feed.title, '').replace(/\n/gm, ' ')}
       header={<FeedHeader title={feed.title} page={page} section={section} back={`/${page.slug}/feeds`} />}
       openGraph={{
         type: 'article',
         title: feed.title,
-        description: feed.caption.replace(feed.title, ''),
+        description: feed.caption.replace(feed.title, '').replace(/\n/gm, ' '),
         url: `https://coolink.ir/${page.slug}/feeds/${feed.pk}`,
         article: {
           authors: [`https://coolink.ir/${page.slug}`],
