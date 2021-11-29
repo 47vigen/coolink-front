@@ -10,7 +10,7 @@ import { FeedHeader, FeedItem } from '../../../components/Feeds'
 
 // ** Graphql
 import { apolloClient } from '../../../graphql/apollo'
-import { useImperativeQuery } from '../../../graphql/useLazyQuery'
+import useImperativeQuery from '../../../graphql/useImperativeQuery'
 import { SHOW_IG_FEEDS_BY_PAGE, SHOW_PAGE_WITH_FEEDS_SECTIONS_BY_SLUG } from '../../../graphql/queries'
 
 // ** Utils
@@ -21,7 +21,8 @@ function Feeds({ page, section, feeds: serverfeeds = [], referrer }) {
   const [feeds, setFeeds] = React.useState([])
   const { sendStatistic } = useSendStatistic(page.id, referrer)
   const [fetch, { data, loading, error }] = useImperativeQuery(SHOW_IG_FEEDS_BY_PAGE, {
-    onCompleted: (data) => setFeeds((prev) => [...prev, ...lessable(data).feeds])
+    onCompleted: (data) => setFeeds((prev) => [...prev, ...lessable(data).feeds]),
+    pollInterval: feeds.length ? 5000 : 0
   })
 
   const hasMore = React.useMemo(() => lessable(data)?.next || (!feeds.length && !error), [data, error, feeds.length])
@@ -57,10 +58,19 @@ function Feeds({ page, section, feeds: serverfeeds = [], referrer }) {
           customize={{ ...page.style.customize, ...custom(0) }}
           className="flex w-full justify-center items-center min-h-[2rem] my-4"
         >
-          {loading ? <Icon name="spinner" className="animate-spin text-base ml-2" /> : <Icon name="angle-small-down" className="text-base ml-2" />}
+          {loading ? <Icon name="spinner" className="animate-spin text-base ml-2" /> : <Icon name="arrow-small-down" className="text-base ml-2" />}
           پست های بیشتر ...
         </Element>
-      ) : null}
+      ) : (
+        <Element
+          tag="div"
+          customize={{ ...page.style.customize, ...custom(0) }}
+          className="flex w-full justify-center items-center min-h-[2rem] my-4"
+        >
+          <Icon name="check" className="text-base ml-2" />
+          همه پست ها رو دیدی!
+        </Element>
+      )}
     </Page>
   )
 }
