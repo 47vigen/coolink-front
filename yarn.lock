@@ -4347,6 +4347,16 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
 
+linkify-plugin-hashtag@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/linkify-plugin-hashtag/-/linkify-plugin-hashtag-3.0.4.tgz#8c037dce48b645db540a785db4c253fe0e7e22d0"
+  integrity sha512-GXVzS0VUNykfud6aiuuT0XgR1Cq5JJ40GcJzhwSbaRLYY2OwntvWjtD1D8rNPdFC3yOHAx8CIqQZxXNJl8nGjA==
+
+linkify-plugin-mention@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/linkify-plugin-mention/-/linkify-plugin-mention-3.0.4.tgz#60276ec2b6a8087a9d709dce2d3568d112eabe43"
+  integrity sha512-8zttb+zpkV/+BZMAC6AGpC1pB2bjx9vV1TAWNodVuDe6Jr+Bi6b4QPUgZr/05UP+T/EIw1b8TM2Y+CEcqE2Qng==
+
 linkify-react@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/linkify-react/-/linkify-react-3.0.4.tgz#5f41ef63efe23eba34d23a091c0054f328323522"

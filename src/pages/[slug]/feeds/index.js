@@ -4,7 +4,7 @@ import useSendStatistic from '../../../hooks/useSendStatistic'
 
 // ** UI
 import Page from '../../../components/Layout/Page'
-import { Avatar, Element, Icon, Link } from '../../../components/Tools'
+import { Element, Icon, Link } from '../../../components/Tools'
 import { FeedHeader, FeedImage, FeedFlag } from '../../../components/Feeds'
 
 // ** Graphql
@@ -14,13 +14,12 @@ import { SHOW_IG_FEEDS_BY_PAGE, SHOW_PAGE_WITH_FEEDS_SECTIONS_BY_SLUG } from '..
 
 // ** Utils
 import lessable from '../../../utils/lessable'
-import classNames from '../../../utils/classNames'
 import { getImgSrc } from '../../../utils/getImgSrc'
 
 function Feeds({ page, section, feeds: serverfeeds = [], referrer }) {
   const [feeds, setFeeds] = React.useState([])
   const { sendStatistic } = useSendStatistic(page.id, referrer)
-  const [fetch, { data, loading }] = useLazyQuery(SHOW_IG_FEEDS_BY_PAGE, {
+  const [fetch, { data, loading, error }] = useLazyQuery(SHOW_IG_FEEDS_BY_PAGE, {
     onCompleted: (data) => setFeeds((prev) => [...prev, ...lessable(data).feeds])
   })
   const custom = React.useCallback((idx) => (section.customized ? section.customize[idx] || {} : {}), [section.customized, section.customize])
@@ -36,7 +35,7 @@ function Feeds({ page, section, feeds: serverfeeds = [], referrer }) {
         description={page.subTitle}
         images={[getImgSrc(page.avatar?.url)]}
         url={`https://coolink.ir/${page.slug}/feeds`}
-        title={section.items[0].key || 'لینک پست ها'}
+        title={section.items[0].key || 'پست ها'}
       />
       <div className="grid grid-cols-3 gap-2 my-4 lg:my-0">
         {(feeds.length ? feeds : serverfeeds).map((feed) => (
@@ -48,14 +47,14 @@ function Feeds({ page, section, feeds: serverfeeds = [], referrer }) {
           </article>
         ))}
       </div>
-      {loading || lessable(data)?.next ? (
+      {(!feeds.length && !error) || loading || lessable(data)?.next ? (
         <Element
           tag="button"
           customize={{ ...page.style.customize, ...custom(0) }}
           onClick={!loading ? () => fetch({ variables: { page: page.id, next: lessable(data)?.next } }) : null}
           className="flex w-full justify-center items-center min-h-[2rem] my-4"
         >
-          {loading ? <Icon name="spinner" className="animate-spin text-base ml-2" /> : null}
+          {(!feeds.length && !error) || loading ? <Icon name="spinner" className="animate-spin text-base ml-2" /> : null}
           پست های بیشتر ...
         </Element>
       ) : null}
