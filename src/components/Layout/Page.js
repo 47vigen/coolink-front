@@ -9,7 +9,7 @@ import PageHeader from './Header/PageHeader'
 import classNames from '../../utils/classNames'
 import { getImgSrc } from '../../utils/getImgSrc'
 
-function Page({ page, title, children, header, ...props }) {
+function Page({ page, title, children, header, className, ...props }) {
   const logo = React.useMemo(() => {
     const code = page.style?.background?.color ? Number(page.style?.background?.color.split('-').pop()) : 50
     return code >= 500 ? { svg: '#FFFFFF', class: 'border-white' } : { svg: '#2D2D2D', class: 'border-content' }
@@ -21,7 +21,8 @@ function Page({ page, title, children, header, ...props }) {
       className={classNames(
         'w-full mx-auto flex-1 flex flex-col p-4 overflow-hidden',
         page.style?.background?.color ? `bg-${page.style.background.color}` : '',
-        `font-${page.style?.display?.font || 'dana'}`
+        `font-${page.style?.display?.font || 'dana'}`,
+        className
       )}
       style={{
         backgroundImage: page.style?.background?.url ? `url('${getImgSrc(page.style.background.url)}')` : null

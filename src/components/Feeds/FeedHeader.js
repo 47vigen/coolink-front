@@ -1,6 +1,7 @@
 import React from 'react'
 
 // ** UI
+import { SimpleLink } from '../Tools/Link'
 import { Avatar, Element, Icon, Link } from '../Tools'
 
 // ** Utils
@@ -25,8 +26,8 @@ function FeedHeader({ title, page, section, back }) {
         <span className={classNames('text-base truncate', `text-${titles.subTitle}`)}>{page?.title}</span>
       </div>
       <Element
-        tag="button"
-        onClick={() => router.push(back)}
+        href={back}
+        tag={SimpleLink}
         className="px-3 self-stretch flex items-center ms-4"
         customize={{ ...page.style.customize, ...custom(0) }}
       >

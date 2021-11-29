@@ -1,14 +1,15 @@
 import React from 'react'
 import Linkify from 'linkify-react'
 import useSendStatistic from '../../../hooks/useSendStatistic'
+import { instagramIdToUrlSegment } from 'instagram-id-to-url-segment'
 
 // ** UI
 import Page from '../../../components/Layout/Page'
-import { Avatar, Element, Icon, Link } from '../../../components/Tools'
+import { SimpleLink } from '../../../components/Tools/Link'
 import { FeedHeader, FeedSlider } from '../../../components/Feeds'
+import { Avatar, Element, Icon, Link } from '../../../components/Tools'
 
 // ** Graphql
-import { useLazyQuery } from '@apollo/client'
 import { apolloClient } from '../../../graphql/apollo'
 import { SHOW_ONE_FEED_WITH_PAGE_SECTION } from '../../../graphql/queries'
 
@@ -19,6 +20,7 @@ function SingleFeed({ page, section, feed, referrer }) {
   const { sendStatistic } = useSendStatistic(page.id, referrer)
   const custom = React.useCallback((idx) => (section.customized ? section.customize[idx] || {} : {}), [section.customized, section.customize])
   const customize = React.useMemo(() => ({ ...page.style.customize, ...custom(0) }), [custom, page.style.customize])
+
   return (
     <Page
       noindex
@@ -36,6 +38,21 @@ function SingleFeed({ page, section, feed, referrer }) {
         >
           {feed.caption}
         </Linkify>
+        <div className="fixed bottom-0 start-0 end-0 z-50">
+          <div className={classNames('max-w-md mx-auto p-2 rounded-t-lg', `bg-${custom(1).color || 'white'}`)}>
+            <Element
+              rel="nofollow"
+              target="_blank"
+              tag={SimpleLink}
+              customize={{ ...page.style.customize, ...custom(0) }}
+              className="flex w-full justify-center items-center min-h-[2rem]"
+              href={`https://www.instagram.com/p/${instagramIdToUrlSegment(feed.pk)}`}
+            >
+              <Icon name="brand-instagram" className="text-base ml-2" />
+              مشاهده در اینستاگرام
+            </Element>
+          </div>
+        </div>
       </article>
     </Page>
   )

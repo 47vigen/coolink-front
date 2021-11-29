@@ -17,8 +17,7 @@ function AddItem({ isOpenAdd, closeAddModal, onAddItem }) {
           <Item type="faq" icon="interrogation" label="پرسش های پرتکرار" onAddItem={onAddItem} />
         </Tab.Panel>
         <Tab.Panel className="grid grid-cols-2 gap-4 p-4">
-          <Item type="igFeedsLink" icon="picture" label="لینک پست ها" onAddItem={onAddItem} />
-          <Item type="igFeedsDownload" icon="download" label="دانلود پست ها" onAddItem={onAddItem} />
+          <Item type="feeds" icon="picture" label="پست های اینستاگرام" onAddItem={onAddItem} />
         </Tab.Panel>
       </Tab.Panels>
     </Modal>

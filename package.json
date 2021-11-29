@@ -25,6 +25,7 @@
     "formik": "^2.2.9",
     "fuse.js": "^6.4.6",
     "graphql": "^15.5.3",
+    "instagram-id-to-url-segment": "^0.0.0",
     "jalali-moment": "^3.3.10",
     "jalali-react-datepicker": "^1.2.1",
     "jwt-decode": "^3.1.2",

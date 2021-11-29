@@ -218,7 +218,7 @@ export const section = Yup.object().shape({
                   })
                 ),
                 otherwise: Yup.array().when('type', {
-                  is: 'igFeedsLink',
+                  is: 'feeds',
                   then: Yup.array().of(
                     Yup.object().shape({
                       type: Yup.string().nullable(),
@@ -227,25 +227,14 @@ export const section = Yup.object().shape({
                       options
                     })
                   ),
-                  otherwise: Yup.array().when('type', {
-                    is: 'igFeedsDownload',
-                    then: Yup.array().of(
-                      Yup.object().shape({
-                        type: Yup.string().nullable(),
-                        key: Yup.string().required('لطفا عنوان خود را وارد کنید'),
-                        value: Yup.string().nullable(),
-                        options
-                      })
-                    ),
-                    otherwise: Yup.array().of(
-                      Yup.object().shape({
-                        type: Yup.string().nullable(),
-                        key: Yup.string().nullable(),
-                        value: Yup.string().nullable(),
-                        options
-                      })
-                    )
-                  })
+                  otherwise: Yup.array().of(
+                    Yup.object().shape({
+                      type: Yup.string().nullable(),
+                      key: Yup.string().nullable(),
+                      value: Yup.string().nullable(),
+                      options
+                    })
+                  )
                 })
               })
             })

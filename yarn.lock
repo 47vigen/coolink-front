@@ -2169,6 +2169,11 @@ big.js@^5.2.2:
   resolved "https://registry.yarnpkg.com/big.js/-/big.js-5.2.2.tgz#65f0af382f578bcdc742bd9c281e9cb2d7768328"
   integrity sha512-vyL2OymJxmarO8gxMr0mhChsO9QGwhynfuu4+MHTAW6czfq9humCB7rKpUjDd9YUiDPU4mzpyupFSvOClAwbmQ==
 
+bignumber.js@^2.0.7:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-2.4.0.tgz#838a992da9f9d737e0f4b2db0be62bb09dd0c5e8"
+  integrity sha1-g4qZLan51zfg9LLbC+YrsJ3Qxeg=
+
 binary-extensions@^2.0.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-2.2.0.tgz#75f502eeaf9ffde42fc98829645be4ea76bd9e2d"
@@ -3919,6 +3924,13 @@ inquirer@^7.1.0:
     string-width "^4.1.0"
     strip-ansi "^6.0.0"
     through "^2.3.6"
+
+instagram-id-to-url-segment@^0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/instagram-id-to-url-segment/-/instagram-id-to-url-segment-0.0.0.tgz#1936875dceed74102088ae183d47d47c598ee5ba"
+  integrity sha1-GTaHXc7tdBAgiK4YPUfUfFmO5bo=
+  dependencies:
+    bignumber.js "^2.0.7"
 
 internal-slot@^1.0.3:
   version "1.0.3"

@@ -32,10 +32,7 @@ function Customize({ type, page, values, setFieldValue }) {
       case 'faq':
         return [page.style?.customize, textCustomize(page.style?.customize)]
 
-      case 'igFeedsLink':
-        return [page.style?.customize, igCustomize(page.style?.customize)]
-
-      case 'igFeedsDownload':
+      case 'feeds':
         return [page.style?.customize, igCustomize(page.style?.customize)]
 
       default:
@@ -91,7 +88,7 @@ function Customize({ type, page, values, setFieldValue }) {
         />
       )
 
-    case 'igFeedsLink':
+    case 'feeds':
       return (
         <Handler
           toggle
@@ -104,23 +101,6 @@ function Customize({ type, page, values, setFieldValue }) {
               label: 'استایل پست ها',
               color: { available: true, label: 'پس زمینه پست ها' },
               second: { available: true, label: 'رنگ حاشیه لینک ها' }
-            }
-          ]}
-        />
-      )
-
-    case 'igFeedsDownload':
-      return (
-        <Handler
-          toggle
-          values={values}
-          defaultProps={defaultProps}
-          setFieldValue={setFieldValue}
-          customizeProps={[
-            { label: 'استایل لینک ها' },
-            {
-              label: 'استایل پست ها',
-              color: { available: true, label: 'پس زمینه پست ها' }
             }
           ]}
         />

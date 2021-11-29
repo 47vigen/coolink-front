@@ -1,4 +1,4 @@
-export const types = ['links', 'text', 'contacts', 'services', 'locations', 'faq', 'igFeedsLink', 'igFeedsDownload']
+export const types = ['links', 'text', 'contacts', 'services', 'locations', 'faq', 'feeds']
 export const type = ['default', 'custom', 'gradient']
 export const rounded = [null, 'sm', 'md', 'lg', 'xl', 'full']
 export const animate = [

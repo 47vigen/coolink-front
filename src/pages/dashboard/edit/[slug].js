@@ -95,8 +95,7 @@ function Edit({ page, sections }) {
                     <Item type="faq" icon="interrogation" label="پرسش های پرتکرار" onAddItem={onAddItem} />
                   </Tab>
                   <Tab className="grid grid-cols-3 gap-4">
-                    <Item type="igFeedsLink" icon="picture" label="لینک پست ها" onAddItem={onAddItem} />
-                    <Item type="igFeedsDownload" icon="download" label="دانلود پست ها" onAddItem={onAddItem} />
+                    <Item type="feeds" icon="picture" label="پست های اینستاگرام" onAddItem={onAddItem} />
                   </Tab>
                 </Tabs>
                 <div className="hidden lg:!flex border border-b-0 border-line space-s-2 p-2 rounded-t-xl">

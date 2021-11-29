@@ -1,4 +1,5 @@
 import React from 'react'
+import { BlogJsonLd } from 'next-seo'
 import useSendStatistic from '../../../hooks/useSendStatistic'
 
 // ** UI
@@ -14,6 +15,7 @@ import { SHOW_IG_FEEDS_BY_PAGE, SHOW_PAGE_WITH_FEEDS_SECTIONS_BY_SLUG } from '..
 // ** Utils
 import lessable from '../../../utils/lessable'
 import classNames from '../../../utils/classNames'
+import { getImgSrc } from '../../../utils/getImgSrc'
 
 function Feeds({ page, section, feeds: serverfeeds = [], referrer }) {
   const [feeds, setFeeds] = React.useState([])
@@ -28,13 +30,14 @@ function Feeds({ page, section, feeds: serverfeeds = [], referrer }) {
   }, [fetch, page.id])
 
   return (
-    <Page
-      noindex
-      nofollow
-      page={page}
-      title={section.items[0].key || 'پست ها'}
-      header={<FeedHeader page={page} section={section} back={`/${page.slug}`} />}
-    >
+    <Page page={page} title={section.items[0].key || 'پست ها'} header={<FeedHeader page={page} section={section} back={`/${page.slug}`} />}>
+      <BlogJsonLd
+        authorName={page.title}
+        description={page.subTitle}
+        images={[getImgSrc(page.avatar?.url)]}
+        url={`https://coolink.ir/${page.slug}/feeds`}
+        title={section.items[0].key || 'لینک پست ها'}
+      />
       <div className="grid grid-cols-3 gap-2 my-4 lg:my-0">
         {(feeds.length ? feeds : serverfeeds).map((feed) => (
           <article key={feed.pk}>

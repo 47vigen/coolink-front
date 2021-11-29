@@ -185,24 +185,11 @@ const RenderInsideOfSection = React.memo(function Component({ item: { type, ...d
         </Disclosure>
       ))
 
-    case 'igFeedsLink':
+    case 'feeds':
       return (
         <LinkItem
           noHttp
-          url={`/${slug}/feeds-link`}
-          options={data.items[0]?.options}
-          customize={{ ...customize, ...custom(0) }}
-          sendStatistic={() => sendStatistic(data.items[0].id)}
-        >
-          {data.items[0]?.key}
-        </LinkItem>
-      )
-
-    case 'igFeedsDownload':
-      return (
-        <LinkItem
-          noHttp
-          url={`/${slug}/feeds-download`}
+          url={`/${slug}/feeds`}
           options={data.items[0]?.options}
           customize={{ ...customize, ...custom(0) }}
           sendStatistic={() => sendStatistic(data.items[0].id)}

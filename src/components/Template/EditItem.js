@@ -47,11 +47,8 @@ const defaultItems = (type) => {
     case 'faq':
       return [{ type: '', key: '', value: '' }]
 
-    case 'igFeedsLink':
-      return [{ key: 'لینک پست ها', options: [{ key: 'icon', value: 'link' }] }]
-
-    case 'igFeedsDownload':
-      return [{ key: 'دانلود پست ها', options: [{ key: 'icon', value: 'download' }] }]
+    case 'feeds':
+      return [{ key: 'پست های اینستاگرام', options: [{ key: 'icon', value: 'picture' }] }]
   }
 }
 
@@ -348,15 +345,7 @@ const InsideBody = React.memo(function Component({ type, values, setFieldValue }
         />
       )
 
-    case 'igFeedsLink':
-      return (
-        <>
-          <Field name="items.0.key" label="عنوان" placeholder="عنوان را وارد کنید ..." />
-          <EmojiFeild idx={0} item={values.items[0]} setFieldValue={setFieldValue} />
-        </>
-      )
-
-    case 'igFeedsDownload':
+    case 'feeds':
       return (
         <>
           <Field name="items.0.key" label="عنوان" placeholder="عنوان را وارد کنید ..." />
