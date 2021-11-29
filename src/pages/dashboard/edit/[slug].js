@@ -184,7 +184,7 @@ export const getServerSideProps = ({ params }) =>
           sections: deepCleaner(lessable(data).sections)
         }
       }))
-      .catch((e) => (e.includes('not found') ? { notFound: true } : e))
+      .catch(() => ({ notFound: true }))
   )
 
 export default Edit

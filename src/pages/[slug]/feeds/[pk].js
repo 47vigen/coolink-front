@@ -114,7 +114,7 @@ export const getServerSideProps = ({ params, req }) =>
           referrer: req.headers.referrer || req.headers.referer || null
         }
       }))
-      .catch((e) => (e.includes('not found') ? { notFound: true } : e))
+      .catch(() => ({ notFound: true }))
   )
 
 export default SingleFeed
