@@ -46,7 +46,7 @@ function Feeds({ page, section, feeds: serverfeeds = [], referrer }) {
         title={section.items[0].key || 'پست ها'}
       />
       <InfiniteScroll next={next} dataLength={feeds.length || serverfeeds.length} hasMore={hasMore}>
-        <div className="grid grid-cols-3 gap-2 my-4 lg:my-0">
+        <div className="grid grid-cols-3 gap-2 mt-4 lg:mt-0">
           {(feeds.length ? feeds : serverfeeds).map((feed) => (
             <FeedItem key={feed.pk} page={page} feed={feed} section={section} />
           ))}
