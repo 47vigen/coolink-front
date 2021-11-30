@@ -43,9 +43,9 @@ function PageHeader({ page, linked, onEdit }) {
       ) : null}
       <div
         className={classNames(
-          'relative z-10 flex items-center',
+          'relative z-10 flex items-center pt-4',
           onEdit ? '' : 'container max-w-md mx-auto',
-          page.avatar?.position === 'center' ? 'flex-col items-center' : 'space-s-4'
+          page.avatar?.position === 'center' ? 'flex-col' : 'space-s-4'
         )}
       >
         <AvatarSection page={page} linked={linked} onEdit={onEdit} />
@@ -55,7 +55,7 @@ function PageHeader({ page, linked, onEdit }) {
             <span className={classNames('text-lg', `text-${titles.subTitle}`)}>{page?.subTitle}</span>
           </>
         ) : (
-          <div className="flex flex-col flex-1">
+          <div className="flex flex-col justify-between flex-1 min-h-[3.5rem]">
             <h1 className={classNames('text-xl', `text-${titles.title}`)}>{page?.title}</h1>
             <span className={classNames('text-lg', `text-${titles.subTitle}`)}>{page?.subTitle}</span>
           </div>
@@ -70,10 +70,20 @@ const AvatarSection = ({ page, linked, onEdit }) => {
     <div className="relative w-min">
       {linked ? (
         <Link href={`/${page.slug}`}>
-          <Avatar url={page.avatar?.url} className="w-24 h-24" rounded={page.avatar?.customize?.rounded} priority />
+          <Avatar
+            url={page.avatar?.url}
+            className={classNames(page.avatar?.position === 'center' ? 'w-24 h-24' : 'w-[5.5rem] h-[5.5rem]')}
+            rounded={page.avatar?.customize?.rounded}
+            priority
+          />
         </Link>
       ) : (
-        <Avatar url={page.avatar?.url} className="w-24 h-24" rounded={page.avatar?.customize?.rounded} priority />
+        <Avatar
+          url={page.avatar?.url}
+          className={classNames(page.avatar?.position === 'center' ? 'w-24 h-24' : 'w-[5.5rem] h-[5.5rem]')}
+          rounded={page.avatar?.customize?.rounded}
+          priority
+        />
       )}
       {onEdit ? (
         <button className="absolute bottom-0 left-0 transition duration-300 hover:opacity-60" onClick={onEdit}>
