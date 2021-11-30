@@ -1,15 +1,11 @@
 import React from 'react'
 import Image from 'next/image'
-import { useRouter } from 'next/router'
-import { useAuth } from '../context/auth'
 import Seo from '../components/Tools/Seo'
+import { useAuth } from '../context/auth'
 
 // ** UI
 import Layout from '../components/Layout'
 import { Button, Icon, Link } from '../components/Tools'
-
-// ** Utils
-import classNames from '../utils/classNames'
 
 // ** Slider
 import { useKeenSlider } from 'keen-slider/react'
@@ -17,36 +13,26 @@ import 'keen-slider/keen-slider.min.css'
 
 function Home() {
   const { user } = useAuth()
-  const router = useRouter()
 
   const [sliderRef, slider] = useKeenSlider({
-    slidesPerView: 1,
-    spacing: 32,
     rtl: true,
     loop: true,
+    slides: {
+      perView: 1,
+      spacing: 32
+    },
     breakpoints: {
       '(min-width: 640px)': {
-        slidesPerView: 1.3
+        slides: { perView: 1.3, spacing: 32 }
       },
       '(min-width: 768px)': {
-        slidesPerView: 2
+        slides: { perView: 2, spacing: 32 }
       },
       '(min-width: 1024px)': {
-        slidesPerView: 3
+        slides: { perView: 3, spacing: 32 }
       }
     }
   })
-
-  const handleRouteChange = React.useCallback(() => {
-    slider?.refresh()
-  }, [slider])
-
-  React.useEffect(() => {
-    router.events.on('routeChangeComplete', handleRouteChange)
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange)
-    }
-  }, [slider, handleRouteChange, router.events])
 
   return user?.id ? (
     <Layout className="space-y-8">
@@ -218,95 +204,93 @@ function Home() {
         </p>
         <div className="flex pt-4 -mx-4">
           <Icon name="angle-right" onClick={() => slider.prev()} className="w-8 cursor-pointer max-h-24 flex items-center justify-center" />
-          <div className="flex-1 max-w-[80vw] lg:max-w-none">
-            <div ref={sliderRef} className="keen-slider" dir="ltr">
-              <div className="keen-slider__slide bg-white text-content text-end rounded-2xl p-4" dir="rtl">
-                <div className="flex items-stretch space-s-2">
-                  <div className="w-1 bg-gradient-to-b from-[#FCC201] to-[#DBA514] rounded-full me-2" />
-                  <Image src="/images/vigen.jpg" width={64} height={64} alt="vigen" className="rounded-lg" />
-                  <div className="flex-1 flex flex-col justify-center">
-                    <h5 className="font-bold">عرفان پویا فرد</h5>
-                    <h6 className="text-[#FCC201]">حامی طلایی</h6>
-                  </div>
-                </div>
-                <div className="my-2 py-2 border-t border-b border-line flex items-center">
-                  <Icon name="angle-small-left" className="text-[#FCC201] me-2" />
-                  برنامه نویس فرانت اند
-                </div>
-                <div className="flex items-center justify-between">
-                  <Icon name="link" />
-                  colk.ir/47vigen
-                </div>
-                <div className="flex items-center justify-between">
-                  <Icon name="brand-instagram" />
-                  47vigen@
+          <div ref={sliderRef} className="keen-slider" dir="ltr">
+            <div className="keen-slider__slide bg-white text-content text-end rounded-2xl p-4" dir="rtl">
+              <div className="flex items-stretch space-s-2">
+                <div className="w-1 bg-gradient-to-b from-[#FCC201] to-[#DBA514] rounded-full me-2" />
+                <Image src="/images/vigen.jpg" width={64} height={64} alt="vigen" className="rounded-lg" />
+                <div className="flex-1 flex flex-col justify-center">
+                  <h5 className="font-bold">عرفان پویا فرد</h5>
+                  <h6 className="text-[#FCC201]">حامی طلایی</h6>
                 </div>
               </div>
-              <div className="keen-slider__slide bg-white text-content text-end rounded-2xl p-4" dir="rtl">
-                <div className="flex items-stretch space-s-2">
-                  <div className="w-1 bg-gradient-to-b from-[#FCC201] to-[#DBA514] rounded-full me-2" />
-                  <Image src="/images/vigen.jpg" width={64} height={64} alt="vigen" className="rounded-lg" />
-                  <div className="flex-1 flex flex-col justify-center">
-                    <h5 className="font-bold">عرفان پویا فرد</h5>
-                    <h6 className="text-[#FCC201]">حامی طلایی</h6>
-                  </div>
-                </div>
-                <div className="my-2 py-2 border-t border-b border-line flex items-center">
-                  <Icon name="angle-small-left" className="text-[#FCC201] me-2" />
-                  برنامه نویس فرانت اند
-                </div>
-                <div className="flex items-center justify-between">
-                  <Icon name="link" />
-                  colk.ir/47vigen
-                </div>
-                <div className="flex items-center justify-between">
-                  <Icon name="brand-instagram" />
-                  47vigen@
+              <div className="my-2 py-2 border-t border-b border-line flex items-center">
+                <Icon name="angle-small-left" className="text-[#FCC201] me-2" />
+                برنامه نویس فرانت اند
+              </div>
+              <div className="flex items-center justify-between">
+                <Icon name="link" />
+                colk.ir/47vigen
+              </div>
+              <div className="flex items-center justify-between">
+                <Icon name="brand-instagram" />
+                47vigen@
+              </div>
+            </div>
+            <div className="keen-slider__slide bg-white text-content text-end rounded-2xl p-4" dir="rtl">
+              <div className="flex items-stretch space-s-2">
+                <div className="w-1 bg-gradient-to-b from-[#FCC201] to-[#DBA514] rounded-full me-2" />
+                <Image src="/images/vigen.jpg" width={64} height={64} alt="vigen" className="rounded-lg" />
+                <div className="flex-1 flex flex-col justify-center">
+                  <h5 className="font-bold">عرفان پویا فرد</h5>
+                  <h6 className="text-[#FCC201]">حامی طلایی</h6>
                 </div>
               </div>
-              <div className="keen-slider__slide bg-white text-content text-end rounded-2xl p-4" dir="rtl">
-                <div className="flex items-stretch space-s-2">
-                  <div className="w-1 bg-gradient-to-b from-[#FCC201] to-[#DBA514] rounded-full me-2" />
-                  <Image src="/images/vigen.jpg" width={64} height={64} alt="vigen" className="rounded-lg" />
-                  <div className="flex-1 flex flex-col justify-center">
-                    <h5 className="font-bold">عرفان پویا فرد</h5>
-                    <h6 className="text-[#FCC201]">حامی طلایی</h6>
-                  </div>
-                </div>
-                <div className="my-2 py-2 border-t border-b border-line flex items-center">
-                  <Icon name="angle-small-left" className="text-[#FCC201] me-2" />
-                  برنامه نویس فرانت اند
-                </div>
-                <div className="flex items-center justify-between">
-                  <Icon name="link" />
-                  colk.ir/47vigen
-                </div>
-                <div className="flex items-center justify-between">
-                  <Icon name="brand-instagram" />
-                  47vigen@
+              <div className="my-2 py-2 border-t border-b border-line flex items-center">
+                <Icon name="angle-small-left" className="text-[#FCC201] me-2" />
+                برنامه نویس فرانت اند
+              </div>
+              <div className="flex items-center justify-between">
+                <Icon name="link" />
+                colk.ir/47vigen
+              </div>
+              <div className="flex items-center justify-between">
+                <Icon name="brand-instagram" />
+                47vigen@
+              </div>
+            </div>
+            <div className="keen-slider__slide bg-white text-content text-end rounded-2xl p-4" dir="rtl">
+              <div className="flex items-stretch space-s-2">
+                <div className="w-1 bg-gradient-to-b from-[#FCC201] to-[#DBA514] rounded-full me-2" />
+                <Image src="/images/vigen.jpg" width={64} height={64} alt="vigen" className="rounded-lg" />
+                <div className="flex-1 flex flex-col justify-center">
+                  <h5 className="font-bold">عرفان پویا فرد</h5>
+                  <h6 className="text-[#FCC201]">حامی طلایی</h6>
                 </div>
               </div>
-              <div className="keen-slider__slide bg-white text-content text-end rounded-2xl p-4" dir="rtl">
-                <div className="flex items-stretch space-s-2">
-                  <div className="w-1 bg-gradient-to-b from-[#FCC201] to-[#DBA514] rounded-full me-2" />
-                  <Image src="/images/vigen.jpg" width={64} height={64} alt="vigen" className="rounded-lg" />
-                  <div className="flex-1 flex flex-col justify-center">
-                    <h5 className="font-bold">عرفان پویا فرد</h5>
-                    <h6 className="text-[#FCC201]">حامی طلایی</h6>
-                  </div>
+              <div className="my-2 py-2 border-t border-b border-line flex items-center">
+                <Icon name="angle-small-left" className="text-[#FCC201] me-2" />
+                برنامه نویس فرانت اند
+              </div>
+              <div className="flex items-center justify-between">
+                <Icon name="link" />
+                colk.ir/47vigen
+              </div>
+              <div className="flex items-center justify-between">
+                <Icon name="brand-instagram" />
+                47vigen@
+              </div>
+            </div>
+            <div className="keen-slider__slide bg-white text-content text-end rounded-2xl p-4" dir="rtl">
+              <div className="flex items-stretch space-s-2">
+                <div className="w-1 bg-gradient-to-b from-[#FCC201] to-[#DBA514] rounded-full me-2" />
+                <Image src="/images/vigen.jpg" width={64} height={64} alt="vigen" className="rounded-lg" />
+                <div className="flex-1 flex flex-col justify-center">
+                  <h5 className="font-bold">عرفان پویا فرد</h5>
+                  <h6 className="text-[#FCC201]">حامی طلایی</h6>
                 </div>
-                <div className="my-2 py-2 border-t border-b border-line flex items-center">
-                  <Icon name="angle-small-left" className="text-[#FCC201] me-2" />
-                  برنامه نویس فرانت اند
-                </div>
-                <div className="flex items-center justify-between">
-                  <Icon name="link" />
-                  colk.ir/47vigen
-                </div>
-                <div className="flex items-center justify-between">
-                  <Icon name="brand-instagram" />
-                  47vigen@
-                </div>
+              </div>
+              <div className="my-2 py-2 border-t border-b border-line flex items-center">
+                <Icon name="angle-small-left" className="text-[#FCC201] me-2" />
+                برنامه نویس فرانت اند
+              </div>
+              <div className="flex items-center justify-between">
+                <Icon name="link" />
+                colk.ir/47vigen
+              </div>
+              <div className="flex items-center justify-between">
+                <Icon name="brand-instagram" />
+                47vigen@
               </div>
             </div>
           </div>

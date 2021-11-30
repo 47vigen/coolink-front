@@ -10,11 +10,13 @@ import FeedImage from './FeedImage'
 const FeedSlider = ({ feed, customize }) => {
   const [slide, setSlide] = React.useState(0)
   const [sliderRef, slider] = useKeenSlider({
-    slidesPerView: 1,
-    spacing: 8,
     rtl: true,
+    slides: {
+      perView: 1,
+      spacing: 8
+    },
     slideChanged(s) {
-      setSlide(s.details().relativeSlide)
+      setSlide(s.track.details.rel)
     }
   })
 
@@ -29,7 +31,7 @@ const FeedSlider = ({ feed, customize }) => {
           <FeedImage opened idx={idx} feed={feed} className={`bg-${customize.color || 'white'}`} />
         </div>
       ))}
-      {slider && (
+      {slider.current && (
         <>
           <span className="flex items-center justify-center absolute left-2 top-2 w-[1.375rem] h-[1.375rem] rounded-full bg-white text-xs">
             {slide + 1}
@@ -39,7 +41,7 @@ const FeedSlider = ({ feed, customize }) => {
             type="ghost"
             icon="angle-small-right"
             className="opacity-0 group-hover:opacity-100 absolute top-1/2 transform -translate-y-1/2 right-2 !p-1 !min-h-0"
-            onClick={(e) => e.stopPropagation() || slider.prev()}
+            onClick={(e) => e.stopPropagation() || slider.current?.prev()}
             disabled={slide === 0}
           />
           <Button
@@ -47,8 +49,8 @@ const FeedSlider = ({ feed, customize }) => {
             type="ghost"
             icon="angle-small-left"
             className="opacity-0 group-hover:opacity-100 absolute top-1/2 transform -translate-y-1/2 left-2 !p-1 !min-h-0"
-            onClick={(e) => e.stopPropagation() || slider.next()}
-            disabled={slide === slider.details().size - 1}
+            onClick={(e) => e.stopPropagation() || slider.current?.prev()}
+            disabled={slide === slider.current?.track.details.slides.length - 1}
           />
         </>
       )}
