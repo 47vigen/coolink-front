@@ -76,7 +76,7 @@ function SingleFeed({ page, section, feed, referrer }) {
             }
           }}
         >
-          {feed.caption}
+          {feed.caption.substr(feed.caption.indexOf(feed.title))}
         </Linkify>
         <div className="fixed bottom-0 start-0 end-0 z-50 px-4 md:px-0">
           <div className={classNames('max-w-md mx-auto p-2 rounded-t-lg', `bg-${custom(1).color || 'white'}`)}>
