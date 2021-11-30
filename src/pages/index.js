@@ -68,11 +68,11 @@ function Home() {
           </Button>
         </div>
         <div className="flex-1 relative mt-8 lg:mt-0">
-          <div className="absolute -end-4 lg:end-8 w-[12rem] lg:w-[19rem] h-[21rem] lg:h-[33rem] bg-white rounded-2xl transform rotate-[-9deg] shadow-2xl"></div>
-          <div className="absolute end-36 lg:end-60 w-[12rem] lg:w-[19rem] h-[21rem] lg:h-[33rem] bg-white rounded-2xl transform rotate-2 shadow-2xl"></div>
+          <div className="absolute -end-2 lg:end-8 w-[calc(50vw-1rem)] max-w-[19rem] h-[calc(calc(50vw-1rem)*1.7)] max-h-[32.3rem] bg-white rounded-2xl transform rotate-[-9deg] shadow-2xl"></div>
+          <div className="absolute end-0 translate-x-[calc(100%-4rem)]  w-[calc(50vw-1rem)] max-w-[19rem] h-[calc(calc(50vw-1rem)*1.7)] max-h-[32.3rem] bg-white rounded-2xl transform rotate-2 shadow-2xl"></div>
         </div>
       </section>
-      <div className="h-[18rem] !mt-0 lg:hidden" />
+      <div className="h-[calc(50vw+2rem)] max-h-[26rem] !mt-0 lg:hidden" />
       <Link href="#more" className="hidden lg:!flex !mt-4 !mb-24 items-center">
         <Icon name="arrow-small-down" className="animate-small-bounce mx-2 text-lg" />
         اطلاعات بیشتر
