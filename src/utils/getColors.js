@@ -10,6 +10,12 @@ const colors = {
   pink: tailColors.pink
 }
 
+export function tailColorToHex(color = '') {
+  if (!color) return null
+  const split = color.split('-')
+  return colors[split[0]][split[1]]
+}
+
 export function getPalette(nullable, colorFull) {
   const palette = []
   Object.keys(colors).map((color) => {

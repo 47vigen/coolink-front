@@ -2,15 +2,14 @@ import React from 'react'
 import { NextSeo } from 'next-seo'
 
 // ** UI
-import { rgbToHex } from '../../utils/rgbToHex'
-import { getImgSrc } from '../../utils/getImgSrc'
 import deepCleaner from '../../utils/deepCleaner'
+import { getImgSrc } from '../../utils/getImgSrc'
+import { tailColorToHex } from '../../utils/getColors'
 
 const PRIMARY_COLOR = '#05C46B'
 
 function Seo({ page = null, ...props }) {
-  const ref = React.useRef()
-  const [themeColor, setThemeColor] = React.useState(undefined)
+  const themeColor = React.useMemo(() => tailColorToHex(page?.style?.customize?.color), [page?.style?.customize?.color])
 
   const seoConfig = {
     titleTemplate: '%s | کولینک',
@@ -59,19 +58,7 @@ function Seo({ page = null, ...props }) {
     ...deepCleaner(props)
   }
 
-  React.useEffect(() => {
-    if (page?.id) {
-      const color = window.getComputedStyle(ref.current).getPropertyValue('background-color')
-      setThemeColor(rgbToHex(color))
-    }
-  }, [page, ref?.current?.className])
-
-  return (
-    <>
-      <NextSeo {...seoConfig} title={seoConfig.title || seoConfig.defaultTitle} />
-      <span ref={ref} className={`!sr-only bg-${page?.style?.customize?.color}`} />
-    </>
-  )
+  return <NextSeo {...seoConfig} title={seoConfig.title || seoConfig.defaultTitle} />
 }
 
 export default React.memo(Seo)
