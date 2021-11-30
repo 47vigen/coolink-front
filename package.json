@@ -53,6 +53,7 @@
     "tailwindcss-rtl": "^0.7.3",
     "ua-parser-js": "^1.0.2",
     "uuid": "^8.3.2",
+    "video-react": "^0.14.1",
     "yup": "^0.32.9"
   },
   "devDependencies": {

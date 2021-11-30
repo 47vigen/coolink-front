@@ -37,4 +37,4 @@ function FeedHeader({ title, page, section, back }) {
   )
 }
 
-export default FeedHeader
+export default React.memo(FeedHeader)

@@ -19,14 +19,14 @@ const FeedSlider = ({ feed, customize }) => {
   })
 
   if (feed.slides?.length <= 1) {
-    return <FeedImage idx={0} feed={feed} className={`bg-${customize.color || 'white'}`} />
+    return <FeedImage opened idx={0} feed={feed} className={`bg-${customize.color || 'white'}`} />
   }
 
   return (
     <div ref={sliderRef} className="group keen-slider" dir="ltr">
       {feed.slides.map((_slide, idx) => (
         <div key={`slide-${idx}`} className="keen-slider__slide flex flex-col">
-          <FeedImage idx={idx} feed={feed} className={`bg-${customize.color || 'white'}`} />
+          <FeedImage opened idx={idx} feed={feed} className={`bg-${customize.color || 'white'}`} />
         </div>
       ))}
       {slider && (
