@@ -68,9 +68,8 @@ function FeedsPage({ page, section, feeds }) {
             <FeedItem key={feed.pk} page={page} feed={feed} section={section} />
           ))}
         </div>
-      ) : (
-        <Feeds page={page} section={section} feeds={feeds} />
-      )}
+      ) : null}
+      <Feeds page={page} section={section} feeds={feeds} notShown={!!search} />
     </Page>
   )
 }

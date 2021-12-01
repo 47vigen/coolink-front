@@ -12,7 +12,7 @@ import useImperativeQuery from '../../graphql/useImperativeQuery'
 // ** Utils
 import lessable from '../../utils/lessable'
 
-function Feeds({ page, section, feeds: serverfeeds = [] }) {
+function Feeds({ page, section, feeds: serverfeeds = [], notShown }) {
   const [feeds, setFeeds] = React.useState(serverfeeds)
   const [tureLoading, setTureLoading] = React.useState(false)
   const [fetch, { called, data, loading, error }] = useImperativeQuery(SHOW_IG_FEEDS_BY_PAGE, {
@@ -38,6 +38,7 @@ function Feeds({ page, section, feeds: serverfeeds = [] }) {
 
   const custom = React.useCallback((idx) => (section.customized ? section.customize[idx] || {} : {}), [section.customized, section.customize])
 
+  if (notShown) return null
   return (
     <>
       <InfiniteScroll next={next} dataLength={feeds.length} hasMore={hasMore}>
