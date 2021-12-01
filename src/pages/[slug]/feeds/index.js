@@ -1,48 +1,37 @@
 import React from 'react'
 import { BlogJsonLd } from 'next-seo'
-import InfiniteScroll from 'react-infinite-scroll-component'
 import useSendStatistic from '../../../hooks/useSendStatistic'
 
 // ** UI
 import Page from '../../../components/Layout/Page'
 import { Element, Icon } from '../../../components/Tools'
-import { FeedHeader, FeedItem } from '../../../components/Feeds'
+import Feeds, { FeedHeader, FeedItem } from '../../../components/Feeds'
 
 // ** Graphql
+import { useLazyQuery } from '@apollo/client'
 import { apolloClient } from '../../../graphql/apollo'
-import useImperativeQuery from '../../../graphql/useImperativeQuery'
-import { SHOW_IG_FEEDS_BY_PAGE, SHOW_PAGE_WITH_FEEDS_SECTIONS_BY_SLUG } from '../../../graphql/queries'
+import { SEARCH_FEEDS, SHOW_PAGE_WITH_FEEDS_SECTIONS_BY_SLUG } from '../../../graphql/queries'
 
 // ** Utils
+import debounce from '../../../utils/debounce'
 import lessable from '../../../utils/lessable'
+import classNames from '../../../utils/classNames'
 import { getImgSrc } from '../../../utils/getImgSrc'
 
-function Feeds({ page, section, feeds: serverfeeds = [], referrer }) {
-  const [feeds, setFeeds] = React.useState(serverfeeds)
-  const [tureLoading, setTureLoading] = React.useState(false)
+function FeedsPage({ page, section, feeds }) {
   // const { sendStatistic } = useSendStatistic(page.id, referrer)
-  const [fetch, { called, data, loading, error }] = useImperativeQuery(SHOW_IG_FEEDS_BY_PAGE, {
-    onCompleted: (data) =>
-      setFeeds((prev) => {
-        const feeds = lessable(data).feeds
-        const current = prev.map((item) => feeds.find((feed) => item.pk === feed.pk) || item)
-        return [...current, ...feeds.filter((feed) => !current.find((item) => item.pk === feed.pk))]
-      })
-  })
-
-  const hasMore = React.useMemo(() => lessable(data)?.next || (!called && !error), [called, data, error])
-  const next = React.useCallback(() => {
-    setTureLoading(true)
-    if (!called && !error) {
-      return fetch({ variables: { page: page.id } })
-        .then(({ data, ...props }) =>
-          lessable(data)?.next ? fetch({ variables: { page: page.id, next: lessable(data).next } }) : { data, ...props }
-        )
-        .finally(() => setTureLoading(false))
-    } else return fetch({ variables: { page: page.id, next: lessable(data)?.next } }).finally(() => setTureLoading(false))
-  }, [called, data, error, fetch, page.id])
-
+  const [search, setSearch] = React.useState('')
+  const [fetch, { data, loading }] = useLazyQuery(SEARCH_FEEDS, { fetchPolicy: 'cache-and-network' })
   const custom = React.useCallback((idx) => (section.customized ? section.customize[idx] || {} : {}), [section.customized, section.customize])
+
+  const onSearch = React.useMemo(() => debounce((q) => fetch({ variables: { q, pagePk: page.pk } }), 1500), [fetch, page.pk])
+  const onChange = React.useCallback(
+    (e) => {
+      setSearch(e.target.value)
+      if (e.target.value) onSearch(e.target.value)
+    },
+    [onSearch]
+  )
 
   return (
     <Page page={page} title={section.items[0].key || 'پست ها'} header={<FeedHeader page={page} section={section} back={`/${page.slug}`} />}>
@@ -53,36 +42,34 @@ function Feeds({ page, section, feeds: serverfeeds = [], referrer }) {
         url={`https://coolink.ir/${page.slug}/feeds`}
         title={section.items[0].key || 'پست ها'}
       />
-      <InfiniteScroll next={next} dataLength={feeds.length} hasMore={hasMore}>
+      <section className="search relative">
+        <Element
+          tag="input"
+          customize={{ ...page.style.customize, ...custom(0) }}
+          className="flex w-full justify-center items-center min-h-[2.5rem] focus:outline-none mb-4 px-4 !opacity-100"
+          placeholder="جست‌وجو در پست های لود شده ..."
+          onChange={onChange}
+          value={search}
+        />
+        <Element
+          tag={Icon}
+          onClick={search ? () => setSearch('') : null}
+          customize={{ ...page.style.customize, ...custom(0) }}
+          name={search ? (loading ? 'spinner' : 'cross-small') : 'search'}
+          className={classNames(
+            'text-base absolute top-1 end-1.5 !bg-transparent !border-0 transition-none cursor-pointer p-2',
+            loading ? 'animate-spin' : ''
+          )}
+        />
+      </section>
+      {search ? (
         <div className="grid grid-cols-3 gap-2 mt-4 lg:mt-0">
-          {(feeds.length ? feeds : serverfeeds).map((feed) => (
+          {lessable(data)?.map((feed) => (
             <FeedItem key={feed.pk} page={page} feed={feed} section={section} />
           ))}
         </div>
-      </InfiniteScroll>
-      {loading || tureLoading || hasMore ? (
-        <Element
-          tag="button"
-          onClick={!(loading || tureLoading) ? next : null}
-          customize={{ ...page.style.customize, ...custom(0) }}
-          className="flex w-full justify-center items-center min-h-[2rem] my-4"
-        >
-          {loading || tureLoading ? (
-            <Icon name="spinner" className="animate-spin text-base ml-2" />
-          ) : (
-            <Icon name="arrow-small-down" className="text-base ml-2" />
-          )}
-          پست های بیشتر ...
-        </Element>
       ) : (
-        <Element
-          tag="div"
-          customize={{ ...page.style.customize, ...custom(0) }}
-          className="flex w-full justify-center items-center min-h-[2rem] my-4"
-        >
-          <Icon name="check" className="text-base ml-2" />
-          همه پست ها رو دیدی!
-        </Element>
+        <Feeds page={page} section={section} feeds={feeds} />
       )}
     </Page>
   )
@@ -107,4 +94,4 @@ export const getServerSideProps = ({ params, req }) =>
       .catch(() => ({ notFound: true }))
   )
 
-export default Feeds
+export default FeedsPage

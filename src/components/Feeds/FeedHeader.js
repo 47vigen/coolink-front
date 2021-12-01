@@ -6,11 +6,9 @@ import { Avatar, Element, Icon, Link } from '../Tools'
 
 // ** Utils
 import classNames from '../../utils/classNames'
-import { useRouter } from 'next/router'
 
 function FeedHeader({ title, page, section, back }) {
-  const router = useRouter()
-  const custom = React.useCallback((idx) => (section.customized ? section.customize[idx] || {} : {}), [section.customized, section.customize])
+  // const custom = React.useCallback((idx) => (section.customized ? section.customize[idx] || {} : {}), [section.customized, section.customize])
   const titles = React.useMemo(
     () => ({ title: page.avatar?.customize?.color || 'content', subTitle: page.avatar?.customize?.second || 'secondary' }),
     [page]
@@ -25,14 +23,9 @@ function FeedHeader({ title, page, section, back }) {
         <h1 className={classNames('text-lg truncate', `text-${titles.title}`)}>{title || section.items[0].key || 'پست ها'}</h1>
         <span className={classNames('text-base truncate', `text-${titles.subTitle}`)}>{page?.title}</span>
       </div>
-      <Element
-        href={back}
-        tag={SimpleLink}
-        className="px-3 self-stretch flex items-center ms-4"
-        customize={{ ...page.style.customize, ...custom(0) }}
-      >
-        <Icon name="angle-left" className="text-base" />
-      </Element>
+      <SimpleLink href={back} className="px-3 self-stretch flex items-center ms-4 rounded-md border border-line text-secondary mix-blend-exclusion">
+        <Icon name="angle-left" className="text-base mix-blend-exclusion" />
+      </SimpleLink>
     </header>
   )
 }

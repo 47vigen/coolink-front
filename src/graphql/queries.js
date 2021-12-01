@@ -136,6 +136,7 @@ export const SHOW_PAGE_WITH_FEEDS_SECTIONS_BY_SLUG = gql`
     showPageWithFeedsSectionBySlug(slug: $slug) {
       page {
         id
+        pk
         slug
         title
         subTitle
@@ -369,6 +370,22 @@ export const SHOW_IG_FEEDS_BY_PAGE = gql`
           imageUrl
           videoUrl
         }
+      }
+    }
+  }
+`
+
+export const SEARCH_FEEDS = gql`
+  query SearchFeeds($q: String!, $pagePk: String!) {
+    searchFeeds(q: $q, pagePk: $pagePk) {
+      id
+      pk
+      title
+      caption
+      slides {
+        type
+        imageUrl
+        videoUrl
       }
     }
   }
