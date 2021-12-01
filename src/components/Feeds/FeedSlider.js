@@ -49,7 +49,7 @@ const FeedSlider = ({ feed, customize }) => {
             type="ghost"
             icon="angle-small-left"
             className="opacity-0 group-hover:opacity-100 absolute top-1/2 transform -translate-y-1/2 left-2 !p-1 !min-h-0"
-            onClick={(e) => e.stopPropagation() || slider.current?.prev()}
+            onClick={(e) => e.stopPropagation() || slider.current?.next()}
             disabled={slide === slider.current?.track.details.slides.length - 1}
           />
         </>

@@ -203,7 +203,11 @@ function Home() {
           اختیار کاربران قرار می‌دهد.
         </p>
         <div className="flex pt-4 -mx-4">
-          <Icon name="angle-right" onClick={() => slider.prev()} className="w-8 cursor-pointer max-h-24 flex items-center justify-center" />
+          <Icon
+            name="angle-right"
+            onClick={(e) => e.stopPropagation() || slider.current?.prev()}
+            className="w-8 cursor-pointer max-h-24 flex items-center justify-center"
+          />
           <div ref={sliderRef} className="keen-slider" dir="ltr">
             <div className="keen-slider__slide bg-white text-content text-end rounded-2xl p-4" dir="rtl">
               <div className="flex items-stretch space-s-2">
@@ -294,7 +298,11 @@ function Home() {
               </div>
             </div>
           </div>
-          <Icon name="angle-left" onClick={() => slider.next()} className="w-8 cursor-pointer max-h-24 flex items-center justify-center" />
+          <Icon
+            name="angle-left"
+            onClick={(e) => e.stopPropagation() || slider.current?.next()}
+            className="w-8 cursor-pointer max-h-24 flex items-center justify-center"
+          />
         </div>
       </section>
       <div className="h-28" />
