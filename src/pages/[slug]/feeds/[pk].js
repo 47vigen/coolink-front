@@ -21,7 +21,7 @@ import classNames from '../../../utils/classNames'
 import { getImgSrc } from '../../../utils/getImgSrc'
 
 function SingleFeed({ page, section, feed, referrer }) {
-  const { sendStatistic } = useSendStatistic(page.id, referrer)
+  // const { sendStatistic } = useSendStatistic(page.id, referrer)
   const custom = React.useCallback((idx) => (section.customized ? section.customize[idx] || {} : {}), [section.customized, section.customize])
   const customize = React.useMemo(() => ({ ...page.style.customize, ...custom(0) }), [custom, page.style.customize])
 

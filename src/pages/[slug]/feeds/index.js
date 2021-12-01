@@ -18,10 +18,7 @@ import lessable from '../../../utils/lessable'
 import { getImgSrc } from '../../../utils/getImgSrc'
 
 function Feeds({ page, section, feeds: serverfeeds = [], referrer }) {
-  const [feeds, setFeeds] = React.useState([])
-  const { sendStatistic } = useSendStatistic(page.id, referrer)
-  const [fetch, { data, loading, error }] = useImperativeQuery(SHOW_IG_FEEDS_BY_PAGE, {
-    onCompleted: (data) => setFeeds((prev) => [...prev, ...lessable(data).feeds])
+  // const { sendStatistic } = useSendStatistic(page.id, referrer)
   })
 
   const hasMore = React.useMemo(() => lessable(data)?.next || (!feeds.length && !error), [data, error, feeds.length])
