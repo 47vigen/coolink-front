@@ -19,6 +19,7 @@ import { getImgSrc } from '../../../utils/getImgSrc'
 
 function Feeds({ page, section, feeds: serverfeeds = [], referrer }) {
   const [feeds, setFeeds] = React.useState(serverfeeds)
+  const [tureLoading, setTureLoading] = React.useState(false)
   // const { sendStatistic } = useSendStatistic(page.id, referrer)
   const [fetch, { called, data, loading, error }] = useImperativeQuery(SHOW_IG_FEEDS_BY_PAGE, {
     onCompleted: (data) =>
@@ -31,12 +32,14 @@ function Feeds({ page, section, feeds: serverfeeds = [], referrer }) {
 
   const hasMore = React.useMemo(() => lessable(data)?.next || (!called && !error), [called, data, error])
   const next = React.useCallback(() => {
+    setTureLoading(true)
     if (!called && !error) {
-      console.log()
-      return fetch({ variables: { page: page.id } }).then(({ data, ...props }) =>
-        lessable(data)?.next ? fetch({ variables: { page: page.id, next: lessable(data).next } }) : { data, ...props }
-      )
-    } else return fetch({ variables: { page: page.id, next: lessable(data)?.next } })
+      return fetch({ variables: { page: page.id } })
+        .then(({ data, ...props }) =>
+          lessable(data)?.next ? fetch({ variables: { page: page.id, next: lessable(data).next } }) : { data, ...props }
+        )
+        .finally(() => setTureLoading(false))
+    } else return fetch({ variables: { page: page.id, next: lessable(data)?.next } }).finally(() => setTureLoading(false))
   }, [called, data, error, fetch, page.id])
 
   const custom = React.useCallback((idx) => (section.customized ? section.customize[idx] || {} : {}), [section.customized, section.customize])
@@ -57,14 +60,18 @@ function Feeds({ page, section, feeds: serverfeeds = [], referrer }) {
           ))}
         </div>
       </InfiniteScroll>
-      {loading || hasMore ? (
+      {loading || tureLoading || hasMore ? (
         <Element
           tag="button"
-          onClick={!loading ? next : null}
+          onClick={!(loading || tureLoading) ? next : null}
           customize={{ ...page.style.customize, ...custom(0) }}
           className="flex w-full justify-center items-center min-h-[2rem] my-4"
         >
-          {loading ? <Icon name="spinner" className="animate-spin text-base ml-2" /> : <Icon name="arrow-small-down" className="text-base ml-2" />}
+          {loading || tureLoading ? (
+            <Icon name="spinner" className="animate-spin text-base ml-2" />
+          ) : (
+            <Icon name="arrow-small-down" className="text-base ml-2" />
+          )}
           پست های بیشتر ...
         </Element>
       ) : (
