@@ -63,7 +63,7 @@ function FeedsPage({ page, section, feeds }) {
         />
       </section>
       {search ? (
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cols-3 gap-2 mb-4">
           {lessable(data)?.map((feed) => (
             <FeedItem key={feed.pk} page={page} feed={feed} section={section} />
           ))}
