@@ -18,17 +18,26 @@ import lessable from '../../../utils/lessable'
 import { getImgSrc } from '../../../utils/getImgSrc'
 
 function Feeds({ page, section, feeds: serverfeeds = [], referrer }) {
+  const [feeds, setFeeds] = React.useState(serverfeeds)
   // const { sendStatistic } = useSendStatistic(page.id, referrer)
+  const [fetch, { called, data, loading, error }] = useImperativeQuery(SHOW_IG_FEEDS_BY_PAGE, {
+    onCompleted: (data) =>
+      setFeeds((prev) => {
+        const feeds = lessable(data).feeds
+        const current = prev.map((item) => feeds.find((feed) => item.pk === feed.pk) || item)
+        return [...current, ...feeds.filter((feed) => !current.find((item) => item.pk === feed.pk))]
+      })
   })
 
-  const hasMore = React.useMemo(() => lessable(data)?.next || (!feeds.length && !error), [data, error, feeds.length])
+  const hasMore = React.useMemo(() => lessable(data)?.next || (!called && !error), [called, data, error])
   const next = React.useCallback(() => {
-    if (!feeds.length && !error) {
+    if (!called && !error) {
+      console.log()
       return fetch({ variables: { page: page.id } }).then(({ data, ...props }) =>
         lessable(data)?.next ? fetch({ variables: { page: page.id, next: lessable(data).next } }) : { data, ...props }
       )
     } else return fetch({ variables: { page: page.id, next: lessable(data)?.next } })
-  }, [data, error, feeds.length, fetch, page.id])
+  }, [called, data, error, fetch, page.id])
 
   const custom = React.useCallback((idx) => (section.customized ? section.customize[idx] || {} : {}), [section.customized, section.customize])
 
@@ -41,7 +50,7 @@ function Feeds({ page, section, feeds: serverfeeds = [], referrer }) {
         url={`https://coolink.ir/${page.slug}/feeds`}
         title={section.items[0].key || 'پست ها'}
       />
-      <InfiniteScroll next={next} dataLength={feeds.length || serverfeeds.length} hasMore={hasMore}>
+      <InfiniteScroll next={next} dataLength={feeds.length} hasMore={hasMore}>
         <div className="grid grid-cols-3 gap-2 mt-4 lg:mt-0">
           {(feeds.length ? feeds : serverfeeds).map((feed) => (
             <FeedItem key={feed.pk} page={page} feed={feed} section={section} />
