@@ -24,7 +24,7 @@ const FeedImage = ({ idx = 0, feed, opened, className }) => {
       width={1080}
       height={1080}
       poster={imgSrc}
-      className={classNames(!fullScreen ? 'object-cover h-[calc(100vw-1rem)] max-h-[28rem] rounded-md' : '', className)}
+      className={classNames(!fullScreen ? 'object-cover h-[calc(100vw-1rem)] max-h-[28rem] rounded-md overflow-hidden' : '', className)}
     >
       <source src={videoSrc} type="video/mp4" />
     </video>
