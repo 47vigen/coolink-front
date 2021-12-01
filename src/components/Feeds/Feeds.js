@@ -41,7 +41,7 @@ function Feeds({ page, section, feeds: serverfeeds = [] }) {
   return (
     <>
       <InfiniteScroll next={next} dataLength={feeds.length} hasMore={hasMore}>
-        <div className="grid grid-cols-3 gap-2 mt-4 lg:mt-0">
+        <div className="grid grid-cols-3 gap-2">
           {(feeds.length ? feeds : serverfeeds).map((feed) => (
             <FeedItem key={feed.pk} page={page} feed={feed} section={section} />
           ))}

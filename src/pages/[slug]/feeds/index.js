@@ -42,7 +42,7 @@ function FeedsPage({ page, section, feeds }) {
         url={`https://coolink.ir/${page.slug}/feeds`}
         title={section.items[0].key || 'پست ها'}
       />
-      <section className="search relative">
+      <section className="search relative my-4 lg:mt-0">
         <Element
           tag="input"
           customize={{ ...page.style.customize, ...custom(0) }}
@@ -63,7 +63,7 @@ function FeedsPage({ page, section, feeds }) {
         />
       </section>
       {search ? (
-        <div className="grid grid-cols-3 gap-2 mt-4 lg:mt-0">
+        <div className="grid grid-cols-3 gap-2">
           {lessable(data)?.map((feed) => (
             <FeedItem key={feed.pk} page={page} feed={feed} section={section} />
           ))}
