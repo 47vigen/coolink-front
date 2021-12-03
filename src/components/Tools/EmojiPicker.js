@@ -16,6 +16,8 @@ import { Field, Icon } from '.'
 import classNames from '../../utils/classNames'
 import debounce from '../../utils/debounce'
 
+const ITEM_SIZE = 6
+
 const ICONS = {
   brands: Object.keys(styles).filter((key) => key.includes('brand-')),
   common: Object.keys(styles).filter((key) => !key.includes('brand-') && key !== 'base')
@@ -117,15 +119,15 @@ export const EmojiSelector = React.memo(function Component({ onSelect }) {
               {() => (
                 <Form className="w-full" onChange={(e) => onSearch(e.target?.value)}>
                   <Field name="title" placeholder="جستجو کنید ..." className="focus:text-content" errorless />
-                  <div className="grid lg:grid-cols-8 grid-cols-6 gap-1 pe-2 -ms-2 my-2 max-h-48 smooth-scrollbar overflow-y-auto overflow-x-hidden">
+                  <div className="grid grid-cols-6 gap-1 pe-2 -ms-2 my-2 max-h-48 smooth-scrollbar overflow-y-auto overflow-x-hidden">
                     {searched.map(({ item: { type, name } }, idx) => (
                       <button
                         type="button"
                         key={`${type}-${name}`}
-                        className="transition hover:bg-line p-1 rounded-full w-9 h-9"
+                        className="transition hover:bg-line p-1 rounded-full w-14 h-14"
                         onClick={() => onSelect({ type, name })}
                       >
-                        <EmojiOrIcon size={24} type={type} name={name} className={classNames('text-lg')} />
+                        <EmojiOrIcon size={32} type={type} name={name} className={classNames('text-2xl')} />
                       </button>
                     ))}
                   </div>
@@ -149,14 +151,14 @@ export const EmojiSelector = React.memo(function Component({ onSelect }) {
                       <AutoSizer>
                         {({ height, width }) => (
                           <Grid
-                            rowCount={Math.ceil(ICONS[category].length / 8)}
-                            columnCount={8}
+                            rowCount={Math.ceil(ICONS[category].length / ITEM_SIZE)}
+                            columnCount={ITEM_SIZE}
                             height={height}
-                            rowHeight={width / 8.5}
-                            columnWidth={width / 8.5}
+                            rowHeight={width / (ITEM_SIZE + 0.5)}
+                            columnWidth={width / (ITEM_SIZE + 0.5)}
                             className="smooth-scrollbar"
                             cellRenderer={({ columnIndex, rowIndex, key, style }) => {
-                              const index = rowIndex * 8 + columnIndex
+                              const index = rowIndex * ITEM_SIZE + columnIndex
                               const icon = ICONS[category][index]
                               return icon ? (
                                 <button
@@ -166,7 +168,7 @@ export const EmojiSelector = React.memo(function Component({ onSelect }) {
                                   onClick={() => onSelect({ type: 'icon', name: icon })}
                                   style={style}
                                 >
-                                  <EmojiOrIcon type="icon" name={icon} className="text-lg" />
+                                  <EmojiOrIcon type="icon" name={icon} className="text-2xl" />
                                 </button>
                               ) : null
                             }}
@@ -196,14 +198,14 @@ export const EmojiSelector = React.memo(function Component({ onSelect }) {
                       <AutoSizer>
                         {({ height, width }) => (
                           <Grid
-                            rowCount={Math.ceil(category.emojis.length / 8)}
-                            columnCount={8}
+                            rowCount={Math.ceil(category.emojis.length / ITEM_SIZE)}
+                            columnCount={ITEM_SIZE}
                             height={height}
-                            rowHeight={width / 8.5}
-                            columnWidth={width / 8.5}
+                            rowHeight={width / (ITEM_SIZE + 0.5)}
+                            columnWidth={width / (ITEM_SIZE + 0.5)}
                             className="smooth-scrollbar"
                             cellRenderer={({ columnIndex, rowIndex, key, style }) => {
-                              const index = rowIndex * 8 + columnIndex
+                              const index = rowIndex * ITEM_SIZE + columnIndex
                               const emoji = category.emojis[index]
                               return emoji ? (
                                 <button
@@ -213,7 +215,7 @@ export const EmojiSelector = React.memo(function Component({ onSelect }) {
                                   onClick={() => onSelect({ type: 'emoji', name: `${emoji}|${skin}` })}
                                   style={style}
                                 >
-                                  <EmojiOrIcon size={24} type="emoji" name={`${emoji}|${skin}`} />
+                                  <EmojiOrIcon size={32} type="emoji" name={`${emoji}|${skin}`} />
                                 </button>
                               ) : null
                             }}
